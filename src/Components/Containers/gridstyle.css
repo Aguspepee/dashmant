@@ -1,0 +1,29 @@
+.gridpie {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.gridlinear{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: "center";
+  justify-items: "center";
+  padding: 1em 0em 1em 0em;
+}
+
+@media screen and (max-width: 990px) {
+  .gridpie {
+    grid-template-columns: 50% 50%;
+  }
+  .gridlinear {
+    grid-template-columns: 100%;
+   
+  }
+}
+
+@media screen and (max-width: 695px) {
+    .gridpie {
+      grid-template-columns: 100%;
+      
+    }
+  }
