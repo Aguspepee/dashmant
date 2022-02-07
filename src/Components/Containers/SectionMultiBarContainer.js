@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
 
 function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat };
+  return { name, calories, fat, carbs, protein };
 }
 
 const rows = [
@@ -65,12 +65,12 @@ function SectionMultiBarContainer(props) {
                     <TableCell width="10%" align="right">{row.fat}</TableCell>
                     <TableCell width="10%" align="right">{row.fat}</TableCell>
                     <TableCell width="10%" align="right">{row.fat}</TableCell>
-                    <TableCell width="45%" align="right">
+                    <TableCell width="53%" align="right">
                       <MiniBarChartCard
                         percentaje={row.calories}
                       ></MiniBarChartCard>
                     </TableCell>
-                    <TableCell width="10%" align="right">{row.fat}</TableCell>
+                    <TableCell width="2%" align="right">{row.fat}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
