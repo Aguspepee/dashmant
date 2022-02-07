@@ -13,10 +13,10 @@ import filterLines from "../../Services/lineas"
 
 function SectionMultiBarContainer(props) {
   const title = props.title;
-    const lineas = filterLines();
+    const lineas = filterLines(props.activity);
     const porcentajeAnual = 0.25;
     const porcentajeMensual = porcentajeAnual/12;
-    
+    console.log(lineas)
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>

@@ -11,7 +11,7 @@ function General() {
       <SectionMultiPieContainer activity="RSP" title="Seguridad Pública de ET (RSP)"></SectionMultiPieContainer>
       <SectionMultiPieContainer activity="MUA" title="Muestreos de Aceite (MUA)"></SectionMultiPieContainer>
       {/* <LineAcumChartCard></LineAcumChartCard> */}
-      <SectionMultiBarContainer activity="MUA" title="Inspección Minuciosa (LMI)"></SectionMultiBarContainer>
+      <SectionMultiBarContainer activity="PINM" title="Inspección Minuciosa (LMI)"></SectionMultiBarContainer>
     </>
   )
 }
