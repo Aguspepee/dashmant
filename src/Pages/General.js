@@ -7,7 +7,7 @@ function General() {
     <>
       <SectionMultiPieContainer activity="RPM" title="Unidades de Mantenimiento"></SectionMultiPieContainer>
       <SectionMultiPieContainer activity="RSP" title="Seguridad Pública de ET"></SectionMultiPieContainer>
-      <LineAcumChartCard></LineAcumChartCard>
+      {/* <LineAcumChartCard></LineAcumChartCard> */}
     </>
   )
 }

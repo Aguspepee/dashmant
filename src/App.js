@@ -30,9 +30,9 @@ function App() {
           <Toolbar />
           
             <Routes>
-            <Route path="/" element={<General />} />
-              <Route path="/general" element={<General />} />
-              <Route path="/zonas" element={<Zona />} />
+            <Route path="dashmant/" element={<General />} />
+              <Route path="dashmant/general" element={<General />} />
+              <Route path="dashmant/zonas" element={<Zona />} />
             </Routes>
          
 
