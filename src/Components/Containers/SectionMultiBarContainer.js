@@ -9,22 +9,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 50, 6.0),
-  createData("Ice cream sandwich", 37, 9.0),
-  createData("Eclair", 67, 16.0),
-  createData("Cupcake", 78, 3.7),
-  createData("Gingerbread", 89, 16.0),
-];
+import filterLines from "../../Services/lineas"
 
 function SectionMultiBarContainer(props) {
   const title = props.title;
-
+    const lineas = filterLines();
+    const porcentajeAnual = 0.25;
+    const porcentajeMensual = porcentajeAnual/12;
+    
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
@@ -49,28 +41,25 @@ function SectionMultiBarContainer(props) {
                   <TableCell align="right">Previsto Mensual</TableCell>
                   <TableCell align="right">Ejecutado Mensual</TableCell>
                   <TableCell align="right">Avance</TableCell>
-                  <TableCell align="right">[%]</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
+                {lineas.map((lineas) => (
                   <TableRow
-                    key={row.name}
+                    key={lineas["Código"]}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row" width="15%" >
-                      {row.name}
+                      {lineas["Código"]}
                     </TableCell>
-                    
-                    <TableCell width="10%" align="right">{row.fat}</TableCell>
-                    <TableCell width="10%" align="right">{row.fat}</TableCell>
-                    <TableCell width="10%" align="right">{row.fat}</TableCell>
+                    <TableCell width="10%" align="right">{Math.round(lineas["Torres Cantidad"])}</TableCell>
+                    <TableCell width="10%" align="right">{(Math.round(lineas["Torres Cantidad"]*porcentajeMensual))}</TableCell>
+                    <TableCell width="10%" align="right">{lineas.fat}</TableCell>
                     <TableCell width="53%" align="right">
                       <MiniBarChartCard
-                        percentaje={row.calories}
+                        percentaje={lineas.calories}
                       ></MiniBarChartCard>
                     </TableCell>
-                    <TableCell width="2%" align="right">{row.fat}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

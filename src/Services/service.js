@@ -1,4 +1,4 @@
-var data = require("../Data/dataJan.json");
+let data = require("../Data/dataJan.json");
 
 /* //Se definen los nombres
 function getDaysInMonth(month, year) {
