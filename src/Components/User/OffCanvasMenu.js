@@ -31,7 +31,7 @@ function ResponsiveDrawer(props) {
 
       <List >
         {['General'].map((text) => (
-          <ListItem button key={text} component={Link} to="/general" >
+          <ListItem button key={text} component={Link} to="dashmant/general" >
             <ListItemIcon>
               {<DashboardIcon />}
             </ListItemIcon>
@@ -41,16 +41,16 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-        <ListItem button key="Zona Norte" component={Link} to="/zonas/ZN" >
+        <ListItem button key="Zona Norte" component={Link} to="dashmant//zonas/ZN" >
           <ListItemText primary="Zona Norte" />
         </ListItem>
-        <ListItem button key="Zona Sur" component={Link} to="/zonas/ZS" >
+        <ListItem button key="Zona Sur" component={Link} to="dashmant//zonas/ZS" >
           <ListItemText primary="Zona Sur" />
         </ListItem>
-        <ListItem button key="Zona Oeste" component={Link} to="/xonas/ZO" >
+        <ListItem button key="Zona Oeste" component={Link} to="dashmant//xonas/ZO" >
           <ListItemText primary="Zona Oeste" />
         </ListItem>
-        <ListItem button key="Zona Austral" component={Link} to="/zonas/ZA" >
+        <ListItem button key="Zona Austral" component={Link} to="dashmant//zonas/ZA" >
           <ListItemText primary="Zona Austral" />
         </ListItem>
       </List>

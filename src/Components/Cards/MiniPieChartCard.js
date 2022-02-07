@@ -7,8 +7,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 
-
-
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
@@ -86,13 +84,12 @@ function MiniPieChartCart(props) {
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: "65%",
+            width: "55%",
             padding: "1em 1em 0em 1em",
           }}
         >
           <Pie data={data} options={options} />
         </Box>
-
       </Card>
     </>
   );
