@@ -20,7 +20,7 @@ export const options = {
 
 
 
-function MiniPieChartCart(props) {
+function MiniPieChartCard(props) {
   const dataList = props.data;
   //Se obtienen los labels
   let labels = []
@@ -44,11 +44,13 @@ function MiniPieChartCart(props) {
           "rgba(255, 99, 132, 0.5)",
           "rgba(53, 162, 235, 0.5)",
           "rgba(255, 206, 86, 0.5)",
+          "rgba(50, 206, 86, 0.5)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
           "rgba(54, 162, 235, 1)",
           "rgba(255, 206, 86, 1)",
+          "rgba(50, 206, 86, 0.5)",
         ],
         borderWidth: 0,
       },
@@ -60,6 +62,13 @@ function MiniPieChartCart(props) {
       <Card sx={{ display: "flex", border: '0px solid rgba(0, 0, 0, 0.05)', boxShadow: '0px 0px 0px white' }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <CardContent sx={{ flex: "1 0 auto" }}>
+          <Typography
+              variant="button"
+              color="text.primary"
+              component="div"
+            >
+              {dataList.ZonaNombre}
+            </Typography>
             <Typography component="div" variant="h5">
               {(quantity[1]/(quantity[0]+quantity[1]+quantity[2])*100).toFixed(0)}%
             </Typography>
@@ -71,13 +80,7 @@ function MiniPieChartCart(props) {
             >
               Finalizado
             </Typography>
-            <Typography
-              variant="button"
-              color="text.primary"
-              component="div"
-            >
-              {dataList.Zona}
-            </Typography>
+            
           </CardContent>
         </Box>
         <Box
@@ -95,4 +98,4 @@ function MiniPieChartCart(props) {
   );
 }
 
-export default MiniPieChartCart;
+export default MiniPieChartCard;

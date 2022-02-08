@@ -8,9 +8,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Typography } from "@mui/material";
 import filterLines from "../../Services/lineas";
 import Range from "../Controls/Range";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
+import { CardContent } from "@mui/material";
 
 function SectionMultiBarContainer(props) {
   const title = props.title;
@@ -27,49 +30,61 @@ function SectionMultiBarContainer(props) {
             padding: "20px 20px 20px 20px ",
           }}
         >
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {description}
-          </Typography>
+          <CardContent>
+            <CardHeader
+              action={
+                <IconButton aria-label="settings">
+                  <MoreVertIcon />
+                </IconButton>
+              }
+              title={title}
+              subheader={description}
+            />
 
-          <Range></Range>
+            <Range></Range>
 
-          <TableContainer
-            component={Paper}
-            style={{ boxShadow: "rgba(0, 0, 0, 0) 0px 0px 0px" }}
-          >
-            <Table sx={{}} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Linea MT</TableCell>
-                  <TableCell align="right">Total Piquetes</TableCell>
-                  <TableCell align="right">Ejecutado</TableCell>
-                  <TableCell align="right">Avance</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {lineas.map((lineas) => (
-                  <TableRow
-                    key={lineas["Código"]}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row" width="15%" >
-                      {lineas["Código"]}
-                    </TableCell>
-                    <TableCell width="10%" align="right">{Math.round(lineas["Torres Cantidad"])}</TableCell>
-                    <TableCell width="10%" align="right">{Math.round(lineas["Ejecutado Minuciosa"])}</TableCell>
-                    <TableCell width="53%" align="right">
-                      <MiniBarChartCard
-                        percentaje={Math.round(lineas["Ejecutado Minuciosa"] * 100 / (lineas["Torres Cantidad"] ))}
-                      ></MiniBarChartCard>
-                    </TableCell>
+            <TableContainer
+              component={Paper}
+              style={{ boxShadow: "rgba(0, 0, 0, 0) 0px 0px 0px" }}
+            >
+              <Table sx={{}} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Linea MT</TableCell>
+                    <TableCell align="right">Total Piquetes</TableCell>
+                    <TableCell align="right">Ejecutado</TableCell>
+                    <TableCell align="right">Avance</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                </TableHead>
+                <TableBody>
+                  {lineas.map((lineas) => (
+                    <TableRow
+                      key={lineas["Código"]}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row" width="15%">
+                        {lineas["Código"]}
+                      </TableCell>
+                      <TableCell width="10%" align="right">
+                        {Math.round(lineas["Torres Cantidad"])}
+                      </TableCell>
+                      <TableCell width="10%" align="right">
+                        {Math.round(lineas["Ejecutado Minuciosa"])}
+                      </TableCell>
+                      <TableCell width="53%" align="right">
+                        <MiniBarChartCard
+                          percentaje={Math.round(
+                            (lineas["Ejecutado Minuciosa"] * 100) /
+                              lineas["Torres Cantidad"]
+                          )}
+                        ></MiniBarChartCard>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </CardContent>
         </Card>
       </div>
     </>
