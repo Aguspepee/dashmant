@@ -1,12 +1,40 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
+import { Button } from "@mui/material";
 
 function valuetext(value) {
   return `${value}°C`;
 }
 
-const minDistance = 10;
+const marks = [
+  {
+    value: 2020,
+    label: '2020',
+  },
+  {
+    value: 2021,
+    label: '2021',
+  },
+  {
+    value: 2022,
+    label: '2022',
+  },
+  {
+    value: 2023,
+    label: '2023',
+  },
+  {
+    value: 2024,
+    label: '2024',
+  },
+  {
+    value: 2025,
+    label: '2025',
+  },
+];
+
+const minDistance = 1;
 
 export default function Range() {
   const [value1, setValue1] = React.useState([20, 37]);
@@ -23,24 +51,19 @@ export default function Range() {
     }
   };
 
-  const [value2, setValue2] = React.useState([20, 37]);
-
-  const handleChange2 = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-  };
-
   return (
     <Box sx={{ width: "50%" }}>
       <Slider
-        getAriaLabel={() => 'Minimum distance'}
+        getAriaLabel={() => "Minimum distance"}
         value={value1}
         onChange={handleChange1}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
-        disableSwap
+        marks={marks}
+        min={2020}
+        max={2025}
       />
+      <Button variant="contained">Actualizar</Button>
     </Box>
   );
 }
