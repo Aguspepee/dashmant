@@ -9,7 +9,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
-import filterLines from "../../Services/lineas"
+import filterLines from "../../Services/lineas";
+import Range from "../Controls/Range";
 
 function SectionMultiBarContainer(props) {
   const title = props.title;
@@ -32,6 +33,9 @@ function SectionMultiBarContainer(props) {
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             {description}
           </Typography>
+
+          <Range></Range>
+
           <TableContainer
             component={Paper}
             style={{ boxShadow: "rgba(0, 0, 0, 0) 0px 0px 0px" }}
@@ -41,9 +45,8 @@ function SectionMultiBarContainer(props) {
                 <TableRow>
                   <TableCell>Linea MT</TableCell>
                   <TableCell align="right">Total Piquetes</TableCell>
-                  <TableCell align="right">Previsto Mensual</TableCell>
-                  <TableCell align="right">Ejecutado Mensual</TableCell>
-                  <TableCell align="right">Avance Mensual</TableCell>
+                  <TableCell align="right">Ejecutado</TableCell>
+                  <TableCell align="right">Avance</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -56,11 +59,10 @@ function SectionMultiBarContainer(props) {
                       {lineas["Código"]}
                     </TableCell>
                     <TableCell width="10%" align="right">{Math.round(lineas["Torres Cantidad"])}</TableCell>
-                    <TableCell width="10%" align="right">{(Math.round(lineas["Torres Cantidad"] * porcentajeMensual))}</TableCell>
                     <TableCell width="10%" align="right">{Math.round(lineas["Ejecutado Minuciosa"])}</TableCell>
                     <TableCell width="53%" align="right">
                       <MiniBarChartCard
-                        percentaje={Math.round(lineas["Ejecutado Minuciosa"] * 100 / (lineas["Torres Cantidad"] * porcentajeMensual))}
+                        percentaje={Math.round(lineas["Ejecutado Minuciosa"] * 100 / (lineas["Torres Cantidad"] ))}
                       ></MiniBarChartCard>
                     </TableCell>
                   </TableRow>

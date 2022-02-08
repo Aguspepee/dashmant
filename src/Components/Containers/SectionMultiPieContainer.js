@@ -9,9 +9,9 @@ import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
-import filterData from "../../Services/filter"
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import CardHeader from '@mui/material/CardHeader';
+import filterData from "../../Services/filter";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CardHeader from "@mui/material/CardHeader";
 
 const style = {
   display: "grid",
@@ -46,7 +46,6 @@ function SectionMultiPieContainer(props) {
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
           <CardContent>
             <CardHeader
-
               action={
                 <IconButton aria-label="settings">
                   <MoreVertIcon />
@@ -57,11 +56,11 @@ function SectionMultiPieContainer(props) {
             />
 
             <div className="gridpie">
-              {data.map((data) =>
+              {data.map((data) => (
                 <div className="grid-column" key={data.Zona}>
                   <MiniPieChartCart data={data}></MiniPieChartCart>
-                </div>)
-              }
+                </div>
+              ))}
             </div>
           </CardContent>
           <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
@@ -77,11 +76,11 @@ function SectionMultiPieContainer(props) {
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <div className="grid" style={style}>
-                {data.map((data) =>
+                {data.map((data) => (
                   <div className="grid-column" key={data.Zona}>
                     <ListTableCard data={data}></ListTableCard>
-                  </div>)
-                }
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Collapse>

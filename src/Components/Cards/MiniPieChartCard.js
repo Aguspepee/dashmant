@@ -72,8 +72,8 @@ function MiniPieChartCart(props) {
               Finalizado
             </Typography>
             <Typography
-              variant="subtitle1"
-              color="text.secondary"
+              variant="button"
+              color="text.primary"
               component="div"
             >
               {dataList.Zona}
