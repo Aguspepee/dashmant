@@ -17,10 +17,10 @@ const filterRPM = [
 ];
 
 const zones = [
-  { "Grupo planif.": "ZN1" },
-  { "Grupo planif.": "ZS1" },
-  { "Grupo planif.": "ZO1" },
-  { "Grupo planif.": "ZA1" },
+  { "Grupo planif.": "ZN1" , "Zona":"Zona Norte", "Unidades de Mantenimiento":249},
+  { "Grupo planif.": "ZS1" , "Zona":"Zona Sur", "Unidades de Mantenimiento":368},
+  { "Grupo planif.": "ZO1" , "Zona":"Zona Oeste", "Unidades de Mantenimiento":41},
+  { "Grupo planif.": "ZA1" , "Zona":"Zona Austral", "Unidades de Mantenimiento":53},
 ];
 
 //La estructura de los datos de la función es:
@@ -54,7 +54,17 @@ function filterData(actividad) {
         Cantidad: data_filter.length,
       }
     }
-    pieChartData[j] = { Zona: zones[j]["Grupo planif."], Lista: listValues };
+   let totalOT= listValues.reduce(function (a, b) {
+    return {listValues: a.Cantidad + b.Cantidad}; // returns object with property x
+  })
+   
+    console.log(totalOT)
+    listValues.push({
+      Tipo: "TOTAL",
+      Cantidad: zones[j]["Unidades de Mantenimiento"]//totalOT,
+    })
+    //console.log(listValues)
+    pieChartData[j] = { Zona: zones[j]["Grupo planif."],ZonaNombre:zones[j]["Zona"], UnidadadesMantenimientoCant:zones[j]["Unidades de Mantenimiento"], Lista: listValues };
   }
   return pieChartData;
   
