@@ -56,7 +56,6 @@ function filterData(actividad) {
     }
     pieChartData[j] = { Zona: zones[j]["Grupo planif."], Lista: listValues };
   }
-  console.log(pieChartData)
   return pieChartData;
   
 }

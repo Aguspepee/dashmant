@@ -2,17 +2,22 @@ let lineasDB = require("../Data/lineasDB.json");
 let SAPlineasDB = require("../Data/SAPlineasDB.json");
 
 function filterLines(filter) {
-  console.log(filter);
   lineasDB.map((lineasDB) => {
+    let lineaDB = lineasDB["Código"].replace("-", "")
+
     lineasDB["Ejecutado Minuciosa"] = SAPlineasDB.filter((SAPlineasDB) => {
-      if ((SAPlineasDB["Código valorac."] === "PINM") & (lineasDB["Código"]==="AK-OP")) {
+      let lineaSAP = SAPlineasDB["Equipo"].split("-")[1]
+      if ((SAPlineasDB["Código valorac."] === "PINM") & (lineaDB === lineaSAP)) {
+
+
         return true;
       } else {
         return false;
       }
     }).length;
     lineasDB["Ejecutado Terrestre"] = SAPlineasDB.filter((SAPlineasDB) => {
-      if (SAPlineasDB["Código valorac."] === "PINT") {
+      let lineaSAP = SAPlineasDB["Equipo"].split("-")[1]
+      if ((SAPlineasDB["Código valorac."] === "PINT") & (lineaDB === lineaSAP)) {
         return true;
       } else {
         return false;
