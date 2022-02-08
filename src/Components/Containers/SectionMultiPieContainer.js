@@ -1,7 +1,6 @@
 import React from "react";
 import MiniPieChartCart from "../Cards/MiniPieChartCard";
 import { Card } from "@mui/material";
-import { Typography } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
@@ -11,6 +10,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
 import filterData from "../../Services/filter"
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CardHeader from '@mui/material/CardHeader';
 
 const style = {
   display: "grid",
@@ -31,7 +32,8 @@ const ExpandMore = styled((props) => {
 function SectionMultiPieContainer(props) {
   const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
-  const title = props.title
+  const title = props.title;
+  const description = props.description;
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -43,9 +45,17 @@ function SectionMultiPieContainer(props) {
       <div style={{ padding: "0em 0em 1em 0em" }}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {title}
-            </Typography>
+            <CardHeader
+
+              action={
+                <IconButton aria-label="settings">
+                  <MoreVertIcon />
+                </IconButton>
+              }
+              title={title}
+              subheader={description}
+            />
+
             <div className="gridpie">
               {data.map((data) =>
                 <div className="grid-column" key={data.Zona}>

@@ -22,14 +22,21 @@ LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function MiniBarChartCard() {
-  const [progress, setProgress] = React.useState(10);
+export default function MiniBarChartCard(props) {
+  let percentaje 
+
+  if (Number.isNaN(props.percentaje)){
+    percentaje = 0;
+  }else{
+    percentaje = props.percentaje;
+  }
+
 
   return (
     <Box sx={{ width: "100%" }}>
       <LinearProgressWithLabel
         sx={{ height: "12px"}} style={{borderRadius: "6px" }}
-        value={progress}
+        value={percentaje}
       />
     </Box>
   );

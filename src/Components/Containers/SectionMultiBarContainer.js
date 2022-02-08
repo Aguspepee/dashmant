@@ -13,10 +13,10 @@ import filterLines from "../../Services/lineas"
 
 function SectionMultiBarContainer(props) {
   const title = props.title;
-    const lineas = filterLines(props.activity);
-    const porcentajeAnual = 0.25;
-    const porcentajeMensual = porcentajeAnual/12;
-    console.log(lineas)
+  const description = props.description;
+  const lineas = filterLines(props.activity);
+  const porcentajeAnual = 0.25;
+  const porcentajeMensual = porcentajeAnual / 12;
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
@@ -29,6 +29,9 @@ function SectionMultiBarContainer(props) {
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            {description}
+          </Typography>
           <TableContainer
             component={Paper}
             style={{ boxShadow: "rgba(0, 0, 0, 0) 0px 0px 0px" }}
@@ -40,7 +43,7 @@ function SectionMultiBarContainer(props) {
                   <TableCell align="right">Total Piquetes</TableCell>
                   <TableCell align="right">Previsto Mensual</TableCell>
                   <TableCell align="right">Ejecutado Mensual</TableCell>
-                  <TableCell align="right">Avance</TableCell>
+                  <TableCell align="right">Avance Mensual</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -53,11 +56,11 @@ function SectionMultiBarContainer(props) {
                       {lineas["Código"]}
                     </TableCell>
                     <TableCell width="10%" align="right">{Math.round(lineas["Torres Cantidad"])}</TableCell>
-                    <TableCell width="10%" align="right">{(Math.round(lineas["Torres Cantidad"]*porcentajeMensual))}</TableCell>
-                    <TableCell width="10%" align="right">{lineas.fat}</TableCell>
+                    <TableCell width="10%" align="right">{(Math.round(lineas["Torres Cantidad"] * porcentajeMensual))}</TableCell>
+                    <TableCell width="10%" align="right">{Math.round(lineas["Ejecutado Minuciosa"])}</TableCell>
                     <TableCell width="53%" align="right">
                       <MiniBarChartCard
-                        percentaje={lineas.calories}
+                        percentaje={Math.round(lineas["Ejecutado Minuciosa"] * 100 / (lineas["Torres Cantidad"] * porcentajeMensual))}
                       ></MiniBarChartCard>
                     </TableCell>
                   </TableRow>
