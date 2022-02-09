@@ -13,11 +13,6 @@ import filterData from "../../Services/filter";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 
-const style = {
-  display: "grid",
-  gridTemplateColumns: "25% 25% 25% 25%",
-};
-
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -75,8 +70,10 @@ function SectionMultiPieContainer(props) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <div className="grid" style={style}>
+              
+              <div className="gridpie" >
                 {data.map((data) => (
+
                   <div className="grid-column" key={data.Zona}>
                     <ListTableCard data={data}></ListTableCard>
                   </div>

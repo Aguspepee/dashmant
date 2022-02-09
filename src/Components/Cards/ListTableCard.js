@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Typography from "@mui/material/Typography";
 
 
 
@@ -24,6 +25,14 @@ export default function BasicTable(props) {
 
   return (
     <TableContainer component={Paper} style={{boxShadow: '0px 0px 0px white', width:'90%'}}>
+      <Typography
+              variant="button"
+              color="text.primary"
+              component="div"
+              style={{ fontSize: "0.8em" }}
+            >
+              {dataList.ZonaNombre}
+            </Typography>
       <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
