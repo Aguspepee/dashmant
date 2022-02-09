@@ -1,0 +1,14 @@
+.chip {
+    /* Aqui declaramos nossa animação inline */
+    animation: rotate 2s infinite ease-in-out;
+  }
+  
+  @keyframes rotate {
+    from {
+      opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+      
+    }
+  }

@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
+import "./animation.css"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -23,8 +24,6 @@ export const options = {
 function MiniPieChartCard(props) {
   let bar = props.bar;
   let barra;
-
-
 
   const dataList = props.data;
   //Se obtienen los labels
@@ -42,9 +41,8 @@ function MiniPieChartCard(props) {
     );
   }
   let sum = quantity.reduce((partialSum, a) => partialSum + a, 0);
-  
+
   if (sum === 0) {
-    
     quantity = [0, 1, 0];
   }
   let percentaje = (
@@ -74,27 +72,34 @@ function MiniPieChartCard(props) {
     ? (chipColor = "warning")
     : (chipColor = "success");
 
-  let percentajeBar = quantity[1]*100/dataList.UnidadadesMantenimientoCant
+  let percentajeBar =
+    (quantity[1] * 100) / dataList.UnidadadesMantenimientoCant;
 
-
-    if ((bar === "true")) {
-      barra = (
-        <Container>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            component="div"
-            style={{ fontSize: "0.8em", paddingBottom: "3px" }}
-          >
-            Anual
-          </Typography>
-          <MiniBarChartCard percentaje={percentajeBar}></MiniBarChartCard>
-        </Container>
-      );
-    }
+  if (bar === "true") {
+    barra = (
+      <Container>
+        <Typography variant="body1" color="text.secondary" component="div">
+          Anual
+        </Typography>
+        <MiniBarChartCard percentaje={percentajeBar}></MiniBarChartCard>
+      </Container>
+    );
+  }
 
   return (
     <>
+      <Typography
+        variant="button"
+        color="text.primary"
+        component="div"
+        style={{
+          fontSize: "1.2em",
+          paddingLeft: "0.8em",
+          paddingBottom: "0px",
+        }}
+      >
+        {dataList.ZonaNombre}
+      </Typography>
       <Card
         sx={{
           display: "flex",
@@ -102,33 +107,16 @@ function MiniPieChartCard(props) {
           boxShadow: "0px 0px 0px white",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", width: "45%" }}>
-          <CardContent sx={{ flex: "1 0 auto", width: "50%" }}>
-            <Typography
-              variant="button"
-              color="text.primary"
-              component="div"
-              
-              style={{ fontSize: "0.8em" }}
-            >
-              {dataList.ZonaNombre}
-            </Typography>
-            <Typography component="div" variant="h4">
-              {/* <Typography component="div" variant="h5" style={{ color: percentaje>75? "#00a65a" : percentaje>30?"#f39c12" :"#e74c3c"}}> */}
-              {percentaje}%
-            </Typography>
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              component="div"
-              style={{ fontSize: "0.8em", paddingBottom: "6px" }}
-            >
-              Ejecutado
-            </Typography>
-
-            <Chip label="Estado" color={chipColor} />
-          </CardContent>
-        </Box>
+        <CardContent sx={{ flex: "1 0 auto", width: "45%" }}>
+          <Typography variant="body1" color="text.secondary" component="div">
+            Mensual
+          </Typography>
+          <Typography component="div" variant="h4">
+            {/* <Typography component="div" variant="h5" style={{ color: percentaje>75? "#00a65a" : percentaje>30?"#f39c12" :"#e74c3c"}}> */}
+            {percentaje}%
+          </Typography>
+          <Chip className="chip" label="Estado" color={chipColor} />
+        </CardContent>
 
         <Box
           sx={{
@@ -138,15 +126,6 @@ function MiniPieChartCard(props) {
             padding: "1em 1em 0em 1em",
           }}
         >
-          <Typography
-          variant="body2"
-          color="text.secondary"
-          component="div"
-          align="center"
-          style={{ fontSize: "0.8em", paddingBottom: "3px" }}
-        >
-          Mensual
-        </Typography>
           <Doughnut data={data} options={options} />
           {/* <Pie data={data} options={options} /> */}
         </Box>
