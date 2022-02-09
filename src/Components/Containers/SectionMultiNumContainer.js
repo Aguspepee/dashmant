@@ -2,28 +2,18 @@ import React from "react";
 import MiniNumberCard from "../Cards/MiniNumberCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
 import filterData from "../../Services/filter";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 
-const style = {
-  display: "grid",
-  gridTemplateColumns: "25% 25% 25% 25%",
-  justifyContent: "center",
-  alignItems: "center"
-};
 
 function SectionMultiNumContainer(props) {
-  const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
   const title = props.title;
   const description = props.description;
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+
   //Hacer que sea un estado
   const data = filterData(activity);
 

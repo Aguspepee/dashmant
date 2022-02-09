@@ -50,7 +50,7 @@ function filterData(actividad) {
           data["Grupo planif."] === zones[j]["Grupo planif."]
       );
       listValues[i] = {
-        Tipo: filterRPM[i]["Status usuario"],
+        Tipo: filterRPM[i]["Status denominacion"],
         Cantidad: data_filter.length,
       }
     }

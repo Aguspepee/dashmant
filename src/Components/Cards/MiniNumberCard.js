@@ -32,7 +32,7 @@ function MiniNumberCard(props) {
             >
               {dataList.ZonaNombre}
             </Typography>
-            <Typography component="div" variant="h5" align="center">
+            <Typography component="div" variant="h5" align="center" style={{fontSize:"3em"}}>
               {(quantity[1]+quantity[0])}
             </Typography>
             <Typography

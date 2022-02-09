@@ -7,19 +7,10 @@ import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumCo
 function General() {
   return (
     <>
+    <h1>Estaciones Transformadoras</h1>
       <SectionMultiPieContainer
         activity="RPM"
-        title="Unidades de Mantenimiento (RPM)"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
-      </SectionMultiPieContainer>
-      <SectionMultiPieContainer
-        activity="RSP"
-        title="Seguridad Pública de ET (RSP)"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
-      </SectionMultiPieContainer>
-      <SectionMultiPieContainer
-        activity="MUA"
-        title="Muestreos de Aceite (MUA)"
+        title="Unidades de Mantenimiento"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
       </SectionMultiPieContainer>
       <SectionMultiNumContainer
@@ -27,10 +18,22 @@ function General() {
         title="Intervenciones Correctivas"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
       </SectionMultiNumContainer>
+      <SectionMultiPieContainer
+        activity="RSP"
+        title="Recorrido de Seguridad Pública"
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
+      </SectionMultiPieContainer>
+      <SectionMultiPieContainer
+        activity="MUA"
+        title="Muestreos de Aceite"
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
+      </SectionMultiPieContainer>
+      
       {/* <LineAcumChartCard></LineAcumChartCard> */}
+      <h1>Líneas Eléctricas</h1>
       <SectionMultiBarContainer
         activity="PINM"
-        title="Inspección Minuciosa (LMI)"
+        title="Inspección Minuciosa"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
       </SectionMultiBarContainer>
     </>
