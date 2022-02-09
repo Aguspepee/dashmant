@@ -28,6 +28,7 @@ function SectionMultiPieContainer(props) {
   const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
   const title = props.title;
+  const bar = props.bar;
   const description = props.description;
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -53,7 +54,7 @@ function SectionMultiPieContainer(props) {
             <div className="gridpie">
               {data.map((data) => (
                 <div className="grid-column" key={data.Zona}>
-                  <MiniPieChartCart data={data}></MiniPieChartCart>
+                  <MiniPieChartCart data={data} bar={bar} ></MiniPieChartCart>
                 </div>
               ))}
             </div>

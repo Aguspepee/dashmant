@@ -67,6 +67,7 @@ function filterData(actividad) {
     //pieChartData[j] = { Zona: zones[j]["Grupo planif."],ZonaNombre:zones[j]["Zona"], UnidadadesMantenimientoCant:zones[j]["Unidades de Mantenimiento"], Lista: listValues };
     pieChartData[j] = { Zona: zones[j]["Grupo planif."],ZonaNombre:zones[j]["Zona"], UnidadadesMantenimientoCant:zones[j]["Unidades de Mantenimiento"], Lista: listValues };
   }
+
   return pieChartData;
   
 }

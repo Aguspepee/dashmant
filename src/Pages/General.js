@@ -11,22 +11,26 @@ function General() {
       <SectionMultiPieContainer
         activity="RPM"
         title="Unidades de Mantenimiento"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
+        description="Avance mesual y anual de la ejecución mantenimiento por zona"
+        bar="true">
       </SectionMultiPieContainer>
       <SectionMultiNumContainer
         activity="MCP"
         title="Intervenciones Correctivas"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        >
       </SectionMultiNumContainer>
       <SectionMultiPieContainer
         activity="RSP"
         title="Recorrido de Seguridad Pública"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        bar="false">
       </SectionMultiPieContainer>
       <SectionMultiPieContainer
         activity="MUA"
         title="Muestreos de Aceite"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        bar="false">
       </SectionMultiPieContainer>
       
       {/* <LineAcumChartCard></LineAcumChartCard> */}
@@ -34,7 +38,9 @@ function General() {
       <SectionMultiBarContainer
         activity="PINM"
         title="Inspección Minuciosa"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        >
+          
       </SectionMultiBarContainer>
     </>
   )

@@ -23,19 +23,20 @@ LinearProgressWithLabel.propTypes = {
 };
 
 export default function MiniBarChartCard(props) {
-  let percentaje 
+  let percentaje;
 
-  if (Number.isNaN(props.percentaje)){
+  if (Number.isNaN(props.percentaje)) {
     percentaje = 0;
-  }else{
+  } else {
     percentaje = props.percentaje;
   }
-
 
   return (
     <Box sx={{ width: "100%" }}>
       <LinearProgressWithLabel
-        sx={{ height: "12px"}} style={{borderRadius: "6px" }}
+        color="inherit"
+        sx={{ height: "12px" }}
+        style={{ borderRadius: "6px" }}
         value={percentaje}
       />
     </Box>

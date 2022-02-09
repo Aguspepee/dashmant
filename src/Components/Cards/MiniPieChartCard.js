@@ -7,6 +7,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
+import MiniBarChartCard from "../Cards/MiniBarChartCard";
+import { Container } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -19,6 +21,11 @@ export const options = {
 };
 
 function MiniPieChartCard(props) {
+  let bar = props.bar;
+  let barra;
+
+
+
   const dataList = props.data;
   //Se obtienen los labels
   let labels = [];
@@ -35,9 +42,9 @@ function MiniPieChartCard(props) {
     );
   }
   let sum = quantity.reduce((partialSum, a) => partialSum + a, 0);
-  console.log(sum);
+  
   if (sum === 0) {
-    console.log("entro,sum");
+    
     quantity = [0, 1, 0];
   }
   let percentaje = (
@@ -67,6 +74,25 @@ function MiniPieChartCard(props) {
     ? (chipColor = "warning")
     : (chipColor = "success");
 
+  let percentajeBar = quantity[1]*100/dataList.UnidadadesMantenimientoCant
+
+
+    if ((bar === "true")) {
+      barra = (
+        <Container>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            component="div"
+            style={{ fontSize: "0.8em", paddingBottom: "3px" }}
+          >
+            Anual
+          </Typography>
+          <MiniBarChartCard percentaje={percentajeBar}></MiniBarChartCard>
+        </Container>
+      );
+    }
+
   return (
     <>
       <Card
@@ -82,6 +108,7 @@ function MiniPieChartCard(props) {
               variant="button"
               color="text.primary"
               component="div"
+              
               style={{ fontSize: "0.8em" }}
             >
               {dataList.ZonaNombre}
@@ -111,10 +138,20 @@ function MiniPieChartCard(props) {
             padding: "1em 1em 0em 1em",
           }}
         >
+          <Typography
+          variant="body2"
+          color="text.secondary"
+          component="div"
+          align="center"
+          style={{ fontSize: "0.8em", paddingBottom: "3px" }}
+        >
+          Mensual
+        </Typography>
           <Doughnut data={data} options={options} />
           {/* <Pie data={data} options={options} /> */}
         </Box>
       </Card>
+      {barra}
     </>
   );
 }
