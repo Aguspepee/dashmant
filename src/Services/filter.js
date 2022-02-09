@@ -54,7 +54,7 @@ function filterData(actividad) {
         Cantidad: data_filter.length,
       }
     }
-   let totalOT= listValues.reduce(function (a, b) {
+  /*  let totalOT= listValues.reduce(function (a, b) {
     return {listValues: a.Cantidad + b.Cantidad}; // returns object with property x
   })
    
@@ -62,8 +62,9 @@ function filterData(actividad) {
     listValues.push({
       Tipo: "TOTAL",
       Cantidad: zones[j]["Unidades de Mantenimiento"]//totalOT,
-    })
+    }) */
     //console.log(listValues)
+    //pieChartData[j] = { Zona: zones[j]["Grupo planif."],ZonaNombre:zones[j]["Zona"], UnidadadesMantenimientoCant:zones[j]["Unidades de Mantenimiento"], Lista: listValues };
     pieChartData[j] = { Zona: zones[j]["Grupo planif."],ZonaNombre:zones[j]["Zona"], UnidadadesMantenimientoCant:zones[j]["Unidades de Mantenimiento"], Lista: listValues };
   }
   return pieChartData;

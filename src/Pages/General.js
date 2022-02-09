@@ -2,6 +2,7 @@ import React from "react";
 //import LineAcumChartCard from "../Components/Cards/LineAcumChartCard";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
+import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
 
 function General() {
   return (
@@ -21,6 +22,11 @@ function General() {
         title="Muestreos de Aceite (MUA)"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
       </SectionMultiPieContainer>
+      <SectionMultiNumContainer
+        activity="MCP"
+        title="Intervenciones Correctivas"
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento">
+      </SectionMultiNumContainer>
       {/* <LineAcumChartCard></LineAcumChartCard> */}
       <SectionMultiBarContainer
         activity="PINM"
