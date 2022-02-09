@@ -16,7 +16,7 @@ const drawerWidth = 240;
 function App() {
   return (
     <>
-      <Box sx={{ display: "flex", backgroundColor: "rgb(243, 243, 243)" }}>
+      <Box sx={{ display: "flex", backgroundColor: "rgb(243, 243, 243)", width:"100%"}}>
       <BrowserRouter>
         <OffCanvasMenu></OffCanvasMenu>;
         <Box
@@ -24,10 +24,10 @@ function App() {
           sx={{
             flexGrow: 1,
             p: 3,
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
+           width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
-          <Toolbar />
+          <Toolbar /> 
           
             <Routes>
             <Route path="dashmant/" element={<General />} />
