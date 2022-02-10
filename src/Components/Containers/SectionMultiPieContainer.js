@@ -50,11 +50,10 @@ function SectionMultiPieContainer(props) {
               title={title}
               subheader={description}
             />
-
             <div className="gridpie">
               {data.map((data) => (
                 <div className="grid-column" key={data.Zona}>
-                  <MiniPieChartCart data={data} bar={bar} ></MiniPieChartCart>
+                  <MiniPieChartCart data={data} bar={bar}></MiniPieChartCart>
                 </div>
               ))}
             </div>
@@ -71,10 +70,8 @@ function SectionMultiPieContainer(props) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              
-              <div className="gridpie" >
+              <div className="gridpie">
                 {data.map((data) => (
-
                   <div className="grid-column" key={data.Zona}>
                     <ListTableCard data={data}></ListTableCard>
                   </div>

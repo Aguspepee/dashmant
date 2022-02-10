@@ -10,20 +10,20 @@ function General() {
     <h1>Estaciones Transformadoras</h1>
       <SectionMultiPieContainer
         activity="RPM"
-        title="Unidades de Mantenimiento"
-        description="Avance mesual y anual de la ejecución mantenimiento por zona"
+        title="Estado de avance del Plan Anual de Mantenimiento"
+        description="Unidades de Mantenimiento intervenidas."
         bar="true">
       </SectionMultiPieContainer>
       <SectionMultiNumContainer
         activity="MCP"
         title="Intervenciones Correctivas"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        description="Candidad de intervenciones"
         >
       </SectionMultiNumContainer>
       <SectionMultiPieContainer
         activity="RSP"
         title="Recorrido de Seguridad Pública"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        description="Estado de avance de la ejeción de las recorridas de seguridad publica programadas."
         bar="false">
       </SectionMultiPieContainer>
       <SectionMultiPieContainer

@@ -3,15 +3,15 @@ var data = require("../Data/dataJan.json");
 //FILTROS PARA RPM
 const filterRPM = [
   {
-    "Status denominacion": "Sin información",
+    "Status denominacion": "En Ejecución",
     "Status usuario": "EJEC",
   },
   {
-    "Status denominacion": "Terminada",
+    "Status denominacion": "Cerrada Técnicamente",
     "Status usuario": "CTEC",
   },
   {
-    "Status denominacion": "No terminada",
+    "Status denominacion": "Cerrada Técnicamente No Ejecutado",
     "Status usuario": "CTEC CENE",
   },
 ];

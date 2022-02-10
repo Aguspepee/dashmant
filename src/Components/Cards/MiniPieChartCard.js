@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
-import "./animation.css"
+import "./animation.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -78,11 +78,15 @@ function MiniPieChartCard(props) {
   if (bar === "true") {
     barra = (
       <Container>
-        <Typography variant="body1" color="text.secondary" component="div">
+        <Typography variant="body1" color="text.secondary" component="div" style={{fontSize: "1.2em"}}>
           Anual
         </Typography>
         <MiniBarChartCard percentaje={percentajeBar}></MiniBarChartCard>
+        <Typography variant="overline" color="text.secondary" component="div" style={{fontSize: "0.8em"}}>
+          {quantity[1]}/{dataList.UnidadadesMantenimientoCant} ud.
+        </Typography>
       </Container>
+      
     );
   }
 
@@ -93,7 +97,7 @@ function MiniPieChartCard(props) {
         color="text.primary"
         component="div"
         style={{
-          fontSize: "1.2em",
+          fontSize: "1.4em",
           paddingLeft: "0.8em",
           paddingBottom: "0px",
         }}
@@ -105,15 +109,19 @@ function MiniPieChartCard(props) {
           display: "flex",
           border: "0px solid rgba(0, 0, 0, 0.05)",
           boxShadow: "0px 0px 0px white",
+          
         }}
       >
-        <CardContent sx={{ flex: "1 0 auto", width: "45%" }}>
-          <Typography variant="body1" color="text.secondary" component="div">
+        <CardContent sx={{ flex: "1 0 auto"}}>
+          <Typography variant="body1" color="text.secondary" component="div" style={{fontSize: "1.2em"}}>
             Mensual
           </Typography>
-          <Typography component="div" variant="h4">
+          <Typography component="div" variant="h4" style={{fontSize: "2.5em"}}>
             {/* <Typography component="div" variant="h5" style={{ color: percentaje>75? "#00a65a" : percentaje>30?"#f39c12" :"#e74c3c"}}> */}
             {percentaje}%
+          </Typography>
+          <Typography variant="overline" color="text.secondary" component="div" style={{paddingBottom:"5px",fontSize: "0.8em"}}>
+            {quantity[1]}/{(quantity[0] + quantity[1] + quantity[2])} Ud.
           </Typography>
           <Chip className="chip" label="Estado" color={chipColor} />
         </CardContent>
@@ -121,14 +129,19 @@ function MiniPieChartCard(props) {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            width: "55%",
+            //flexDirection: "column",
+            justifyContent: 'left',
+            width: "60%",
+            alignItems: "center",
             padding: "1em 1em 0em 1em",
           }}
         >
+          
           <Doughnut data={data} options={options} />
           {/* <Pie data={data} options={options} /> */}
+        
         </Box>
+       
       </Card>
       {barra}
     </>
