@@ -22,8 +22,8 @@ function General() {
       </SectionMultiNumContainer>
       <SectionMultiPieContainer
         activity="RSP"
-        title="Recorrido de Seguridad Pública"
-        description="Estado de avance de la ejeción de las recorridas de seguridad publica programadas."
+        title="Inspección de Seguridad Pública"
+        description="Estado de avance de la ejecución de las recorridas de seguridad publica programadas."
         bar="false">
       </SectionMultiPieContainer>
       <SectionMultiPieContainer
