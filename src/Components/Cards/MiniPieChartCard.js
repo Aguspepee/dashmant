@@ -10,7 +10,6 @@ import Chip from "@mui/material/Chip";
 import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
-
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -20,6 +19,15 @@ export const options = {
     },
   },
 };
+
+let percentajeNow
+//Cálculo de día del año
+let now = new Date();
+let start = new Date(now.getFullYear(), 0, 0);
+let diff = now - start;
+let oneDay = 1000 * 60 * 60 * 24;
+let day = Math.floor(diff / oneDay);
+
 
 function MiniPieChartCard(props) {
   let bar = props.bar;
@@ -41,7 +49,6 @@ function MiniPieChartCard(props) {
     );
   }
 
-
   let percentaje  
   
   if (!Number.isNaN(quantity[1] / (quantity[0] + quantity[1] + quantity[2]))){
@@ -49,8 +56,6 @@ function MiniPieChartCard(props) {
   }else{
     percentaje = "-"
   }
-  
-  
   
 
   //Se inicializa el gráfico
@@ -68,12 +73,10 @@ function MiniPieChartCard(props) {
   };
 
   data.datasets.forEach(dataset => {
-    console.log(data.datasets[0].data)
      if (data.datasets[0].data.every(el => el === 0)) {
       data.datasets[0].backgroundColor.push('rgba(240,240,240,1)');
       data.datasets[0].data.push(1); 
     } 
-    console.log("entro")
   }) 
 
   let chipColor;
@@ -86,6 +89,7 @@ function MiniPieChartCard(props) {
 
   let percentajeBar =
     (quantity[1] * 100) / dataList.UnidadadesMantenimientoCant;
+  percentajeNow = day*100/365;
 
   if (bar === "true") {
     barra = (
@@ -93,7 +97,7 @@ function MiniPieChartCard(props) {
         <Typography variant="body1" color="text.secondary" component="div" style={{fontSize: "1.2em"}}>
           Anual
         </Typography>
-        <MiniBarChartCard percentaje={percentajeBar}></MiniBarChartCard>
+        <MiniBarChartCard percentaje={percentajeBar} percentajeNow={percentajeNow}></MiniBarChartCard>
         <Typography variant="overline" color="text.secondary" component="div" style={{fontSize: "0.8em"}}>
           {quantity[1]}/{dataList.UnidadadesMantenimientoCant} ud.
         </Typography>

@@ -13,6 +13,8 @@ import filterData from "../../Services/filter";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 
+
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -50,7 +52,7 @@ function SectionMultiPieContainer(props) {
               title={title}
               subheader={description}
             />
-            <div className="gridpie">
+            <div className="gridpie" >
               {data.map((data) => (
                 <div className="grid-column" key={data.Zona}>
                   <MiniPieChartCart data={data} bar={bar}></MiniPieChartCart>

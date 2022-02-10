@@ -24,13 +24,14 @@ function General() {
         activity="RSP"
         title="Inspección de Seguridad Pública"
         description="Estado de avance de la ejecución de las recorridas de seguridad publica programadas."
-        bar="false">
+        bar="true">
       </SectionMultiPieContainer>
       <SectionMultiPieContainer
         activity="MUA"
+        
         title="Muestreos de Aceite"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
-        bar="false">
+        bar="true">
       </SectionMultiPieContainer>
       
       {/* <LineAcumChartCard></LineAcumChartCard> */}
