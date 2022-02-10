@@ -40,15 +40,18 @@ function MiniPieChartCard(props) {
         : dataList.Lista[i].Cantidad
     );
   }
-  let sum = quantity.reduce((partialSum, a) => partialSum + a, 0);
 
-  if (sum === 0) {
-    quantity = [0, 1, 0];
+
+  let percentaje  
+  
+  if (!Number.isNaN(quantity[1] / (quantity[0] + quantity[1] + quantity[2]))){
+    percentaje = ((quantity[1] / (quantity[0] + quantity[1] + quantity[2])) * 100 ).toFixed(0);
+  }else{
+    percentaje = "-"
   }
-  let percentaje = (
-    (quantity[1] / (quantity[0] + quantity[1] + quantity[2])) *
-    100
-  ).toFixed(0);
+  
+  
+  
 
   //Se inicializa el gráfico
   const data = {
@@ -63,6 +66,15 @@ function MiniPieChartCard(props) {
       },
     ],
   };
+
+  data.datasets.forEach(dataset => {
+    console.log(data.datasets[0].data)
+     if (data.datasets[0].data.every(el => el === 0)) {
+      data.datasets[0].backgroundColor.push('rgba(240,240,240,1)');
+      data.datasets[0].data.push(1); 
+    } 
+    console.log("entro")
+  }) 
 
   let chipColor;
 
