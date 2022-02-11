@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useContext } from "react";
 import MiniPieChartCart from "../Cards/MiniPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
@@ -9,9 +10,10 @@ import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
-import filterData from "../../Services/filter";
+//import filterData from "../../Services/filter";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
+import FilterContext from "../Context/FilterContext";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -25,6 +27,8 @@ const ExpandMore = styled((props) => {
 }));
 
 function SectionMultiPieContainer(props) {
+  const [year,setYear, month,setMonth, pieChartData,setPieChartData, filterData] = useContext(FilterContext);
+
   const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
   const title = props.title;
@@ -33,8 +37,11 @@ function SectionMultiPieContainer(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  //filterData(activity);
   //Hacer que sea un estado
-  const data = filterData(activity);
+  let data = filterData(activity);
+  //setPieChartData(data)
+  console.log("data",data)
 
   return (
     <>
@@ -50,7 +57,6 @@ function SectionMultiPieContainer(props) {
               title={title}
               subheader={description}
             />
-
             <div className="gridpie">
               {data.map((data) => (
                 <div className="grid-column" key={data.Zona}>

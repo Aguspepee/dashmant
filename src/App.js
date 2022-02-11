@@ -9,6 +9,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import FilterProvider from "./Components/Context/FilterProvider";
 
 
 
@@ -16,6 +17,7 @@ const drawerWidth = 240;
 function App() {
   return (
     <>
+    <FilterProvider>
       <Box sx={{ display: "flex", backgroundColor: "rgb(243, 243, 243)", width:"100%"}}>
       <BrowserRouter>
         <OffCanvasMenu></OffCanvasMenu>;
@@ -39,7 +41,7 @@ function App() {
         </Box>
         </BrowserRouter>
       </Box>
-      
+      </FilterProvider>
     </>
   );
 }

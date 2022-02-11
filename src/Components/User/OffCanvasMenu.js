@@ -18,85 +18,102 @@ import { Link } from "react-router-dom";
 import DateSelector from "../Controls/DateSelector";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
+
 const drawerWidth = 240;
+const months = [
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre",
+];
+
+const years = [2021, 2022, 2023, 2024];
 
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawer = (
     <div>
-      <List>
-        {["General"].map((text) => (
-          <ListItem button key={text} component={Link} to="dashmant/general">
-            <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+      
+        <List>
+          {["General"].map((text) => (
+            <ListItem button key={text} component={Link} to="dashmant/general">
+              <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          <ListItem
+            button
+            key="Zona Norte"
+            component={Link}
+            to="dashmant//zonas/ZN"
+          >
+            <ListItemText primary="Zona Norte" />
           </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        <ListItem
-          button
-          key="Zona Norte"
-          component={Link}
-          to="dashmant//zonas/ZN"
-        >
-          <ListItemText primary="Zona Norte" />
-        </ListItem>
-        <ListItem
-          button
-          key="Zona Sur"
-          component={Link}
-          to="dashmant//zonas/ZS"
-        >
-          <ListItemText primary="Zona Sur" />
-        </ListItem>
-        <ListItem
-          button
-          key="Zona Oeste"
-          component={Link}
-          to="dashmant//xonas/ZO"
-        >
-          <ListItemText primary="Zona Oeste" />
-        </ListItem>
-        <ListItem
-          button
-          key="Zona Austral"
-          component={Link}
-          to="dashmant//zonas/ZA"
-        >
-          <ListItemText primary="Zona Austral" />
-        </ListItem>
-      </List>
-      <Divider />
-
-      <List>
-        <ListItem key={"Filtros"}>
-          <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
-          <ListItemText primary={"Filtros"} />
-        </ListItem>
-
-        <ListItem>
-          <DateSelector type="Mes" data="Meses"/>
-        </ListItem>
-        <ListItem>
-          <DateSelector type="Año" data="Años"/>
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        {["Cargar"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{<CloudUploadIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+          <ListItem
+            button
+            key="Zona Sur"
+            component={Link}
+            to="dashmant//zonas/ZS"
+          >
+            <ListItemText primary="Zona Sur" />
           </ListItem>
-        ))}
-      </List>
+          <ListItem
+            button
+            key="Zona Oeste"
+            component={Link}
+            to="dashmant//xonas/ZO"
+          >
+            <ListItemText primary="Zona Oeste" />
+          </ListItem>
+          <ListItem
+            button
+            key="Zona Austral"
+            component={Link}
+            to="dashmant//zonas/ZA"
+          >
+            <ListItemText primary="Zona Austral" />
+          </ListItem>
+        </List>
+        <Divider />
+
+        <List>
+          <ListItem key={"Filtros"}>
+            <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
+            <ListItemText primary={"Filtros"} />
+          </ListItem>
+
+          <ListItem>
+            <DateSelector type="Mes" data={months} />
+          </ListItem>
+          <ListItem>
+            <DateSelector type="Año" data={years} />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          {["Cargar"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{<CloudUploadIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      
     </div>
   );
 
