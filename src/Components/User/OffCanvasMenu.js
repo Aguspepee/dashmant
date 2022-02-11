@@ -1,20 +1,22 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { Link } from "react-router-dom";
+import DateSelector from "../Controls/DateSelector";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const drawerWidth = 240;
 
@@ -28,39 +30,69 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-
-      <List >
-        {['General'].map((text) => (
-          <ListItem button key={text} component={Link} to="dashmant/general" >
-            <ListItemIcon>
-              {<DashboardIcon />}
-            </ListItemIcon>
+      <List>
+        {["General"].map((text) => (
+          <ListItem button key={text} component={Link} to="dashmant/general">
+            <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        <ListItem button key="Zona Norte" component={Link} to="dashmant//zonas/ZN" >
+        <ListItem
+          button
+          key="Zona Norte"
+          component={Link}
+          to="dashmant//zonas/ZN"
+        >
           <ListItemText primary="Zona Norte" />
         </ListItem>
-        <ListItem button key="Zona Sur" component={Link} to="dashmant//zonas/ZS" >
+        <ListItem
+          button
+          key="Zona Sur"
+          component={Link}
+          to="dashmant//zonas/ZS"
+        >
           <ListItemText primary="Zona Sur" />
         </ListItem>
-        <ListItem button key="Zona Oeste" component={Link} to="dashmant//xonas/ZO" >
+        <ListItem
+          button
+          key="Zona Oeste"
+          component={Link}
+          to="dashmant//xonas/ZO"
+        >
           <ListItemText primary="Zona Oeste" />
         </ListItem>
-        <ListItem button key="Zona Austral" component={Link} to="dashmant//zonas/ZA" >
+        <ListItem
+          button
+          key="Zona Austral"
+          component={Link}
+          to="dashmant//zonas/ZA"
+        >
           <ListItemText primary="Zona Austral" />
         </ListItem>
       </List>
       <Divider />
+
       <List>
-        {['Cargar'].map((text, index) => (
+        <ListItem key={"Filtros"}>
+          <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
+          <ListItemText primary={"Filtros"} />
+        </ListItem>
+
+        <ListItem>
+          <DateSelector type="Mes" data="Meses"/>
+        </ListItem>
+        <ListItem>
+          <DateSelector type="Año" data="Años"/>
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        {["Cargar"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>
-              {<CloudUploadIcon />}
-            </ListItemIcon>
+            <ListItemIcon>{<CloudUploadIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -68,7 +100,8 @@ function ResponsiveDrawer(props) {
     </div>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <>
@@ -78,7 +111,8 @@ function ResponsiveDrawer(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-        }} style={{ backgroundColor: "gray" }}
+        }}
+        style={{ backgroundColor: "gray" }}
       >
         <Toolbar style={{ backgroundColor: "white" }}>
           <IconButton
@@ -86,25 +120,27 @@ function ResponsiveDrawer(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" style={{ color: "gray" }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            style={{ color: "gray" }}
+          >
             DASHBOARD
           </Typography>
         </Toolbar>
       </AppBar>
       <Box
-      
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 },  }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
-        
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-         
           container={container}
           variant="temporary"
           open={mobileOpen}
@@ -113,28 +149,30 @@ function ResponsiveDrawer(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
-           
         >
           {drawer}
         </Drawer>
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
           open
         >
           {drawer}
         </Drawer>
       </Box>
-
-
     </>
-
   );
 }
 

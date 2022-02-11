@@ -41,7 +41,7 @@ function SectionMultiBarContainer(props) {
               subheader={description}
             />
 
-            <Range></Range>
+            <Range/>
 
             <TableContainer
               component={Paper}

@@ -10,7 +10,7 @@ function General() {
     <h1>Estaciones Transformadoras</h1>
       <SectionMultiPieContainer
         activity="RPM"
-        title="Estado de avance del Plan Anual de Mantenimiento"
+        title="Avance del Plan Anual de Mantenimiento"
         description="Unidades de Mantenimiento intervenidas."
         bar="true">
       </SectionMultiPieContainer>
@@ -31,7 +31,7 @@ function General() {
         
         title="Muestreos de Aceite"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
-        bar="true">
+        bar="false">
       </SectionMultiPieContainer>
       
       {/* <LineAcumChartCard></LineAcumChartCard> */}
