@@ -17,10 +17,12 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Link } from "react-router-dom";
 import DateSelector from "../Controls/DateSelector";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import FilterContext from "../../Context/FilterContext";
+import { useEffect, useContext } from "react";
 
 
 const drawerWidth = 240;
-const months = [
+/* const months = [
   "Enero",
   "Febrero",
   "Marzo",
@@ -33,11 +35,16 @@ const months = [
   "Octubre",
   "Noviembre",
   "Diciembre",
-];
+]; */
+const months = [1,2,3,4,5,6,7,8,9,10,11,12];
 
 const years = [2021, 2022, 2023, 2024];
 
 function ResponsiveDrawer(props) {
+  const [year,handleYearChange, month,handleMonthChange, pieChartData,setPieChartData,filterDataByDate,filterDataByVarious,dataBruta] = useContext(FilterContext);
+
+  //setMonth("jaunua");
+  
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
@@ -45,75 +52,75 @@ function ResponsiveDrawer(props) {
   };
   const drawer = (
     <div>
-      
-        <List>
-          {["General"].map((text) => (
-            <ListItem button key={text} component={Link} to="dashmant/general">
-              <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          <ListItem
-            button
-            key="Zona Norte"
-            component={Link}
-            to="dashmant//zonas/ZN"
-          >
-            <ListItemText primary="Zona Norte" />
-          </ListItem>
-          <ListItem
-            button
-            key="Zona Sur"
-            component={Link}
-            to="dashmant//zonas/ZS"
-          >
-            <ListItemText primary="Zona Sur" />
-          </ListItem>
-          <ListItem
-            button
-            key="Zona Oeste"
-            component={Link}
-            to="dashmant//xonas/ZO"
-          >
-            <ListItemText primary="Zona Oeste" />
-          </ListItem>
-          <ListItem
-            button
-            key="Zona Austral"
-            component={Link}
-            to="dashmant//zonas/ZA"
-          >
-            <ListItemText primary="Zona Austral" />
-          </ListItem>
-        </List>
-        <Divider />
 
-        <List>
-          <ListItem key={"Filtros"}>
-            <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
-            <ListItemText primary={"Filtros"} />
+      <List>
+        {["General"].map((text) => (
+          <ListItem button key={text} component={Link} to="dashmant/general">
+            <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
           </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        <ListItem
+          button
+          key="Zona Norte"
+          component={Link}
+          to="dashmant//zonas/ZN"
+        >
+          <ListItemText primary="Zona Norte" />
+        </ListItem>
+        <ListItem
+          button
+          key="Zona Sur"
+          component={Link}
+          to="dashmant//zonas/ZS"
+        >
+          <ListItemText primary="Zona Sur" />
+        </ListItem>
+        <ListItem
+          button
+          key="Zona Oeste"
+          component={Link}
+          to="dashmant//xonas/ZO"
+        >
+          <ListItemText primary="Zona Oeste" />
+        </ListItem>
+        <ListItem
+          button
+          key="Zona Austral"
+          component={Link}
+          to="dashmant//zonas/ZA"
+        >
+          <ListItemText primary="Zona Austral" />
+        </ListItem>
+      </List>
+      <Divider />
 
-          <ListItem>
-            <DateSelector type="Mes" data={months} />
+      <List>
+        <ListItem key={"Filtros"}>
+          <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
+          <ListItemText primary={"Filtros"} />
+        </ListItem>
+
+        <ListItem>
+          <DateSelector type="Mes" data={months} changeValue={handleMonthChange} value={month}/>
+        </ListItem>
+        <ListItem>
+          <DateSelector type="Año" data={years} changeValue={handleYearChange} value={year}/>
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        {["Cargar"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{<CloudUploadIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
           </ListItem>
-          <ListItem>
-            <DateSelector type="Año" data={years} />
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          {["Cargar"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{<CloudUploadIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      
+        ))}
+      </List>
+
     </div>
   );
 

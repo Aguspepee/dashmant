@@ -1,4 +1,4 @@
-var data = require("../Data/dataJan.json");
+//var data = require("../Data/dataJan.json");
 
 //FILTROS PARA RPM
 const filterRPM = [
@@ -23,21 +23,8 @@ const zones = [
   { "Grupo planif.": "ZA1" , "Zona":"Zona Austral", "Unidades de Mantenimiento":53},
 ];
 
-//La estructura de los datos de la función es:
-
-//actividad: String, puede ser RPM, etc
-
-//zona: array de zonas
-/* const zones = [
-  { "Grupo planif.": "ZN1" },
-  { "Grupo planif.": "ZS1" },
-  { "Grupo planif.": "ZO1" },
-  { "Grupo planif.": "ZA1" },
-]; */
-
-//status: array de status [ ]
-
-function filterData(actividad) {
+function filterData(actividad,dataBruta) {
+  let data = dataBruta
   let pieChartData = [];
   let listValues = [];
   for (let j = 0; j < zones.length; j++) {
@@ -54,20 +41,9 @@ function filterData(actividad) {
         Cantidad: data_filter.length,
       }
     }
-  /*  let totalOT= listValues.reduce(function (a, b) {
-    return {listValues: a.Cantidad + b.Cantidad}; // returns object with property x
-  })
-   
-    console.log(totalOT)
-    listValues.push({
-      Tipo: "TOTAL",
-      Cantidad: zones[j]["Unidades de Mantenimiento"]//totalOT,
-    }) */
-    //console.log(listValues)
-    //pieChartData[j] = { Zona: zones[j]["Grupo planif."],ZonaNombre:zones[j]["Zona"], UnidadadesMantenimientoCant:zones[j]["Unidades de Mantenimiento"], Lista: listValues };
     pieChartData[j] = { Zona: zones[j]["Grupo planif."],ZonaNombre:zones[j]["Zona"], UnidadadesMantenimientoCant:zones[j]["Unidades de Mantenimiento"], Lista: listValues };
   }
-
+  console.log(pieChartData)
   return pieChartData;
   
 }

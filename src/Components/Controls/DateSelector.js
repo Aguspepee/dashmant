@@ -8,12 +8,15 @@ import Select from "@mui/material/Select";
 
 
 export default function DateSelector(props) {
-  const [value, setValue] = useState("");
+  const [value, setValue] =useState(props.value)
+  //const value = props.value
   const data = props.data;
   const type = props.type;
+  const changeValue = props.changeValue
+//  const setValue = setValue.props
   const handleChange = (event) => {
     setValue(event.target.value);
-    console.log(event.target.value)
+    changeValue(event.target.value)
   };
   
   return (

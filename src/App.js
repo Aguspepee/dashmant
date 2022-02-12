@@ -9,7 +9,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import FilterProvider from "./Components/Context/FilterProvider";
+import FilterProvider from "./Context/FilterProvider";
 
 
 

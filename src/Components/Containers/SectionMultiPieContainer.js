@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import MiniPieChartCart from "../Cards/MiniPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
@@ -10,10 +10,10 @@ import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
-//import filterData from "../../Services/filter";
+import filterData from "../../Services/filter";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import FilterContext from "../Context/FilterContext";
+import FilterContext from "../../Context/FilterContext";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,7 +27,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function SectionMultiPieContainer(props) {
-  const [year,setYear, month,setMonth, pieChartData,setPieChartData, filterData] = useContext(FilterContext);
+  const [year,handleYearChange, month,handleMonthChange, pieChartData,setPieChartData,filterDataByDate,filterDataByVarious,dataBruta] = useContext(FilterContext);
 
   const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
@@ -37,12 +37,15 @@ function SectionMultiPieContainer(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  //filterData(activity);
-  //Hacer que sea un estado
-  let data = filterData(activity);
-  //setPieChartData(data)
-  console.log("data",data)
+  const handleExpandClick1 = () => {
+    handleMonthChange("Enero");
+  };
+  useEffect(() => {
+    
+  }, []);
+  console.log(month)
 
+let data=filterData(activity,dataBruta);
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
@@ -50,12 +53,12 @@ function SectionMultiPieContainer(props) {
           <CardContent>
             <CardHeader
               action={
-                <IconButton aria-label="settings">
+                <IconButton aria-label="settings" onClick={handleExpandClick1}>
                   <MoreVertIcon />
                 </IconButton>
               }
               title={title}
-              subheader={description}
+              subheader={description+month}
             />
             <div className="gridpie">
               {data.map((data) => (
