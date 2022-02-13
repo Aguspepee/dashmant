@@ -16,6 +16,7 @@ export const options = {
   plugins: {
     legend: {
       display: false,
+      
     },
   },
 };
@@ -63,7 +64,6 @@ function MiniPieChartCard(props) {
     labels: labels,
     datasets: [
       {
-        label: "# of Votes",
         data: quantity,
         backgroundColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
         borderColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
@@ -128,7 +128,7 @@ function MiniPieChartCard(props) {
           
         }}
       >
-        <CardContent sx={{ flex: "1 0 auto"}}>
+        <CardContent sx={{ flex: "1 0 auto",width: "10%"}} >
           <Typography variant="body1" color="text.secondary" component="div" style={{fontSize: "1.2em"}}>
             Mensual
           </Typography>
@@ -147,7 +147,7 @@ function MiniPieChartCard(props) {
             display: "flex",
             //flexDirection: "column",
             justifyContent: 'left',
-            width: "60%",
+            width: "55%",
             alignItems: "center",
             padding: "1em 1em 0em 1em",
           }}

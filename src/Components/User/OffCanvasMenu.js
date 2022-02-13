@@ -158,11 +158,10 @@ function ResponsiveDrawer(props) {
       >
         <Toolbar style={{ backgroundColor: "white" }}>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: "none" }, color:"gray" }}
           >
             <MenuIcon />
           </IconButton>

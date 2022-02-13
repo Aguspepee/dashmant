@@ -47,6 +47,11 @@ function General() {
         title="Inspección Minuciosa"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
       ></SectionMultiBarContainer>
+      <SectionMultiBarContainer
+        activity="PINT"
+        title="Inspección Terrestre"
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+      ></SectionMultiBarContainer>
     </>
   );
 }
