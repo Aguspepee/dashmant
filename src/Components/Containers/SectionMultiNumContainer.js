@@ -7,15 +7,41 @@ import "./gridstyle.css";
 import filterData from "../../Services/filter";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
+import { useEffect, useContext } from "react";
+import FilterContext from "../../Context/FilterContext"
 
 
 function SectionMultiNumContainer(props) {
+  const [
+    pieChartData,
+        setPieChartData,
+        year,
+        setYear,
+        handleYearChange,
+        month,
+        setMonth,
+        handleMonthChange,
+        dataBruta,
+        setDataBruta,
+        dataNormalizada,
+        setDataNormalizada,
+        dataFiltrada,
+        setDataFiltada,
+        normalizeData,
+        filterDataByVarious,
+        filterDataByDate
+  ] = useContext(FilterContext);
   const activity = props.activity;
   const title = props.title;
   const description = props.description;
 
+  useEffect(() => {
+    filterDataByDate()
+  }, [dataNormalizada,month,year]);
+  console.log("en el compoente",month)
+
   //Hacer que sea un estado
-  const data = filterData(activity);
+  const data = filterData(activity,dataFiltrada);
 
   return (
     <>

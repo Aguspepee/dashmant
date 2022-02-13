@@ -19,12 +19,12 @@ function General() {
         bar="true"
       ></SectionMultiPieContainer>
 
-      {/* <SectionMultiNumContainer
+      <SectionMultiNumContainer
         activity="MCP"
         title="Intervenciones Correctivas"
         description="Candidad de intervenciones"
       ></SectionMultiNumContainer>
- */}
+
       <SectionMultiPieContainer
         activity="RSP"
         title="Inspección de Seguridad Pública"
