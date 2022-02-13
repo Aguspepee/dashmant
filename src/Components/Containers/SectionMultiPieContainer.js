@@ -27,7 +27,25 @@ const ExpandMore = styled((props) => {
 }));
 
 function SectionMultiPieContainer(props) {
-  const [year,handleYearChange, month,handleMonthChange, pieChartData,setPieChartData,filterDataByDate,filterDataByVarious,dataBruta] = useContext(FilterContext);
+  const [
+    pieChartData,
+        setPieChartData,
+        year,
+        setYear,
+        handleYearChange,
+        month,
+        setMonth,
+        handleMonthChange,
+        dataBruta,
+        setDataBruta,
+        dataNormalizada,
+        setDataNormalizada,
+        dataFiltrada,
+        setDataFiltada,
+        normalizeData,
+        filterDataByVarious,
+        filterDataByDate
+  ] = useContext(FilterContext);
 
   const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
@@ -38,14 +56,15 @@ function SectionMultiPieContainer(props) {
     setExpanded(!expanded);
   };
   const handleExpandClick1 = () => {
-    handleMonthChange("Enero");
+    setMonth("01");
+    console.log("en el button",month)
   };
   useEffect(() => {
-    
-  }, []);
-  console.log(month)
+    filterDataByDate()
+  }, [dataNormalizada,month,year]);
+  console.log("en el compoente",month)
 
-let data=filterData(activity,dataBruta);
+let data=filterData(activity,dataFiltrada);
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>

@@ -36,15 +36,33 @@ const drawerWidth = 240;
   "Noviembre",
   "Diciembre",
 ]; */
-const months = [1,2,3,4,5,6,7,8,9,10,11,12];
+const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 
 const years = [2021, 2022, 2023, 2024];
 
 function ResponsiveDrawer(props) {
-  const [year,handleYearChange, month,handleMonthChange, pieChartData,setPieChartData,filterDataByDate,filterDataByVarious,dataBruta] = useContext(FilterContext);
+  const [
+    pieChartData,
+    setPieChartData,
+    year,
+    setYear,
+    handleYearChange,
+    month,
+    setMonth,
+    handleMonthChange,
+    dataBruta,
+    setDataBruta,
+    dataNormalizada,
+    setDataNormalizada,
+    dataFiltrada,
+    setDataFiltada,
+    normalizeData,
+    filterDataByVarious,
+    filterDataByDate
+  ] = useContext(FilterContext);
 
   //setMonth("jaunua");
-  
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
@@ -105,10 +123,10 @@ function ResponsiveDrawer(props) {
         </ListItem>
 
         <ListItem>
-          <DateSelector type="Mes" data={months} changeValue={handleMonthChange} value={month}/>
+          <DateSelector type="Mes" data={months} change1={handleMonthChange} change2={setMonth} value={month} />
         </ListItem>
         <ListItem>
-          <DateSelector type="Año" data={years} changeValue={handleYearChange} value={year}/>
+          <DateSelector type="Año" data={years} change1={handleYearChange} change2={setYear} value={year} />
         </ListItem>
       </List>
       <Divider />

@@ -12,11 +12,15 @@ export default function DateSelector(props) {
   //const value = props.value
   const data = props.data;
   const type = props.type;
-  const changeValue = props.changeValue
+  const changeValue = props.change1
+  const changeValue2 = props.change2
 //  const setValue = setValue.props
   const handleChange = (event) => {
-    setValue(event.target.value);
     changeValue(event.target.value)
+    console.log("target",event.target.value)
+    setValue(event.target.value);
+    changeValue2(event.target.value)
+    
   };
   
   return (

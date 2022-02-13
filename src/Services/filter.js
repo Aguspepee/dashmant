@@ -43,7 +43,7 @@ function filterData(actividad,dataBruta) {
     }
     pieChartData[j] = { Zona: zones[j]["Grupo planif."],ZonaNombre:zones[j]["Zona"], UnidadadesMantenimientoCant:zones[j]["Unidades de Mantenimiento"], Lista: listValues };
   }
-  console.log(pieChartData)
+  //console.log(pieChartData)
   return pieChartData;
   
 }

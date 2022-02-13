@@ -41,8 +41,6 @@ function SectionMultiBarContainer(props) {
               subheader={description}
             />
 
-            <Range/>
-
             <TableContainer
               component={Paper}
               style={{ boxShadow: "rgba(0, 0, 0, 0) 0px 0px 0px" }}
