@@ -154,14 +154,16 @@ function ResponsiveDrawer(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
-        style={{ backgroundColor: "gray" }}
+        style={{ backgroundColor: "gray", boxShadow: ""   }}
+
       >
-        <Toolbar style={{ backgroundColor: "white" }}>
+        <Toolbar style={{ backgroundColor: "white"}}>
           <IconButton
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" }, color:"gray" }}
+            sx={{ mr: 2, display: { sm: "none" }, color: "gray" }}
+
           >
             <MenuIcon />
           </IconButton>
@@ -181,7 +183,7 @@ function ResponsiveDrawer(props) {
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer
+        <Drawer 
           container={container}
           variant="temporary"
           open={mobileOpen}
@@ -194,6 +196,7 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
             },
           }}
         >
@@ -206,6 +209,7 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
             },
           }}
           open
