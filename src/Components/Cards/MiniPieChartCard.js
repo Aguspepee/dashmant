@@ -65,8 +65,10 @@ function MiniPieChartCard(props) {
     datasets: [
       {
         data: quantity,
-        backgroundColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
-        borderColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
+       // backgroundColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
+       backgroundColor: ["#bbbbbb", "green", "red"],
+         
+       borderColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
         borderWidth: 0,
       },
     ],

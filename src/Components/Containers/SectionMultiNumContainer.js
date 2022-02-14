@@ -34,6 +34,7 @@ function SectionMultiNumContainer(props) {
   const activity = props.activity;
   const title = props.title;
   const description = props.description;
+  const filters = props.filters;
 
   useEffect(() => {
     filterDataByDate()
@@ -41,7 +42,7 @@ function SectionMultiNumContainer(props) {
   console.log("en el compoente",month)
 
   //Hacer que sea un estado
-  const data = filterData(activity,dataFiltrada);
+  const data = filterData(activity,dataFiltrada,filters);
 
   return (
     <>

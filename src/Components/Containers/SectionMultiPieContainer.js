@@ -51,6 +51,7 @@ function SectionMultiPieContainer(props) {
   const activity = props.activity;
   const title = props.title;
   const bar = props.bar;
+  const filters = props.filters;
   const description = props.description;
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -64,7 +65,7 @@ function SectionMultiPieContainer(props) {
   }, [dataNormalizada,month,year]);
   console.log("en el compoente",month)
 
-let data=filterData(activity,dataFiltrada);
+let data=filterData(activity,dataFiltrada,filters);
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
