@@ -77,7 +77,7 @@ let data=filterData(activity,dataFiltrada);
                 </IconButton>
               }
               title={title}
-              subheader={description+month}
+              subheader={description}
             />
             <div className="gridpie">
               {data.map((data) => (
