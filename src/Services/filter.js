@@ -65,7 +65,16 @@ function filterData(actividad, dataBruta, filtersGlobal) {
     (data) =>
       (data["Pto.tbjo.resp."] !== "ING-INGE" || filterByIng === false) &&
       (data["Texto breve"].includes("Muestreo") || filterByMuesAceite === false) &&
-      (data["Texto breve"].includes("Muestreo") || filterByMuesAceite === false)
+      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      
+      (data["Texto breve"].includes("Muestreo") || filterByMuesAceite === false)//CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
   );
 
   let pieChartData = [];
