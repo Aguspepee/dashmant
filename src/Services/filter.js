@@ -3,16 +3,16 @@
 //FILTROS PARA RPM
 const filterRPM = [
   {
-    "Status denominacion": "En Ejecución",
-    "Status usuario": "EJEC",
-  },
-  {
     "Status denominacion": "Cerrada Técnicamente",
     "Status usuario": "CTEC",
   },
   {
     "Status denominacion": "Cerrada Técnicamente No Ejecutado",
     "Status usuario": "CTEC CENE",
+  },
+  {
+    "Status denominacion": "En Ejecución",
+    "Status usuario": "EJEC",
   },
 ];
 

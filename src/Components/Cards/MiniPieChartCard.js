@@ -52,8 +52,8 @@ function MiniPieChartCard(props) {
 
   let percentaje  
   
-  if (!Number.isNaN(quantity[1] / (quantity[0] + quantity[1] + quantity[2]))){
-    percentaje = ((quantity[1] / (quantity[0] + quantity[1] + quantity[2])) * 100 ).toFixed(0);
+  if (!Number.isNaN(quantity[0] / (quantity[0] + quantity[1] + quantity[2]))){
+    percentaje = ((quantity[0] / (quantity[0] + quantity[1] + quantity[2])) * 100 ).toFixed(0);
   }else{
     percentaje = "-"
   }
@@ -66,7 +66,7 @@ function MiniPieChartCard(props) {
       {
         data: quantity,
        // backgroundColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
-       backgroundColor: ["#bbbbbb", "green", "red"],
+       backgroundColor: ["#28a745", "#dc3545","#bbbbbb"],
          
        borderColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
         borderWidth: 0,
@@ -90,7 +90,7 @@ function MiniPieChartCard(props) {
     : (chipColor = "success");
 
   let percentajeBar =
-    (quantity[1] * 100) / dataList.UnidadadesMantenimientoCant;
+    (quantity[0] * 100) / dataList.UnidadadesMantenimientoCant;
   percentajeNow = day*100/365;
 
   if (bar === "true") {
@@ -101,7 +101,7 @@ function MiniPieChartCard(props) {
         </Typography>
         <MiniBarChartCard percentaje={percentajeBar} percentajeNow={percentajeNow}></MiniBarChartCard>
         <Typography variant="overline" color="text.secondary" component="div" style={{fontSize: "0.8em"}}>
-          {quantity[1]}/{dataList.UnidadadesMantenimientoCant} ud.
+          {quantity[0]}/{dataList.UnidadadesMantenimientoCant} ud.
         </Typography>
       </Container>
       
@@ -139,7 +139,7 @@ function MiniPieChartCard(props) {
             {percentaje}%
           </Typography>
           <Typography variant="overline" color="text.secondary" component="div" style={{paddingBottom:"5px",fontSize: "0.8em"}}>
-            {quantity[1]}/{(quantity[0] + quantity[1] + quantity[2])} Ud.
+            {quantity[0]}/{(quantity[0] + quantity[1] + quantity[2])} Ud.
           </Typography>
           <Chip className="chip" label="Estado" color={chipColor} />
         </CardContent>
