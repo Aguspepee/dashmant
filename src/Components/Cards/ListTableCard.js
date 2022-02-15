@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import LineAcumChartCard from "./LineAcumChartCard";
 
 export default function BasicTable(props) {
   const dataList = props.data;
@@ -23,10 +24,15 @@ export default function BasicTable(props) {
   ];
 
   return (
+    
+
+
+
     <TableContainer
       component={Paper}
       style={{ boxShadow: "0px 0px 0px white", width: "90%" }}
     >
+      <LineAcumChartCard></LineAcumChartCard>
       <Typography
         variant="button"
         color="text.primary"

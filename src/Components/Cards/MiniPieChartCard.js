@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
+import Chip from '@mui/material/Chip';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {

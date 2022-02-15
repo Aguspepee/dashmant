@@ -1,17 +1,21 @@
 import React from "react";
-import MiniNumberCard from "../Cards/MiniNumberCard";
+import { useEffect, useContext } from "react";
 import { Card } from "@mui/material";
+import "./gridstyle.css";
+
+import LineAcumChartCard from "../Cards/LineAcumChartCard";
+
+
+
+
 import { CardContent } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
-import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import { useEffect, useContext } from "react";
-import FilterContext from "../../Context/FilterContext"
+import FilterContext from "../../Context/FilterContext";
 
-
-function SectionMultiNumContainer(props) {
+function SectionLineChartContainer(props) {
   const [
     pieChartData,
         setPieChartData,
@@ -31,38 +35,29 @@ function SectionMultiNumContainer(props) {
         filterDataByVarious,
         filterDataByDate
   ] = useContext(FilterContext);
-  const activity = props.activity;
-  const title = props.title;
-  const description = props.description;
-  const filters = props.filters;
+
+
 
   useEffect(() => {
-    filterDataByDate()
-  }, [dataNormalizada,month,year]);
 
-  //Hacer que sea un estado
-  const data = filterData(activity,pieChartData,filters);
+  }, []);
 
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
-          <CardContent>
+        <CardContent>
             <CardHeader
               action={
-                <IconButton aria-label="settings">
+                <IconButton aria-label="settings" >
                   <MoreVertIcon />
                 </IconButton>
               }
-              title={title}
-              subheader={description}
+              title="Hola"
+              subheader="Claro"
             />
-            <div className="gridnumber">
-              {data.map((data) => (
-                <div className="grid-column" key={data.Zona}>
-                  <MiniNumberCard data={data}></MiniNumberCard>
-                </div>
-              ))}
+            <div className="gridline">
+            <LineAcumChartCard></LineAcumChartCard>
             </div>
           </CardContent>
         </Card>
@@ -70,4 +65,4 @@ function SectionMultiNumContainer(props) {
     </>
   );
 }
-export default SectionMultiNumContainer;
+export default SectionLineChartContainer;

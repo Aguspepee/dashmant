@@ -1,5 +1,5 @@
 import React from "react";
-//import LineAcumChartCard from "../Components/Cards/LineAcumChartCard";
+import SectionLineChartContainer from "../Components/Containers/SectionLineChartContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
@@ -60,7 +60,7 @@ function General() {
         }}
       ></SectionMultiPieContainer>
 
-      {/* <LineAcumChartCard></LineAcumChartCard> */}
+      <SectionLineChartContainer></SectionLineChartContainer>
       <h1>Líneas Eléctricas</h1>
       <SectionMultiBarContainer
         activity="PINM"

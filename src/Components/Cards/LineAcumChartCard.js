@@ -11,8 +11,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-import Card from "@mui/material/Card";
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,22 +22,22 @@ ChartJS.register(
   Filler
 );
 
-
 export const options = {
   responsive: true,
-  //  width: 10,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
-      position: "top",
+      display: false
     },
     title: {
-      display: true,
+      display: false,
       text: "Chart.js Line Chart",
     },
   },
 };
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
+
 
 export const data = {
   labels,
@@ -53,7 +51,7 @@ export const data = {
     },
     {
       label: "Ejecutado",
-      data: [0, 5, 7, 8, 10, 15, 16],
+      data: [0, 5, 7, 9, 13, 15, 15],
       borderColor: "rgb(53, 162, 235)",
       backgroundColor: "rgba(53, 162, 235, 0.5)",
       fill: true,
@@ -63,21 +61,8 @@ export const data = {
 
 function LineAcumChartCard() {
   return (
-    <div className="gridlinear" >
-      <div style={{ width: "100%" }}>
-        <Card
-          style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-        >
-          <Line options={options} data={data} />
-        </Card>
-      </div>
-      <div style={{ width: "100%" }}>
-        <Card
-          style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-        >
-          <Line options={options} data={data} />
-        </Card>
-      </div>
+    <div style={{padding:"1em 1em 1em 1em", height:'200px',width:'100%'}}>
+      <Line options={options} data={data}/>
     </div>
   );
 }

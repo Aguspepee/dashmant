@@ -10,7 +10,7 @@ import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
-import filterData from "../../Services/filter";
+import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import FilterContext from "../../Context/FilterContext";
