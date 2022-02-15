@@ -32,8 +32,6 @@ function MiniPieChartCard(props) {
 
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
   const dataBar = props.dataBar; //Esta data está filtada por año
-  console.log ("List",dataList)
-  console.log ("Bar",dataBar)
   //Se obtienen los labels
   let labels = [];
   for (let i = 0; i < dataList.Lista.length; i++) {
@@ -89,7 +87,7 @@ function MiniPieChartCard(props) {
     : (chipColor = "success");
 
     
-  let percentajeBar = (dataBar.Lista[0].Cantidad * 100) / dataBar.UnidadadesMantenimientoCant;
+  let percentajeBar = (dataBar.Lista[0].Cantidad * 100) / dataBar.TotAnual;
   percentajeNow = (day * 100) / 365;
 
   if (bar === "true") {
@@ -113,7 +111,7 @@ function MiniPieChartCard(props) {
           component="div"
           style={{ fontSize: "0.8em" }}
         >
-          {dataBar.Lista[0].Cantidad}/{dataBar.UnidadadesMantenimientoCant} ud.
+          {dataBar.Lista[0].Cantidad}/{dataBar.TotAnual} ud.
         </Typography>
       </Container>
     );

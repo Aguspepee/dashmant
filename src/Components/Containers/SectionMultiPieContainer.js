@@ -57,15 +57,16 @@ function SectionMultiPieContainer(props) {
     setExpanded(!expanded);
   };
   const handleExpandClick1 = () => {
-    setMonth("01");
-    console.log("en el button",month)
   };
+
   useEffect(() => {
     filterDataByDate()
   }, [dataNormalizada,month,year]);
 
 let dataPie=filterData(activity,pieChartData,filters);
+//console.log("PIE",dataPie)
 let dataBar=filterData(activity,dataFiltrada,filters);
+//console.log("BAR",dataBar)
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>

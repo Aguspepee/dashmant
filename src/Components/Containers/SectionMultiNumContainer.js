@@ -39,10 +39,9 @@ function SectionMultiNumContainer(props) {
   useEffect(() => {
     filterDataByDate()
   }, [dataNormalizada,month,year]);
-  console.log("en el compoente",month)
 
   //Hacer que sea un estado
-  const data = filterData(activity,dataFiltrada,filters);
+  const data = filterData(activity,pieChartData,filters);
 
   return (
     <>

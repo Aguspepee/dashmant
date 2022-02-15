@@ -20,41 +20,35 @@ const zones = [
   {
     "Grupo planif.": "ZN1",
     Zona: "Zona Norte",
-    "Unidades de Mantenimiento": 249,
+    "RPManual": 249,
+    "RSPanual": 76,
   },
   {
     "Grupo planif.": "ZS1",
     Zona: "Zona Sur",
-    "Unidades de Mantenimiento": 368,
+    "RPManual": 368,
+    "RSPanual": 174,
   },
   {
     "Grupo planif.": "ZO1",
     Zona: "Zona Oeste",
-    "Unidades de Mantenimiento": 41,
+    "RPManual": 41,
+    "RSPanual": 24,
   },
   {
     "Grupo planif.": "ZA1",
     Zona: "Zona Austral",
-    "Unidades de Mantenimiento": 53,
+    "RPManual": 53,
+    "RSPanual": 20,
   },
 ];
 
-//Se listan los filtros mas comunes, se pueden agregar mas de ser necesario.
-//Solo debe cambiarse el estado al llamar a la función.
-/* const filtersGlobal = [
-  {
-    filterByIng: "false",
-    filterByMuesAceite: "fasle",
-    filterByIng: "true",
-  },
-];
- */
+
 function filterData(actividad, dataBruta, filtersGlobal) {
   let data = dataBruta;
   let cantidad //Cantidad de OT's que comple una o varias condiciones
   const { filterByIng, filterByMuesAceite, filterByProtecciones,  deleteDuplicates} = filtersGlobal;
-  //console.log("filterByIng: ", filterByIng,"filterByMuesAceite: ",filterByMuesAceite,"filterByProtecciones", filterByProtecciones,  "deleteDuplicates",deleteDuplicates);
-
+ 
   //FILTROS GLOBALES PARTICULARES 
   data = data.filter(
     (data) =>
@@ -107,7 +101,7 @@ function filterData(actividad, dataBruta, filtersGlobal) {
     pieChartData[j] = {
       Zona: zones[j]["Grupo planif."],
       ZonaNombre: zones[j]["Zona"],
-      UnidadadesMantenimientoCant: zones[j]["Unidades de Mantenimiento"],
+      TotAnual: zones[j][actividad+"anual"],
       Lista: listValues,
     };
   }
