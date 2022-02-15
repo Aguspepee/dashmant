@@ -2,12 +2,7 @@ import React from "react";
 import { useEffect, useContext } from "react";
 import { Card } from "@mui/material";
 import "./gridstyle.css";
-
 import LineAcumChartCard from "../Cards/LineAcumChartCard";
-
-
-
-
 import { CardContent } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
