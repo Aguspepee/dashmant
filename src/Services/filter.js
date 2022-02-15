@@ -3,16 +3,20 @@
 //FILTROS PARA RPM
 const filterRPM = [
   {
-    "Status denominacion": "Cerrada Técnicamente",
+    "Status denominacion": "Cerrada Téc.",
     "Status usuario": "CTEC",
   },
   {
-    "Status denominacion": "Cerrada Técnicamente No Ejecutado",
+    "Status denominacion": "Cerrada Téc. No Ejec.",
     "Status usuario": "CTEC CENE",
   },
   {
     "Status denominacion": "En Ejecución",
     "Status usuario": "EJEC",
+  },
+  {
+    "Status denominacion": "Abierto",
+    "Status usuario": "ABIE",
   },
 ];
 
@@ -61,7 +65,7 @@ function filterData(actividad, dataBruta, filtersGlobal) {
   let listValues = [];
   for (let j = 0; j < zones.length; j++) {
     listValues = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
 
       //FILTRO POR ACTIVIDAD
       let data_filter = data.filter(
@@ -105,6 +109,7 @@ function filterData(actividad, dataBruta, filtersGlobal) {
       Lista: listValues,
     };
   }
+  console.log(pieChartData)
 
   return pieChartData;
 }

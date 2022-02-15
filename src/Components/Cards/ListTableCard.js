@@ -19,6 +19,7 @@ export default function BasicTable(props) {
     createData(dataList.Lista[0].Tipo, dataList.Lista[0].Cantidad),
     createData(dataList.Lista[1].Tipo, dataList.Lista[1].Cantidad),
     createData(dataList.Lista[2].Tipo, dataList.Lista[2].Cantidad),
+    createData(dataList.Lista[3].Tipo, dataList.Lista[3].Cantidad),
   ];
 
   return (

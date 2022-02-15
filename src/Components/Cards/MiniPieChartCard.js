@@ -49,9 +49,9 @@ function MiniPieChartCard(props) {
 
   let percentaje;
 
-  if (!Number.isNaN(quantity[0] / (quantity[0] + quantity[1] + quantity[2]))) {
+  if (!Number.isNaN(quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3]))) {
     percentaje = (
-      (quantity[0] / (quantity[0] + quantity[1] + quantity[2])) *
+      (quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3])) *
       100
     ).toFixed(0);
   } else {
@@ -64,8 +64,8 @@ function MiniPieChartCard(props) {
     datasets: [
       {
         data: quantity,
-        backgroundColor: ["#28a745", "#dc3545", "#bbbbbb"],
-        borderColor: ["#bbbbbb", "#2c3e50", "#aadeee"],
+        backgroundColor: ["#28a745", "#dc3545", "#bbbbbb", "#bbbbbb"],
+        borderColor: ["#28a745", "#dc3545", "#bbbbbb", "#bbbbbb"],
         borderWidth: 0,
       },
     ],
@@ -160,7 +160,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "5px", fontSize: "0.8em" }}
           >
-            {quantity[0]}/{quantity[0] + quantity[1] + quantity[2]} Ud.
+            {quantity[0]}/{quantity[0] + quantity[1] + quantity[2] + quantity[3]} Ud.
           </Typography>
         </CardContent>
 
