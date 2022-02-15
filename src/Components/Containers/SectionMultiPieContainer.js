@@ -63,9 +63,9 @@ function SectionMultiPieContainer(props) {
   useEffect(() => {
     filterDataByDate()
   }, [dataNormalizada,month,year]);
-  console.log("en el compoente",month)
 
-let data=filterData(activity,dataFiltrada,filters);
+let dataPie=filterData(activity,pieChartData,filters);
+let dataBar=filterData(activity,dataFiltrada,filters);
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
@@ -81,9 +81,9 @@ let data=filterData(activity,dataFiltrada,filters);
               subheader={description}
             />
             <div className="gridpie">
-              {data.map((data) => (
-                <div className="grid-column" key={data.Zona}>
-                  <MiniPieChartCart data={data} bar={bar}></MiniPieChartCart>
+              {dataPie.map((dataPie,index) => (
+                <div className="grid-column" key={dataPie.Zona}>
+                  <MiniPieChartCart dataPie={dataPie} dataBar={dataBar[index]} bar={bar}></MiniPieChartCart>
                 </div>
               ))}
             </div>
@@ -101,9 +101,9 @@ let data=filterData(activity,dataFiltrada,filters);
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <div className="gridpie">
-                {data.map((data) => (
-                  <div className="grid-column" key={data.Zona}>
-                    <ListTableCard data={data}></ListTableCard>
+                {dataPie.map((dataPie) => (
+                  <div className="grid-column" key={dataPie.Zona}>
+                    <ListTableCard data={dataPie}></ListTableCard>
                   </div>
                 ))}
               </div>

@@ -52,29 +52,15 @@ const zones = [
 function filterData(actividad, dataBruta, filtersGlobal) {
   let data = dataBruta;
   let cantidad //Cantidad de OT's que comple una o varias condiciones
-  const { filterByIng, filterByMuesAceite, deleteDuplicates } = filtersGlobal;
-  console.log(
-    "filterByIng: ",
-    filterByIng,
-    "filterByMuesAceite: ",
-    filterByMuesAceite
-  );
+  const { filterByIng, filterByMuesAceite, filterByProtecciones,  deleteDuplicates} = filtersGlobal;
+  //console.log("filterByIng: ", filterByIng,"filterByMuesAceite: ",filterByMuesAceite,"filterByProtecciones", filterByProtecciones,  "deleteDuplicates",deleteDuplicates);
 
   //FILTROS GLOBALES PARTICULARES 
   data = data.filter(
     (data) =>
-      (data["Pto.tbjo.resp."] !== "ING-INGE" || filterByIng === false) &&
-      (data["Texto breve"].includes("Muestreo") || filterByMuesAceite === false) &&
-      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-      //CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-      
-      (data["Texto breve"].includes("Muestreo") || filterByMuesAceite === false)//CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
+      (data["Pto.tbjo.resp."] !== "ING-INGE" || filterByIng === false) && //Elimina los que tienen la palabra "ING-INGE" 
+      (data["Texto breve"].includes("Muestreo") || filterByMuesAceite === false) && //Deja los que tienen la palabra "Muestreo" de aceite
+      (!data["Pto.tbjo.resp."].includes("PROT") || filterByProtecciones === false) //Elimina los que tienen la palabra "PROT" (Protecciones)
   );
 
   let pieChartData = [];

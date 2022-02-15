@@ -17,6 +17,7 @@ function General() {
         filters={{
           filterByIng:  true,
           filterByMuesAceite: false,
+          filterByProtecciones:true,
           deleteDuplicates: true,
         }}
       ></SectionMultiPieContainer>
@@ -28,6 +29,7 @@ function General() {
         filters={{
           filterByIng: true,
           filterByMuesAceite: false,
+          filterByProtecciones:true,
           deleteDuplicates: false,
         }}
       ></SectionMultiNumContainer>
@@ -40,6 +42,7 @@ function General() {
         filters={{
           filterByIng: true,
           filterByMuesAceite: false,
+          filterByProtecciones:true,
           deleteDuplicates: false,
         }}
       ></SectionMultiPieContainer>
@@ -52,6 +55,7 @@ function General() {
         filters={{
           filterByIng: true,
           filterByMuesAceite: true,
+          filterByProtecciones:true,
           deleteDuplicates: false,
         }}
       ></SectionMultiPieContainer>

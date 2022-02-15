@@ -35,23 +35,24 @@ function FilterProvider(props) {
   const filterDataByDate = () => {
     setDataFiltada(
       dataNormalizada.filter((dataNormalizada) => {
-        //console.log((month + "/" + year))
-        // console.log(dataNormalizada["Inicio program."].slice(3, 10))
         return (
-          (month + "/" + year === dataNormalizada["Inicio program."].slice(3, 10)) //&
-         // (dataNormalizada["Pto.tbjo.resp."] !== "ING-INGE")
+          (year === dataNormalizada["Inicio program."].slice(6, 10))
         );
       })
     );
-    //setDataBruta( )
+    setPieChartData(
+      dataNormalizada.filter((dataNormalizada) => {
+        return (
+          (month + "/" + year === dataNormalizada["Inicio program."].slice(3, 10))
+        );
+      })
+    );
   };
 
   const handleMonthChange = (monthValue) => {
     setMonth(monthValue);
     console.log("en el handle", month);
     normalizeData(); //se normaliza la base de datos
-
-    //setMonthNum(months.filter((months) => { return (months.Month === monthValue) })[0].Num)
     filterDataByDate();
   };
 
