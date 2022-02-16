@@ -32,7 +32,6 @@ export default function BasicTable(props) {
       component={Paper}
       style={{ boxShadow: "0px 0px 0px white", width: "90%" }}
     >
-      <LineAcumChartCard></LineAcumChartCard>
       <Typography
         variant="button"
         color="text.primary"

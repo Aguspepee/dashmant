@@ -60,17 +60,21 @@ function General() {
         }}
       ></SectionMultiPieContainer>
 
-      <SectionLineChartContainer></SectionLineChartContainer>
+     {/*  <SectionLineChartContainer></SectionLineChartContainer> */}
+
+
       <h1>Líneas Eléctricas</h1>
       <SectionMultiBarContainer
         activity="PINM"
         title="Inspección Minuciosa"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        detail="Ejecutado Minuciosa"
       ></SectionMultiBarContainer>
       <SectionMultiBarContainer
         activity="PINT"
         title="Inspección Terrestre"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        detail="Ejecutado Terrestre"
       ></SectionMultiBarContainer>
     </>
   );

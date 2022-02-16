@@ -1,26 +1,41 @@
 import React from "react";
-import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Card } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import filterLines from "../../Services/lineas";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import { CardContent } from "@mui/material";
-import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import MultiBarChartCard from "../Cards/MultiBarChartCard"
+
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+  transition: theme.transitions.create("transform", {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
 
 function SectionMultiBarContainer(props) {
+  //Cálculo de día del año
+
+  const year = "2022";
   const title = props.title;
   const description = props.description;
-  const lineas = filterLines(props.activity);
+  const detail = props.detail;
+  const lineas = filterLines(year);
   const porcentajeAnual = 0.25;
-  const porcentajeMensual = porcentajeAnual / 12;
+  let actividad = props.activity;
+  let factor;
+  if ((actividad = "PINT")) {
+    factor = 2;
+  } else if ((actividad = "PINM")) {
+    factor = 0.5;
+  }
+
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
@@ -41,63 +56,8 @@ function SectionMultiBarContainer(props) {
               subheader={description}
             />
 
-            {lineas.map((lineas) => (
-              <div key={lineas["Grupo planif."]}>
-                <Typography
-                  variant="button"
-                  color="text.primary"
-                  component="div"
-                  style={{
-                    fontSize: "1.4em",
-                    paddingLeft: "0.8em",
-                    paddingBottom: "0px",
-                  }}
-                  
-                >
-                  {lineas["Zona"]}
-                </Typography>
-                <TableContainer
-                  component={Paper}
-                  style={{ boxShadow: "rgba(0, 0, 0, 0) 0px 0px 0px" }}
-                >
-                  <Table sx={{}} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Linea MT</TableCell>
-                        <TableCell align="right">Total Piquetes</TableCell>
-                        <TableCell align="right">Ejecutado</TableCell>
-                        <TableCell align="right">Avance</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {lineas["Line"].map((lineas) => (
-                        <TableRow
-                          key={lineas["Código"]}
-                          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                        >
-                          <TableCell component="th" scope="row" width="15%">
-                            {lineas["Código"]}
-                          </TableCell>
-                          <TableCell width="10%" align="right">
-                            {Math.round(lineas["Torres Cantidad"])}
-                          </TableCell>
-                          <TableCell width="10%" align="right">
-                            {Math.round(lineas["Ejecutado Minuciosa"])}
-                          </TableCell>
-                          <TableCell width="53%" align="right">
-                            <MiniBarChartCard
-                              percentaje={Math.round(
-                                (lineas["Ejecutado Minuciosa"] * 100) /
-                                lineas["Torres Cantidad"]
-                              )}
-                            ></MiniBarChartCard>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </div>
+            {lineas.map((lineas,index) => (
+              <MultiBarChartCard key={lineas["Grupo planif."]} lineas={lineas} detail={detail} actividad={actividad} year={year}></MultiBarChartCard>
             ))}
           </CardContent>
         </Card>

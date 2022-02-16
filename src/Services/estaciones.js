@@ -109,8 +109,7 @@ function filterData(actividad, dataBruta, filtersGlobal) {
       Lista: listValues,
     };
   }
-  console.log(pieChartData)
-
+ 
   return pieChartData;
 }
 export default filterData;

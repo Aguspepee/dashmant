@@ -51,14 +51,12 @@ function FilterProvider(props) {
 
   const handleMonthChange = (monthValue) => {
     setMonth(monthValue);
-    console.log("en el handle", month);
     normalizeData(); //se normaliza la base de datos
     filterDataByDate();
   };
 
   const handleYearChange = (yearValue) => {
     setYear(yearValue);
-    console.log("en el handle", year);
     normalizeData(); //se normaliza la base de datos
     filterDataByDate();
   };

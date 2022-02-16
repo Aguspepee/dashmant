@@ -19,6 +19,7 @@ import DateSelector from "../Controls/DateSelector";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterContext from "../../Context/FilterContext";
 import { useEffect, useContext } from "react";
+import TableRowsIcon from '@mui/icons-material/TableRows';
 
 
 const drawerWidth = 240;
@@ -138,6 +139,16 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
+      
+      <List>
+        {["Base de Datos"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{< TableRowsIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
 
     </div>
   );
