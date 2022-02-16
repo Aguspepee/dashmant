@@ -71,7 +71,6 @@ function ResponsiveDrawer(props) {
   };
   const drawer = (
     <div>
-
       <List>
         {["General"].map((text) => (
           <ListItem button key={text} component={Link} to="dashmant/general">

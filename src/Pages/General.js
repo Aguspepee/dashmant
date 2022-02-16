@@ -60,8 +60,7 @@ function General() {
         }}
       ></SectionMultiPieContainer>
 
-     {/*  <SectionLineChartContainer></SectionLineChartContainer> */}
-
+      <SectionLineChartContainer></SectionLineChartContainer>
 
       <h1>Líneas Eléctricas</h1>
       <SectionMultiBarContainer

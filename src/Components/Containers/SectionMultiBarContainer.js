@@ -21,13 +21,11 @@ const ExpandMore = styled((props) => {
 
 function SectionMultiBarContainer(props) {
   //Cálculo de día del año
-
   const year = "2022";
   const title = props.title;
   const description = props.description;
   const detail = props.detail;
   const lineas = filterLines(year);
-  const porcentajeAnual = 0.25;
   let actividad = props.activity;
   let factor;
   if ((actividad = "PINT")) {

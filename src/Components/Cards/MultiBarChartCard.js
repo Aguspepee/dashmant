@@ -97,7 +97,6 @@ function MultiBarChartCard(props) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {console.log(lineas)}
                 {lineas["Line"].map((lineas) => (
                   <TableRow
                     key={lineas["Código"]}
