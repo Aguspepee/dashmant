@@ -17,10 +17,8 @@ export default function DateSelector(props) {
 //  const setValue = setValue.props
   const handleChange = (event) => {
     changeValue(event.target.value)
-    console.log("target",event.target.value)
     setValue(event.target.value);
     changeValue2(event.target.value)
-    
   };
   
   return (

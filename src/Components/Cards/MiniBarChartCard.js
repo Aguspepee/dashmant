@@ -30,7 +30,7 @@ export default function MiniBarChartCard(props) {
             striped
             now={percentaje1}
             key={1}
-            style={{ backgroundColor: "#28a745" }}
+            style={{ backgroundColor: "#BDE7BD" }}
           />
           <ProgressBar
             animated

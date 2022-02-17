@@ -1,4 +1,5 @@
 //var data = require("../Data/dataJan.json");
+import FrecuenciaAcumulado from "./graficos";
 
 //FILTROS PARA RPM
 const filterRPM = [
@@ -24,41 +25,51 @@ const zones = [
   {
     "Grupo planif.": "ZN1",
     Zona: "Zona Norte",
-    "RPManual": 249,
-    "RSPanual": 76,
+    RPManual: 249,
+    RSPanual: 76,
   },
   {
     "Grupo planif.": "ZS1",
     Zona: "Zona Sur",
-    "RPManual": 368,
-    "RSPanual": 174,
+    RPManual: 368,
+    RSPanual: 174,
   },
   {
     "Grupo planif.": "ZO1",
     Zona: "Zona Oeste",
-    "RPManual": 41,
-    "RSPanual": 24,
+    RPManual: 41,
+    RSPanual: 24,
   },
   {
     "Grupo planif.": "ZA1",
     Zona: "Zona Austral",
-    "RPManual": 53,
-    "RSPanual": 20,
+    RPManual: 53,
+    RSPanual: 20,
   },
 ];
 
+let DatosDiario
+let DatosMensual
+let FrecAcum
 
-function filterData(actividad, dataBruta, filtersGlobal) {
+function filterData(actividad, dataBruta, filtersGlobal,calcularAcumulado ) {
   let data = dataBruta;
-  let cantidad //Cantidad de OT's que comple una o varias condiciones
-  const { filterByIng, filterByMuesAceite, filterByProtecciones,  deleteDuplicates} = filtersGlobal;
- 
-  //FILTROS GLOBALES PARTICULARES 
+  let cantidad; //Cantidad de OT's que comple una o varias condiciones
+  const {
+    filterByIng,
+    filterByMuesAceite,
+    filterByProtecciones,
+    deleteDuplicates,
+  } = filtersGlobal;
+
+  //FILTROS GLOBALES PARTICULARES
   data = data.filter(
     (data) =>
-      (data["Pto.tbjo.resp."] !== "ING-INGE" || filterByIng === false) && //Elimina los que tienen la palabra "ING-INGE" 
-      (data["Texto breve"].includes("Muestreo") || filterByMuesAceite === false) && //Deja los que tienen la palabra "Muestreo" de aceite
-      (!data["Pto.tbjo.resp."].includes("PROT") || filterByProtecciones === false) //Elimina los que tienen la palabra "PROT" (Protecciones)
+      (data["Pto.tbjo.resp."] !== "ING-INGE" || filterByIng === false) && //Elimina los que tienen la palabra "ING-INGE"
+      (data["Texto breve"].includes("Muestreo") ||
+        filterByMuesAceite === false) && //Deja los que tienen la palabra "Muestreo" de aceite
+      (!data["Pto.tbjo.resp."].includes("PROT") ||
+        filterByProtecciones === false) //Elimina los que tienen la palabra "PROT" (Protecciones)
   );
 
   let pieChartData = [];
@@ -66,7 +77,6 @@ function filterData(actividad, dataBruta, filtersGlobal) {
   for (let j = 0; j < zones.length; j++) {
     listValues = [];
     for (let i = 0; i < 4; i++) {
-
       //FILTRO POR ACTIVIDAD
       let data_filter = data.filter(
         (data) =>
@@ -87,29 +97,40 @@ function filterData(actividad, dataBruta, filtersGlobal) {
         return acc;
       }, []);
 
-      //Si está activado el borrador de duplicados, saca el largo de la matriz con 
+      //Si está activado el borrador de duplicados, saca el largo de la matriz con
       //los duplicados eliminados
-      if (deleteDuplicates === true){
-        cantidad=unicos.length
-      //Si no está activado el borrador de duplicados, saca el largo de la matriz sin 
-      //eliminar los duplicados
-      }else{
-        cantidad=data_filter.length
+      if (deleteDuplicates === true) {
+        cantidad = unicos.length;
+        //Si no está activado el borrador de duplicados, saca el largo de la matriz sin
+        //eliminar los duplicados
+      } else {
+        cantidad = data_filter.length;
       }
 
       listValues[i] = {
         Tipo: filterRPM[i]["Status denominacion"],
         Cantidad: cantidad,
       };
+
+      if (calcularAcumulado ){
+        DatosDiario = FrecuenciaAcumulado(data_filter)
+        DatosMensual = "hola"
+      }else{
+        FrecAcum = "vacio"
+      }
+      
+      
     }
     pieChartData[j] = {
       Zona: zones[j]["Grupo planif."],
       ZonaNombre: zones[j]["Zona"],
-      TotAnual: zones[j][actividad+"anual"],
+      TotAnual: zones[j][actividad + "anual"],
+      DatosDiario: DatosDiario,
+      DatosMensual: DatosMensual,
       Lista: listValues,
     };
   }
- 
+//console.log("data",pieChartData)
   return pieChartData;
 }
 export default filterData;

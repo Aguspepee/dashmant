@@ -11,7 +11,7 @@ function General() {
 
       <SectionMultiPieContainer
         activity="RPM"
-        title="Avance del Plan Anual de Mantenimiento"
+        title="Unidades de Mantenimiento intervenidas respecto de las programadas"
         description="Unidades de Mantenimiento intervenidas."
         bar="true"
         filters={{
@@ -59,8 +59,6 @@ function General() {
           deleteDuplicates: false,
         }}
       ></SectionMultiPieContainer>
-
-      <SectionLineChartContainer></SectionLineChartContainer>
 
       <h1>Líneas Eléctricas</h1>
       <SectionMultiBarContainer

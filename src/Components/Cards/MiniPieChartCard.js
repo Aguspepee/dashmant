@@ -65,8 +65,8 @@ function MiniPieChartCard(props) {
     datasets: [
       {
         data: quantity,
-        backgroundColor: ["#28a745", "#dc3545", "#dc3545", "#dc3545"],
-        borderColor: ["#28a745", "#dc3545", "#dc3545", "#dc3545"],
+        backgroundColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
+        borderColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
         borderWidth: 0,
       },
     ],
@@ -154,6 +154,14 @@ function MiniPieChartCard(props) {
             style={{ fontSize: "2.5em" }}
           >
             {percentaje}%
+            <Typography
+            variant="body2"
+            color="text.primary"
+            component="div"
+            style={{ fontSize: "0.34em" }}
+          >
+            EJECUTADO
+          </Typography>
           </Typography>
           <Typography
             variant="overline"

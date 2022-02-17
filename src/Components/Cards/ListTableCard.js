@@ -7,10 +7,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import LineAcumChartCard from "./LineAcumChartCard";
+import LineAcumChartCard from "../Cards/LineAcumChartCard";
 
 export default function BasicTable(props) {
   const dataList = props.data;
+  const dataBar = props.dataBar
 
   function createData(name, calories) {
     return { name, calories };
@@ -22,12 +23,9 @@ export default function BasicTable(props) {
     createData(dataList.Lista[2].Tipo, dataList.Lista[2].Cantidad),
     createData(dataList.Lista[3].Tipo, dataList.Lista[3].Cantidad),
   ];
+  
 
   return (
-    
-
-
-
     <TableContainer
       component={Paper}
       style={{ boxShadow: "0px 0px 0px white", width: "90%" }}
@@ -44,6 +42,7 @@ export default function BasicTable(props) {
       >
         {dataList.ZonaNombre}
       </Typography>
+      <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>

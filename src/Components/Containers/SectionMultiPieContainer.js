@@ -63,9 +63,11 @@ function SectionMultiPieContainer(props) {
     filterDataByDate()
   }, [dataNormalizada,month,year]);
 
-let dataPie=filterData(activity,pieChartData,filters);
+let calcularAcumulado = false
+let dataPie=filterData(activity,pieChartData,filters,calcularAcumulado );
 //console.log("PIE",dataPie)
-let dataBar=filterData(activity,dataFiltrada,filters);
+calcularAcumulado = true
+let dataBar=filterData(activity,dataFiltrada,filters,calcularAcumulado );
 //console.log("BAR",dataBar)
   return (
     <>
@@ -102,9 +104,9 @@ let dataBar=filterData(activity,dataFiltrada,filters);
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <div className="gridpie">
-                {dataPie.map((dataPie) => (
+                {dataPie.map((dataPie,index) => (
                   <div className="grid-column" key={dataPie.Zona}>
-                    <ListTableCard data={dataPie}></ListTableCard>
+                    <ListTableCard data={dataPie} dataBar={dataBar[index]}></ListTableCard>
                   </div>
                 ))}
               </div>
