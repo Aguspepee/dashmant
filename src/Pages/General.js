@@ -1,5 +1,6 @@
 import React from "react";
 import SectionLineChartContainer from "../Components/Containers/SectionLineChartContainer";
+import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
@@ -21,7 +22,19 @@ function General() {
           deleteDuplicates: true,
         }}
       ></SectionMultiPieContainer>
-{/* 
+      
+      <SectionDistributionContainer
+        activity="MCP"
+        title="Distribución de Horas Hombre"
+        description="Candidad de intervenciones"
+        filters={{
+          filterByIng: true,
+          filterByMuesAceite: false,
+          filterByProtecciones:true,
+          deleteDuplicates: false,
+        }}
+      ></SectionDistributionContainer>
+
       <SectionMultiNumContainer
         activity="MCP"
         title="Intervenciones Correctivas"
@@ -32,7 +45,7 @@ function General() {
           filterByProtecciones:true,
           deleteDuplicates: false,
         }}
-      ></SectionMultiNumContainer> */}
+      ></SectionMultiNumContainer>
 
       <SectionMultiPieContainer
         activity="RSP"

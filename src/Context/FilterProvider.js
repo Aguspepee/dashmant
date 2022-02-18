@@ -18,13 +18,8 @@ let months = [
 ];
 
 function FilterProvider(props) {
-  //const [pieChartData, setPieChartData] = useState([]);
   const [month, setMonth] = useState("01");
-  //const [monthNum, setMonthNum] = useState(1);
   const [year, setYear] = useState("2022");
-  //const [dataBruta, setDataBruta] = useState(data);
-  //const [dataNormalizada, setDataNormalizada] = useState(data); //por ahora es data
-  //const [dataFiltrada, setDataFiltada] = useState([]);
   const [dataBaseEstaciones, setDataBaseEstaciones] = useState(data);
   const [dataProgMonth, setDataProgMonth] = useState([]);
   const [dataProgYear, setDataProgYear] = useState([]);

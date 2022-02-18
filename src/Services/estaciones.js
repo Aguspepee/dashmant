@@ -52,15 +52,15 @@ let DatosDiario
 let DatosMensual
 let FrecAcum
 
-function filterData(actividad, dataBruta, filtersGlobal,calcularAcumulado ) {
-  let data = dataBruta;
+function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado) {
+  let data = dataRealMonth;
   let cantidad; //Cantidad de OT's que comple una o varias condiciones
   const {
     filterByIng,
     filterByMuesAceite,
     filterByProtecciones,
     deleteDuplicates,
-  } = filtersGlobal;
+  } = filters;
 
   //FILTROS GLOBALES PARTICULARES
   data = data.filter(
@@ -80,7 +80,7 @@ function filterData(actividad, dataBruta, filtersGlobal,calcularAcumulado ) {
       //FILTRO POR ACTIVIDAD
       let data_filter = data.filter(
         (data) =>
-          data["Cl.actividad PM"] === actividad &&
+          data["Cl.actividad PM"] === activity &&
           data["Status usuario"] === filterRPM[i]["Status usuario"] &&
           data["Grupo planif."] === zones[j]["Grupo planif."]
       );
@@ -116,15 +116,15 @@ function filterData(actividad, dataBruta, filtersGlobal,calcularAcumulado ) {
         DatosDiario = FrecuenciaAcumulado(data_filter)
         DatosMensual = "hola"
       }else{
-        FrecAcum = "vacio"
+        DatosDiario = "Diario"
+        DatosMensual = "Mensual"
       }
-      
-      
     }
+
     pieChartData[j] = {
       Zona: zones[j]["Grupo planif."],
       ZonaNombre: zones[j]["Zona"],
-      TotAnual: zones[j][actividad + "anual"],
+      TotAnual: zones[j][activity + "anual"],
       DatosDiario: DatosDiario,
       DatosMensual: DatosMensual,
       Lista: listValues,

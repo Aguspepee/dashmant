@@ -38,10 +38,11 @@ function SectionMultiNumContainer(props) {
 
   useEffect(() => {
     filterDataRealByDate();
-  }, [filterDataRealByDate, month, year]);
+  }, [dataBaseEstaciones, month, year]);
 
   //Hacer que sea un estado
-  const data = filterData(activity, filterDataRealByDate, filters);
+  let calcularAcumulado = false;
+  const data = filterData(activity, dataRealMonth, filters, calcularAcumulado);
 
   return (
     <>

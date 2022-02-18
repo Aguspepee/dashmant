@@ -89,11 +89,11 @@ function MultiBarChartCard(props) {
             <Table sx={{}} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Linea MT</TableCell>
-                  <TableCell align="right">Total Piquetes</TableCell>
-                  <TableCell align="right">Esperado</TableCell>
+                  <TableCell>Código</TableCell>
+                  <TableCell align="right">Piquetes Totales</TableCell>
+                  <TableCell align="right">Piquetes Programados</TableCell>
+                  <TableCell align="right">Piquetes Intervenidos</TableCell>
                   <TableCell align="right">Ejecutado</TableCell>
-                  <TableCell align="right">Avance</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

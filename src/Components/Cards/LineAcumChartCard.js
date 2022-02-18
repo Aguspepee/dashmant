@@ -47,14 +47,14 @@ export const data = {
       data: [0, 4, 6, 8, 9, 14, 15],
       borderColor: "#BDE7BD",
       backgroundColor: "#BDE7BD",
-      fill: true,
+      fill: false,
     },
     {
       label: "Ejecutado",
       data: [0, 5, 7, 9, 13, 15, 15],
       borderColor: "#FF6962",
       backgroundColor: "#FF6962",
-      fill: true,
+      fill: false,
     },
   ],
 };

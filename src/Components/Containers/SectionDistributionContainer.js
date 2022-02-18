@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useContext } from "react";
-import MiniPieChartCart from "../Cards/MiniPieChartCard";
+import MiniDistributionCard from "../Cards/MiniDistributionCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function SectionMultiPieContainer(props) {
+function SectionDistributionContainer(props) {
   const [
     filterDataProgByDate,
     filterDataRealByDate,
@@ -86,11 +86,11 @@ function SectionMultiPieContainer(props) {
             <div className="gridpie">
               {dataPie.map((dataPie, index) => (
                 <div className="grid-column" key={dataPie.Zona}>
-                  <MiniPieChartCart
+                  <MiniDistributionCard
                     dataPie={dataPie}
                     dataBar={dataBar[index]}
                     bar={bar}
-                  ></MiniPieChartCart>
+                  ></MiniDistributionCard>
                 </div>
               ))}
             </div>
@@ -110,10 +110,7 @@ function SectionMultiPieContainer(props) {
               <div className="gridpie">
                 {dataPie.map((dataPie, index) => (
                   <div className="grid-column" key={dataPie.Zona}>
-                    <ListTableCard
-                      data={dataPie}
-                      dataBar={dataBar[index]}
-                    ></ListTableCard>
+                    
                   </div>
                 ))}
               </div>
@@ -124,4 +121,4 @@ function SectionMultiPieContainer(props) {
     </>
   );
 }
-export default SectionMultiPieContainer;
+export default SectionDistributionContainer;
