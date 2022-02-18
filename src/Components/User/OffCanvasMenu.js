@@ -139,14 +139,14 @@ function ResponsiveDrawer(props) {
         ))}
       </List>
       
-      <List>
+      {/* <List>
         {["Base de Datos"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{< TableRowsIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
       <Divider />
 
     </div>

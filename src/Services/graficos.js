@@ -31,9 +31,9 @@ function FrecuenciaAcumulado(data) {
   let acumulador_previsto = 0;
   let acumulador_ejecutado = 0;
   dataFrecAcum.map((dataFrecAcum, index) => {
+    
+    
     //Frecuencia
-    
-    
     return (
       //Frecuencia Prevista
       (dataFrecAcum["Frecuencia_Prevista"] = data.filter((data)=>{return(data["Inicio program."]===dataFrecAcum["Fecha"])}).length),
@@ -47,7 +47,6 @@ function FrecuenciaAcumulado(data) {
       (dataFrecAcum["Diferencia_Prevista"] = 20),
       (dataFrecAcum["Diferencia_Ejecutada"] = dataFrecAcum["Frecuencia_Prevista"]-dataFrecAcum["Frecuencia_Ejecutada"])
     );
-    
   });
 
   return dataFrecAcum;

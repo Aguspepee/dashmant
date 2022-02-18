@@ -21,7 +21,7 @@ function General() {
           deleteDuplicates: true,
         }}
       ></SectionMultiPieContainer>
-
+{/* 
       <SectionMultiNumContainer
         activity="MCP"
         title="Intervenciones Correctivas"
@@ -32,7 +32,7 @@ function General() {
           filterByProtecciones:true,
           deleteDuplicates: false,
         }}
-      ></SectionMultiNumContainer>
+      ></SectionMultiNumContainer> */}
 
       <SectionMultiPieContainer
         activity="RSP"

@@ -8,28 +8,28 @@ import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import { useEffect, useContext } from "react";
-import FilterContext from "../../Context/FilterContext"
-
+import FilterContext from "../../Context/FilterContext";
 
 function SectionMultiNumContainer(props) {
   const [
-    pieChartData,
-        setPieChartData,
-        year,
-        setYear,
-        handleYearChange,
-        month,
-        setMonth,
-        handleMonthChange,
-        dataBruta,
-        setDataBruta,
-        dataNormalizada,
-        setDataNormalizada,
-        dataFiltrada,
-        setDataFiltada,
-        normalizeData,
-        filterDataByVarious,
-        filterDataByDate
+    filterDataProgByDate,
+    filterDataRealByDate,
+    year,
+    setYear,
+    handleYearChange,
+    month,
+    setMonth,
+    handleMonthChange,
+    dataBaseEstaciones,
+    setDataBaseEstaciones,
+    dataProgMonth,
+    setDataProgMonth,
+    dataProgYear,
+    setDataProgYear,
+    dataRealMonth,
+    setDataRealMonth,
+    dataRealYear,
+    setDataRealYear,
   ] = useContext(FilterContext);
   const activity = props.activity;
   const title = props.title;
@@ -37,11 +37,11 @@ function SectionMultiNumContainer(props) {
   const filters = props.filters;
 
   useEffect(() => {
-    filterDataByDate()
-  }, [dataNormalizada,month,year]);
+    filterDataRealByDate();
+  }, [filterDataRealByDate, month, year]);
 
   //Hacer que sea un estado
-  const data = filterData(activity,pieChartData,filters);
+  const data = filterData(activity, filterDataRealByDate, filters);
 
   return (
     <>

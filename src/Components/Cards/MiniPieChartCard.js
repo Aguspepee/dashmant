@@ -8,8 +8,8 @@ import Typography from "@mui/material/Typography";
 import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
-import Divider from '@mui/material/Divider';
-import Chip from '@mui/material/Chip';
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -51,7 +51,11 @@ function MiniPieChartCard(props) {
 
   let percentaje;
 
-  if (!Number.isNaN(quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3]))) {
+  if (
+    !Number.isNaN(
+      quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3])
+    )
+  ) {
     percentaje = (
       (quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3])) *
       100
@@ -88,7 +92,6 @@ function MiniPieChartCard(props) {
     ? (chipColor = "warning")
     : (chipColor = "success");
 
-    
   let percentajeBar = (dataBar.Lista[0].Cantidad * 100) / dataBar.TotAnual;
   percentajeNow = (day * 100) / 365;
 
@@ -99,10 +102,11 @@ function MiniPieChartCard(props) {
           variant="body1"
           color="text.secondary"
           component="div"
-          style={{ paddingTop:"1em" ,fontSize: "1.2em" }}
+          style={{ paddingTop: "1em", fontSize: "1.2em" }}
         >
           Anual
         </Typography>
+        {/* <Divider light style={{ width: "37%" }} /> */}
         <MiniBarChartCard
           percentaje={percentajeBar}
           percentajeNow={percentajeNow}
@@ -116,40 +120,33 @@ function MiniPieChartCard(props) {
           {dataBar.Lista[0].Cantidad}/{dataBar.TotAnual} ud.
         </Typography> */}
         <Typography
-            component="div"
-            variant="h4"
-            style={{ fontSize: "2.5em" }}
-          >
-            {Math.round(percentajeBar)}%
-            </Typography>
-            <Typography
-            variant="body2"
-            color="text.primary"
-            component="div"
-            style={{ fontSize: "0.9em" }}
-          >
-            EJECUTADO
-          </Typography>
-          
-          <Divider light style={{width:"37%"}}/>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.8em" }}
-          >
-            UD. INTERV.: {dataBar.Lista[0].Cantidad}
-           
-          </Typography>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            component="div"
-            style={{ paddingBottom: "13px", fontSize: "0.8em" }}
-          >
-            UD. PROG.: {dataBar.TotAnual}
-           
-          </Typography>
+          variant="caption"
+          color="text.secondary"
+          component="div"
+          style={{ paddingBottom: "0px", fontSize: "0.8em" }}
+        >
+          UD. PROG.: {dataBar.TotAnual}
+        </Typography>
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          component="div"
+          style={{ paddingBottom: "0px", fontSize: "0.8em" }}
+        >
+          UD. INTERV.: {dataBar.Lista[0].Cantidad}
+        </Typography>
+
+        <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
+          {Math.round(percentajeBar)}%
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.primary"
+          component="div"
+          style={{ fontSize: "0.9em" , paddingBottom:"10px"}}
+        >
+          EJECUTADO
+        </Typography>
       </Container>
     );
   }
@@ -168,7 +165,7 @@ function MiniPieChartCard(props) {
       >
         {dataList.ZonaNombre}
       </Typography>
-      <Divider light style={{width:"90%"}}/>
+      <Divider light style={{ width: "90%" }} />
       <Card
         sx={{
           display: "flex",
@@ -185,32 +182,7 @@ function MiniPieChartCard(props) {
           >
             Mensual
           </Typography>
-          <Typography
-            component="div"
-            variant="h4"
-            style={{ fontSize: "2.5em" }}
-          >
-            {percentaje}%
-            </Typography>
-            <Typography
-            variant="body2"
-            color="text.primary"
-            component="div"
-            style={{ fontSize: "0.9em" }}
-          >
-            EJECUTADO
-          </Typography>
-          
-          <Divider light style={{width:"90%"}}/>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.8em" }}
-          >
-            UD. INTERV.: {quantity[0]}
-           
-          </Typography>
+          <Divider light style={{ width: "90%" }} />
           <Typography
             variant="caption"
             color="text.secondary"
@@ -218,12 +190,32 @@ function MiniPieChartCard(props) {
             style={{ paddingBottom: "0px", fontSize: "0.8em" }}
           >
             UD. PROG.: {quantity[0] + quantity[1] + quantity[2] + quantity[3]}
-           
+          </Typography>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            component="div"
+            style={{ paddingBottom: "0px", fontSize: "0.8em" }}
+          >
+            UD. INTERV.: {quantity[0]}
           </Typography>
 
-           
+          <Typography
+            component="div"
+            variant="h4"
+            style={{ fontSize: "2.5em" }}
+          >
+            {percentaje}%
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.primary"
+            component="div"
+            style={{ fontSize: "0.9em" }}
+          >
+            EJECUTADO
+          </Typography>
         </CardContent>
-
         <Box
           sx={{
             display: "flex",
@@ -236,9 +228,9 @@ function MiniPieChartCard(props) {
           <Doughnut data={data} options={options} />
         </Box>
       </Card>
-      <Divider light style={{width:"90%"}}/>
+      <Divider light style={{ width: "90%" }} />
       {barra}
-      <Divider light style={{width:"90%"}}/>
+      <Divider light style={{ width: "90%" }} />
     </>
   );
 }

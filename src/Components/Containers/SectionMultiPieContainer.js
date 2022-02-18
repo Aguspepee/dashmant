@@ -28,23 +28,24 @@ const ExpandMore = styled((props) => {
 
 function SectionMultiPieContainer(props) {
   const [
-    pieChartData,
-        setPieChartData,
-        year,
-        setYear,
-        handleYearChange,
-        month,
-        setMonth,
-        handleMonthChange,
-        dataBruta,
-        setDataBruta,
-        dataNormalizada,
-        setDataNormalizada,
-        dataFiltrada,
-        setDataFiltada,
-        normalizeData,
-        filterDataByVarious,
-        filterDataByDate
+    filterDataProgByDate,
+    filterDataRealByDate,
+    year,
+    setYear,
+    handleYearChange,
+    month,
+    setMonth,
+    handleMonthChange,
+    dataBaseEstaciones,
+    setDataBaseEstaciones,
+    dataProgMonth,
+    setDataProgMonth,
+    dataProgYear,
+    setDataProgYear,
+    dataRealMonth,
+    setDataRealMonth,
+    dataRealYear,
+    setDataRealYear,
   ] = useContext(FilterContext);
 
   const [expanded, setExpanded] = React.useState(false);
@@ -56,19 +57,18 @@ function SectionMultiPieContainer(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const handleExpandClick1 = () => {
-  };
+  const handleExpandClick1 = () => {};
 
   useEffect(() => {
-    filterDataByDate()
-  }, [dataNormalizada,month,year]);
+    filterDataRealByDate();
+  }, [dataBaseEstaciones, month, year]);
 
-let calcularAcumulado = false
-let dataPie=filterData(activity,pieChartData,filters,calcularAcumulado );
-//console.log("PIE",dataPie)
-calcularAcumulado = true
-let dataBar=filterData(activity,dataFiltrada,filters,calcularAcumulado );
-//console.log("BAR",dataBar)
+  let calcularAcumulado = false;
+  let dataPie = filterData(activity, dataRealMonth, filters, calcularAcumulado);
+  console.log("PIE",dataPie)
+  calcularAcumulado = true;
+  let dataBar = filterData(activity, dataRealYear, filters, calcularAcumulado);
+  //console.log("BAR",dataBar)
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
@@ -84,9 +84,13 @@ let dataBar=filterData(activity,dataFiltrada,filters,calcularAcumulado );
               subheader={description}
             />
             <div className="gridpie">
-              {dataPie.map((dataPie,index) => (
+              {dataPie.map((dataPie, index) => (
                 <div className="grid-column" key={dataPie.Zona}>
-                  <MiniPieChartCart dataPie={dataPie} dataBar={dataBar[index]} bar={bar}></MiniPieChartCart>
+                  <MiniPieChartCart
+                    dataPie={dataPie}
+                    dataBar={dataBar[index]}
+                    bar={bar}
+                  ></MiniPieChartCart>
                 </div>
               ))}
             </div>
@@ -104,9 +108,12 @@ let dataBar=filterData(activity,dataFiltrada,filters,calcularAcumulado );
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <div className="gridpie">
-                {dataPie.map((dataPie,index) => (
+                {dataPie.map((dataPie, index) => (
                   <div className="grid-column" key={dataPie.Zona}>
-                    <ListTableCard data={dataPie} dataBar={dataBar[index]}></ListTableCard>
+                    <ListTableCard
+                      data={dataPie}
+                      dataBar={dataBar[index]}
+                    ></ListTableCard>
                   </div>
                 ))}
               </div>

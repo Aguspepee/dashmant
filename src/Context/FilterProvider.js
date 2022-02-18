@@ -18,32 +18,46 @@ let months = [
 ];
 
 function FilterProvider(props) {
-  const [pieChartData, setPieChartData] = useState([]);
+  //const [pieChartData, setPieChartData] = useState([]);
   const [month, setMonth] = useState("01");
-  const [monthNum, setMonthNum] = useState(1);
+  //const [monthNum, setMonthNum] = useState(1);
   const [year, setYear] = useState("2022");
-  const [dataBruta, setDataBruta] = useState(data);
-  const [dataNormalizada, setDataNormalizada] = useState(data); //por ahora es data
-  const [dataFiltrada, setDataFiltada] = useState([]);
+  //const [dataBruta, setDataBruta] = useState(data);
+  //const [dataNormalizada, setDataNormalizada] = useState(data); //por ahora es data
+  //const [dataFiltrada, setDataFiltada] = useState([]);
+  const [dataBaseEstaciones, setDataBaseEstaciones] = useState(data);
+  const [dataProgMonth, setDataProgMonth] = useState([]);
+  const [dataProgYear, setDataProgYear] = useState([]);
+  const [dataRealMonth, setDataRealMonth] = useState([]);
+  const [dataRealYear, setDataRealYear] = useState([]);
 
-  const normalizeData = () => {};
-
-  const filterDataByVarious = () => {
-    console.log("varios");
-  };
-
-  const filterDataByDate = () => {
-    setDataFiltada(
-      dataNormalizada.filter((dataNormalizada) => {
+  //const normalizeData = () => {};
+  const filterDataProgByDate = () => {
+    setDataProgYear(
+      dataBaseEstaciones.filter((dataBaseEstaciones) => {
+        return year === dataBaseEstaciones["Inicio program."].slice(6, 10);
+      })
+    );
+    setDataProgMonth(
+      dataBaseEstaciones.filter((dataBaseEstaciones) => {
         return (
-          (year === dataNormalizada["Inicio program."].slice(6, 10))
+          month + "/" + year ===
+          dataBaseEstaciones["Inicio program."].slice(3, 10)
         );
       })
     );
-    setPieChartData(
-      dataNormalizada.filter((dataNormalizada) => {
+  };
+  const filterDataRealByDate = () => {
+    setDataRealYear(
+      dataBaseEstaciones.filter((dataBaseEstaciones) => {
+        return year === dataBaseEstaciones["Inicio program."].slice(6, 10);
+      })
+    );
+    setDataRealMonth(
+      dataBaseEstaciones.filter((dataBaseEstaciones) => {
         return (
-          (month + "/" + year === dataNormalizada["Inicio program."].slice(3, 10))
+          month + "/" + year ===
+          dataBaseEstaciones["Inicio program."].slice(3, 10)
         );
       })
     );
@@ -51,36 +65,35 @@ function FilterProvider(props) {
 
   const handleMonthChange = (monthValue) => {
     setMonth(monthValue);
-    normalizeData(); //se normaliza la base de datos
-    filterDataByDate();
+    filterDataProgByDate();
   };
 
   const handleYearChange = (yearValue) => {
     setYear(yearValue);
-    normalizeData(); //se normaliza la base de datos
-    filterDataByDate();
+    filterDataProgByDate();
   };
 
   return (
     <FilterContext.Provider
       value={[
-        pieChartData,
-        setPieChartData,
+        filterDataProgByDate,
+        filterDataRealByDate,
         year,
         setYear,
         handleYearChange,
         month,
         setMonth,
         handleMonthChange,
-        dataBruta,
-        setDataBruta,
-        dataNormalizada,
-        setDataNormalizada,
-        dataFiltrada,
-        setDataFiltada,
-        normalizeData,
-        filterDataByVarious,
-        filterDataByDate,
+        dataBaseEstaciones,
+        setDataBaseEstaciones,
+        dataProgMonth,
+        setDataProgMonth,
+        dataProgYear,
+        setDataProgYear,
+        dataRealMonth,
+        setDataRealMonth,
+        dataRealYear,
+        setDataRealYear,
       ]}
     >
       {props.children}
