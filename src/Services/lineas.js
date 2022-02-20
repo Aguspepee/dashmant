@@ -63,6 +63,7 @@ function filterLines(year) {
     }));
   });
   let lineasDBflitrada = zones;
+  console.log(lineasDB)
   return lineasDBflitrada;
 }
 export default filterLines;

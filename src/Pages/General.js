@@ -1,9 +1,11 @@
-import React from "react";
+import React,{ Suspense }  from "react";
 import SectionLineChartContainer from "../Components/Containers/SectionLineChartContainer";
 import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
-import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
+//import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
+const SectionMultiBarContainer = React.lazy(() => import('../Components/Containers/SectionMultiBarContainer'));
+
 
 function General() {
   return (
@@ -74,7 +76,19 @@ function General() {
       ></SectionMultiPieContainer>
 
       <h1>Líneas Eléctricas</h1>
+      <div>
+      <Suspense fallback={<div>Loading...</div>}>
       <SectionMultiBarContainer
+        activity="PINM"
+        title="Inspección Minuciosa"
+        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        detail="Ejecutado Minuciosa"
+      ></SectionMultiBarContainer>
+      </Suspense>
+    </div>
+
+
+     {/*  <SectionMultiBarContainer
         activity="PINM"
         title="Inspección Minuciosa"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
@@ -85,7 +99,7 @@ function General() {
         title="Inspección Terrestre"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
         detail="Ejecutado Terrestre"
-      ></SectionMultiBarContainer>
+      ></SectionMultiBarContainer> */}
     </>
   );
 }

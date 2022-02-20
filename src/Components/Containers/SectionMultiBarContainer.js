@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useContext } from "react";
 import { Card } from "@mui/material";
 import filterLines from "../../Services/lineas";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -7,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MultiBarChartCard from "../Cards/MultiBarChartCard"
+import FilterContext from "../../Context/FilterContext";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -20,12 +22,35 @@ const ExpandMore = styled((props) => {
 }));
 
 function SectionMultiBarContainer(props) {
+  const [
+    filterDataProgByDate,
+    filterDataRealByDate,
+    year,
+    setYear,
+    handleYearChange,
+    month,
+    setMonth,
+    handleMonthChange,
+    dataBaseEstaciones,
+    setDataBaseEstaciones,
+    dataProgMonth,
+    setDataProgMonth,
+    dataProgYear,
+    setDataProgYear,
+    dataRealMonth,
+    setDataRealMonth,
+    dataRealYear,
+    setDataRealYear,
+  ] = useContext(FilterContext);
+
+
+
   //Cálculo de día del año
-  const year = "2022";
+  const year1 = year.toString() ;
   const title = props.title;
   const description = props.description;
   const detail = props.detail;
-  const lineas = filterLines(year);
+  const lineas = filterLines(year1);
   let actividad = props.activity;
   let factor;
   if ((actividad = "PINT")) {

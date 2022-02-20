@@ -1,6 +1,6 @@
 import React from "react";
 import MiniBarChartCard from "../Cards/MiniBarChartCard";
-import { Card } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -15,6 +15,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
+import VerticalBarCard from "./VerticalBarCard";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -59,19 +60,22 @@ function MultiBarChartCard(props) {
   return (
     <>
       <div key={lineas["Grupo planif."]}>
+        <Typography
+          variant="button"
+          color="text.primary"
+          component="div"
+          style={{
+            fontSize: "1.4em",
+            paddingLeft: "0.3em",
+            paddingBottom: "0px",
+          }}
+        >
+          {lineas["Zona"]}
+        </Typography>
+        {/* <CardContent style={{ width: "100%"}}> */}
+          <VerticalBarCard data={lineas["Line"]} />
+       {/*  </CardContent> */}
         <CardActions disableSpacing>
-          <Typography
-            variant="button"
-            color="text.primary"
-            component="div"
-            style={{
-              fontSize: "1.4em",
-              paddingLeft: "0.3em",
-              paddingBottom: "0px",
-            }}
-          >
-            {lineas["Zona"]}
-          </Typography>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -81,6 +85,7 @@ function MultiBarChartCard(props) {
             <ExpandMoreIcon />
           </ExpandMore>
         </CardActions>
+
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <TableContainer
             component={Paper}
@@ -90,7 +95,7 @@ function MultiBarChartCard(props) {
               <TableHead>
                 <TableRow>
                   <TableCell>Código</TableCell>
-                  <TableCell align="right">Piquetes Totales</TableCell>
+                  <TableCell align="left">Piquetes Totales</TableCell>
                   <TableCell align="right">Piquetes Programados</TableCell>
                   <TableCell align="right">Piquetes Intervenidos</TableCell>
                   <TableCell align="right">Ejecutado</TableCell>
@@ -105,10 +110,35 @@ function MultiBarChartCard(props) {
                     }}
                   >
                     <TableCell component="th" scope="row" width="10%">
-                      {lineas["Código"]}
+                      <Typography
+                        variant="button"
+                        color="text.primary"
+                        component="div"
+                        style={{
+                          fontSize: "1em",
+                          paddingLeft: "0em",
+                          paddingBottom: "0px",
+                        }}
+                      >
+                        {lineas["Código"]}
+                      </Typography>
+
+
                     </TableCell>
-                    <TableCell width="5%" align="right">
-                      {Math.round(lineas["Torres Cantidad"])}
+                    <TableCell width="4%" align="left">
+                      <Typography
+                        variant="button"
+                        color="text.primary"
+                        component="div"
+                        style={{
+                          fontSize: "1em",
+                          paddingLeft: "0em",
+                          paddingBottom: "0px",
+                        }}
+                      >
+                        {Math.round(lineas["Torres Cantidad"])}
+                      </Typography>
+
                     </TableCell>
                     <TableCell width="5%" align="right">
                       {Math.round(
@@ -122,7 +152,7 @@ function MultiBarChartCard(props) {
                       <MiniBarChartCard
                         percentaje={Math.round(
                           (lineas[detail] * 100) /
-                            (lineas["Torres Cantidad"] * factor)
+                          (lineas["Torres Cantidad"] * factor)
                         )}
                         percentajeNow={(day * 100) / (365 * factor)}
                       ></MiniBarChartCard>

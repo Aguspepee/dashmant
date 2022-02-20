@@ -187,7 +187,7 @@ function MiniPieChartCard(props) {
             variant="caption"
             color="text.secondary"
             component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.8em" }}
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
             UD. PROG.: {quantity[0] + quantity[1] + quantity[2] + quantity[3]}
           </Typography>
@@ -195,7 +195,7 @@ function MiniPieChartCard(props) {
             variant="caption"
             color="text.secondary"
             component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.8em" }}
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
             UD. INTERV.: {quantity[0]}
           </Typography>
