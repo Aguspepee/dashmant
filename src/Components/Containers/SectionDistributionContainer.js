@@ -66,9 +66,7 @@ function SectionDistributionContainer(props) {
   let calcularAcumulado = false;
   let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
   //console.log("PIE",dataPie)
-  calcularAcumulado = true;
-  let dataBar = filterData(activity, dataRealYear, dataProgYear, filters, calcularAcumulado);
-  //console.log("BAR",dataBar)
+
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
@@ -88,8 +86,6 @@ function SectionDistributionContainer(props) {
                 <div className="grid-column" key={dataPie.Zona}>
                   <MiniDistributionCard
                     dataPie={dataPie}
-                    dataBar={dataBar[index]}
-                    bar={bar}
                   ></MiniDistributionCard>
                 </div>
               ))}

@@ -5,11 +5,8 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import MiniBarChartCard from "./MiniBarChartCard";
-import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -29,11 +26,8 @@ let oneDay = 1000 * 60 * 60 * 24;
 let day = Math.floor(diff / oneDay);
 
 function MiniDistributionCard(props) {
-  let bar = props.bar;
-  let barra;
 
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
-  const dataBar = props.dataBar; //Esta data está filtada por año
   //Se obtienen los labels
   let labels = [];
   for (let i = 0; i < dataList.Lista.length; i++) {

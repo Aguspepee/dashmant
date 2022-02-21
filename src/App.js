@@ -7,10 +7,11 @@ import Toolbar from "@mui/material/Toolbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FilterProvider from "./Context/FilterProvider";
 import FrecuenciaAcumulado from "../src/Services/graficos";
+import hoursCalc from "./Services/hoursCalc"
 
 const drawerWidth = 240;
 function App() {
-
+  hoursCalc()
   return (
     <>
       <FilterProvider>
