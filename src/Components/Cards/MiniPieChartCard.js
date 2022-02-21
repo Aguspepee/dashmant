@@ -125,7 +125,7 @@ function MiniPieChartCard(props) {
           component="div"
           style={{ paddingBottom: "0px", fontSize: "0.8em" }}
         >
-          UD. PROG.: {dataBar.TotAnual}
+          PROGRAMADAS: {dataBar.TotAnual}
         </Typography>
         <Typography
           variant="caption"
@@ -133,7 +133,7 @@ function MiniPieChartCard(props) {
           component="div"
           style={{ paddingBottom: "0px", fontSize: "0.8em" }}
         >
-          UD. INTERV.: {dataBar.Lista[0].Cantidad}
+          INTERVENIDAS: {dataBar.Lista[0].Cantidad}
         </Typography>
 
         <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
@@ -187,17 +187,17 @@ function MiniPieChartCard(props) {
             variant="caption"
             color="text.secondary"
             component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+            style={{ paddingBottom: "0px", fontSize: "0.9em" }}
           >
-            UD. PROG.: {quantity[0] + quantity[1] + quantity[2] + quantity[3]}
+            PROGRAMADAS: {quantity[0] + quantity[1] + quantity[2] + quantity[3]}
           </Typography>
           <Typography
             variant="caption"
             color="text.secondary"
             component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+            style={{ paddingBottom: "0px", fontSize: "0.9em" }}
           >
-            UD. INTERV.: {quantity[0]}
+            INTERVENIDAS: {quantity[0]}
           </Typography>
 
           <Typography

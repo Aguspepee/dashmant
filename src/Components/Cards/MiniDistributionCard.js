@@ -12,7 +12,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export const options = {
   plugins: {
     legend: {
-      display: false,
+      display: true,
     },
   },
 };
@@ -30,16 +30,16 @@ function MiniDistributionCard(props) {
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
   //Se obtienen los labels
   let labels = [];
-  for (let i = 0; i < dataList.Lista.length; i++) {
-    labels.push(dataList.Lista[i].Tipo);
+  for (let i = 0; i < dataList.Activity.length; i++) {
+    labels.push(dataList.Activity[i].Actividad);
   }
   //Se obtienen los datos
   let quantity = [];
-  for (let i = 0; i < dataList.Lista.length; i++) {
+  for (let i = 0; i < dataList.Activity.length; i++) {
     quantity.push(
-      Number.isNaN(dataList.Lista[i].Cantidad)
+      Number.isNaN(dataList.Activity[i].Horas)
         ? true
-        : dataList.Lista[i].Cantidad
+        : dataList.Activity[i].Horas
     );
   }
 
@@ -64,8 +64,8 @@ function MiniDistributionCard(props) {
     datasets: [
       {
         data: quantity,
-        backgroundColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
-        borderColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
+        backgroundColor: ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"],
+        borderColor: ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"],
         borderWidth: 0,
       },
     ],
@@ -95,7 +95,6 @@ function MiniDistributionCard(props) {
       >
         {dataList.ZonaNombre}
       </Typography>
-      <Divider light style={{ width: "90%" }} />
       <Card
         sx={{
           display: "flex",
@@ -118,7 +117,6 @@ function MiniDistributionCard(props) {
           <Doughnut data={data} options={options} />
         </Box>
       </Card>
-      <Divider light style={{ width: "90%" }} />
 
     </>
   );

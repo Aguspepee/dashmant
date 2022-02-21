@@ -14,6 +14,7 @@ import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import FilterContext from "../../Context/FilterContext";
+import hoursCalc from "../../Services/hoursCalc";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -51,7 +52,6 @@ function SectionDistributionContainer(props) {
   const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
   const title = props.title;
-  const bar = props.bar;
   const filters = props.filters;
   const description = props.description;
   const handleExpandClick = () => {
@@ -63,8 +63,9 @@ function SectionDistributionContainer(props) {
     filterDataRealByDate();
   }, [dataBaseEstaciones, month, year]);
 
-  let calcularAcumulado = false;
-  let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
+ // let calcularAcumulado = false;
+  //let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
+  let dataPie = hoursCalc(dataRealMonth);
   //console.log("PIE",dataPie)
 
   return (

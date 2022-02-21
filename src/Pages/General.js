@@ -1,63 +1,53 @@
-import React,{ Suspense }  from "react";
+import React, { Suspense } from "react";
 import SectionLineChartContainer from "../Components/Containers/SectionLineChartContainer";
 import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 //import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
-const SectionMultiBarContainer = React.lazy(() => import('../Components/Containers/SectionMultiBarContainer'));
-
+const SectionMultiBarContainer = React.lazy(() =>
+  import("../Components/Containers/SectionMultiBarContainer")
+);
 
 function General() {
   return (
     <>
-      <h1>Estaciones Transformadoras</h1>
+      <h1>Ejecución del Plan de Mantenimiento</h1>
+      <h1>ESTACIONES TRANSFORMADORAS</h1>
 
       <SectionMultiPieContainer
         activity="RPM"
-        title="Unidades de Mantenimiento intervenidas respecto de las programadas"
-        description="Unidades de Mantenimiento intervenidas."
+        title="Mantenimiento Programado de Equipos"
+        description="Unidades de Mantenimiento"
         bar="true"
         filters={{
-          filterByIng:  true,
+          filterByIng: true,
           filterByMuesAceite: false,
-          filterByProtecciones:true,
+          filterByProtecciones: true,
           deleteDuplicates: true,
         }}
       ></SectionMultiPieContainer>
-      
-      <SectionDistributionContainer
-        activity="MCP"
-        title="Distribución de Horas Hombre"
-        description="Candidad de intervenciones"
-        filters={{
-          filterByIng: true,
-          filterByMuesAceite: false,
-          filterByProtecciones:true,
-          deleteDuplicates: false,
-        }}
-      ></SectionDistributionContainer>
 
       <SectionMultiNumContainer
         activity="MCP"
-        title="Intervenciones Correctivas"
+        title="Mantenimiento Correctivo de Equipos"
         description="Candidad de intervenciones"
         filters={{
-          filterByIng: true,
+          filterByIng: false,
           filterByMuesAceite: false,
-          filterByProtecciones:true,
-          deleteDuplicates: false,
+          filterByProtecciones: false,
+          deleteDuplicates: true,
         }}
       ></SectionMultiNumContainer>
 
       <SectionMultiPieContainer
         activity="RSP"
-        title="Inspección de Seguridad Pública"
-        description="Estado de avance de la ejecución de las recorridas de seguridad publica programadas."
+        title="Seguridad Pública"
+        description="Recorridas de Seguridad Pública"
         bar="true"
         filters={{
           filterByIng: true,
           filterByMuesAceite: false,
-          filterByProtecciones:true,
+          filterByProtecciones: true,
           deleteDuplicates: false,
         }}
       ></SectionMultiPieContainer>
@@ -65,30 +55,41 @@ function General() {
       <SectionMultiPieContainer
         activity="MUA"
         title="Muestreos de Aceite"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
+        description="Extracciones de Aceite"
         bar="false"
         filters={{
           filterByIng: true,
           filterByMuesAceite: true,
-          filterByProtecciones:true,
+          filterByProtecciones: true,
           deleteDuplicates: false,
         }}
       ></SectionMultiPieContainer>
+      <SectionDistributionContainer
+        activity="MCP"
+        title="Distribución de actividades"
+        description="Horas hombres utilizadas por rubro"
+        filters={{
+          filterByIng: true,
+          filterByMuesAceite: false,
+          filterByProtecciones: false,
+          deleteDuplicates: false,
+        }}
+      ></SectionDistributionContainer>
 
-      <h1>Líneas Eléctricas</h1>
+      <h1>Ejecución del Plan de Mantenimiento</h1>
+      <h1>LÍNEAS DE ALTA TENSIÓN</h1>
       <div>
-      <Suspense fallback={<div>Loading...</div>}>
-      <SectionMultiBarContainer
-        activity="PINM"
-        title="Inspección Minuciosa"
-        description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"
-        detail="Ejecutado Minuciosa"
-      ></SectionMultiBarContainer>
-      </Suspense>
-    </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SectionMultiBarContainer
+            activity="PINM"
+            title="Inspección Minuciosa"
+            description="Piquetes"
+            detail="Ejecutado Minuciosa"
+          ></SectionMultiBarContainer>
+        </Suspense>
+      </div>
 
-
-     {/*  <SectionMultiBarContainer
+      {/*  <SectionMultiBarContainer
         activity="PINM"
         title="Inspección Minuciosa"
         description="Porcentaje de avance mensual en la ejecución de la inspección de las Unidades de Mantenimiento"

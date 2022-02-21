@@ -71,7 +71,7 @@ function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcu
       (!data["Pto.tbjo.resp."].includes("PROT") ||
         filterByProtecciones === false) //Elimina los que tienen la palabra "PROT" (Protecciones)
   );
-
+  
   let pieChartData = [];
   let listValues = [];
   for (let j = 0; j < zones.length; j++) {
@@ -84,7 +84,7 @@ function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcu
           data["Status usuario"] === filterRPM[i]["Status usuario"] &&
           data["Grupo planif."] === zones[j]["Grupo planif."]
       );
-
+      
       //FILTRO ELIMINADOR DE REPETIDOS
       //Elimina los repetidos. Borra filas e información, pero en este punto no es
       //importante, por que se requiere solo la cantidad

@@ -53,7 +53,7 @@ function VerticalBarCard(props) {
     dataLines = dataLines.filter((dataLines) => {
         return (dataLines["Ejecutado Minuciosa"] !== 0)
     })
-    console.log("lineas", dataLines)
+    //console.log("lineas", dataLines)
 
     let labels = []
     let ejecutado = []
@@ -85,16 +85,16 @@ function VerticalBarCard(props) {
     if (labels.length === 0) {
         heightChart = (140 + "px")
     } else if (labels.length <= 1) {
-        heightChart = (labels.length * 130 + "px")
+        heightChart = (labels.length * 140 + "px")
     } else if (labels.length <= 2) {
-        heightChart = (labels.length * 70 + "px")
+        heightChart = (labels.length * 90 + "px")
     } else if (labels.length <= 7) {
         heightChart = (labels.length * 60 + "px")
     } else {
         heightChart = (labels.length * 50 + "px")
     }
 
-    console.log(heightChart)
+   // console.log(heightChart)
 
 
     return (

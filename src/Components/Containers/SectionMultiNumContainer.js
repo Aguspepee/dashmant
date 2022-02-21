@@ -41,8 +41,10 @@ function SectionMultiNumContainer(props) {
   }, [dataBaseEstaciones, month, year]);
 
   //Hacer que sea un estado
-  let calcularAcumulado = false;
+  let calcularAcumulado = true;
   const data = filterData(activity, dataRealMonth, filters, calcularAcumulado);
+  console.log(activity)
+  console.log("correctivas",data)
 
   return (
     <>
