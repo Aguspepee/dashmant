@@ -11,8 +11,7 @@ const SectionMultiBarContainer = React.lazy(() =>
 function General() {
   return (
     <>
-      <h1>Ejecución del Plan de Mantenimiento</h1>
-      <h1>ESTACIONES TRANSFORMADORAS</h1>
+      <h1>Estaciones Transformadoras</h1>
 
       <SectionMultiPieContainer
         activity="RPM"
@@ -76,8 +75,7 @@ function General() {
         }}
       ></SectionDistributionContainer>
 
-      <h1>Ejecución del Plan de Mantenimiento</h1>
-      <h1>LÍNEAS DE ALTA TENSIÓN</h1>
+      <h1>Líneas de Alta Tensión</h1>
       <div>
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer

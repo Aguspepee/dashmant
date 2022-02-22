@@ -183,7 +183,7 @@ function ResponsiveDrawer(props) {
             component="div"
             style={{ color: "gray" }}
           >
-            DASHBOARD
+            EJECUCIÓN DEL PLAN DE MANTENIMIENTO
           </Typography>
         </Toolbar>
       </AppBar>

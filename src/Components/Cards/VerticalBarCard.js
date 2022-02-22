@@ -27,6 +27,13 @@ export const options = {
             display: false,
             text: 'Chart.js Bar Chart - Stacked',
         },
+        legend: {
+            display: false,
+        },
+        axes:{
+            display:true,
+    },
+
     },
     maintainAspectRatio: false,
     indexAxis: 'y',
@@ -38,7 +45,7 @@ export const options = {
         x: {
             stacked: true,
             min: 0,
-            //max: 200,
+            max: 500,
         },
         y: {
             stacked: true,
@@ -50,9 +57,9 @@ export const options = {
 
 function VerticalBarCard(props) {
     let dataLines = props.data
-    dataLines = dataLines.filter((dataLines) => {
+/*     dataLines = dataLines.filter((dataLines) => {
         return (dataLines["Ejecutado Minuciosa"] !== 0)
-    })
+    }) */
     //console.log("lineas", dataLines)
 
     let labels = []

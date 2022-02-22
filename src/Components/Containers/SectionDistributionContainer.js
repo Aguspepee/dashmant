@@ -63,7 +63,7 @@ function SectionDistributionContainer(props) {
     filterDataRealByDate();
   }, [dataBaseEstaciones, month, year]);
 
- // let calcularAcumulado = false;
+  //let calcularAcumulado = false;
   //let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
   let dataPie = hoursCalc(dataRealMonth);
   //console.log("PIE",dataPie)
@@ -107,7 +107,6 @@ function SectionDistributionContainer(props) {
               <div className="gridpie">
                 {dataPie.map((dataPie, index) => (
                   <div className="grid-column" key={dataPie.Zona}>
-                    
                   </div>
                 ))}
               </div>

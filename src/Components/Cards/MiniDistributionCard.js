@@ -13,6 +13,8 @@ export const options = {
   plugins: {
     legend: {
       display: true,
+      align: "start",
+      
     },
   },
 };
@@ -26,12 +28,11 @@ let oneDay = 1000 * 60 * 60 * 24;
 let day = Math.floor(diff / oneDay);
 
 function MiniDistributionCard(props) {
-
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
   //Se obtienen los labels
   let labels = [];
   for (let i = 0; i < dataList.Activity.length; i++) {
-    labels.push(dataList.Activity[i].Actividad);
+    labels.push(dataList.Activity[i].NombreActividad);
   }
   //Se obtienen los datos
   let quantity = [];
@@ -43,20 +44,10 @@ function MiniDistributionCard(props) {
     );
   }
 
-  let percentaje;
+  const reducer = (accumulator, curr) => accumulator + curr;
 
-  if (
-    !Number.isNaN(
-      quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3])
-    )
-  ) {
-    percentaje = (
-      (quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3])) *
-      100
-    ).toFixed(0);
-  } else {
-    percentaje = "-";
-  }
+  let total = quantity.reduce(reducer);
+  console.log(total);
 
   //Se inicializa el gráfico
   const data = {
@@ -64,8 +55,28 @@ function MiniDistributionCard(props) {
     datasets: [
       {
         data: quantity,
-        backgroundColor: ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"],
-        borderColor: ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"],
+        backgroundColor: [
+          "#fd7f6f",
+          "#7eb0d5",
+          "#b2e061",
+          "#bd7ebe",
+          "#ffb55a",
+          "#ffee65",
+          "#beb9db",
+          "#fdcce5",
+          "#8bd3c7",
+        ],
+        borderColor: [
+          "#fd7f6f",
+          "#7eb0d5",
+          "#b2e061",
+          "#bd7ebe",
+          "#ffb55a",
+          "#ffee65",
+          "#beb9db",
+          "#fdcce5",
+          "#8bd3c7",
+        ],
         borderWidth: 0,
       },
     ],
@@ -77,9 +88,6 @@ function MiniDistributionCard(props) {
       data.datasets[0].data.push(1);
     }
   });
-
-
-
 
   return (
     <>
@@ -93,8 +101,9 @@ function MiniDistributionCard(props) {
           paddingBottom: "0px",
         }}
       >
-        {dataList.ZonaNombre}
+        {dataList.Nombre}
       </Typography>
+      <Divider light style={{ width: "90%" }} />
       <Card
         sx={{
           display: "flex",
@@ -102,22 +111,31 @@ function MiniDistributionCard(props) {
           boxShadow: "0px 0px 0px white",
         }}
       >
-        <CardContent sx={{ flex: "1 0 auto", width: "10%" }}>
-
-        </CardContent>
         <Box
           sx={{
             display: "flex",
             justifyContent: "left",
             width: "100%",
             alignItems: "center",
-            padding: "1em 3em 1em 1em",
+            padding: "1em 1em 1em 1em",
           }}
         >
           <Doughnut data={data} options={options} />
         </Box>
       </Card>
-
+                      <Typography
+                        variant="body1"
+                        color="text.primary"
+                        component="div"
+                        style={{
+                          fontSize: "1em",
+                          paddingLeft: "2em",
+                          paddingBottom: "0px",
+                        }}
+                      >
+                      Total Horas Hombre: {total}
+                      </Typography>
+      <Divider light style={{ width: "90%" }} />
     </>
   );
 }

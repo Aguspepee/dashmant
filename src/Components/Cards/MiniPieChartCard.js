@@ -123,7 +123,7 @@ function MiniPieChartCard(props) {
           variant="caption"
           color="text.secondary"
           component="div"
-          style={{ paddingBottom: "0px", fontSize: "0.8em" }}
+          style={{ paddingBottom: "0px", fontSize: "0.7em" }}
         >
           PROGRAMADAS: {dataBar.TotAnual}
         </Typography>
@@ -131,7 +131,7 @@ function MiniPieChartCard(props) {
           variant="caption"
           color="text.secondary"
           component="div"
-          style={{ paddingBottom: "0px", fontSize: "0.8em" }}
+          style={{ paddingBottom: "0px", fontSize: "0.7em" }}
         >
           INTERVENIDAS: {dataBar.Lista[0].Cantidad}
         </Typography>
@@ -187,7 +187,7 @@ function MiniPieChartCard(props) {
             variant="caption"
             color="text.secondary"
             component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.9em" }}
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
             PROGRAMADAS: {quantity[0] + quantity[1] + quantity[2] + quantity[3]}
           </Typography>
@@ -195,7 +195,7 @@ function MiniPieChartCard(props) {
             variant="caption"
             color="text.secondary"
             component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.9em" }}
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
             INTERVENIDAS: {quantity[0]}
           </Typography>
