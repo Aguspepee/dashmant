@@ -49,6 +49,7 @@ function filterLines(year) {
        if (SAPlineasDB["Código valorac."] === "PINT" && lineaDB === lineaSAP &&  year === SAPlineasDB["Fecha"].slice(6, 10)) {
        // if (SAPlineasDB["Código valorac."] === "PINT" && lineaDB === lineaSAP) {
           //console.log(SAPlineasDB["Fecha"].slice(6, 10))
+          console.log("entro")
           return true;
         } else {
           return false;
@@ -63,7 +64,7 @@ function filterLines(year) {
     }));
   });
   let lineasDBflitrada = zones;
-  //console.log(lineasDB)
+  console.log("lineas DB",lineasDB)
   return lineasDBflitrada;
 }
 export default filterLines;

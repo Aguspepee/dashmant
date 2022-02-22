@@ -48,8 +48,8 @@ function hoursCalc(dataRealMonth) {
         Mostrar: true,
       },
       {
-        Grupo: "MST",
-        NombreGrupo: "Servicios a Terceros",
+        Grupo: "MPL",
+        NombreGrupo: "Mantenimiento Preventivo No Programado",
         Actividad: "MPL",
         NombreActividad: "Mantenimiento Preventivo No Programado",
         Mostrar: true,
@@ -90,8 +90,8 @@ function hoursCalc(dataRealMonth) {
         Mostrar: true,
       },
       {
-        Grupo: "MST",
-        NombreGrupo: "Servicios a Terceros",
+        Grupo: "RPM",
+        NombreGrupo: "Mantenimiento Programado",
         Actividad: "MPT",
         NombreActividad: "Medición de Resistencia de PAT",
         Mostrar: true,

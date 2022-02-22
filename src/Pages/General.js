@@ -86,6 +86,17 @@ function General() {
           ></SectionMultiBarContainer>
         </Suspense>
       </div>
+      <div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SectionMultiBarContainer
+            activity="PINT"
+            title="Inspección Terrestre"
+            description="Piquetes"
+            detail="Ejecutado Terrestre"
+          ></SectionMultiBarContainer>
+        </Suspense>
+      </div>
+      
 
       {/*  <SectionMultiBarContainer
         activity="PINM"

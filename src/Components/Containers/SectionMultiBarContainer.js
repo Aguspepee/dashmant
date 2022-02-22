@@ -7,8 +7,9 @@ import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import MultiBarChartCard from "../Cards/MultiBarChartCard"
+import MultiBarChartCard from "../Cards/MultiBarChartCard";
 import FilterContext from "../../Context/FilterContext";
+import SectionLinePieContainer from "../Containers/SectionLinePieContainer"
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -43,14 +44,13 @@ function SectionMultiBarContainer(props) {
     setDataRealYear,
   ] = useContext(FilterContext);
 
-
-
   //Cálculo de día del año
-  const year1 = year.toString() ;
+  const year1 = year.toString();
   const title = props.title;
   const description = props.description;
   const detail = props.detail;
   const lineas = filterLines(year1);
+  console.log("Lineas", lineas);
   let actividad = props.activity;
   let factor;
   if ((actividad = "PINT")) {
@@ -78,9 +78,25 @@ function SectionMultiBarContainer(props) {
               title={title}
               subheader={description}
             />
-
-            {lineas.map((lineas,index) => (
-              <MultiBarChartCard key={lineas["Grupo planif."]} lineas={lineas} detail={detail} actividad={actividad} year={year}></MultiBarChartCard>
+            <SectionLinePieContainer
+              activity="MCP"
+              title="Distribución de actividades"
+              description="Horas hombres utilizadas por rubro"
+              filters={{
+                filterByIng: true,
+                filterByMuesAceite: false,
+                filterByProtecciones: false,
+                deleteDuplicates: false,
+              }}
+            ></SectionLinePieContainer>
+            {lineas.map((lineas, index) => (
+              <MultiBarChartCard
+                key={lineas["Grupo planif."]}
+                lineas={lineas}
+                detail={detail}
+                actividad={actividad}
+                year={year}
+              ></MultiBarChartCard>
             ))}
           </CardContent>
         </Card>

@@ -45,7 +45,7 @@ export const options = {
         x: {
             stacked: true,
             min: 0,
-            max: 500,
+            //max: 500,
         },
         y: {
             stacked: true,
@@ -61,15 +61,15 @@ function VerticalBarCard(props) {
         return (dataLines["Ejecutado Minuciosa"] !== 0)
     }) */
     //console.log("lineas", dataLines)
-
+    let detail = props.detail
     let labels = []
     let ejecutado = []
     let previsto = []
     let factor = 0.5
     dataLines.map((dataLines, index) => { labels[index] = dataLines["Código"] })
-    dataLines.map((dataLines, index) => { ejecutado[index] = dataLines["Ejecutado Minuciosa"] })
+    dataLines.map((dataLines, index) => { ejecutado[index] = dataLines[detail] })
     dataLines.map((dataLines, index) => { previsto[index] = dataLines["Torres Cantidad"] * factor - dataLines["Ejecutado Minuciosa"] })
-
+    console.log(detail,":",ejecutado)
     const data = {
         labels,
         datasets: [
@@ -98,14 +98,14 @@ function VerticalBarCard(props) {
     } else if (labels.length <= 7) {
         heightChart = (labels.length * 60 + "px")
     } else {
-        heightChart = (labels.length * 50 + "px")
+        heightChart = (labels.length * 25 + "px")
     }
 
    // console.log(heightChart)
 
 
     return (
-        <CardContent style={{ width: "100%", height: heightChart }}>
+        <CardContent style={{ width: "23%", height: heightChart, paddingLeft:"0px" }}>
             <Bar options={options} data={data} />
         </CardContent>
     )

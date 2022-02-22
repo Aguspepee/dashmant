@@ -73,7 +73,7 @@ function MultiBarChartCard(props) {
           {lineas["Zona"]}
         </Typography>
         {/* <CardContent style={{ width: "100%"}}> */}
-          <VerticalBarCard data={lineas["Line"]} />
+          <VerticalBarCard data={lineas["Line"]} detail={detail}/>
        {/*  </CardContent> */}
         <CardActions disableSpacing>
           <ExpandMore

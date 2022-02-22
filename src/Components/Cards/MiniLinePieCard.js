@@ -31,7 +31,7 @@ let diff = now - start;
 let oneDay = 1000 * 60 * 60 * 24;
 let day = Math.floor(diff / oneDay);
 
-function MiniDistributionCard(props) {
+function MiniLinePieCard(props) {
   //----- CATEGORÍAS INDIVIDUALES----.//
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
   //Se obtienen los labels
@@ -176,4 +176,4 @@ function MiniDistributionCard(props) {
   );
 }
 
-export default MiniDistributionCard;
+export default MiniLinePieCard;
