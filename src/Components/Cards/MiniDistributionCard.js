@@ -14,7 +14,6 @@ export const options = {
     legend: {
       display: true,
       align: "start",
-      
     },
   },
 };
@@ -28,9 +27,10 @@ let oneDay = 1000 * 60 * 60 * 24;
 let day = Math.floor(diff / oneDay);
 
 function MiniDistributionCard(props) {
+  //----- CATEGORÍAS INDIVIDUALES----.//
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
   //Se obtienen los labels
-  let labels = [];
+/*   let labels = [];
   for (let i = 0; i < dataList.Activity.length; i++) {
     labels.push(dataList.Activity[i].NombreActividad);
   }
@@ -42,12 +42,43 @@ function MiniDistributionCard(props) {
         ? true
         : dataList.Activity[i].Horas
     );
+  } */
+
+  //console.log(dataList);
+
+ //----- CATEGORÍAS GRUPALES----.//
+  const dataListGroup = dataList.Activity;
+  var result = [];
+  dataListGroup.reduce(function (res, value) {
+    if (!res[value.Grupo]) {
+      res[value.Grupo] = {
+        Grupo: value.Grupo,
+        NombreGrupo: value.NombreGrupo,
+        Horas: 0,
+      };
+      result.push(res[value.Grupo]);
+    }
+    res[value.Grupo].Horas += value.Horas;
+    return res;
+  }, {});
+  //Se obtienen los labels
+  let labels = [];
+  for (let i = 0; i < result.length; i++) {
+    labels.push(result[i].NombreGrupo);
   }
+  
+  //Se obtienen los datos
+  let quantity = [];
+  for (let i = 0; i < result.length; i++) {
+    quantity.push(Number.isNaN(result[i].Horas) ? true : result[i].Horas);
+  }
+
+  //console.log(result);
 
   const reducer = (accumulator, curr) => accumulator + curr;
 
   let total = quantity.reduce(reducer);
-  console.log(total);
+  //console.log(total);
 
   //Se inicializa el gráfico
   const data = {
@@ -123,18 +154,18 @@ function MiniDistributionCard(props) {
           <Doughnut data={data} options={options} />
         </Box>
       </Card>
-                      <Typography
-                        variant="body1"
-                        color="text.primary"
-                        component="div"
-                        style={{
-                          fontSize: "1em",
-                          paddingLeft: "2em",
-                          paddingBottom: "0px",
-                        }}
-                      >
-                      Total Horas Hombre: {total}
-                      </Typography>
+      <Typography
+        variant="body1"
+        color="text.primary"
+        component="div"
+        style={{
+          fontSize: "1em",
+          paddingLeft: "2em",
+          paddingBottom: "0px",
+        }}
+      >
+        Total Horas Hombre: {total}
+      </Typography>
       <Divider light style={{ width: "90%" }} />
     </>
   );
