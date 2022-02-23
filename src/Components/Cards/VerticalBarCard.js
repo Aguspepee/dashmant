@@ -119,11 +119,11 @@ function VerticalBarCard(props) {
     } else if (labels.length <= 1) {
         heightChart = (labels.length * 140 + "px")
     } else if (labels.length <= 2) {
-        heightChart = (labels.length * 76 + "px")
+        heightChart = (labels.length * 66 + "px")
     } else if (labels.length <= 7) {
-        heightChart = (labels.length * 65 + "px")
+        heightChart = (labels.length * 45 + "px")
     } else {
-        heightChart = (labels.length * 30 + "px")
+        heightChart = (labels.length * 25 + "px")
     }
    // console.log(heightChart)
     return (

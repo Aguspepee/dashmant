@@ -7,6 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FilterProvider from "./Context/FilterProvider";
 import FrecuenciaAcumulado from "../src/Services/graficos";
+import Tablas from "./Pages/Tablas"
 
 const drawerWidth = 240;
 function App() {
@@ -37,6 +38,7 @@ function App() {
                 <Route path="dashmant/" element={<General />} />
                 <Route path="dashmant/general" element={<General />} />
                 <Route path="dashmant/zonas" element={<Zona />} />
+                <Route path="dashmant/DataBase" element={<Tablas />} />
               </Routes>
             </Box>
           </BrowserRouter>

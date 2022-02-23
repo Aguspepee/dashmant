@@ -19,8 +19,7 @@ import DateSelector from "../Controls/DateSelector";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterContext from "../../Context/FilterContext";
 import { useEffect, useContext } from "react";
-import TableRowsIcon from '@mui/icons-material/TableRows';
-
+import TableRowsIcon from "@mui/icons-material/TableRows";
 
 const drawerWidth = 240;
 /* const months = [
@@ -37,7 +36,20 @@ const drawerWidth = 240;
   "Noviembre",
   "Diciembre",
 ]; */
-const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+const months = [
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "11",
+  "12",
+];
 
 const years = ["2021", "2022", "2023", "2024"];
 
@@ -59,7 +71,7 @@ function ResponsiveDrawer(props) {
     setDataFiltada,
     normalizeData,
     filterDataByVarious,
-    filterDataByDate
+    filterDataByDate,
   ] = useContext(FilterContext);
 
   //setMonth("jaunua");
@@ -85,7 +97,7 @@ function ResponsiveDrawer(props) {
           button
           key="Zona Norte"
           component={Link}
-          to="dashmant//zonas/ZN"
+          to="dashmant/zonas/ZN"
         >
           <ListItemText primary="Zona Norte" />
         </ListItem>
@@ -93,7 +105,7 @@ function ResponsiveDrawer(props) {
           button
           key="Zona Sur"
           component={Link}
-          to="dashmant//zonas/ZS"
+          to="dashmant/zonas/ZS"
         >
           <ListItemText primary="Zona Sur" />
         </ListItem>
@@ -101,7 +113,7 @@ function ResponsiveDrawer(props) {
           button
           key="Zona Oeste"
           component={Link}
-          to="dashmant//xonas/ZO"
+          to="dashmant/zonas/ZO"
         >
           <ListItemText primary="Zona Oeste" />
         </ListItem>
@@ -109,7 +121,7 @@ function ResponsiveDrawer(props) {
           button
           key="Zona Austral"
           component={Link}
-          to="dashmant//zonas/ZA"
+          to="dashmant/zonas/ZA"
         >
           <ListItemText primary="Zona Austral" />
         </ListItem>
@@ -123,10 +135,22 @@ function ResponsiveDrawer(props) {
         </ListItem>
 
         <ListItem>
-          <DateSelector type="Mes" data={months} change1={handleMonthChange} change2={setMonth} value={month} />
+          <DateSelector
+            type="Mes"
+            data={months}
+            change1={handleMonthChange}
+            change2={setMonth}
+            value={month}
+          />
         </ListItem>
         <ListItem>
-          <DateSelector type="Año" data={years} change1={handleYearChange} change2={setYear} value={year} />
+          <DateSelector
+            type="Año"
+            data={years}
+            change1={handleYearChange}
+            change2={setYear}
+            value={year}
+          />
         </ListItem>
       </List>
       <Divider />
@@ -138,17 +162,21 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
-      
-      {/* <List>
+
+      <List>
         {["Base de Datos"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{< TableRowsIcon />}</ListItemIcon>
+          <ListItem
+          button
+          key="Base de datos"
+          component={Link}
+          to="dashmant/DataBase"
+        >
+            <ListItemIcon>{<TableRowsIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List> */}
+      </List>
       <Divider />
-
     </div>
   );
 
@@ -164,16 +192,14 @@ function ResponsiveDrawer(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
-        style={{ backgroundColor: "gray", boxShadow: ""   }}
-
+        style={{ backgroundColor: "gray", boxShadow: "" }}
       >
-        <Toolbar style={{ backgroundColor: "white"}}>
+        <Toolbar style={{ backgroundColor: "white" }}>
           <IconButton
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" }, color: "gray" }}
-
           >
             <MenuIcon />
           </IconButton>
@@ -193,7 +219,7 @@ function ResponsiveDrawer(props) {
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer 
+        <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}

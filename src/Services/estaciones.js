@@ -114,6 +114,7 @@ function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcu
 
       if (calcularAcumulado ){
         DatosDiario = FrecuenciaAcumulado(data_filter)
+        
         DatosMensual = "hola"
       }else{
         DatosDiario = "Diario"

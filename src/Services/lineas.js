@@ -1,27 +1,22 @@
 let lineasDB = require("../Data/lineasDB.json");
 let SAPlineasDB = require("../Data/SAPlineasDB.json");
 
-
 const zones = [
   {
     "Grupo planif.": "ZN1",
     Zona: "Zona Norte",
-    "Unidades de Mantenimiento": 249,
   },
   {
     "Grupo planif.": "ZS1",
     Zona: "Zona Sur",
-    "Unidades de Mantenimiento": 368,
   },
   {
     "Grupo planif.": "ZO1",
     Zona: "Zona Oeste",
-    "Unidades de Mantenimiento": 41,
   },
   {
     "Grupo planif.": "ZA1",
     Zona: "Zona Austral",
-    "Unidades de Mantenimiento": 53,
   },
 ];
 
@@ -61,7 +56,7 @@ function filterLines(year) {
     }));
   });
   let lineasDBflitrada = zones;
-  //console.log("lineas DB",lineasDB)
+  console.log("lineas DB",lineasDB)
   return lineasDBflitrada;
 }
 export default filterLines;
