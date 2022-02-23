@@ -72,7 +72,7 @@ function SectionMultiBarContainer(props) {
         <Card
           style={{
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-            padding: "20px 20px 20px 20px ",
+            //padding: "20px 20px 20px 20px ",
           }}
         >
           <CardContent>
@@ -89,6 +89,7 @@ function SectionMultiBarContainer(props) {
               activity="MCP"
               title="Distribución de actividades"
               description="Horas hombres utilizadas por rubro"
+              bar="true"
               filters={{
                 filterByIng: true,
                 filterByMuesAceite: false,

@@ -2,7 +2,7 @@
 
 function hoursCalc(dataRealMonth) {
   let hours = dataRealMonth;
-  console.log(hours);
+  //console.log(hours);
   let zonas = [
     { Zona: "ZN1", Nombre: "Zona Norte", Activity: [] },
     { Zona: "ZS1", Nombre: "Zona Sur", Activity: [] },

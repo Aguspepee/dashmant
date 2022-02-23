@@ -23,6 +23,7 @@ ChartJS.register(
 
 export const options = {
     plugins: {
+        
         title: {
             display: false,
             text: 'Chart.js Bar Chart - Stacked',
@@ -31,7 +32,7 @@ export const options = {
             display: false,
         },
         axes:{
-            display:true,
+            display:false,
     },
     },
     maintainAspectRatio: false,
@@ -45,9 +46,18 @@ export const options = {
             stacked: true,
             min: 0,
             //max: 500,
+            title: {
+                display: true,
+                text: 'Cantidad de Piquetes'
+              }
         },
         y: {
             stacked: true,
+            title: {
+                
+                display: false,
+                text: 'Líneas'
+              }
         },
     },
 };
@@ -66,7 +76,7 @@ function VerticalBarCard(props) {
     dataLines.map((dataLines, index) => { labels[index] = dataLines["Código"] })
     dataLines.map((dataLines, index) => { ejecutado[index] = dataLines[detail] })
     dataLines.map((dataLines, index) => { previsto[index] = dataLines["Torres Cantidad"] * factor - dataLines["Ejecutado Minuciosa"] })
-    console.log(detail,":",ejecutado)
+    //console.log(detail,":",ejecutado)
     const data = {
         labels,
         datasets: [
@@ -91,7 +101,7 @@ function VerticalBarCard(props) {
     } else if (labels.length <= 1) {
         heightChart = (labels.length * 140 + "px")
     } else if (labels.length <= 2) {
-        heightChart = (labels.length * 90 + "px")
+        heightChart = (labels.length * 71 + "px")
     } else if (labels.length <= 7) {
         heightChart = (labels.length * 60 + "px")
     } else {
