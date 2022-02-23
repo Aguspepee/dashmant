@@ -1,7 +1,8 @@
 //import hours from "../Data/hours.json";
 
-function hoursCalc(dataRealMonth) {
-  let hours = dataRealMonth;
+function hoursCalc(data) {
+  let hours = data;
+  //console.log("datos",data)
   //console.log(hours);
   let zonas = [
     { Zona: "ZN1", Nombre: "Zona Norte", Activity: [] },

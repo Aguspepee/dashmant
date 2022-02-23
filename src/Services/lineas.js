@@ -49,14 +49,14 @@ function filterLines(year) {
       }
     ).length);
   });
-
+  
   zones.map((zones) => {
     return (zones["Line"] = lineasDB.filter((lineasDB) => {
       return lineasDB["Zona"] + "1" === zones["Grupo planif."];
     }));
   });
   let lineasDBflitrada = zones;
-  console.log("lineas DB",lineasDB)
+  console.table(lineasDBflitrada)
   return lineasDBflitrada;
 }
 export default filterLines;

@@ -45,14 +45,14 @@ function FilterProvider(props) {
   const filterDataRealByDate = () => {
     setDataRealYear(
       dataBaseEstaciones.filter((dataBaseEstaciones) => {
-        return year === dataBaseEstaciones["Inicio program."].slice(6, 10);
+        return year === dataBaseEstaciones["Fecha ref."].slice(6, 10);
       })
     );
     setDataRealMonth(
       dataBaseEstaciones.filter((dataBaseEstaciones) => {
         return (
           month + "/" + year ===
-          dataBaseEstaciones["Inicio program."].slice(3, 10)
+          dataBaseEstaciones["Fecha ref."].slice(3, 10)
         );
       })
     );
