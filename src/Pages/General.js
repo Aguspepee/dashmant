@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import SectionLineChartContainer from "../Components/Containers/SectionLineChartContainer";
 import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";

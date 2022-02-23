@@ -38,7 +38,7 @@ export const options = {
     maintainAspectRatio: false,
     indexAxis: 'y',
     //barThickness: "10",
-    barPercentage: 0.6,
+    barPercentage: 1,
 
     responsive: true,
     scales: {
@@ -49,6 +49,15 @@ export const options = {
             title: {
                 display: true,
                 text: 'Cantidad de Piquetes'
+              },
+              grid: {
+                display: false
+              },
+              scaleLabel:{
+                display: true
+              },
+              ticks: {
+                display:true // it should work
               }
         },
         y: {
@@ -57,6 +66,15 @@ export const options = {
                 
                 display: false,
                 text: 'Líneas'
+              },
+              grid: {
+                display: false
+              },
+              scaleLabel:{
+                display: true
+              },
+              ticks: {
+                display:true // it should work
               }
         },
     },
@@ -101,17 +119,20 @@ function VerticalBarCard(props) {
     } else if (labels.length <= 1) {
         heightChart = (labels.length * 140 + "px")
     } else if (labels.length <= 2) {
-        heightChart = (labels.length * 71 + "px")
+        heightChart = (labels.length * 76 + "px")
     } else if (labels.length <= 7) {
-        heightChart = (labels.length * 60 + "px")
+        heightChart = (labels.length * 65 + "px")
     } else {
-        heightChart = (labels.length * 25 + "px")
+        heightChart = (labels.length * 30 + "px")
     }
    // console.log(heightChart)
     return (
+        <>
+       
         <CardContent style={{ width: "100%", height: heightChart, paddingLeft:"0px" }}>
             <Bar options={options} data={data} />
         </CardContent>
+        </>
     )
 }
 
