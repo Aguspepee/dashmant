@@ -10,6 +10,9 @@ import { styled } from "@mui/material/styles";
 import MultiBarChartCard from "../Cards/MultiBarChartCard";
 import FilterContext from "../../Context/FilterContext";
 import SectionLinePieContainer from "../Containers/SectionLinePieContainer"
+import CardActions from "@mui/material/CardActions";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -23,6 +26,10 @@ const ExpandMore = styled((props) => {
 }));
 
 function SectionMultiBarContainer(props) {
+  const [expanded, setExpanded] = React.useState(false);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
   const [
     filterDataProgByDate,
     filterDataRealByDate,
@@ -50,7 +57,7 @@ function SectionMultiBarContainer(props) {
   const description = props.description;
   const detail = props.detail;
   const lineas = filterLines(year1);
-  console.log("Lineas", lineas);
+  //console.log("Lineas", lineas);
   let actividad = props.activity;
   let factor;
   if ((actividad = "PINT")) {
@@ -89,7 +96,20 @@ function SectionMultiBarContainer(props) {
                 deleteDuplicates: false,
               }}
             ></SectionLinePieContainer>
-            {lineas.map((lineas, index) => (
+            <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </CardActions>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <div className="gridpie">
+              {lineas.map((lineas, index) => (
               <MultiBarChartCard
                 key={lineas["Grupo planif."]}
                 lineas={lineas}
@@ -98,6 +118,9 @@ function SectionMultiBarContainer(props) {
                 year={year}
               ></MultiBarChartCard>
             ))}
+              </div>
+            </CardContent>
+          </Collapse>
           </CardContent>
         </Card>
       </div>

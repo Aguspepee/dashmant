@@ -33,7 +33,6 @@ export const options = {
         axes:{
             display:true,
     },
-
     },
     maintainAspectRatio: false,
     indexAxis: 'y',
@@ -52,8 +51,6 @@ export const options = {
         },
     },
 };
-
-
 
 function VerticalBarCard(props) {
     let dataLines = props.data
@@ -100,18 +97,12 @@ function VerticalBarCard(props) {
     } else {
         heightChart = (labels.length * 25 + "px")
     }
-
    // console.log(heightChart)
-
-
     return (
-        <CardContent style={{ width: "23%", height: heightChart, paddingLeft:"0px" }}>
+        <CardContent style={{ width: "100%", height: heightChart, paddingLeft:"0px" }}>
             <Bar options={options} data={data} />
         </CardContent>
     )
-
-
-
 }
 
 export default VerticalBarCard

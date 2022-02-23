@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useContext } from "react";
-import MiniLinePieCard from "../Cards/MiniDistributionCard";
+import MiniPieChartCart from "../Cards/MiniPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -14,8 +14,7 @@ import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import FilterContext from "../../Context/FilterContext";
-import hoursCalc from "../../Services/hoursCalc";
-import MiniDistributionCard from "../Cards/MiniDistributionCard";
+import MultiBarChartCard from "../Cards/MultiBarChartCard";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,7 +27,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function SectionLinePieContainer(props) {
+function SectionMultiPieContainer(props) {
   const [
     filterDataProgByDate,
     filterDataRealByDate,
@@ -53,6 +52,7 @@ function SectionLinePieContainer(props) {
   const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
   const title = props.title;
+  const bar = props.bar;
   const filters = props.filters;
   const description = props.description;
   const handleExpandClick = () => {
@@ -64,23 +64,31 @@ function SectionLinePieContainer(props) {
     filterDataRealByDate();
   }, [dataBaseEstaciones, month, year]);
 
-  //let calcularAcumulado = false;
-  //let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
-  let dataPie = hoursCalc(dataRealMonth);
+  let calcularAcumulado = false;
+  let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
   //console.log("PIE",dataPie)
-
+  calcularAcumulado = true;
+  let dataBar = filterData(activity, dataRealYear, dataProgYear, filters, calcularAcumulado);
+  //console.log("BAR",dataBar)
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
-        <div className="gridpie">
-          {dataPie.map((dataPie, index) => (
-            <div className="grid-column" key={dataPie.Zona}>
-              <MiniDistributionCard dataPie={dataPie}></MiniDistributionCard>
+        
+            <div className="gridpie">
+              {dataPie.map((dataPie, index) => (
+                <div className="grid-column" key={dataPie.Zona}>
+                  <MiniPieChartCart
+                    dataPie={dataPie}
+                    dataBar={dataBar[index]}
+                    bar={bar}
+                  ></MiniPieChartCart>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          
       </div>
     </>
   );
 }
-export default SectionLinePieContainer;
+export default SectionMultiPieContainer;
+

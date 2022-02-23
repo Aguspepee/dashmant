@@ -73,9 +73,9 @@ function MultiBarChartCard(props) {
           {lineas["Zona"]}
         </Typography>
         {/* <CardContent style={{ width: "100%"}}> */}
-          <VerticalBarCard data={lineas["Line"]} detail={detail}/>
-       {/*  </CardContent> */}
-        <CardActions disableSpacing>
+        <VerticalBarCard data={lineas["Line"]} detail={detail} />
+        {/*  </CardContent> */}
+        {/* <CardActions disableSpacing>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -122,8 +122,6 @@ function MultiBarChartCard(props) {
                       >
                         {lineas["Código"]}
                       </Typography>
-
-
                     </TableCell>
                     <TableCell width="4%" align="left">
                       <Typography
@@ -138,7 +136,6 @@ function MultiBarChartCard(props) {
                       >
                         {Math.round(lineas["Torres Cantidad"])}
                       </Typography>
-
                     </TableCell>
                     <TableCell width="5%" align="right">
                       {Math.round(
@@ -152,7 +149,7 @@ function MultiBarChartCard(props) {
                       <MiniBarChartCard
                         percentaje={Math.round(
                           (lineas[detail] * 100) /
-                          (lineas["Torres Cantidad"] * factor)
+                            (lineas["Torres Cantidad"] * factor)
                         )}
                         percentajeNow={(day * 100) / (365 * factor)}
                       ></MiniBarChartCard>
@@ -162,7 +159,7 @@ function MultiBarChartCard(props) {
               </TableBody>
             </Table>
           </TableContainer>
-        </Collapse>
+        </Collapse> */}
       </div>
     </>
   );
