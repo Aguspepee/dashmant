@@ -11,10 +11,6 @@ import Tablas from "./Pages/Tablas"
 
 const drawerWidth = 240;
 function App() {
-
-  
-  console.log(top)
-
   return (
     <>
       <FilterProvider>
