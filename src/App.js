@@ -12,6 +12,9 @@ import Tablas from "./Pages/Tablas"
 const drawerWidth = 240;
 function App() {
 
+  
+  console.log(top)
+
   return (
     <>
       <FilterProvider>
@@ -19,6 +22,7 @@ function App() {
           sx={{
             display: "flex",
             backgroundColor: "rgb(243, 243, 243)",
+            //background: "linear-gradient(90deg, rgba(178,177,204,1) 0%, rgba(176,176,201,0.10127801120448177) 35%, rgba(93,96,97,1) 100%)",
             width: "100%",
           }}
         >

@@ -69,7 +69,9 @@ function SectionDistributionContainer(props) {
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
-        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" , 
+        //backgroundColor:"rgba(0, 0, 0, 0.0)"
+        }}>
           <CardContent>
             <CardHeader
               action={

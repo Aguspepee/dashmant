@@ -145,6 +145,7 @@ function MiniDistributionCard(props) {
           display: "flex",
           border: "0px solid rgba(0, 0, 0, 0.05)",
           boxShadow: "0px 0px 0px white",
+          backgroundColor:"rgba(0, 0, 0, 0.0)"
         }}
       >
         <Box

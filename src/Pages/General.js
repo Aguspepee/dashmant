@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useRef, useEffect} from "react";
 import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
@@ -7,8 +7,21 @@ const SectionMultiBarContainer = React.lazy(() =>
 );
 
 function General() {
+  useEffect(()=>{
+   
+  })
+  
+  const scrollToDiv = (ref) => window.scrollTo(0,5000);
+  const click = () => scrollToDiv(el2)
+  const el1 = useRef();
+  const el2 = useRef();
+
+
   return (
     <>
+    <div>
+    <button onClick={click}></button>
+  </div>
       <h1>Estaciones Transformadoras</h1>
 
       <SectionMultiPieContainer
@@ -22,6 +35,7 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: true,
         }}
+        //id="div1"
       ></SectionMultiPieContainer>
 
       <SectionMultiNumContainer
@@ -60,6 +74,7 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: false,
         }}
+        reference={el1}
       ></SectionMultiPieContainer>
       <SectionDistributionContainer
         activity="MCP"
@@ -73,7 +88,7 @@ function General() {
         }}
       ></SectionDistributionContainer>
 
-      <h1>Líneas de Alta Tensión</h1>
+      <h1 reference={el1}>Líneas de Alta Tensión</h1>
       <div>
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer
