@@ -59,12 +59,7 @@ function SectionMultiBarContainer(props) {
   const lineas = filterLines(year1);
   //console.log("Lineas", lineas);
   let actividad = props.activity;
-  let factor;
-  if ((actividad = "PINT")) {
-    factor = 2;
-  } else if ((actividad = "PINM")) {
-    factor = 0.5;
-  }
+
 
   return (
     <>

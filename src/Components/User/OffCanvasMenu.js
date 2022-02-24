@@ -129,9 +129,9 @@ function ResponsiveDrawer(props) {
       <Divider />
 
       <List>
-        <ListItem key={"Filtros"}>
+        <ListItem key={"Periodo Evaluado"}>
           <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
-          <ListItemText primary={"Filtros"} />
+          <ListItemText primary={"Periodo Evaluado"} />
         </ListItem>
 
         <ListItem>

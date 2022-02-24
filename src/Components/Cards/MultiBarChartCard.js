@@ -48,15 +48,16 @@ function MultiBarChartCard(props) {
   const detail = props.detail;
   //const lineas = filterLines(year);
   const lineas = props.lineas;
-  const porcentajeAnual = 0.25;
-  let actividad = props.activity;
+  let actividad = props.actividad;
   let factor;
-  if ((actividad = "PINT")) {
+  let max;
+  if (actividad === "PINT") {
     factor = 2;
-  } else if ((actividad = "PINM")) {
-    factor = 0.5;
+    max = 2000;
+  } else if (actividad === "PINM") {
+    factor = 0.25;
+    max = 250;
   }
-
   return (
     <>
       <div key={lineas["Grupo planif."]}>
@@ -73,7 +74,7 @@ function MultiBarChartCard(props) {
           {lineas["Zona"]}
         </Typography>
         {/* <CardContent style={{ width: "100%"}}> */}
-        <VerticalBarCard data={lineas["Line"]} detail={detail} />
+        <VerticalBarCard data={lineas["Line"]} detail={detail} factor={factor} max={max}/>
         {/*  </CardContent> */}
         {/* <CardActions disableSpacing>
           <ExpandMore
