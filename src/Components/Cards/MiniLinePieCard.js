@@ -160,7 +160,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PROGRAMADAS: {dataList["Anual Previsto Minuciosa"]}
+            PROGRAMADAS: {dataList["Anual Previsto "+detail ]}
           </Typography>
           <Typography
             variant="caption"
