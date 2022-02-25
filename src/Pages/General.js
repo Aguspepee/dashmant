@@ -95,7 +95,7 @@ function General() {
             activity="PINM"
             title="Inspección Minuciosa"
             description="Piquetes"
-            detail="Ejecutado Minuciosa"
+            detail="Minuciosa"
           ></SectionMultiBarContainer>
         </Suspense>
       </div>
@@ -105,7 +105,7 @@ function General() {
             activity="PINT"
             title="Inspección Terrestre"
             description="Piquetes"
-            detail="Ejecutado Terrestre"
+            detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
       </div>

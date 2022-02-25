@@ -9,10 +9,10 @@ import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MultiBarChartCard from "../Cards/MultiBarChartCard";
 import FilterContext from "../../Context/FilterContext";
-import SectionLinePieContainer from "../Containers/SectionLinePieContainer"
 import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
+import MiniLinePieCard from "../Cards/MiniLinePieCard";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -57,9 +57,10 @@ function SectionMultiBarContainer(props) {
   const description = props.description;
   const detail = props.detail;
   const lineas = filterLines(year1);
+  let dataPie = lineas
+  let dataBar = lineas
   //console.log("Lineas", lineas);
   let actividad = props.activity;
-
 
   return (
     <>
@@ -80,43 +81,46 @@ function SectionMultiBarContainer(props) {
               title={title}
               subheader={description}
             />
-            <SectionLinePieContainer
-              activity="MCP"
-              title="Distribución de actividades"
-              description="Horas hombres utilizadas por rubro"
-              bar="true"
-              filters={{
-                filterByIng: true,
-                filterByMuesAceite: false,
-                filterByProtecciones: false,
-                deleteDuplicates: false,
-              }}
-            ></SectionLinePieContainer>
-            <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
+            <div style={{ padding: "0em 0em 1em 0em" }}>
               <div className="gridpie">
-              {lineas.map((lineas, index) => (
-              <MultiBarChartCard
-                key={lineas["Grupo planif."]}
-                lineas={lineas}
-                detail={detail}
-                actividad={actividad}
-                year={year}
-              ></MultiBarChartCard>
-            ))}
+                {dataPie.map((dataPie, index) => (
+                  <div className="grid-column" key={dataPie.Zona}>
+                    <MiniLinePieCard
+                      dataPie={dataPie}
+                      dataBar={dataBar[index]}
+                      detail={detail}
+                      bar="true"
+                    ></MiniLinePieCard>
+                  </div>
+                ))}
               </div>
-            </CardContent>
-          </Collapse>
+            </div>
+
+            <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
+              <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </ExpandMore>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <div className="gridpie">
+                  {lineas.map((lineas, index) => (
+                    <MultiBarChartCard
+                      key={lineas["Grupo planif."]}
+                      lineas={lineas}
+                      detail={detail}
+                      actividad={actividad}
+                      year={year}
+                    ></MultiBarChartCard>
+                  ))}
+                </div>
+              </CardContent>
+            </Collapse>
           </CardContent>
         </Card>
       </div>

@@ -5,21 +5,18 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import MiniBarChartCard from "../Cards/MiniBarChartCard";
+import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
   plugins: {
     legend: {
-      display: true,
-      align: "start",
+      display: false,
     },
-    labels: {
-      render: 'percentage',
-    precision: 2
-    },
-    
   },
 };
 
@@ -32,58 +29,18 @@ let oneDay = 1000 * 60 * 60 * 24;
 let day = Math.floor(diff / oneDay);
 
 function MiniLinePieCard(props) {
-  //----- CATEGORÍAS INDIVIDUALES----.//
+  let bar = props.bar;
+  let barra;
+  let detail = props.detail
+
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
+ //Esta data está filtada por año
   //Se obtienen los labels
-/*   let labels = [];
-  for (let i = 0; i < dataList.Activity.length; i++) {
-    labels.push(dataList.Activity[i].NombreActividad);
-  }
+  let labels = ["Ejecutado","Previsto"];
   //Se obtienen los datos
-  let quantity = [];
-  for (let i = 0; i < dataList.Activity.length; i++) {
-    quantity.push(
-      Number.isNaN(dataList.Activity[i].Horas)
-        ? true
-        : dataList.Activity[i].Horas
-    );
-  } */
-
-  //console.log(dataList);
-
- //----- CATEGORÍAS GRUPALES----.//
-  const dataListGroup = dataList.Activity;
-  var result = [];
-  dataListGroup.reduce(function (res, value) {
-    if (!res[value.Grupo]) {
-      res[value.Grupo] = {
-        Grupo: value.Grupo,
-        NombreGrupo: value.NombreGrupo,
-        Horas: 0,
-      };
-      result.push(res[value.Grupo]);
-    }
-    res[value.Grupo].Horas += value.Horas;
-    return res;
-  }, {});
-  //Se obtienen los labels
-  let labels = [];
-  for (let i = 0; i < result.length; i++) {
-    labels.push(result[i].NombreGrupo);
-  }
+  let quantity = [dataList["Anual Ejecutado "+detail ],dataList["Anual Previsto "+detail ]];
   
-  //Se obtienen los datos
-  let quantity = [];
-  for (let i = 0; i < result.length; i++) {
-    quantity.push(Number.isNaN(result[i].Horas) ? true : result[i].Horas);
-  }
-
-  //console.log(result);
-
-  const reducer = (accumulator, curr) => accumulator + curr;
-
-  let total = quantity.reduce(reducer);
-  //console.log(total);
+  let percentaje = Math.round((dataList["Anual Ejecutado "+detail ] * 100) / dataList["Anual Previsto "+detail ]);
 
   //Se inicializa el gráfico
   const data = {
@@ -91,28 +48,8 @@ function MiniLinePieCard(props) {
     datasets: [
       {
         data: quantity,
-        backgroundColor: [
-          "#fd7f6f",
-          "#7eb0d5",
-          "#b2e061",
-          "#bd7ebe",
-          "#ffb55a",
-          "#ffee65",
-          "#beb9db",
-          "#fdcce5",
-          "#8bd3c7",
-        ],
-        borderColor: [
-          "#fd7f6f",
-          "#7eb0d5",
-          "#b2e061",
-          "#bd7ebe",
-          "#ffb55a",
-          "#ffee65",
-          "#beb9db",
-          "#fdcce5",
-          "#8bd3c7",
-        ],
+        backgroundColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
+        borderColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
         borderWidth: 0,
       },
     ],
@@ -124,6 +61,66 @@ function MiniLinePieCard(props) {
       data.datasets[0].data.push(1);
     }
   });
+
+ 
+  let percentajeBar = (dataList["Anual Ejecutado "+detail ] * 100) / dataList["Anual Previsto "+detail ];
+  percentajeNow = (day * 100) / 365;
+
+  if (bar === "true") {
+    barra = (
+      <Container>
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          component="div"
+          style={{ paddingTop: "1em", fontSize: "1.2em" }}
+        >
+          Anual
+        </Typography>
+        {/* <Divider light style={{ width: "37%" }} /> */}
+        <MiniBarChartCard
+          percentaje={percentajeBar}
+          percentajeNow={percentajeNow}
+        ></MiniBarChartCard>
+        {/* <Typography
+          variant="overline"
+          color="text.secondary"
+          component="div"
+          style={{ fontSize: "0.8em" }}
+        >
+          {dataList.Lista[0].Cantidad}/{dataList.TotAnual} ud.
+        </Typography> */}
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          component="div"
+          style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+        >
+          PROGRAMADAS: {dataList["Anual Previsto "+detail ]}
+        </Typography>
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          component="div"
+          style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+        >
+          INTERVENIDAS: {dataList["Anual Ejecutado "+detail ]}
+        </Typography>
+
+        <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
+          {Math.round(percentajeBar)}%
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.primary"
+          component="div"
+          style={{ fontSize: "0.9em" , paddingBottom:"10px"}}
+        >
+          EJECUTADO
+        </Typography>
+      </Container>
+    );
+  }
 
   return (
     <>
@@ -137,7 +134,7 @@ function MiniLinePieCard(props) {
           paddingBottom: "0px",
         }}
       >
-        {dataList.Nombre}
+        {dataList.ZonaNombre}
       </Typography>
       <Divider light style={{ width: "90%" }} />
       <Card
@@ -147,30 +144,63 @@ function MiniLinePieCard(props) {
           boxShadow: "0px 0px 0px white",
         }}
       >
+        <CardContent sx={{ flex: "1 0 auto", width: "10%" }}>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            component="div"
+            style={{ fontSize: "1.2em" }}
+          >
+            Mensual
+          </Typography>
+          <Divider light style={{ width: "90%" }} />
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            component="div"
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+          >
+            PROGRAMADAS: {dataList["Anual Previsto Minuciosa"]}
+          </Typography>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            component="div"
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+          >
+            INTERVENIDAS: {dataList["Anual Ejecutado "+detail ]}
+          </Typography>
+
+          <Typography
+            component="div"
+            variant="h4"
+            style={{ fontSize: "2.5em" }}
+          >
+            {percentaje}%
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.primary"
+            component="div"
+            style={{ fontSize: "0.9em" }}
+          >
+            EJECUTADO
+          </Typography>
+        </CardContent>
         <Box
           sx={{
             display: "flex",
             justifyContent: "left",
-            width: "100%",
+            width: "55%",
             alignItems: "center",
-            padding: "1em 1em 1em 1em",
+            padding: "1em 3em 1em 1em",
           }}
         >
           <Doughnut data={data} options={options} />
         </Box>
       </Card>
-      <Typography
-        variant="body1"
-        color="text.primary"
-        component="div"
-        style={{
-          fontSize: "1em",
-          paddingLeft: "2em",
-          paddingBottom: "0px",
-        }}
-      >
-        Total Horas Hombre: {total}
-      </Typography>
+      <Divider light style={{ width: "90%" }} />
+      {barra}
       <Divider light style={{ width: "90%" }} />
     </>
   );

@@ -27,7 +27,11 @@ function filterLines(year) {
     return (lineasDB["Ejecutado Minuciosa"] = SAPlineasDB.filter(
       (SAPlineasDB) => {
         let lineaSAP = SAPlineasDB["Equipo"].split("-")[1];
-        if (SAPlineasDB["Código valorac."] === "PINM" && lineaDB === lineaSAP &&  year === SAPlineasDB["Fecha"].slice(6, 10)) {
+        if (
+          SAPlineasDB["Código valorac."] === "PINM" &&
+          lineaDB === lineaSAP &&
+          year === SAPlineasDB["Fecha"].slice(6, 10)
+        ) {
           return true;
         } else {
           return false;
@@ -41,7 +45,11 @@ function filterLines(year) {
     return (lineasDB["Ejecutado Terrestre"] = SAPlineasDB.filter(
       (SAPlineasDB) => {
         let lineaSAP = SAPlineasDB["Equipo"].split("-")[1];
-       if (SAPlineasDB["Código valorac."] === "PINT" && lineaDB === lineaSAP &&  year === SAPlineasDB["Fecha"].slice(6, 10)) {
+        if (
+          SAPlineasDB["Código valorac."] === "PINT" &&
+          lineaDB === lineaSAP &&
+          year === SAPlineasDB["Fecha"].slice(6, 10)
+        ) {
           return true;
         } else {
           return false;
@@ -49,14 +57,26 @@ function filterLines(year) {
       }
     ).length);
   });
-  
+
   zones.map((zones) => {
     return (zones["Line"] = lineasDB.filter((lineasDB) => {
       return lineasDB["Zona"] + "1" === zones["Grupo planif."];
     }));
   });
-  let lineasDBflitrada = zones;
-  console.log(lineasDBflitrada)
-  return lineasDBflitrada;
+
+  zones.map((zones) => {
+    //console.log(zones.Line[0]["Ejecutado Minuciosa"])
+    zones["Anual Ejecutado Minuciosa"] = zones["Line"].reduce((total, obj) => obj["Ejecutado Minuciosa"] + total,0);
+    zones["Anual Ejecutado Terrestre"] = zones["Line"].reduce((total, obj) => obj["Ejecutado Terrestre"] + total,0);
+    zones["Anual Previsto Minuciosa"] = Math.round((zones["Line"].reduce((total, obj) => obj["Torres Cantidad"] + total,0))/4);
+    zones["Anual Previsto Terrestre"] = Math.round((zones["Line"].reduce((total, obj) => obj["Torres Cantidad"] + total,0))/0.5);
+    zones["Mensual Ejecutado Minuciosa"] = "clao";
+    zones["Mensual Ejecutado Terrestre"] = "clao";
+    zones["Mensual Previsto Minuciosa"] = "clao";
+    zones["Mensual Previsto Terrestre"] = "clao";
+  });
+
+  console.log(zones);
+  return zones;
 }
 export default filterLines;
