@@ -56,7 +56,7 @@ function SectionMultiBarContainer(props) {
   const title = props.title;
   const description = props.description;
   const detail = props.detail;
-  const lineas = filterLines(year1);
+  const lineas = filterLines(year, month);
   let dataPie = lineas
   let dataBar = lineas
   //console.log("Lineas", lineas);

@@ -99,7 +99,9 @@ function ResponsiveDrawer(props) {
           component={Link}
           to="dashmant/zonas/ZN"
         >
+          <ListItemIcon>{<TableRowsIcon />}</ListItemIcon>
           <ListItemText primary="Zona Norte" />
+          
         </ListItem>
         <ListItem
           button

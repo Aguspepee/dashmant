@@ -45,7 +45,7 @@ function MultiBarChartCard(props) {
 
   const year = props.year;
 
-  const detail = "Ejecutado "+props.detail;
+  const detail = "Ejecutado "+props.detail+" Anual";
   //const lineas = filterLines(year);
   const lineas = props.lineas;
   let actividad = props.actividad;

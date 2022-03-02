@@ -67,7 +67,7 @@ function General() {
         activity="MUA"
         title="Muestreos de Aceite"
         description="Extracciones de Aceite"
-        bar="false"
+        bar="true"
         filters={{
           filterByIng: true,
           filterByMuesAceite: true,

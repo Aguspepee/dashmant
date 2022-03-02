@@ -31,16 +31,22 @@ let day = Math.floor(diff / oneDay);
 function MiniLinePieCard(props) {
   let bar = props.bar;
   let barra;
-  let detail = props.detail
+  let detail = props.detail;
 
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
- //Esta data está filtada por año
+  //Esta data está filtada por año
   //Se obtienen los labels
-  let labels = ["Ejecutado","Previsto"];
+  let labels = ["Ejecutado", "Previsto"];
   //Se obtienen los datos
-  let quantity = [dataList["Anual Ejecutado "+detail ],dataList["Anual Previsto "+detail ]];
-  
-  let percentaje = Math.round((dataList["Anual Ejecutado "+detail ] * 100) / dataList["Anual Previsto "+detail ]);
+  let quantity = [
+    dataList["Mensual Ejecutado " + detail],
+    dataList["Mensual Previsto " + detail],
+  ];
+
+  let percentaje = Math.round(
+    (dataList["Mensual Ejecutado " + detail] * 100) /
+      dataList["Mensual Previsto " + detail]
+  );
 
   //Se inicializa el gráfico
   const data = {
@@ -62,8 +68,9 @@ function MiniLinePieCard(props) {
     }
   });
 
- 
-  let percentajeBar = (dataList["Anual Ejecutado "+detail ] * 100) / dataList["Anual Previsto "+detail ];
+  let percentajeBar =
+    (dataList["Anual Ejecutado " + detail] * 100) /
+    dataList["Anual Previsto " + detail];
   percentajeNow = (day * 100) / 365;
 
   if (bar === "true") {
@@ -96,7 +103,7 @@ function MiniLinePieCard(props) {
           component="div"
           style={{ paddingBottom: "0px", fontSize: "0.7em" }}
         >
-          PROGRAMADAS: {dataList["Anual Previsto "+detail ]}
+          PROGRAMADAS: {dataList["Anual Previsto " + detail]}
         </Typography>
         <Typography
           variant="caption"
@@ -104,9 +111,8 @@ function MiniLinePieCard(props) {
           component="div"
           style={{ paddingBottom: "0px", fontSize: "0.7em" }}
         >
-          INTERVENIDAS: {dataList["Anual Ejecutado "+detail ]}
+          INTERVENIDAS: {dataList["Anual Ejecutado " + detail]}
         </Typography>
-
         <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
           {Math.round(percentajeBar)}%
         </Typography>
@@ -114,7 +120,7 @@ function MiniLinePieCard(props) {
           variant="body2"
           color="text.primary"
           component="div"
-          style={{ fontSize: "0.9em" , paddingBottom:"10px"}}
+          style={{ fontSize: "0.9em", paddingBottom: "10px" }}
         >
           EJECUTADO
         </Typography>
@@ -160,7 +166,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PROGRAMADAS: {dataList["Anual Previsto "+detail ]}
+            PROGRAMADAS: {dataList["Mensual Previsto " + detail]}
           </Typography>
           <Typography
             variant="caption"
@@ -168,7 +174,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS: {dataList["Anual Ejecutado "+detail ]}
+            INTERVENIDAS: {dataList["Mensual Ejecutado " + detail]}
           </Typography>
 
           <Typography

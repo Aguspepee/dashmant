@@ -95,7 +95,7 @@ function VerticalBarCard(props) {
     let ejecutado = []
     let previsto = []
     let factor = props.factor
-    dataLines.map((dataLines, index) => { labels[index] = dataLines["Código"] })
+    dataLines.map((dataLines, index) => { labels[index] = dataLines["Codigo Tension"]+"-"+dataLines["Código"] })
     dataLines.map((dataLines, index) => { ejecutado[index] = dataLines[detail] })
     dataLines.map((dataLines, index) => { previsto[index] = Math.round(dataLines["Torres Cantidad"] * factor - dataLines[detail]) })
     //console.log(detail,":",ejecutado)
