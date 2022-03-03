@@ -1,7 +1,8 @@
 import "./App.css";
 import OffCanvasMenu from "./Components/User/OffCanvasMenu";
 import General from "./Pages/General";
-import Zona from "./Pages/Zona";
+import ETS from "./Pages/ETS";
+import LATS from "./Pages/LATS";
 import { Box } from "@mui/system";
 import Toolbar from "@mui/material/Toolbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -23,7 +24,7 @@ function App() {
           }}
         >
           <BrowserRouter>
-            <OffCanvasMenu></OffCanvasMenu>;
+            <OffCanvasMenu></OffCanvasMenu>
             <Box
               component="main"
               sx={{
@@ -32,13 +33,13 @@ function App() {
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
               }}
             >
-              <Toolbar />
+              {/* <Toolbar /> */}
 
               <Routes>
                 <Route path="dashmant/" element={<General />} />
                 <Route path="dashmant/general" element={<General />} />
-                <Route path="dashmant/zonas" element={<Zona />} />
-                <Route path="dashmant/DataBase" element={<Tablas />} />
+                <Route path="dashmant/ETS" element={<ETS />} />
+                <Route path="dashmant/LATS" element={<LATS />} />
               </Routes>
             </Box>
           </BrowserRouter>

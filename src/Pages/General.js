@@ -6,21 +6,15 @@ const SectionMultiBarContainer = React.lazy(() =>
   import("../Components/Containers/SectionMultiBarContainer")
 );
 
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
+
 function General() {
-  useEffect(()=>{
-   
-  })
-  
-  const scrollToDiv = (ref) => window.scrollTo(0,5000);
-  const click = () => scrollToDiv(el2)
-  const el1 = useRef();
-  const el2 = useRef();
-
-
+  const myRef = useRef(null)
+  const executeScroll = () => scrollToRef(myRef)
   return (
     <>
     <div>
-    <button onClick={click}></button>
+    <button style={{position:"fixed"}} onClick={executeScroll}></button>
   </div>
       <h1>Estaciones Transformadoras</h1>
 
@@ -35,7 +29,7 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: true,
         }}
-        //id="div1"
+        
       ></SectionMultiPieContainer>
 
       <SectionMultiNumContainer
@@ -61,21 +55,12 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: false,
         }}
+        
       ></SectionMultiPieContainer>
+<div ref={myRef}>
 
-      <SectionMultiPieContainer
-        activity="MUA"
-        title="Muestreos de Aceite"
-        description="Extracciones de Aceite"
-        bar="true"
-        filters={{
-          filterByIng: true,
-          filterByMuesAceite: true,
-          filterByProtecciones: true,
-          deleteDuplicates: false,
-        }}
-        reference={el1}
-      ></SectionMultiPieContainer>
+</div>
+      
       <SectionDistributionContainer
         activity="MCP"
         title="Distribución de actividades"
@@ -88,7 +73,7 @@ function General() {
         }}
       ></SectionDistributionContainer>
 
-      <h1 reference={el1}>Líneas de Alta Tensión</h1>
+      {/* <h1>Líneas de Alta Tensión</h1>
       <div>
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer
@@ -96,10 +81,11 @@ function General() {
             title="Inspección Minuciosa"
             description="Piquetes"
             detail="Minuciosa"
+            
           ></SectionMultiBarContainer>
         </Suspense>
       </div>
-      <div>
+      <div >
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer
             activity="PINT"
@@ -108,7 +94,7 @@ function General() {
             detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
-      </div>
+      </div> */}
     </>
   );
 }

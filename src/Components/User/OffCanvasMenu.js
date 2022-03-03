@@ -20,6 +20,8 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterContext from "../../Context/FilterContext";
 import { useEffect, useContext } from "react";
 import TableRowsIcon from "@mui/icons-material/TableRows";
+import Logo from '../../Images/transpa.png'
+import ListSubheader from '@mui/material/ListSubheader';
 
 const drawerWidth = 240;
 /* const months = [
@@ -83,7 +85,7 @@ function ResponsiveDrawer(props) {
   };
   const drawer = (
     <div>
-      <List>
+      {/*  <List>
         {["General"].map((text) => (
           <ListItem button key={text} component={Link} to="dashmant/general">
             <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
@@ -91,41 +93,31 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider /> */}
       <List>
+        <img src={Logo} style={{ width: "80%", padding: "15px,15px,15px,15px" }} alt="fireSpot" />
+        <Divider />
+        <ListSubheader component="div" id="nested-list-subheader">
+          Dashboard
+        </ListSubheader>
         <ListItem
           button
-          key="Zona Norte"
+          key="Estaciones Transformadoras"
           component={Link}
-          to="dashmant/zonas/ZN"
+          to="dashmant/ETS"
         >
-          <ListItemIcon>{<TableRowsIcon />}</ListItemIcon>
-          <ListItemText primary="Zona Norte" />
-          
+          <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
+          <ListItemText primary="ETs" />
         </ListItem>
+
         <ListItem
           button
-          key="Zona Sur"
+          key="Líneas de Alta Tensión"
           component={Link}
-          to="dashmant/zonas/ZS"
+          to="dashmant/LATS"
         >
-          <ListItemText primary="Zona Sur" />
-        </ListItem>
-        <ListItem
-          button
-          key="Zona Oeste"
-          component={Link}
-          to="dashmant/zonas/ZO"
-        >
-          <ListItemText primary="Zona Oeste" />
-        </ListItem>
-        <ListItem
-          button
-          key="Zona Austral"
-          component={Link}
-          to="dashmant/zonas/ZA"
-        >
-          <ListItemText primary="Zona Austral" />
+          <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
+          <ListItemText primary="LATs" />
         </ListItem>
       </List>
       <Divider />
@@ -155,7 +147,7 @@ function ResponsiveDrawer(props) {
           />
         </ListItem>
       </List>
-      <Divider />
+      {/* <Divider />
       <List>
         {["Cargar"].map((text, index) => (
           <ListItem button key={text}>
@@ -178,7 +170,7 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider /> */}
     </div>
   );
 
@@ -194,7 +186,7 @@ function ResponsiveDrawer(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
-        style={{ backgroundColor: "gray", boxShadow: "" }}
+        style={{ backgroundColor: "gray", boxShadow: "rgba(0, 0, 0, 0) 0px 3px 8px", zIndex: "1" }}
       >
         <Toolbar style={{ backgroundColor: "white" }}>
           <IconButton
@@ -234,7 +226,7 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+              boxShadow: "rgba(0, 0, 0, 0) 0px 3px 8px",
             },
           }}
         >
@@ -247,7 +239,7 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+              boxShadow: "rgba(0, 0, 0, 0) 0px 3px 8px",
             },
           }}
           open
