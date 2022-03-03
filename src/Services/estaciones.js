@@ -96,7 +96,8 @@ function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcu
         }
         return acc;
       }, []);
-
+      console.log(zones[j])
+console.log("Filter",data_filter)
       //Si está activado el borrador de duplicados, saca el largo de la matriz con
       //los duplicados eliminados
       if (deleteDuplicates === true) {

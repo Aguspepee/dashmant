@@ -38,8 +38,8 @@ function App() {
               <Routes>
                 <Route path="dashmant/" element={<General />} />
                 <Route path="dashmant/general" element={<General />} />
-                <Route path="dashmant/ETS" element={<ETS />} />
-                <Route path="dashmant/LATS" element={<LATS />} />
+                <Route path="dashmant/:id" element={<ETS />} />
+                
               </Routes>
             </Box>
           </BrowserRouter>

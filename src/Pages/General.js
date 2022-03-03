@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect} from "react";
+import React, { Suspense, useRef, useEffect } from "react";
 import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
@@ -6,16 +6,16 @@ const SectionMultiBarContainer = React.lazy(() =>
   import("../Components/Containers/SectionMultiBarContainer")
 );
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
 function General() {
-  const myRef = useRef(null)
-  const executeScroll = () => scrollToRef(myRef)
+  const myRef = useRef(null);
+  const executeScroll = () => scrollToRef(myRef);
   return (
     <>
-    <div>
-    <button style={{position:"fixed"}} onClick={executeScroll}></button>
-  </div>
+      <div>
+        <button style={{ position: "fixed" }} onClick={executeScroll}></button>
+      </div>
       <h1>Estaciones Transformadoras</h1>
 
       <SectionMultiPieContainer
@@ -29,7 +29,6 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: true,
         }}
-        
       ></SectionMultiPieContainer>
 
       <SectionMultiNumContainer
@@ -55,12 +54,19 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: false,
         }}
-        
       ></SectionMultiPieContainer>
-<div ref={myRef}>
-
-</div>
-      
+       <SectionMultiPieContainer
+        activity="MUA"
+        title="Muestreos de Aceite"
+        description="Extracciones de Aceite"
+        bar="true"
+        filters={{
+          filterByIng: true,
+          filterByMuesAceite: true,
+          filterByProtecciones: true,
+          deleteDuplicates: false,
+        }}
+      ></SectionMultiPieContainer>
       <SectionDistributionContainer
         activity="MCP"
         title="Distribución de actividades"
@@ -73,7 +79,7 @@ function General() {
         }}
       ></SectionDistributionContainer>
 
-      {/* <h1>Líneas de Alta Tensión</h1>
+      <h1>Líneas de Alta Tensión</h1>
       <div>
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer
@@ -81,11 +87,10 @@ function General() {
             title="Inspección Minuciosa"
             description="Piquetes"
             detail="Minuciosa"
-            
           ></SectionMultiBarContainer>
         </Suspense>
       </div>
-      <div >
+      <div>
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer
             activity="PINT"
@@ -94,7 +99,7 @@ function General() {
             detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
-      </div> */}
+      </div>
     </>
   );
 }

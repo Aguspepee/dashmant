@@ -69,6 +69,7 @@ function SectionMultiPieContainer(props) {
   calcularAcumulado = true;
   let dataBar = filterData(activity, dataRealYear, dataProgYear, filters, calcularAcumulado);
   //console.log("BAR",dataBar)
+  console.log(activity)
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
