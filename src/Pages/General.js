@@ -55,6 +55,7 @@ function General() {
           deleteDuplicates: false,
         }}
       ></SectionMultiPieContainer>
+
        <SectionMultiPieContainer
         activity="MUA"
         title="Muestreos de Aceite"
@@ -67,6 +68,7 @@ function General() {
           deleteDuplicates: false,
         }}
       ></SectionMultiPieContainer>
+
       <SectionDistributionContainer
         activity="MCP"
         title="Distribución de actividades"
@@ -90,6 +92,7 @@ function General() {
           ></SectionMultiBarContainer>
         </Suspense>
       </div>
+      
       <div>
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer
@@ -99,6 +102,7 @@ function General() {
             detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
+
       </div>
     </>
   );

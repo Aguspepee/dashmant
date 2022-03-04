@@ -37,8 +37,6 @@ function Zonas() {
           }}
         ></SectionBigPieContainer>
 
-        
-
         <SectionBigPieContainer
           activity="RSP"
           title="Seguridad Pública"
@@ -52,6 +50,7 @@ function Zonas() {
             deleteDuplicates: false,
           }}
         ></SectionBigPieContainer>
+
         <SectionBigPieContainer
           activity="MUA"
           title="Muestreos de Aceite"
@@ -65,6 +64,7 @@ function Zonas() {
             deleteDuplicates: false,
           }}
         ></SectionBigPieContainer>
+
         <SectionBigDistributionContainer
           activity="MCP"
           title="Distribución de actividades"
@@ -77,6 +77,7 @@ function Zonas() {
             deleteDuplicates: false,
           }}
         ></SectionBigDistributionContainer>
+        
         <SectionBigPieContainer
           activity="MCP"
           title="Mantenimiento Correctivo de Equipos"

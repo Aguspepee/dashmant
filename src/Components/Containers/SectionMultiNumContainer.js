@@ -42,9 +42,9 @@ function SectionMultiNumContainer(props) {
 
   //Hacer que sea un estado
   let calcularAcumulado = true;
-  const data = filterData(activity, dataProgMonth, filters, calcularAcumulado);
-  //console.log(data)
-  //console.log("correctivas",data)
+  const data = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
+  
+  console.log("correctivas",data)
 
   return (
     <>
