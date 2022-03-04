@@ -119,7 +119,7 @@ function filterLines(year, month) {
     );
   });
 
-  console.log(zones);
+  //console.log(zones);
   return zones;
 }
 export default filterLines;

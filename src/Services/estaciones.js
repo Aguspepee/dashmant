@@ -48,11 +48,17 @@ const zones = [
   },
 ];
 
-let DatosDiario
-let DatosMensual
-let FrecAcum
+let DatosDiario;
+let DatosMensual;
+let FrecAcum;
 
-function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado) {
+function filterData(
+  activity,
+  dataRealMonth,
+  dataProgMonth,
+  filters,
+  calcularAcumulado
+) {
   let data = dataRealMonth;
   let cantidad; //Cantidad de OT's que comple una o varias condiciones
   const {
@@ -71,7 +77,7 @@ function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcu
       (!data["Pto.tbjo.resp."].includes("PROT") ||
         filterByProtecciones === false) //Elimina los que tienen la palabra "PROT" (Protecciones)
   );
-  
+
   let pieChartData = [];
   let listValues = [];
   for (let j = 0; j < zones.length; j++) {
@@ -84,7 +90,7 @@ function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcu
           data["Status usuario"] === filterRPM[i]["Status usuario"] &&
           data["Grupo planif."] === zones[j]["Grupo planif."]
       );
-      
+
       //FILTRO ELIMINADOR DE REPETIDOS
       //Elimina los repetidos. Borra filas e información, pero en este punto no es
       //importante, por que se requiere solo la cantidad
@@ -96,8 +102,8 @@ function filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcu
         }
         return acc;
       }, []);
-      console.log(zones[j])
-console.log("Filter",data_filter)
+      // console.log(zones[j])
+      //console.log("Filter",data_filter)
       //Si está activado el borrador de duplicados, saca el largo de la matriz con
       //los duplicados eliminados
       if (deleteDuplicates === true) {
@@ -113,13 +119,13 @@ console.log("Filter",data_filter)
         Cantidad: cantidad,
       };
 
-      if (calcularAcumulado ){
-        DatosDiario = FrecuenciaAcumulado(data_filter)
-        
-        DatosMensual = "hola"
-      }else{
-        DatosDiario = "Diario"
-        DatosMensual = "Mensual"
+      if (calcularAcumulado) {
+        DatosDiario = FrecuenciaAcumulado(data_filter);
+
+        DatosMensual = "hola";
+      } else {
+        DatosDiario = "Diario";
+        DatosMensual = "Mensual";
       }
     }
 
@@ -132,7 +138,7 @@ console.log("Filter",data_filter)
       Lista: listValues,
     };
   }
-//console.log("data",pieChartData)
+  //console.log("data",pieChartData)
   return pieChartData;
 }
 export default filterData;

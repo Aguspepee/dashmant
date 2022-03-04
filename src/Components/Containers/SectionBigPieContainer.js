@@ -54,6 +54,7 @@ function SectionMultiPieContainer(props) {
   const bar = props.bar;
   const filters = props.filters;
   const description = props.description;
+  const zone = props.zone;
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -65,15 +66,15 @@ function SectionMultiPieContainer(props) {
 
   let calcularAcumulado = false;
   let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
-  //console.log("PIE",dataPie)
+  dataPie = dataPie.filter((dataPie)=>{return(dataPie.Zona===zone)});
   calcularAcumulado = true;
   let dataBar = filterData(activity, dataRealYear, dataProgYear, filters, calcularAcumulado);
   //console.log("BAR",dataBar)
-  //console.log(activity)
+ // console.log(activity)
   return (
     <>
-      <div style={{ padding: "0em 0em 1em 0em" }}>
-        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+      <div style={{ padding: "1em 1em 1em 1em"  }}>
+        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }} >
           <CardContent>
             <CardHeader
               action={
@@ -84,9 +85,9 @@ function SectionMultiPieContainer(props) {
               title={title}
               subheader={description}
             />
-            <div className="gridpie">
+            <div className="singlepie" >
               {dataPie.map((dataPie, index) => (
-                <div className="grid-column" key={dataPie.Zona}>
+                <div className="grid-column" key={dataPie.Zona} >
                   <MiniPieChartCart
                     dataPie={dataPie}
                     dataBar={dataBar[index]}
@@ -108,7 +109,7 @@ function SectionMultiPieContainer(props) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <div className="gridpie">
+              <div className="singlepie">
                 {dataPie.map((dataPie, index) => (
                   <div className="grid-column" key={dataPie.Zona}>
                     <ListTableCard

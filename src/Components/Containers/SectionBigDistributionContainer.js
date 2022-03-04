@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useContext } from "react";
-import MiniPieChartCart from "../Cards/MiniPieChartCard";
+import MiniDistributionCard from "../Cards/MiniDistributionCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -8,12 +8,11 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
-import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import FilterContext from "../../Context/FilterContext";
+import hoursCalc from "../../Services/hoursCalc";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -26,7 +25,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function SectionMultiPieContainer(props) {
+function SectionDistributionContainer(props) {
   const [
     filterDataProgByDate,
     filterDataRealByDate,
@@ -51,9 +50,9 @@ function SectionMultiPieContainer(props) {
   const [expanded, setExpanded] = React.useState(false);
   const activity = props.activity;
   const title = props.title;
-  const bar = props.bar;
   const filters = props.filters;
   const description = props.description;
+  const zone = props.zone;
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -63,17 +62,18 @@ function SectionMultiPieContainer(props) {
     filterDataRealByDate();
   }, [dataBaseEstaciones, month, year]);
 
-  let calcularAcumulado = false;
-  let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
+  //let calcularAcumulado = false;
+  //let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
+  let dataPie = hoursCalc(dataRealMonth);
+  dataPie = dataPie.filter((dataPie)=>{return(dataPie.Zona===zone)});
   //console.log("PIE",dataPie)
-  calcularAcumulado = true;
-  let dataBar = filterData(activity, dataRealYear, dataProgYear, filters, calcularAcumulado);
-  //console.log("BAR",dataBar)
-  //console.log(activity)
+
   return (
     <>
-      <div style={{ padding: "0em 0em 1em 0em" }}>
-        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+      <div style={{ padding: "1em 1em 1em 1em"}}>
+        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" , 
+        //backgroundColor:"rgba(0, 0, 0, 0.0)"
+        }}>
           <CardContent>
             <CardHeader
               action={
@@ -84,14 +84,12 @@ function SectionMultiPieContainer(props) {
               title={title}
               subheader={description}
             />
-            <div className="gridpie">
+            <div className="singlepie" >
               {dataPie.map((dataPie, index) => (
                 <div className="grid-column" key={dataPie.Zona}>
-                  <MiniPieChartCart
+                  <MiniDistributionCard
                     dataPie={dataPie}
-                    dataBar={dataBar[index]}
-                    bar={bar}
-                  ></MiniPieChartCart>
+                  ></MiniDistributionCard>
                 </div>
               ))}
             </div>
@@ -108,13 +106,9 @@ function SectionMultiPieContainer(props) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <div className="gridpie">
+              <div className="singlepie">
                 {dataPie.map((dataPie, index) => (
                   <div className="grid-column" key={dataPie.Zona}>
-                    <ListTableCard
-                      data={dataPie}
-                      dataBar={dataBar[index]}
-                    ></ListTableCard>
                   </div>
                 ))}
               </div>
@@ -125,4 +119,4 @@ function SectionMultiPieContainer(props) {
     </>
   );
 }
-export default SectionMultiPieContainer;
+export default SectionDistributionContainer;
