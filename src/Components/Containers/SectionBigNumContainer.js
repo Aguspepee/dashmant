@@ -1,5 +1,5 @@
 import React from "react";
-import MiniNumberCard from "../Cards/MiniNumberCard";
+import BigNumberCard from "../Cards/MiniNumberCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -10,7 +10,7 @@ import CardHeader from "@mui/material/CardHeader";
 import { useEffect, useContext } from "react";
 import FilterContext from "../../Context/FilterContext";
 
-function SectionMultiNumContainer(props) {
+function SectionBigNumContainer(props) {
   const [
     filterDataProgByDate,
     filterDataRealByDate,
@@ -35,6 +35,7 @@ function SectionMultiNumContainer(props) {
   const title = props.title;
   const description = props.description;
   const filters = props.filters;
+  const zone = props.zone;
 
   useEffect(() => {
     filterDataRealByDate();
@@ -42,13 +43,12 @@ function SectionMultiNumContainer(props) {
 
   //Hacer que sea un estado
   let calcularAcumulado = true;
-  const data = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
-  
-  //console.log("correctivas",data)
+  let data = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
+  data = data.filter((data)=>{return(data.Zona===zone)});
 
   return (
     <>
-      <div style={{ padding: "0em 0em 1em 0em" }}>
+      <div style={{ padding: "1em 1em 1em 1em"}}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
           <CardContent>
             <CardHeader
@@ -60,10 +60,10 @@ function SectionMultiNumContainer(props) {
               title={title}
               subheader={description}
             />
-            <div className="gridnumber">
+            <div className="gridnumber" style={{alignItems:"center",justifyItems: "center"}}>
               {data.map((data) => (
-                <div className="grid-column" key={data.Zona}>
-                  <MiniNumberCard data={data}></MiniNumberCard>
+                <div className="grid-column" key={data.Zona} style={{alignItems:"center",justifyItems: "center"}}>
+                  <BigNumberCard data={data}></BigNumberCard>
                 </div>
               ))}
             </div>
@@ -73,4 +73,4 @@ function SectionMultiNumContainer(props) {
     </>
   );
 }
-export default SectionMultiNumContainer;
+export default SectionBigNumContainer;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useContext } from "react";
-import MiniPieChartCart from "../Cards/MiniPieChartCard";
+import BigPieChartCart from "../Cards/BigPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -65,18 +65,33 @@ function SectionMultiPieContainer(props) {
   }, [dataBaseEstaciones, month, year]);
 
   let calcularAcumulado = false;
-  let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
-  dataPie = dataPie.filter((dataPie)=>{return(dataPie.Zona===zone)});
+  let dataPie = filterData(
+    activity,
+    dataRealMonth,
+    dataProgMonth,
+    filters,
+    calcularAcumulado
+  );
+  dataPie = dataPie.filter((dataPie) => {
+    return dataPie.Zona === zone;
+  });
   calcularAcumulado = true;
-  let dataBar = filterData(activity, dataRealYear, dataProgYear, filters, calcularAcumulado);
+  let dataBar = filterData(
+    activity,
+    dataRealYear,
+    dataProgYear,
+    filters,
+    calcularAcumulado
+  );
   //console.log("BAR",dataBar)
- // console.log(activity)
+  // console.log(activity)
   return (
     <>
-      <div style={{ padding: "1em 1em 1em 1em"  }}>
-        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }} >
+      <div style={{ padding: "1em 1em 1em 1em" }}>
+        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
           <CardContent>
             <CardHeader
+              style={{ height: "120px" }}
               action={
                 <IconButton aria-label="settings" onClick={handleExpandClick1}>
                   <MoreVertIcon />
@@ -85,14 +100,14 @@ function SectionMultiPieContainer(props) {
               title={title}
               subheader={description}
             />
-            <div className="singlepie" >
+            <div className="singlepie">
               {dataPie.map((dataPie, index) => (
-                <div className="grid-column" key={dataPie.Zona} >
-                  <MiniPieChartCart
+                <div className="grid-column" key={dataPie.Zona}>
+                  <BigPieChartCart
                     dataPie={dataPie}
                     dataBar={dataBar[index]}
                     bar={bar}
-                  ></MiniPieChartCart>
+                  ></BigPieChartCart>
                 </div>
               ))}
             </div>

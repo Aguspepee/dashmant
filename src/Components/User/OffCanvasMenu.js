@@ -120,7 +120,7 @@ function ResponsiveDrawer(props) {
         >
           <ListItemText primary="Zona Sur" />
         </ListItem>
-        
+
         <ListItem
           button
           key="Zona Oeste"
@@ -129,7 +129,7 @@ function ResponsiveDrawer(props) {
         >
           <ListItemText primary="Zona Oste" />
         </ListItem>
-        
+
         <ListItem
           button
           key="Zona Austral"
@@ -138,8 +138,6 @@ function ResponsiveDrawer(props) {
         >
           <ListItemText primary="Zona Austral" />
         </ListItem>
-        
-       
       </List>
       <Divider />
       <List>
@@ -167,16 +165,16 @@ function ResponsiveDrawer(props) {
           />
         </ListItem>
       </List>
-      {/* <Divider />
+      <Divider />
       <List>
         {["Cargar"].map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem button key={text} component={Link} to="dashmant/Upload">
             <ListItemIcon>{<CloudUploadIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
-
+      {/* 
       <List>
         {["Base de Datos"].map((text, index) => (
           <ListItem

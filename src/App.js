@@ -7,12 +7,20 @@ import { Box } from "@mui/system";
 //import Toolbar from "@mui/material/Toolbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FilterProvider from "./Context/FilterProvider";
+import Upload from "./Pages/Upload";
 //import FrecuenciaAcumulado from "../src/Services/graficos";
 //import Tablas from "./Pages/Tablas";
 import Zonas from "./Pages/Zonas";
 
 const drawerWidth = 240;
+
+
 function App() {
+  fetch('http://localhost:9000/saps/')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+  
   return (
     <>
       <FilterProvider>
@@ -40,6 +48,7 @@ function App() {
                 <Route path="dashmant/" element={<General />} />
                 <Route path="dashmant/general" element={<General />} />
                 <Route path="dashmant/zonas/:id" element={<Zonas params/>} />
+                <Route path="dashmant/Upload" element={<Upload />} />
                 <Route path="dashmant/ETS" element={<ETS />} />
                 
               </Routes>

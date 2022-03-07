@@ -43,6 +43,10 @@ export default function BasicTable(props) {
         {dataList.ZonaNombre}
       </Typography>
       
+      
+      <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
+      <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
+      <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -64,9 +68,6 @@ export default function BasicTable(props) {
           ))}
         </TableBody>
       </Table>
-      <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
-      <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
-      <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
     </TableContainer>
   );
 }

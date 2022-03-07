@@ -31,8 +31,7 @@ let day = Math.floor(diff / oneDay);
 function BigPieChartCard(props) {
   let bar = props.bar;
   let barra;
-  let zone = porps.zone;
-  console.log("Zonita",zone)
+  let zone = props.zone;
 
   const dataList = props.dataPie; //Esta data está filtrada por mes y por año
   const dataBar = props.dataBar; //Esta data está filtada por año
@@ -155,7 +154,7 @@ function BigPieChartCard(props) {
 
   return (
     <>
-      <Typography
+{/*       <Typography
         variant="button"
         color="text.primary"
         component="div"
@@ -166,7 +165,7 @@ function BigPieChartCard(props) {
         }}
       >
         {dataList.ZonaNombre}
-      </Typography>
+      </Typography> */}
       <Divider light style={{ width: "100%" }} />
       <Card
         sx={{

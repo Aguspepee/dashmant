@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useContext } from "react";
-import MiniDistributionCard from "../Cards/MiniDistributionCard";
+import BigDistributionCard from "../Cards/BigDistributionCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -76,20 +76,24 @@ function SectionDistributionContainer(props) {
         }}>
           <CardContent>
             <CardHeader
+            style={{height:"120px"}}
               action={
-                <IconButton aria-label="settings" onClick={handleExpandClick1}>
+                <IconButton aria-label="settings" onClick={handleExpandClick1}
+                  
+                  >
                   <MoreVertIcon />
                 </IconButton>
               }
               title={title}
               subheader={description}
+              
             />
             <div className="singlepie" >
               {dataPie.map((dataPie, index) => (
                 <div className="grid-column" key={dataPie.Zona}>
-                  <MiniDistributionCard
+                  <BigDistributionCard
                     dataPie={dataPie}
-                  ></MiniDistributionCard>
+                  ></BigDistributionCard>
                 </div>
               ))}
             </div>

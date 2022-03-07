@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+//import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
@@ -23,7 +23,6 @@ export const options = {
   },
 };
 
-let percentajeNow;
 //Cálculo de día del año
 let now = new Date();
 let start = new Date(now.getFullYear(), 0, 0);
@@ -127,7 +126,7 @@ function BigDistributionCard(props) {
 
   return (
     <>
-      <Typography
+{/*       <Typography
         variant="button"
         color="text.primary"
         component="div"
@@ -138,7 +137,7 @@ function BigDistributionCard(props) {
         }}
       >
         {dataList.Nombre}
-      </Typography>
+      </Typography> */}
       <Divider light style={{ width: "100%" }} />
       <Card
         sx={{

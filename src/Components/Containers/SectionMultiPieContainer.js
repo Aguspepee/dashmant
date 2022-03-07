@@ -83,6 +83,7 @@ function SectionMultiPieContainer(props) {
               }
               title={title}
               subheader={description}
+              style={{height:"50px"}}
             />
             <div className="gridpie">
               {dataPie.map((dataPie, index) => (

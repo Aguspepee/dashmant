@@ -34,7 +34,7 @@ function General() {
       <SectionMultiNumContainer
         activity="MCP"
         title="Mantenimiento Correctivo de Equipos"
-        description="Candidad de intervenciones"
+        description="Cantidad de intervenciones"
         filters={{
           filterByIng: false,
           filterByMuesAceite: false,

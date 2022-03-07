@@ -102,17 +102,7 @@ function SectionBigBarContainer(props) {
               </div>
             </div>
 
-            <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
-              <ExpandMore
-                expand={expanded}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="show more"
-              >
-                <ExpandMoreIcon />
-              </ExpandMore>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            
               <CardContent>
                 <div className="grid5f">
                   {lineas.map((lineas, index) => (
@@ -126,7 +116,7 @@ function SectionBigBarContainer(props) {
                   ))}
                 </div>
               </CardContent>
-            </Collapse>
+           
           </CardContent>
         </Card>
       </div>
