@@ -11,6 +11,10 @@ const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 function General() {
   const myRef = useRef(null);
   const executeScroll = () => scrollToRef(myRef);
+  const Month = "2022";
+  const Year = "01";
+  const Operacion = "0010";
+  
   return (
     <>
       <div>
@@ -29,6 +33,13 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: true,
         }}
+        Month={Month}
+        Year={Year}
+        Cl_actividad_PM="RPM"
+        Clase_de_orden="ZTPL"
+        Texto_breve=""
+        Pto_tbjo_resp=""
+        Operacion={Operacion}
       ></SectionMultiPieContainer>
 
       <SectionMultiNumContainer
@@ -41,6 +52,12 @@ function General() {
           filterByProtecciones: false,
           deleteDuplicates: true,
         }}
+        Month={Month}
+        Year={Year}
+        Cl_actividad_PM="MCP"
+        Clase_de_orden="ZTPL"
+        Texto_breve="false"
+        Operacion={Operacion}
       ></SectionMultiNumContainer>
 
       <SectionMultiPieContainer
@@ -54,9 +71,16 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: false,
         }}
+        Month={Month}
+        Year={Year}
+        Cl_actividad_PM="RSP"
+        Clase_de_orden="ZTPL"
+        Texto_breve=""
+        Pto_tbjo_resp=""
+        Operacion={Operacion}
       ></SectionMultiPieContainer>
 
-       <SectionMultiPieContainer
+      <SectionMultiPieContainer
         activity="MUA"
         title="Muestreos de Aceite"
         description="Extracciones de Aceite"
@@ -67,6 +91,13 @@ function General() {
           filterByProtecciones: true,
           deleteDuplicates: false,
         }}
+        Month={Month}
+        Year={Year}
+        Cl_actividad_PM="MUA"
+        Clase_de_orden="ZTPL"
+        Texto_breve=""
+        Pto_tbjo_resp=""
+        Operacion={Operacion}
       ></SectionMultiPieContainer>
 
       <SectionDistributionContainer
@@ -92,7 +123,7 @@ function General() {
           ></SectionMultiBarContainer>
         </Suspense>
       </div>
-      
+
       <div>
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer
@@ -102,7 +133,6 @@ function General() {
             detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
-
       </div>
     </>
   );

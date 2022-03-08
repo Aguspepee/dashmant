@@ -14,6 +14,7 @@ import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import FilterContext from "../../Context/FilterContext";
+import axios from 'axios';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -54,6 +55,15 @@ function SectionMultiPieContainer(props) {
   const bar = props.bar;
   const filters = props.filters;
   const description = props.description;
+  const Month = props.Month;
+  const Year = props.Year;
+  const Zona = "ZS1";
+  const Cl_actividad_PM = props.Cl_actividad_PM;
+  const Clase_de_orden = props.Clase_de_orden;
+  const Pto_tbjo_resp = "ZN1 ETRA,ZN2 ETRA";
+  const Texto_breve = "false";
+ 
+  const Operacion = props.Operacion
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -63,13 +73,19 @@ function SectionMultiPieContainer(props) {
     filterDataRealByDate();
   }, [dataBaseEstaciones, month, year]);
 
+  function uploadFiles() {
+    axios.get(`http://localhost:9000/saps/filterGeneral/${Month}-${Year}-${activity}-${Cl_actividad_PM}-${Clase_de_orden}-${Zona}-${Texto_breve}-${Pto_tbjo_resp}-${Operacion}`)
+            .then(res => {
+                const ots = res.data;
+                console.log("Se cargaron los archivos", ots)
+            })
+}
+uploadFiles()
+
   let calcularAcumulado = false;
   let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
-  //console.log("PIE",dataPie)
   calcularAcumulado = true;
   let dataBar = filterData(activity, dataRealYear, dataProgYear, filters, calcularAcumulado);
-  //console.log("BAR",dataBar)
-  //console.log(activity)
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
