@@ -93,24 +93,19 @@ function ResponsiveDrawer(props) {
           alt="fireSpot"
         />
         <Divider />
-        <ListSubheader component="div" id="nested-list-subheader">
-          Dashboard
-        </ListSubheader>
-        <List>
           {["General"].map((text) => (
             <ListItem button key={text} component={Link} to="dashmant/general">
               <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
-        </List>
         <ListItem
           button
           key="Zona Norte"
           component={Link}
           to="dashmant/Zonas/ZN1"
         >
-          <ListItemText primary="Zona Norte" />
+          <ListItemText inset primary="Zona Norte" />
         </ListItem>
         <ListItem
           button
@@ -118,7 +113,7 @@ function ResponsiveDrawer(props) {
           component={Link}
           to="dashmant/Zonas/ZS1"
         >
-          <ListItemText primary="Zona Sur" />
+          <ListItemText inset primary="Zona Sur" />
         </ListItem>
 
         <ListItem
@@ -127,7 +122,7 @@ function ResponsiveDrawer(props) {
           component={Link}
           to="dashmant/Zonas/ZO1"
         >
-          <ListItemText primary="Zona Oste" />
+          <ListItemText inset primary="Zona Oste" />
         </ListItem>
 
         <ListItem
@@ -136,11 +131,11 @@ function ResponsiveDrawer(props) {
           component={Link}
           to="dashmant/Zonas/ZA1"
         >
-          <ListItemText primary="Zona Austral" />
+          <ListItemText inset primary="Zona Austral" />
         </ListItem>
-      </List>
+
       <Divider />
-      <List>
+
         <ListItem key={"Periodo Evaluado"}>
           <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
           <ListItemText primary={"Periodo Evaluado"} />
@@ -164,9 +159,8 @@ function ResponsiveDrawer(props) {
             value={year}
           />
         </ListItem>
-      </List>
+
       <Divider />
-      <List>
         {["Cargar"].map((text, index) => (
           <ListItem button key={text} component={Link} to="dashmant/Upload">
             <ListItemIcon>{<CloudUploadIcon />}</ListItemIcon>

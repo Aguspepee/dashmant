@@ -15,12 +15,7 @@ import Zonas from "./Pages/Zonas";
 const drawerWidth = 240;
 
 
-function App() {
-  fetch('http://localhost:9000/saps/')
-  .then(response => response.json())
-  .then(data => console.log(data));
-
-  
+function App() {  
   return (
     <>
       <FilterProvider>
