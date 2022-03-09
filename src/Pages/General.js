@@ -22,10 +22,10 @@ function General() {
       <h1>Estaciones Transformadoras</h1>
 
       <SectionMultiPieContainer
-        activity="RPM"
-        title="Mantenimiento Programado de Equipos"
+        Titulo="Mantenimiento Programado de Equipos"
         Descripcion="Unidades de Mantenimiento"
         Mostrar_Anual="true"
+        Anual_Forzado="true" //Si el valor del año no esta contado, sino que está hardcodeado
         Mes={Mes}
         Año={Año}
         Cl_actividad_PM="RPM"
@@ -36,7 +36,7 @@ function General() {
         BorrarDuplicados="true"
       ></SectionMultiPieContainer>
 
-     {/*  <SectionMultiNumContainer
+{/*       <SectionMultiNumContainer
         activity="MCP"
         title="Mantenimiento Correctivo de Equipos"
         description="Cantidad de intervenciones"
@@ -54,21 +54,15 @@ function General() {
         Pto_tbjo_resp="false"
         Operacion="0010"
         BorrarDuplicados="false"
-      ></SectionMultiNumContainer>
+      ></SectionMultiNumContainer> */}
 
       <SectionMultiPieContainer
-        activity="RSP"
-        title="Seguridad Pública"
-        description="Recorridas de Seguridad Pública"
-        bar="true"
-        filters={{
-          filterByIng: true,
-          filterByMuesAceite: false,
-          filterByProtecciones: true,
-          deleteDuplicates: false,
-        }}
-        Month={Month}
-        Year={Year}
+        Titulo="Seguridad Pública"
+        Descripcion="Recorridas de Seguridad Pública"
+        Mostrar_Anual="true"
+        Anual_Forzado="true"
+        Mes={Mes}
+        Año={Año}
         Cl_actividad_PM="RSP"
         Clase_de_orden="ZTPL"
         Texto_breve="false"
@@ -78,18 +72,12 @@ function General() {
       ></SectionMultiPieContainer>
 
       <SectionMultiPieContainer
-        activity="MUA"
-        title="Muestreos de Aceite"
-        description="Extracciones de Aceite"
-        bar="true"
-        filters={{
-          filterByIng: true,
-          filterByMuesAceite: true,
-          filterByProtecciones: true,
-          deleteDuplicates: false,
-        }}
-        Month={Month}
-        Year={Year}
+        Titulo="Muestreos de Aceite"
+        Descripcion="Extracciones de Aceite"
+        Mostrar_Anual="true"
+        Anual_Forzado="true"
+        Mes={Mes}
+        Año={Año}
         Cl_actividad_PM="MUA"
         Clase_de_orden="false"
         Texto_breve="Muestreo"
@@ -98,10 +86,9 @@ function General() {
         BorrarDuplicados="false"
       ></SectionMultiPieContainer>
 
-      <SectionDistributionContainer
-        activity="MCP"
+{/*       <SectionDistributionContainer
         title="Distribución de actividades"
-        description="Horas hombres utilizadas por rubro"
+        Descripcion="Horas hombres utilizadas por rubro"
         filters={{
           filterByIng: true,
           filterByMuesAceite: false,
@@ -109,8 +96,8 @@ function General() {
           deleteDuplicates: false,
         }}
 
-      ></SectionDistributionContainer>
-
+      ></SectionDistributionContainer> */}
+{/* 
       <h1>Líneas de Alta Tensión</h1>
       <div>
         <Suspense fallback={<div>Loading...</div>}>
@@ -132,7 +119,7 @@ function General() {
             detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
-      </div> */}
+      </div>  */}
     </>
   );
 }

@@ -26,8 +26,8 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
   const [expanded, setExpanded] = React.useState(false);
 
   //Titulo y subtitulo del bloque
-  const title = props.title;
-  const description = props.description;
+  const Titulo = props.Titulo;
+  const Descripcion = props.Descripcion;
 
   //Configuración y filtros
   const config = {  
@@ -73,8 +73,8 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
                   <MoreVertIcon />
                 </IconButton>
               }
-              title={title}
-              subheader={description}
+              title={Titulo}
+              subheader={Descripcion}
             />
             <div className="gridpie">
               {zonas .map((zonas , index) => (

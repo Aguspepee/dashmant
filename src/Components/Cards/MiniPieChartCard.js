@@ -38,8 +38,6 @@ function MiniPieChartCard(props) {
 
   //Setea los estados
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   //Previo a renderizar el componente se consulta la API
   useEffect(() => {
     const update = async () => {
@@ -47,7 +45,6 @@ function MiniPieChartCard(props) {
         const res = await axios.get(
           `http://localhost:9000/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
         );
-        setLoading(false);
         setList(res.data);
       } catch (e) {
         console.log(e);
@@ -57,16 +54,26 @@ function MiniPieChartCard(props) {
   }, []);
 
   let datos = list.Fecha_Referencia_Mensual;
-  console.log(datos);
-  
-  //Se obtienen los labels
+  //Se inicializan los labels y las cantidades
   let labels = ["CTEC", "EJEC", "ABIE", "CTEC CENE"];
+  let quantity = [0, 0, 0, 0]
 
-  //Se obtienen los datos
-
-  let quantity = [10,10,10,10]
-
-  console.log("cuant", quantity);
+  //Se extraen los labels
+  if (datos) {
+    quantity = labels.map((labels, index) => {
+      let cant = datos.filter((datos) => {
+        return (datos.Status === labels)
+      })[0]
+      if (cant) {
+        cant = cant.Count
+      } else {
+        cant = 0
+      }
+      return (
+        cant
+      )
+    })
+  }
 
   let percentaje = 0;
 
@@ -167,17 +174,7 @@ function MiniPieChartCard(props) {
   //Consulta a base de datos
   //console.log("MiniPieChartCard");
 
-  return (
-    <>
-      {loading && (
-        <Stack spacing={1}>
-          <Skeleton variant="text" />
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="rectangular" width={210} height={118} />
-        </Stack>
-      )}
-
-      {!loading && (
+  return (   
         <>
           <Typography
             variant="button"
@@ -259,8 +256,6 @@ function MiniPieChartCard(props) {
           {/*  {barra} */}
           <Divider light style={{ width: "90%" }} />
         </>
-      )}
-    </>
   );
 }
 
