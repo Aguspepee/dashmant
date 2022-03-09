@@ -16,6 +16,7 @@ const drawerWidth = 240;
 
 
 function App() {  
+  console.log("cargó App")
   return (
     <>
       <FilterProvider>

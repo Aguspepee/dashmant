@@ -11,10 +11,9 @@ const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 function General() {
   const myRef = useRef(null);
   const executeScroll = () => scrollToRef(myRef);
-  const Month = "01";
-  const Year = "2022";
-  const Operacion = "0010";
-  
+  const Mes = "02";
+  const Año = "2022";
+  console.log("cargó general")
   return (
     <>
       <div>
@@ -25,24 +24,19 @@ function General() {
       <SectionMultiPieContainer
         activity="RPM"
         title="Mantenimiento Programado de Equipos"
-        description="Unidades de Mantenimiento"
-        bar="true"
-        filters={{
-          filterByIng: true,
-          filterByMuesAceite: false,
-          filterByProtecciones: true,
-          deleteDuplicates: true,
-        }}
-        Month={Month}
-        Year={Year}
+        Descripcion="Unidades de Mantenimiento"
+        Mostrar_Anual="true"
+        Mes={Mes}
+        Año={Año}
         Cl_actividad_PM="RPM"
         Clase_de_orden="ZTPL"
         Texto_breve="false"
-        Pto_tbjo_resp=""
-        Operacion={Operacion}
+        Pto_tbjo_resp="ETRA"
+        Operacion="0010"
+        BorrarDuplicados="true"
       ></SectionMultiPieContainer>
 
-      <SectionMultiNumContainer
+     {/*  <SectionMultiNumContainer
         activity="MCP"
         title="Mantenimiento Correctivo de Equipos"
         description="Cantidad de intervenciones"
@@ -55,9 +49,11 @@ function General() {
         Month={Month}
         Year={Year}
         Cl_actividad_PM="MCP"
-        Clase_de_orden="ZTPL"
+        Clase_de_orden="ZTCP"
         Texto_breve="false"
-        Operacion={Operacion}
+        Pto_tbjo_resp="false"
+        Operacion="0010"
+        BorrarDuplicados="false"
       ></SectionMultiNumContainer>
 
       <SectionMultiPieContainer
@@ -76,8 +72,9 @@ function General() {
         Cl_actividad_PM="RSP"
         Clase_de_orden="ZTPL"
         Texto_breve="false"
-        Pto_tbjo_resp=""
-        Operacion={Operacion}
+        Pto_tbjo_resp="ETRA"
+        Operacion="0010"
+        BorrarDuplicados="false"
       ></SectionMultiPieContainer>
 
       <SectionMultiPieContainer
@@ -96,8 +93,9 @@ function General() {
         Cl_actividad_PM="MUA"
         Clase_de_orden="false"
         Texto_breve="Muestreo"
-        Pto_tbjo_resp=""
-        Operacion={Operacion}
+        Pto_tbjo_resp="false"
+        Operacion="0010"
+        BorrarDuplicados="false"
       ></SectionMultiPieContainer>
 
       <SectionDistributionContainer
@@ -110,6 +108,7 @@ function General() {
           filterByProtecciones: false,
           deleteDuplicates: false,
         }}
+
       ></SectionDistributionContainer>
 
       <h1>Líneas de Alta Tensión</h1>
@@ -133,7 +132,7 @@ function General() {
             detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
-      </div>
+      </div> */}
     </>
   );
 }

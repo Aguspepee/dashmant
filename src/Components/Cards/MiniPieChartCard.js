@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
+import axios from "axios";
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+//Configuración del gráfico
 export const options = {
   plugins: {
     legend: {
@@ -19,37 +21,54 @@ export const options = {
     },
   },
 };
-
 let percentajeNow;
-//Cálculo de día del año
+
+/* //Cálculo de día del año
 let now = new Date();
 let start = new Date(now.getFullYear(), 0, 0);
 let diff = now - start;
 let oneDay = 1000 * 60 * 60 * 24;
-let day = Math.floor(diff / oneDay);
+let day = Math.floor(diff / oneDay); */
 
 function MiniPieChartCard(props) {
-  let bar = props.bar;
-  let barra;
+  //Extrae las propiedades, configuración y titulos
+  const zona = props.zona;
+  const nombre = props.nombre;
+  const config = props.config;
 
-  const dataList = props.dataPie; //Esta data está filtrada por mes y por año
-  const dataBar = props.dataBar; //Esta data está filtada por año
+  //Setea los estados
+  const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  //Previo a renderizar el componente se consulta la API
+  useEffect(() => {
+    const update = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:9000/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
+        );
+        setLoading(false);
+        setList(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    update();
+  }, []);
+
+  let datos = list.Fecha_Referencia_Mensual;
+  console.log(datos);
+  
   //Se obtienen los labels
-  let labels = [];
-  for (let i = 0; i < dataList.Lista.length; i++) {
-    labels.push(dataList.Lista[i].Tipo);
-  }
-  //Se obtienen los datos
-  let quantity = [];
-  for (let i = 0; i < dataList.Lista.length; i++) {
-    quantity.push(
-      Number.isNaN(dataList.Lista[i].Cantidad)
-        ? true
-        : dataList.Lista[i].Cantidad
-    );
-  }
+  let labels = ["CTEC", "EJEC", "ABIE", "CTEC CENE"];
 
-  let percentaje;
+  //Se obtienen los datos
+
+  let quantity = [10,10,10,10]
+
+  console.log("cuant", quantity);
+
+  let percentaje = 0;
 
   if (
     !Number.isNaN(
@@ -84,18 +103,11 @@ function MiniPieChartCard(props) {
     }
   });
 
-  let chipColor;
+  //  let percentajeBar = 100
+  /*  let percentajeBar = (dataBar.Lista[0].Cantidad * 100) / dataBar.TotAnual;
+  percentajeNow = (day * 100) / 365; */
 
-  percentaje < 30
-    ? (chipColor = "error")
-    : percentaje < 75
-    ? (chipColor = "warning")
-    : (chipColor = "success");
-
-  let percentajeBar = (dataBar.Lista[0].Cantidad * 100) / dataBar.TotAnual;
-  percentajeNow = (day * 100) / 365;
-
-  if (bar === "true") {
+  /*  if (bar === "true") {
     barra = (
       <Container>
         <Typography
@@ -105,20 +117,20 @@ function MiniPieChartCard(props) {
           style={{ paddingTop: "1em", fontSize: "1.2em" }}
         >
           Anual
-        </Typography>
-        {/* <Divider light style={{ width: "37%" }} /> */}
-        <MiniBarChartCard
+        </Typography> 
+         <Divider light style={{ width: "37%" }} /> 
+         <MiniBarChartCard
           percentaje={percentajeBar}
           percentajeNow={percentajeNow}
         ></MiniBarChartCard>
-        {/* <Typography
+         <Typography
           variant="overline"
           color="text.secondary"
           component="div"
           style={{ fontSize: "0.8em" }}
         >
           {dataBar.Lista[0].Cantidad}/{dataBar.TotAnual} ud.
-        </Typography> */}
+        </Typography> 
         <Typography
           variant="caption"
           color="text.secondary"
@@ -146,91 +158,108 @@ function MiniPieChartCard(props) {
           style={{ fontSize: "0.9em" , paddingBottom:"10px"}}
         >
           EJECUTADO
-        </Typography>
+        </Typography> 
       </Container>
     );
   }
+ */
+
+  //Consulta a base de datos
+  //console.log("MiniPieChartCard");
 
   return (
     <>
-      <Typography
-        variant="button"
-        color="text.primary"
-        component="div"
-        style={{
-          fontSize: "1.4em",
-          paddingLeft: "0.8em",
-          paddingBottom: "0px",
-        }}
-      >
-        {dataList.ZonaNombre}
-      </Typography>
-      <Divider light style={{ width: "90%" }} />
-      <Card
-        sx={{
-          display: "flex",
-          border: "0px solid rgba(0, 0, 0, 0.05)",
-          boxShadow: "0px 0px 0px white",
-        }}
-      >
-        <CardContent sx={{ flex: "1 0 auto", width: "10%" }}>
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            component="div"
-            style={{ fontSize: "1.2em" }}
-          >
-            Mensual
-          </Typography>
-          <Divider light style={{ width: "90%" }} />
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
-          >
-            PROGRAMADAS: {quantity[0] + quantity[1] + quantity[2] + quantity[3]}
-          </Typography>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            component="div"
-            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
-          >
-            INTERVENIDAS: {quantity[0]}
-          </Typography>
+      {loading && (
+        <Stack spacing={1}>
+          <Skeleton variant="text" />
+          <Skeleton variant="circular" width={40} height={40} />
+          <Skeleton variant="rectangular" width={210} height={118} />
+        </Stack>
+      )}
 
+      {!loading && (
+        <>
           <Typography
-            component="div"
-            variant="h4"
-            style={{ fontSize: "2.5em" }}
-          >
-            {percentaje}%
-          </Typography>
-          <Typography
-            variant="body2"
+            variant="button"
             color="text.primary"
             component="div"
-            style={{ fontSize: "0.9em" }}
+            style={{
+              fontSize: "1.4em",
+              paddingLeft: "0.8em",
+              paddingBottom: "0px",
+            }}
           >
-            EJECUTADO
+            {nombre}
           </Typography>
-        </CardContent>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "left",
-            width: "55%",
-            alignItems: "center",
-            padding: "1em 3em 1em 1em",
-          }}
-        >
-          <Doughnut data={data} options={options} />
-        </Box>
-      </Card>
-      <Divider light style={{ width: "90%" }} />
-      {barra}
-      <Divider light style={{ width: "90%" }} />
+          <Divider light style={{ width: "90%" }} />
+          <Card
+            sx={{
+              display: "flex",
+              border: "0px solid rgba(0, 0, 0, 0.05)",
+              boxShadow: "0px 0px 0px white",
+            }}
+          >
+            <CardContent sx={{ flex: "1 0 auto", width: "10%" }}>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                component="div"
+                style={{ fontSize: "1.2em" }}
+              >
+                Mensual
+              </Typography>
+              <Divider light style={{ width: "90%" }} />
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                component="div"
+                style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+              >
+                PROGRAMADAS:{" "}
+                {quantity[0] + quantity[1] + quantity[2] + quantity[3]}
+              </Typography>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                component="div"
+                style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+              >
+                INTERVENIDAS: {quantity[0]}
+              </Typography>
+
+              <Typography
+                component="div"
+                variant="h4"
+                style={{ fontSize: "2.5em" }}
+              >
+                {percentaje}%
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.primary"
+                component="div"
+                style={{ fontSize: "0.9em" }}
+              >
+                EJECUTADO
+              </Typography>
+            </CardContent>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "left",
+                width: "55%",
+                alignItems: "center",
+                padding: "1em 3em 1em 1em",
+              }}
+            >
+              <Doughnut data={data} options={options} />
+            </Box>
+          </Card>
+          <Divider light style={{ width: "90%" }} />
+          {/*  {barra} */}
+          <Divider light style={{ width: "90%" }} />
+        </>
+      )}
     </>
   );
 }

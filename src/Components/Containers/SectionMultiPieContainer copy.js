@@ -1,11 +1,16 @@
 import React from "react";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import MiniPieChartCart from "../Cards/MiniPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
+import CardActions from "@mui/material/CardActions";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
+import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import FilterContext from "../../Context/FilterContext";
@@ -22,28 +27,54 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(props){
-  const [expanded, setExpanded] = React.useState(false);
+const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(
+  props
+) {
+  const [
+    filterDataProgByDate,
+    filterDataRealByDate,
+    year,
+    setYear,
+    handleYearChange,
+    month,
+    setMonth,
+    handleMonthChange,
+    dataBaseEstaciones,
+    setDataBaseEstaciones,
+    dataProgMonth,
+    setDataProgMonth,
+    dataProgYear,
+    setDataProgYear,
+    dataRealMonth,
+    setDataRealMonth,
+    dataRealYear,
+    setDataRealYear,
+  ] = useContext(FilterContext);
 
-  //Titulo y subtitulo del bloque
+  //const [expanded, setExpanded] = React.useState(false);
+  const activity = props.activity;
   const title = props.title;
+  const bar = props.bar;
+  const filters = props.filters;
   const description = props.description;
+  const Month = props.Month;
+  const Year = props.Year;
+  const Cl_actividad_PM = props.Cl_actividad_PM;
+  const Clase_de_orden = props.Clase_de_orden;
+  const Pto_tbjo_resp = props.Pto_tbjo_resp;
+  const Texto_breve = props.Texto_breve;
+  const BorrarDuplicados = props.BorrarDuplicados;
+  const Operacion = props.Operacion;
 
-  //Configuración y filtros
-  const config = {  
-    "Mostrar_Anual" : props.Mostrar_Anual,
-    "Descripcion" : props.Descripcion,
-    "Mes" : props.Mes,
-    "Año" : props.Año,
-    "Cl_actividad_PM" : props.Cl_actividad_PM,
-    "Clase_de_orden" : props.Clase_de_orden,
-    "Pto_tbjo_resp" : props.Pto_tbjo_resp,
-    "Texto_breve" : props.Texto_breve,
-    "BorrarDuplicados" : props.BorrarDuplicados,
-    "Operacion" : props.Operacion
-  }
+/*   const handleExpandClick = () => {
+    setExpanded(!expanded);
+  }; */
 
-  /* async function uploadFiles(Zona) {
+ /*  useEffect(() => {
+    filterDataRealByDate();
+  }, [dataBaseEstaciones, month, year]); */
+
+  async function uploadFiles(Zona) {
     try {
       const res = await axios.get(
         `http://localhost:9000/saps/filterGeneral/${Month}-${Year}-${Cl_actividad_PM}-${Clase_de_orden}-${Zona}-${Texto_breve}-${Pto_tbjo_resp}-${Operacion}-${BorrarDuplicados}`
@@ -53,23 +84,54 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
     } catch (e) {
       console.log(e);
     }
-  } */
+  }
+
   let zonas = [
-    { Zona: "ZN1", Nombre:"ZONA NORTE"},
-    { Zona: "ZS1", Nombre:"ZONA SUR"},
-    { Zona: "ZO1", Nombre:"ZONA OESTE"},
-    { Zona: "ZA1", Nombre:"ZONA AUSTRAL"},
+    { Zona: "ZN1" },
+    { Zona: "ZS1" },
+    { Zona: "ZO1" },
+    { Zona: "ZA1" },
   ];
 
-  console.log("cargó componente");
+  /* async function populateZones(zonas){
+    try{
+      let hola = await uploadFiles(ZN1)
+      
+    }catch(e){
+      console.log(e)
+    }
+
+  }
+   */
+ 
+
+
+
+  let calcularAcumulado = false;
+  let dataPie = filterData(
+    activity,
+    dataRealMonth,
+    dataProgMonth,
+    filters,
+    calcularAcumulado
+  );
+  calcularAcumulado = true;
+  let dataBar = filterData(
+    activity,
+    dataRealYear,
+    dataProgYear,
+    filters,
+    calcularAcumulado
+  );
+  console.log("cargó componente")
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
-          <CardContent>
+{/*           <CardContent>
             <CardHeader
               action={
-                <IconButton aria-label="settings">
+                <IconButton aria-label="settings" >
                   <MoreVertIcon />
                 </IconButton>
               }
@@ -77,17 +139,17 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
               subheader={description}
             />
             <div className="gridpie">
-              {zonas .map((zonas , index) => (
-                <div className="grid-column" key={zonas.Zona}>
+              {dataPie.map((dataPie, index) => (
+                <div className="grid-column" key={dataPie.Zona}>
                   <MiniPieChartCart
-                    zona = {zonas.Zona}
-                    nombre = {zonas.Nombre}
-                    config = {config}
+                    dataPie={dataPie}
+                    dataBar={dataBar[index]}
+                    bar={bar}
                   ></MiniPieChartCart>
                 </div>
               ))}
             </div>
-          </CardContent>
+          </CardContent> */}
           {/* <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
             <ExpandMore
               expand={expanded}
