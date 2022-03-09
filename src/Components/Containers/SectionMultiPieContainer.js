@@ -27,7 +27,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function SectionMultiPieContainer(props) {
+const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(props) {
   const [
     filterDataProgByDate,
     filterDataRealByDate,
@@ -57,30 +57,36 @@ function SectionMultiPieContainer(props) {
   const description = props.description;
   const Month = props.Month;
   const Year = props.Year;
-  const Zona = "ZS1";
   const Cl_actividad_PM = props.Cl_actividad_PM;
   const Clase_de_orden = props.Clase_de_orden;
   const Pto_tbjo_resp = "ZN1 ETRA,ZN2 ETRA";
-  const Texto_breve = "false";
- 
+  const Texto_breve = props.Texto_breve;
+
   const Operacion = props.Operacion
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const handleExpandClick1 = () => {};
+  const handleExpandClick1 = () => { };
 
   useEffect(() => {
     filterDataRealByDate();
   }, [dataBaseEstaciones, month, year]);
 
-  function uploadFiles() {
-    axios.get(`http://localhost:9000/saps/filterGeneral/${Month}-${Year}-${activity}-${Cl_actividad_PM}-${Clase_de_orden}-${Zona}-${Texto_breve}-${Pto_tbjo_resp}-${Operacion}`)
-            .then(res => {
-                const ots = res.data;
-                console.log("Se cargaron los archivos", ots)
-            })
-}
-uploadFiles()
+  function uploadFiles(Zona) {
+    axios.get(`http://localhost:9000/saps/filterGeneral/${Month}-${Year}-${Cl_actividad_PM}-${Clase_de_orden}-${Zona}-${Texto_breve}-${Pto_tbjo_resp}-${Operacion}`)
+      .then(res => {
+        const results = res.data;
+        console.log("Results", results)
+      })
+  }
+  let zonas = [{ "Zona": "ZN1" },
+  { "Zona": "ZS1" },
+  { "Zona": "ZO1" },
+  { "Zona": "ZA1" }]
+
+  zonas.map((zonas, index) => { uploadFiles(zonas.Zona) })
+
+  //uploadFiles(Zona)
 
   let calcularAcumulado = false;
   let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
@@ -99,7 +105,7 @@ uploadFiles()
               }
               title={title}
               subheader={description}
-              
+
             />
             <div className="gridpie">
               {dataPie.map((dataPie, index) => (
@@ -141,5 +147,5 @@ uploadFiles()
       </div>
     </>
   );
-}
+})
 export default SectionMultiPieContainer;

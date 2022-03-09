@@ -55,7 +55,7 @@ function Upload() {
         const workbook = xlsx.read(data, { type: "array" });
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
-        json = xlsx.utils.sheet_to_json(worksheet);
+        json = xlsx.utils.sheet_to_json(worksheet, {raw: false});
         json= keyModifi(json);
         console.log(json)
       };

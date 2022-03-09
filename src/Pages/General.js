@@ -11,8 +11,8 @@ const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 function General() {
   const myRef = useRef(null);
   const executeScroll = () => scrollToRef(myRef);
-  const Month = "2022";
-  const Year = "01";
+  const Month = "01";
+  const Year = "2022";
   const Operacion = "0010";
   
   return (
@@ -37,7 +37,7 @@ function General() {
         Year={Year}
         Cl_actividad_PM="RPM"
         Clase_de_orden="ZTPL"
-        Texto_breve=""
+        Texto_breve="false"
         Pto_tbjo_resp=""
         Operacion={Operacion}
       ></SectionMultiPieContainer>
@@ -75,7 +75,7 @@ function General() {
         Year={Year}
         Cl_actividad_PM="RSP"
         Clase_de_orden="ZTPL"
-        Texto_breve=""
+        Texto_breve="false"
         Pto_tbjo_resp=""
         Operacion={Operacion}
       ></SectionMultiPieContainer>
@@ -94,8 +94,8 @@ function General() {
         Month={Month}
         Year={Year}
         Cl_actividad_PM="MUA"
-        Clase_de_orden="ZTPL"
-        Texto_breve=""
+        Clase_de_orden="false"
+        Texto_breve="Muestreo"
         Pto_tbjo_resp=""
         Operacion={Operacion}
       ></SectionMultiPieContainer>
