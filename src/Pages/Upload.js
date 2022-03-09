@@ -71,7 +71,6 @@ function Upload() {
         <div>
         <label htmlFor="upload">Base de datos general</label>
         </div>
-        
         <input
           type="file"
           name="upload"
@@ -79,11 +78,8 @@ function Upload() {
           onChange={readUploadFile}
         />
         <div style={{padding:"1em 1em 1em 1em"}}>
-
           <Button variant="primary" onClick={()=>uploadFiles(json)}>Guardar</Button>
-
         </div>
-        
       </form>
 
     </>
