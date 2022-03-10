@@ -7,6 +7,7 @@ import { Box } from "@mui/system";
 //import Toolbar from "@mui/material/Toolbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FilterProvider from "./Context/FilterProvider";
+import DateProvider from "./Context/DateProvider";
 import Upload from "./Pages/Upload";
 //import FrecuenciaAcumulado from "../src/Services/graficos";
 //import Tablas from "./Pages/Tablas";
@@ -19,7 +20,8 @@ function App() {
   console.log("cargó App")
   return (
     <>
-      <FilterProvider>
+ {/*      <FilterProvider> */}
+      <DateProvider>
         <Box
           sx={{
             display: "flex",
@@ -51,7 +53,8 @@ function App() {
             </Box>
           </BrowserRouter>
         </Box>
-      </FilterProvider>
+        </DateProvider>
+    {/*   </FilterProvider> */}
     </>
   );
 }

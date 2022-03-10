@@ -1,7 +1,8 @@
-import React, { Suspense, useRef, useEffect } from "react";
+import React, { Suspense, useRef, useEffect,useContext  } from "react";
 import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
+import DateContext from "../Context/DateContext";
 const SectionMultiBarContainer = React.lazy(() =>
   import("../Components/Containers/SectionMultiBarContainer")
 );
@@ -11,9 +12,14 @@ const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 function General() {
   const myRef = useRef(null);
   const executeScroll = () => scrollToRef(myRef);
-  const Mes = "02";
-  const Año = "2022";
+  const [
+    year,
+    setYear,
+    month,
+    setMonth,
+  ] = useContext(DateContext);
   console.log("cargó general")
+ 
   return (
     <>
       <div>
@@ -25,9 +31,8 @@ function General() {
         Titulo="Mantenimiento Programado de Equipos"
         Descripcion="Unidades de Mantenimiento"
         Mostrar_Anual="true"
-        Anual_Forzado="true" //Si el valor del año no esta contado, sino que está hardcodeado
-        Mes={Mes}
-        Año={Año}
+        Mes={month}
+        Año={year}
         Cl_actividad_PM="RPM"
         Clase_de_orden="ZTPL"
         Texto_breve="false"
@@ -36,33 +41,25 @@ function General() {
         BorrarDuplicados="true"
       ></SectionMultiPieContainer>
 
-{/*       <SectionMultiNumContainer
-        activity="MCP"
-        title="Mantenimiento Correctivo de Equipos"
-        description="Cantidad de intervenciones"
-        filters={{
-          filterByIng: false,
-          filterByMuesAceite: false,
-          filterByProtecciones: false,
-          deleteDuplicates: true,
-        }}
-        Month={Month}
-        Year={Year}
+      <SectionMultiNumContainer
+        Titulo="Mantenimiento Correctivo de Equipos"
+        Descripcion="Cantidad de intervenciones"
+        Mes={month}
+        Año={year}
         Cl_actividad_PM="MCP"
         Clase_de_orden="ZTCP"
         Texto_breve="false"
         Pto_tbjo_resp="false"
         Operacion="0010"
         BorrarDuplicados="false"
-      ></SectionMultiNumContainer> */}
+      ></SectionMultiNumContainer> 
 
       <SectionMultiPieContainer
         Titulo="Seguridad Pública"
         Descripcion="Recorridas de Seguridad Pública"
         Mostrar_Anual="true"
-        Anual_Forzado="true"
-        Mes={Mes}
-        Año={Año}
+        Mes={month}
+        Año={year}
         Cl_actividad_PM="RSP"
         Clase_de_orden="ZTPL"
         Texto_breve="false"
@@ -75,9 +72,8 @@ function General() {
         Titulo="Muestreos de Aceite"
         Descripcion="Extracciones de Aceite"
         Mostrar_Anual="true"
-        Anual_Forzado="true"
-        Mes={Mes}
-        Año={Año}
+        Mes={month}
+        Año={year}
         Cl_actividad_PM="MUA"
         Clase_de_orden="false"
         Texto_breve="Muestreo"

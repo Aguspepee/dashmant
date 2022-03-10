@@ -7,71 +7,50 @@ import "./gridstyle.css";
 import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import { useEffect, useContext } from "react";
-import FilterContext from "../../Context/FilterContext";
+import { useEffect } from "react";
 import axios from 'axios';
 
 function SectionMultiNumContainer(props) {
-  const [
-    filterDataProgByDate,
-    filterDataRealByDate,
-    year,
-    setYear,
-    handleYearChange,
-    month,
-    setMonth,
-    handleMonthChange,
-    dataBaseEstaciones,
-    setDataBaseEstaciones,
-    dataProgMonth,
-    setDataProgMonth,
-    dataProgYear,
-    setDataProgYear,
-    dataRealMonth,
-    setDataRealMonth,
-    dataRealYear,
-    setDataRealYear,
-  ] = useContext(FilterContext);
 
-  const [expanded, setExpanded] = React.useState(false);
-  const activity = props.activity;
-  const title = props.title;
-  const bar = props.bar;
-  const filters = props.filters;
-  const description = props.description;
-  const Month = props.Month;
-  const Year = props.Year;
-  const Cl_actividad_PM = props.Cl_actividad_PM;
-  const Clase_de_orden = props.Clase_de_orden;
-  const Pto_tbjo_resp = props.Pto_tbjo_resp;
-  const Texto_breve = props.Texto_breve;
-  const BorrarDuplicados= props.BorrarDuplicados;
-  const Operacion = props.Operacion
+  //Titulo y subtitulo del bloque
+  const Titulo = props.Titulo;
+  const Descripcion = props.Descripcion;
 
-  useEffect(() => {
-    filterDataRealByDate();
-  }, [dataBaseEstaciones, month, year]);
-
-  function uploadFiles(Zona) {
-    axios.get(`http://localhost:9000/saps/filterGeneral/${Month}-${Year}-${Cl_actividad_PM}-${Clase_de_orden}-${Zona}-${Texto_breve}-${Pto_tbjo_resp}-${Operacion}-${BorrarDuplicados}`)
-      .then(res => {
-        const results = res.data;
-        console.log("Results", results)
-      })
+  //Configuración y filtros
+  const config = {
+    "Mostrar_Anual": props.Mostrar_Anual,
+    "Descripcion": props.Descripcion,
+    "Mes": props.Mes,
+    "Año": props.Año,
+    "Cl_actividad_PM": props.Cl_actividad_PM,
+    "Clase_de_orden": props.Clase_de_orden,
+    "Pto_tbjo_resp": props.Pto_tbjo_resp,
+    "Texto_breve": props.Texto_breve,
+    "BorrarDuplicados": props.BorrarDuplicados,
+    "Operacion": props.Operacion
   }
-  let zonas = [{ "Zona": "ZN1" },
-  { "Zona": "ZS1" },
-  { "Zona": "ZO1" },
-  { "Zona": "ZA1" }]
 
-  zonas.map((zonas, index) => { uploadFiles(zonas.Zona) })
+  const zonas = [
+    {
+      Zona: "ZN1",
+      Nombre: "ZONA NORTE",
+    },
+    {
+      Zona: "ZS1",
+      Nombre: "ZONA SUR",
+    },
+    {
+      Zona: "ZO1",
+      Nombre: "ZONA OESTE",
+    },
+    {
+      Zona: "ZA1",
+      Nombre: "ZONA AUSTRAL",
+    },
+  ];
 
 
-  //Hacer que sea un estado
-  let calcularAcumulado = true;
-  const data = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
-  
-  //console.log("correctivas",data)
+  console.log("cargó Numero");
 
   return (
     <>
@@ -84,13 +63,18 @@ function SectionMultiNumContainer(props) {
                   <MoreVertIcon />
                 </IconButton>
               }
-              title={title}
-              subheader={description}
+              title={Titulo}
+              subheader={Descripcion}
             />
             <div className="gridnumber">
-              {data.map((data) => (
-                <div className="grid-column" key={data.Zona}>
-                  <MiniNumberCard data={data}></MiniNumberCard>
+              {zonas.map((zonas, index) => (
+                <div className="grid-column" key={zonas.Zona}>
+                  <MiniNumberCard
+                    key={zonas.Zona}
+                    zona={zonas.Zona}
+                    nombre={zonas.Nombre}
+                    config={config}
+                  ></MiniNumberCard>
                 </div>
               ))}
             </div>

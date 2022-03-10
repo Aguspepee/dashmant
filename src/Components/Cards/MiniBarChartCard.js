@@ -27,16 +27,16 @@ export default function MiniBarChartCard(props) {
       <Box sx={{ width: "90%", display: "inline-flex"}}>
         <ProgressBar style={{ width: "100%" }}>
           <ProgressBar
-            striped
+            
             now={percentaje1}
             key={1}
             style={{ backgroundColor: "#BDE7BD" }}
           />
           <ProgressBar
-            animated
+            
             now={percentaje2}
             key={2}
-            style={{ backgroundColor: "#bbbbbb" }}
+            style={{ backgroundColor: "#FF6962" }}
           />
         </ProgressBar>
       </Box>

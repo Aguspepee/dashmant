@@ -1,5 +1,4 @@
 import React from "react";
-import { useContext } from "react";
 import MiniPieChartCart from "../Cards/MiniPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
@@ -8,8 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import FilterContext from "../../Context/FilterContext";
-import axios from "axios";
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -22,7 +20,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(props){
+const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   //Titulo y subtitulo del bloque
@@ -30,37 +28,42 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
   const Descripcion = props.Descripcion;
 
   //Configuración y filtros
-  const config = {  
-    "Mostrar_Anual" : props.Mostrar_Anual,
-    "Descripcion" : props.Descripcion,
-    "Mes" : props.Mes,
-    "Año" : props.Año,
-    "Cl_actividad_PM" : props.Cl_actividad_PM,
-    "Clase_de_orden" : props.Clase_de_orden,
-    "Pto_tbjo_resp" : props.Pto_tbjo_resp,
-    "Texto_breve" : props.Texto_breve,
-    "BorrarDuplicados" : props.BorrarDuplicados,
-    "Operacion" : props.Operacion
+  const config = {
+    "Mostrar_Anual": props.Mostrar_Anual,
+    "Descripcion": props.Descripcion,
+    "Mes": props.Mes,
+    "Año": props.Año,
+    "Cl_actividad_PM": props.Cl_actividad_PM,
+    "Clase_de_orden": props.Clase_de_orden,
+    "Pto_tbjo_resp": props.Pto_tbjo_resp,
+    "Texto_breve": props.Texto_breve,
+    "BorrarDuplicados": props.BorrarDuplicados,
+    "Operacion": props.Operacion
   }
 
-  /* async function uploadFiles(Zona) {
-    try {
-      const res = await axios.get(
-        `http://localhost:9000/saps/filterGeneral/${Month}-${Year}-${Cl_actividad_PM}-${Clase_de_orden}-${Zona}-${Texto_breve}-${Pto_tbjo_resp}-${Operacion}-${BorrarDuplicados}`
-      );
-      await console.log(res.data);
-      return await res.data;
-    } catch (e) {
-      console.log(e);
-    }
-  } */
-  let zonas = [
-    { Zona: "ZN1", Nombre:"ZONA NORTE"},
-    { Zona: "ZS1", Nombre:"ZONA SUR"},
-    { Zona: "ZO1", Nombre:"ZONA OESTE"},
-    { Zona: "ZA1", Nombre:"ZONA AUSTRAL"},
+  const zonas = [
+    {
+      Zona: "ZN1",
+      Nombre: "ZONA NORTE",
+      TotalAnual: [{ "RPM": 249, "RSP": 76, "MUA": 200, }]
+    },
+    {
+      Zona: "ZS1",
+      Nombre: "ZONA SUR",
+      TotalAnual: [{ "RPM": 368, "RSP": 174, "MUA": 200 }]
+    },
+    {
+      Zona: "ZO1",
+      Nombre: "ZONA OESTE",
+      TotalAnual: [{ "RPM": 41, "RSP": 24, "MUA": 200 }]
+    },
+    {
+      Zona: "ZA1",
+      Nombre: "ZONA AUSTRAL",
+      TotalAnual: [{ "RPM": 53, "RSP": 20, "MUA": 200 }]
+    },
   ];
-
+  
   console.log("cargó componente");
   return (
     <>
@@ -77,12 +80,14 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
               subheader={Descripcion}
             />
             <div className="gridpie">
-              {zonas .map((zonas , index) => (
+              {zonas.map((zonas, index) => (
                 <div className="grid-column" key={zonas.Zona}>
                   <MiniPieChartCart
-                    zona = {zonas.Zona}
-                    nombre = {zonas.Nombre}
-                    config = {config}
+                    key={zonas.Zona}
+                    zona={zonas.Zona}
+                    nombre={zonas.Nombre}
+                    config={config}
+                    TotalAnual={zonas.TotalAnual}
                   ></MiniPieChartCart>
                 </div>
               ))}

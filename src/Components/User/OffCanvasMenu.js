@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import DateSelector from "../Controls/DateSelector";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterContext from "../../Context/FilterContext";
+import DateContext from "../../Context/DateContext";
 import { useEffect, useContext } from "react";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import Logo from "../../Images/transpa.png";
@@ -56,7 +57,7 @@ const months = [
 const years = ["2021", "2022", "2023", "2024"];
 
 function ResponsiveDrawer(props) {
-  const [
+/*    const [
     pieChartData,
     setPieChartData,
     year,
@@ -74,7 +75,14 @@ function ResponsiveDrawer(props) {
     normalizeData,
     filterDataByVarious,
     filterDataByDate,
-  ] = useContext(FilterContext);
+  ] = useContext(FilterContext);  */
+  const [
+    year,
+    setYear,
+    month,
+    setMonth,
+  ] = useContext(DateContext);
+
 
   //setMonth("jaunua");
 
@@ -145,7 +153,8 @@ function ResponsiveDrawer(props) {
           <DateSelector
             type="Mes"
             data={months}
-            change1={handleMonthChange}
+            //change1={handleMonthChange}
+            change1={setMonth}
             change2={setMonth}
             value={month}
           />
@@ -154,7 +163,8 @@ function ResponsiveDrawer(props) {
           <DateSelector
             type="Año"
             data={years}
-            change1={handleYearChange}
+            //change1={handleYearChange}
+            change1={setYear}
             change2={setYear}
             value={year}
           />
