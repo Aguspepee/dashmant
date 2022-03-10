@@ -1,5 +1,5 @@
 import React from "react";
-import BigNumberCard from "../Cards/MiniNumberCard";
+import BigNumberCard from "../Cards/BigNumberCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import IconButton from "@mui/material/IconButton";

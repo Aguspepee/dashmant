@@ -82,7 +82,7 @@ function General() {
         BorrarDuplicados="false"
       ></SectionMultiPieContainer>
 
-{/*       <SectionDistributionContainer
+       <SectionDistributionContainer
         title="Distribución de actividades"
         Descripcion="Horas hombres utilizadas por rubro"
         filters={{
@@ -92,8 +92,8 @@ function General() {
           deleteDuplicates: false,
         }}
 
-      ></SectionDistributionContainer> */}
-{/* 
+      ></SectionDistributionContainer> 
+
       <h1>Líneas de Alta Tensión</h1>
       <div>
         <Suspense fallback={<div>Loading...</div>}>
@@ -115,7 +115,7 @@ function General() {
             detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
-      </div>  */}
+      </div>  
     </>
   );
 }

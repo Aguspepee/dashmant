@@ -45,22 +45,22 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
     {
       Zona: "ZN1",
       Nombre: "ZONA NORTE",
-      TotalAnual: [{ "RPM": 249, "RSP": 76, "MUA": 200, }]
+      TotalAnual: [{ "RPM": 249, "RSP": 76, "MUA": 87 }]
     },
     {
       Zona: "ZS1",
       Nombre: "ZONA SUR",
-      TotalAnual: [{ "RPM": 368, "RSP": 174, "MUA": 200 }]
+      TotalAnual: [{ "RPM": 368, "RSP": 174, "MUA": 135 }]
     },
     {
       Zona: "ZO1",
       Nombre: "ZONA OESTE",
-      TotalAnual: [{ "RPM": 41, "RSP": 24, "MUA": 200 }]
+      TotalAnual: [{ "RPM": 41, "RSP": 24, "MUA": 60 }]
     },
     {
       Zona: "ZA1",
       Nombre: "ZONA AUSTRAL",
-      TotalAnual: [{ "RPM": 53, "RSP": 20, "MUA": 200 }]
+      TotalAnual: [{ "RPM": 53, "RSP": 20, "MUA": 14 }]
     },
   ];
   

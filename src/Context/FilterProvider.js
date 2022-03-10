@@ -18,7 +18,7 @@ let months = [
 ];
 
 function FilterProvider(props) {
-  const [month, setMonth] = useState("01");
+  const [month, setMonth] = useState("02");
   const [year, setYear] = useState("2022");
   const [dataBaseEstaciones, setDataBaseEstaciones] = useState(data);
   const [dataProgMonth, setDataProgMonth] = useState([]);

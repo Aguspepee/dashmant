@@ -20,7 +20,7 @@ function App() {
   console.log("cargó App")
   return (
     <>
- {/*      <FilterProvider> */}
+       <FilterProvider> 
       <DateProvider>
         <Box
           sx={{
@@ -54,7 +54,7 @@ function App() {
           </BrowserRouter>
         </Box>
         </DateProvider>
-    {/*   </FilterProvider> */}
+      </FilterProvider>
     </>
   );
 }
