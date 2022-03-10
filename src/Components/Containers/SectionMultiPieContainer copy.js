@@ -77,7 +77,7 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(
   async function uploadFiles(Zona) {
     try {
       const res = await axios.get(
-        `http://backmant.herokuapp.com/saps/filterGeneral/${Month}-${Year}-${Cl_actividad_PM}-${Clase_de_orden}-${Zona}-${Texto_breve}-${Pto_tbjo_resp}-${Operacion}-${BorrarDuplicados}`
+        `https://backmant.herokuapp.com/saps/filterGeneral/${Month}-${Year}-${Cl_actividad_PM}-${Clase_de_orden}-${Zona}-${Texto_breve}-${Pto_tbjo_resp}-${Operacion}-${BorrarDuplicados}`
       );
       await console.log(res.data);
       return await res.data;
