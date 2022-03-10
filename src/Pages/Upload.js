@@ -11,8 +11,8 @@ function Upload() {
 
   function uploadFiles(json) {
     console.log("comienza carga",json)
-    axios.delete('http://localhost:9000/saps/')
-        .then(axios.post('http://localhost:9000/saps/', json)
+    axios.delete('http://backmant.herokuapp.com/saps/')
+        .then(axios.post('http://backmant.herokuapp.com/saps/', json)
             .then(res => {
                 const ots = res.data;
                 console.log("Se cargaron los archivos", ots)
