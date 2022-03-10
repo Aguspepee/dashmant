@@ -83,18 +83,13 @@ function General() {
       ></SectionMultiPieContainer>
 
        <SectionDistributionContainer
-        title="Distribución de actividades"
+        Titulo="Distribución de actividades"
         Descripcion="Horas hombres utilizadas por rubro"
-        filters={{
-          filterByIng: true,
-          filterByMuesAceite: false,
-          filterByProtecciones: false,
-          deleteDuplicates: false,
-        }}
-
+        Mes={month}
+        Año={year}
       ></SectionDistributionContainer> 
 
-      <h1>Líneas de Alta Tensión</h1>
+      {/* <h1>Líneas de Alta Tensión</h1>
       <div>
         <Suspense fallback={<div>Loading...</div>}>
           <SectionMultiBarContainer
@@ -115,7 +110,7 @@ function General() {
             detail="Terrestre"
           ></SectionMultiBarContainer>
         </Suspense>
-      </div>  
+      </div>   */}
     </>
   );
 }

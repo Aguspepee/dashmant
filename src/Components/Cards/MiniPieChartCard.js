@@ -38,7 +38,11 @@ function MiniPieChartCard(props) {
     const update = async () => {
       try {
         const res = await axios.get(
-          `https://backmant.herokuapp.com/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
+          //Para desarrollo
+          `http://localhost:9000/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
+
+          //Para producción
+          //`https://backmant.herokuapp.com/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
         );
         //console.log(res.data)
         setList(res.data);
@@ -116,10 +120,8 @@ function MiniPieChartCard(props) {
     let nume 
     Previsto_Mensual = Previsto_Mensual.filter((Previsto_Mensual) => { 
      nume = Previsto_Mensual.Inicio_program_Mes
-     console.log(Number(Previsto_Mensual.Inicio_program_Mes),":",Previsto_Mensual.Inicio_program_Mes)
       return (nume <= config.Mes) })
     Previsto_Mensual = Previsto_Mensual.reduce((a, b) => a + (b["Count"] || 0), 0)
-    //console.log(Previsto_Mensual)
   }
 
   // TOTAL ANUAL PREVISTO

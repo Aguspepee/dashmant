@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
@@ -7,8 +7,10 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
+import axios from "axios";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+//Configuración del gráfico
 export const options = {
   plugins: {
     legend: {
@@ -16,74 +18,61 @@ export const options = {
       align: "start",
     },
     labels: {
-      render: 'percentage',
-    precision: 2
+      render: "percentage",
+      precision: 2,
     },
-    
   },
 };
 
-let percentajeNow;
-//Cálculo de día del año
-let now = new Date();
-let start = new Date(now.getFullYear(), 0, 0);
-let diff = now - start;
-let oneDay = 1000 * 60 * 60 * 24;
-let day = Math.floor(diff / oneDay);
-
 function MiniDistributionCard(props) {
-  //----- CATEGORÍAS INDIVIDUALES----.//
-  const dataList = props.dataPie; //Esta data está filtrada por mes y por año
-  //Se obtienen los labels
-/*   let labels = [];
-  for (let i = 0; i < dataList.Activity.length; i++) {
-    labels.push(dataList.Activity[i].NombreActividad);
-  }
-  //Se obtienen los datos
-  let quantity = [];
-  for (let i = 0; i < dataList.Activity.length; i++) {
-    quantity.push(
-      Number.isNaN(dataList.Activity[i].Horas)
-        ? true
-        : dataList.Activity[i].Horas
-    );
-  } */
+  //Extrae las propiedades, configuración y titulos
+  const zona = props.zona;
+  const nombre = props.nombre;
+  const config = props.config;
+  const TotalAnual = props.TotalAnual;
 
-  //console.log(dataList);
+  //Setea los estados
+  const [list, setList] = useState([]);
+  //Previo a renderizar el componente se consulta la API
+  useEffect(() => {
+    const update = async () => {
+      try {
+        const res = await axios.get(
+          //Para desarrollo
+          `http://localhost:9000/saps/DistibucionHoraria/${config.Mes}-${config.Año}-${zona}`
 
- //----- CATEGORÍAS GRUPALES----.//
-  const dataListGroup = dataList.Activity;
-  var result = [];
-  dataListGroup.reduce(function (res, value) {
-    if (!res[value.Grupo]) {
-      res[value.Grupo] = {
-        Grupo: value.Grupo,
-        NombreGrupo: value.NombreGrupo,
-        Horas: 0,
-      };
-      result.push(res[value.Grupo]);
-    }
-    res[value.Grupo].Horas += value.Horas;
-    return res;
-  }, {});
-  //Se obtienen los labels
+          //Para producción
+          //`https://backmant.herokuapp.com/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
+        );
+       // console.log(config.Mes,config.Año,zona)
+        console.log("RESULTADO",res.data)
+        setList(res.data.Distribucion);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    update();
+  }, [setList, config.Mes, config.Año]);
+
   let labels = [];
-  for (let i = 0; i < result.length; i++) {
-    labels.push(result[i].NombreGrupo);
-  }
-  
-  //Se obtienen los datos
   let quantity = [];
-  for (let i = 0; i < result.length; i++) {
-    quantity.push(Number.isNaN(result[i].Horas) ? true : result[i].Horas);
+
+  if (list) {
+    console.log(list)
+    //Se obtienen los labels
+    for (let i = 0; i < list.length; i++) {
+      labels.push(list[i].Grupo_Agrupamiento);
+    }
+    console.log("labels",labels)
+    //Se obtienen los datos
+    for (let i = 0; i < list.length; i++) {
+      quantity.push(Number.isNaN(list[i].Count) ? true : list[i].Count);
+    }
+    console.log("quant",quantity)
   }
 
-  //console.log(result);
-
-  const reducer = (accumulator, curr) => accumulator + curr;
-
-  let total = quantity.reduce(reducer);
-  //console.log(total);
+  let total = 50;
+  // let total = quantity.reduce(reducer);
 
   //Se inicializa el gráfico
   const data = {
@@ -137,7 +126,7 @@ function MiniDistributionCard(props) {
           paddingBottom: "0px",
         }}
       >
-        {dataList.Nombre}
+        {nombre}
       </Typography>
       <Divider light style={{ width: "90%" }} />
       <Card
@@ -145,7 +134,7 @@ function MiniDistributionCard(props) {
           display: "flex",
           border: "0px solid rgba(0, 0, 0, 0.05)",
           boxShadow: "0px 0px 0px white",
-          backgroundColor:"rgba(0, 0, 0, 0.0)"
+          backgroundColor: "rgba(0, 0, 0, 0.0)",
         }}
       >
         <Box

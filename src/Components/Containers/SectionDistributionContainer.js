@@ -11,7 +11,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./gridstyle.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import FilterContext from "../../Context/FilterContext";
 import hoursCalc from "../../Services/hoursCalc";
 
 const ExpandMore = styled((props) => {
@@ -26,92 +25,81 @@ const ExpandMore = styled((props) => {
 }));
 
 function SectionDistributionContainer(props) {
-  const [
-    filterDataProgByDate,
-    filterDataRealByDate,
-    year,
-    setYear,
-    handleYearChange,
-    month,
-    setMonth,
-    handleMonthChange,
-    dataBaseEstaciones,
-    setDataBaseEstaciones,
-    dataProgMonth,
-    setDataProgMonth,
-    dataProgYear,
-    setDataProgYear,
-    dataRealMonth,
-    setDataRealMonth,
-    dataRealYear,
-    setDataRealYear,
-  ] = useContext(FilterContext);
+  //Titulo y subtitulo del bloque
+  const Titulo = props.Titulo;
+  const Descripcion = props.Descripcion;
 
-  const [expanded, setExpanded] = React.useState(false);
-  const activity = props.activity;
-  const title = props.title;
-  const filters = props.filters;
-  const description = props.description;
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-  const handleExpandClick1 = () => {};
+  //Configuración y filtros
+  const config = {
+    "Mostrar_Anual": props.Mostrar_Anual,
+    "Descripcion": props.Descripcion,
+    "Mes": props.Mes,
+    "Año": props.Año,
+    "Cl_actividad_PM": props.Cl_actividad_PM,
+    "Clase_de_orden": props.Clase_de_orden,
+    "Pto_tbjo_resp": props.Pto_tbjo_resp,
+    "Texto_breve": props.Texto_breve,
+    "BorrarDuplicados": props.BorrarDuplicados,
+    "Operacion": props.Operacion
+  }
 
-  useEffect(() => {
-    filterDataRealByDate();
-  }, [dataBaseEstaciones, month, year]);
-
-  //let calcularAcumulado = false;
-  //let dataPie = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
-  let dataPie = hoursCalc(dataRealMonth);
-  //console.log("PIE",dataPie)
+  const zonas = [
+    {
+      Zona: "ZN1",
+      Nombre: "ZONA NORTE",
+      TotalAnual: [{ "RPM": 249, "RSP": 76, "MUA": 87 }]
+    },
+    {
+      Zona: "ZS1",
+      Nombre: "ZONA SUR",
+      TotalAnual: [{ "RPM": 368, "RSP": 174, "MUA": 135 }]
+    },
+    {
+      Zona: "ZO1",
+      Nombre: "ZONA OESTE",
+      TotalAnual: [{ "RPM": 41, "RSP": 24, "MUA": 60 }]
+    },
+    {
+      Zona: "ZA1",
+      Nombre: "ZONA AUSTRAL",
+      TotalAnual: [{ "RPM": 53, "RSP": 20, "MUA": 14 }]
+    },
+  ];
+  console.log("cargó Distribucion");
 
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
-        <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" , 
-        //backgroundColor:"rgba(0, 0, 0, 0.0)"
-        }}>
+        <Card
+          style={{
+            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            //backgroundColor:"rgba(0, 0, 0, 0.0)"
+          }}
+        >
           <CardContent>
             <CardHeader
               action={
-                <IconButton aria-label="settings" onClick={handleExpandClick1}>
+                <IconButton aria-label="settings" >
                   <MoreVertIcon />
                 </IconButton>
               }
-              title={title}
-              subheader={description}
+              title={Titulo}
+              subheader={Descripcion}
             />
             <div className="gridpie">
-              {dataPie.map((dataPie, index) => (
-                <div className="grid-column" key={dataPie.Zona}>
+            {zonas.map((zonas, index) => (
+                <div className="grid-column" key={zonas.Zona}>
                   <MiniDistributionCard
-                    dataPie={dataPie}
+                     key={zonas.Zona}
+                     zona={zonas.Zona}
+                     nombre={zonas.Nombre}
+                     config={config}
+                     TotalAnual={zonas.TotalAnual}
                   ></MiniDistributionCard>
                 </div>
               ))}
             </div>
           </CardContent>
-          <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <div className="gridpie">
-                {dataPie.map((dataPie, index) => (
-                  <div className="grid-column" key={dataPie.Zona}>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Collapse>
         </Card>
       </div>
     </>
