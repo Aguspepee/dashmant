@@ -11,7 +11,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./gridstyle.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import hoursCalc from "../../Services/hoursCalc";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -73,7 +72,6 @@ function SectionDistributionContainer(props) {
         <Card
           style={{
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-            //backgroundColor:"rgba(0, 0, 0, 0.0)"
           }}
         >
           <CardContent>
@@ -87,14 +85,13 @@ function SectionDistributionContainer(props) {
               subheader={Descripcion}
             />
             <div className="gridpie">
-            {zonas.map((zonas, index) => (
+              {zonas.map((zonas, index) => (
                 <div className="grid-column" key={zonas.Zona}>
                   <MiniDistributionCard
-                     key={zonas.Zona}
-                     zona={zonas.Zona}
-                     nombre={zonas.Nombre}
-                     config={config}
-                     TotalAnual={zonas.TotalAnual}
+                    key={zonas.Zona}
+                    zona={zonas.Zona}
+                    nombre={zonas.Nombre}
+                    config={config}
                   ></MiniDistributionCard>
                 </div>
               ))}

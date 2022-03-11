@@ -1,16 +1,11 @@
 import "./App.css";
 import OffCanvasMenu from "./Components/User/OffCanvasMenu";
 import General from "./Pages/General";
-import ETS from "./Pages/ETS";
-//import LATS from "./Pages/LATS";
 import { Box } from "@mui/system";
-//import Toolbar from "@mui/material/Toolbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FilterProvider from "./Context/FilterProvider";
 import DateProvider from "./Context/DateProvider";
 import Upload from "./Pages/Upload";
-//import FrecuenciaAcumulado from "../src/Services/graficos";
-//import Tablas from "./Pages/Tablas";
 import Zonas from "./Pages/Zonas";
 
 const drawerWidth = 240;
@@ -46,9 +41,7 @@ function App() {
                 <Route path="dashmant/" element={<General />} />
                 <Route path="dashmant/general" element={<General />} />
                 <Route path="dashmant/zonas/:id" element={<Zonas params/>} />
-                <Route path="dashmant/Upload" element={<Upload />} />
-                <Route path="dashmant/ETS" element={<ETS />} />
-                
+                <Route path="dashmant/Upload" element={<Upload />} />                
               </Routes>
             </Box>
           </BrowserRouter>

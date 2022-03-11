@@ -4,48 +4,50 @@ import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
-import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import { useEffect, useContext } from "react";
-import FilterContext from "../../Context/FilterContext";
 
 function SectionBigNumContainer(props) {
-  const [
-    filterDataProgByDate,
-    filterDataRealByDate,
-    year,
-    setYear,
-    handleYearChange,
-    month,
-    setMonth,
-    handleMonthChange,
-    dataBaseEstaciones,
-    setDataBaseEstaciones,
-    dataProgMonth,
-    setDataProgMonth,
-    dataProgYear,
-    setDataProgYear,
-    dataRealMonth,
-    setDataRealMonth,
-    dataRealYear,
-    setDataRealYear,
-  ] = useContext(FilterContext);
-  const activity = props.activity;
-  const title = props.title;
-  const description = props.description;
-  const filters = props.filters;
-  const zone = props.zone;
+ 
+  //Titulo y subtitulo del bloque
+  const Titulo = props.Titulo;
+  const Descripcion = props.Descripcion;
+  const Zona = props.Zona
 
-  useEffect(() => {
-    filterDataRealByDate();
-  }, [dataBaseEstaciones, month, year]);
+  //Configuración y filtros
+  const config = {
+    "Mostrar_Anual": props.Mostrar_Anual,
+    "Descripcion": props.Descripcion,
+    "Mes": props.Mes,
+    "Año": props.Año,
+    "Cl_actividad_PM": props.Cl_actividad_PM,
+    "Clase_de_orden": props.Clase_de_orden,
+    "Pto_tbjo_resp": props.Pto_tbjo_resp,
+    "Texto_breve": props.Texto_breve,
+    "BorrarDuplicados": props.BorrarDuplicados,
+    "Operacion": props.Operacion
+  }
 
-  //Hacer que sea un estado
-  let calcularAcumulado = true;
-  let data = filterData(activity, dataRealMonth, dataProgMonth, filters, calcularAcumulado);
-  data = data.filter((data)=>{return(data.Zona===zone)});
+  const zonas = [
+    {
+      Zona: "ZN1",
+      Nombre: "ZONA NORTE",
+    },
+    {
+      Zona: "ZS1",
+      Nombre: "ZONA SUR",
+    },
+    {
+      Zona: "ZO1",
+      Nombre: "ZONA OESTE",
+    },
+    {
+      Zona: "ZA1",
+      Nombre: "ZONA AUSTRAL",
+    },
+  ];
 
+  console.log("cargó Numero");
   return (
     <>
       <div style={{ padding: "1em 1em 1em 1em"}}>
@@ -57,15 +59,18 @@ function SectionBigNumContainer(props) {
                   <MoreVertIcon />
                 </IconButton>
               }
-              title={title}
-              subheader={description}
+              title={Titulo}
+              subheader={Descripcion}
             />
             <div className="gridnumber" style={{alignItems:"center",justifyItems: "center"}}>
-              {data.map((data) => (
-                <div className="grid-column" key={data.Zona} style={{alignItems:"center",justifyItems: "center"}}>
-                  <BigNumberCard data={data}></BigNumberCard>
+                <div className="grid-column" style={{alignItems:"center",justifyItems: "center"}}>
+                  <BigNumberCard 
+                  
+                  zona={Zona}
+                  config={config}>
+                    </BigNumberCard>
                 </div>
-              ))}
+
             </div>
           </CardContent>
         </Card>

@@ -10,10 +10,8 @@ import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
-import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import FilterContext from "../../Context/FilterContext";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,92 +25,76 @@ const ExpandMore = styled((props) => {
 }));
 
 function SectionMultiPieContainer(props) {
-  const [
-    filterDataProgByDate,
-    filterDataRealByDate,
-    year,
-    setYear,
-    handleYearChange,
-    month,
-    setMonth,
-    handleMonthChange,
-    dataBaseEstaciones,
-    setDataBaseEstaciones,
-    dataProgMonth,
-    setDataProgMonth,
-    dataProgYear,
-    setDataProgYear,
-    dataRealMonth,
-    setDataRealMonth,
-    dataRealYear,
-    setDataRealYear,
-  ] = useContext(FilterContext);
-
   const [expanded, setExpanded] = React.useState(false);
-  const activity = props.activity;
-  const title = props.title;
-  const bar = props.bar;
-  const filters = props.filters;
-  const description = props.description;
-  const zone = props.zone;
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-  const handleExpandClick1 = () => {};
+  //Titulo y subtitulo del bloque
+  const Titulo = props.Titulo;
+  const Descripcion = props.Descripcion;
+  const Zona = props.Zona
 
-  useEffect(() => {
-    filterDataRealByDate();
-  }, [dataBaseEstaciones, month, year]);
+  //Configuración y filtros
+  const config = {
+    "Mostrar_Anual": props.Mostrar_Anual,
+    "Descripcion": props.Descripcion,
+    "Mes": props.Mes,
+    "Año": props.Año,
+    "Cl_actividad_PM": props.Cl_actividad_PM,
+    "Clase_de_orden": props.Clase_de_orden,
+    "Pto_tbjo_resp": props.Pto_tbjo_resp,
+    "Texto_breve": props.Texto_breve,
+    "BorrarDuplicados": props.BorrarDuplicados,
+    "Operacion": props.Operacion
+  }
 
-  let calcularAcumulado = false;
-  let dataPie = filterData(
-    activity,
-    dataRealMonth,
-    dataProgMonth,
-    filters,
-    calcularAcumulado
-  );
-  dataPie = dataPie.filter((dataPie) => {
-    return dataPie.Zona === zone;
-  });
-  calcularAcumulado = true;
-  let dataBar = filterData(
-    activity,
-    dataRealYear,
-    dataProgYear,
-    filters,
-    calcularAcumulado
-  );
-  //console.log("BAR",dataBar)
-  // console.log(activity)
+  let zonas = [
+    {
+      Zona: "ZN1",
+      Nombre: "ZONA NORTE",
+      TotalAnual: [{ "RPM": 249, "RSP": 76, "MUA": 87 }]
+    },
+    {
+      Zona: "ZS1",
+      Nombre: "ZONA SUR",
+      TotalAnual: [{ "RPM": 368, "RSP": 174, "MUA": 135 }]
+    },
+    {
+      Zona: "ZO1",
+      Nombre: "ZONA OESTE",
+      TotalAnual: [{ "RPM": 41, "RSP": 24, "MUA": 60 }]
+    },
+    {
+      Zona: "ZA1",
+      Nombre: "ZONA AUSTRAL",
+      TotalAnual: [{ "RPM": 53, "RSP": 20, "MUA": 14 }]
+    },
+  ];
+
+  const TotalAnual = (zonas.filter((zonas)=>zonas.Zona === Zona ))[0].TotalAnual
+  console.log("cargó componente");
   return (
     <>
       <div style={{ padding: "1em 1em 1em 1em" }}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
           <CardContent>
             <CardHeader
-              style={{ height: "120px" }}
               action={
-                <IconButton aria-label="settings" onClick={handleExpandClick1}>
+                <IconButton aria-label="settings">
                   <MoreVertIcon />
                 </IconButton>
               }
-              title={title}
-              subheader={description}
+              title={Titulo}
+              subheader={Descripcion}
             />
             <div className="singlepie">
-              {dataPie.map((dataPie, index) => (
-                <div className="grid-column" key={dataPie.Zona}>
-                  <BigPieChartCart
-                    dataPie={dataPie}
-                    dataBar={dataBar[index]}
-                    bar={bar}
-                  ></BigPieChartCart>
-                </div>
-              ))}
+              <div className="grid-column">
+                <BigPieChartCart
+                  zona={Zona}
+                  config={config}
+                  TotalAnual={TotalAnual}
+                ></BigPieChartCart>
+              </div>
             </div>
           </CardContent>
-          <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
+          {/*  <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -135,7 +117,7 @@ function SectionMultiPieContainer(props) {
                 ))}
               </div>
             </CardContent>
-          </Collapse>
+          </Collapse> */}
         </Card>
       </div>
     </>

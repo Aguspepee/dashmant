@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
@@ -9,7 +9,7 @@ import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
+import axios from "axios";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -20,38 +20,59 @@ export const options = {
   },
 };
 
-let percentajeNow;
-//Cálculo de día del año
-let now = new Date();
-let start = new Date(now.getFullYear(), 0, 0);
-let diff = now - start;
-let oneDay = 1000 * 60 * 60 * 24;
-let day = Math.floor(diff / oneDay);
-
 function BigPieChartCard(props) {
-  let bar = props.bar;
-  let barra;
-  let zone = props.zone;
+  //Extrae las propiedades, configuración y titulos
+  const zona = props.zona;
+  const nombre = props.nombre;
+  const config = props.config;
+  const TotalAnual = props.TotalAnual
 
-  const dataList = props.dataPie; //Esta data está filtrada por mes y por año
-  const dataBar = props.dataBar; //Esta data está filtada por año
-  //Se obtienen los labels
-  let labels = [];
-  for (let i = 0; i < dataList.Lista.length; i++) {
-    labels.push(dataList.Lista[i].Tipo);
-  }
-  //Se obtienen los datos
-  let quantity = [];
-  for (let i = 0; i < dataList.Lista.length; i++) {
-    quantity.push(
-      Number.isNaN(dataList.Lista[i].Cantidad)
-        ? true
-        : dataList.Lista[i].Cantidad
-    );
+  //Setea los estados
+  const [list, setList] = useState([]);
+  //Previo a renderizar el componente se consulta la API
+  useEffect(() => {
+    const update = async () => {
+      try {
+        const res = await axios.get(
+          //Para desarrollo
+          `http://localhost:9000/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
+
+          //Para producción
+          //`https://backmant.herokuapp.com/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
+        );
+        //console.log(res.data)
+        setList(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    update();
+  }, [setList, config.Mes, config.Año,zona]);
+
+  //Se inicializan los labels y las cantidades
+  let labels = ["CTEC", "EJEC", "ABIE", "CTEC CENE"];
+  let quantity = [0, 0, 0, 0]
+
+  //Se extraen los labels
+  let datos = list.Fecha_Referencia_Mensual;
+  if (datos) {
+    quantity = labels.map((labels, index) => {
+      let cant = datos.filter((datos) => {
+        return (datos.Status === labels)
+      })[0]
+      if (cant) {
+        cant = cant.Count
+      } else {
+        cant = 0
+      }
+      return (
+        cant
+      )
+    })
   }
 
+  //Se calculan los porcentajes mensuales
   let percentaje;
-
   if (
     !Number.isNaN(
       quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3])
@@ -78,6 +99,7 @@ function BigPieChartCard(props) {
     ],
   };
 
+  //En caso de no haber ningun dato, crea una serie color gris
   data.datasets.forEach((dataset) => {
     if (data.datasets[0].data.every((el) => el === 0)) {
       data.datasets[0].backgroundColor.push("rgba(240,240,240,1)");
@@ -85,87 +107,45 @@ function BigPieChartCard(props) {
     }
   });
 
-  let chipColor;
+  //  TOTAL PREVISTO AL MES EN CURSO
+  let Previsto_Mensual = 0;
+  Previsto_Mensual = list.Fecha_Referencia_Acumulado
 
-  percentaje < 30
-    ? (chipColor = "error")
-    : percentaje < 75
-    ? (chipColor = "warning")
-    : (chipColor = "success");
-
-  let percentajeBar = (dataBar.Lista[0].Cantidad * 100) / dataBar.TotAnual;
-  percentajeNow = (day * 100) / 365;
-
-  if (bar === "true") {
-    barra = (
-      <Container>
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          component="div"
-          style={{ paddingTop: "1em", fontSize: "1.2em" }}
-        >
-          Anual
-        </Typography>
-        {/* <Divider light style={{ width: "37%" }} /> */}
-        <MiniBarChartCard
-          percentaje={percentajeBar}
-          percentajeNow={percentajeNow}
-        ></MiniBarChartCard>
-        {/* <Typography
-          variant="overline"
-          color="text.secondary"
-          component="div"
-          style={{ fontSize: "0.8em" }}
-        >
-          {dataBar.Lista[0].Cantidad}/{dataBar.TotAnual} ud.
-        </Typography> */}
-        <Typography
-          variant="caption"
-          color="text.secondary"
-          component="div"
-          style={{ paddingBottom: "0px", fontSize: "0.7em" }}
-        >
-          PROGRAMADAS: {dataBar.TotAnual}
-        </Typography>
-        <Typography
-          variant="caption"
-          color="text.secondary"
-          component="div"
-          style={{ paddingBottom: "0px", fontSize: "0.7em" }}
-        >
-          INTERVENIDAS: {dataBar.Lista[0].Cantidad}
-        </Typography>
-
-        <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
-          {Math.round(percentajeBar)}%
-        </Typography>
-        <Typography
-          variant="body2"
-          color="text.primary"
-          component="div"
-          style={{ fontSize: "0.9em" , paddingBottom:"10px"}}
-        >
-          EJECUTADO
-        </Typography>
-      </Container>
-    );
+  if (Previsto_Mensual) {
+    let nume
+    Previsto_Mensual = Previsto_Mensual.filter((Previsto_Mensual) => {
+      nume = Previsto_Mensual.Inicio_program_Mes
+      return (nume <= config.Mes)
+    })
+    Previsto_Mensual = Previsto_Mensual.reduce((a, b) => a + (b["Count"] || 0), 0)
   }
+
+  // TOTAL ANUAL PREVISTO
+  let Total_Anual = TotalAnual[0][config.Cl_actividad_PM];
+
+  // TOTAL ANUAL EJECUTADO
+  let Ejecutado_Mensual = 0;
+  if (datos) {
+    datos = list.Fecha_Referencia_Anual;
+
+    //Se extraen los labels
+
+    let cant = datos.filter((datos) => {
+      return (datos.Status === "CTEC")
+    })[0]
+    if (cant) {
+      Ejecutado_Mensual = cant.Count
+    } else {
+      Ejecutado_Mensual = 0
+    }
+  }
+
+
+  let percentajeBar = (Ejecutado_Mensual * 100) / Total_Anual;
+  let percentajeNow = (Previsto_Mensual * 100) / Total_Anual;
 
   return (
     <>
-{/*       <Typography
-        variant="button"
-        color="text.primary"
-        component="div"
-        style={{
-          fontSize: "1.4em",
-          paddingLeft: "0.8em",
-          paddingBottom: "0px",
-        }}
-      >
-        {dataList.ZonaNombre}
-      </Typography> */}
       <Divider light style={{ width: "100%" }} />
       <Card
         sx={{
@@ -230,8 +210,68 @@ function BigPieChartCard(props) {
         </Box>
       </Card>
       <Divider light style={{ width: "100%" }} />
-      {barra}
+
+
+
+
+      {config.Mostrar_Anual === "true" &&
+        <Container>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            component="div"
+            style={{ paddingTop: "1em", fontSize: "1.2em" }}
+          >
+            Anual
+          </Typography>
+          <Divider light style={{ width: "37%" }} />
+          <MiniBarChartCard
+            percentaje={percentajeBar}
+            percentajeNow={percentajeNow}
+          ></MiniBarChartCard>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            component="div"
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+          >
+            PROGRAMADAS: {Total_Anual}
+          </Typography>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            component="div"
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+          >
+            PREVISTAS: {Previsto_Mensual}
+          </Typography>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            component="div"
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+          >
+            INTERVENIDAS: {Ejecutado_Mensual}
+          </Typography>
+
+          <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
+            {Math.round(percentajeBar)}%
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.primary"
+            component="div"
+            style={{ fontSize: "0.9em", paddingBottom: "10px" }}
+          >
+            EJECUTADO
+          </Typography>
+        </Container>
+      }
       <Divider light style={{ width: "100%" }} />
+
+
+
+
     </>
   );
 }

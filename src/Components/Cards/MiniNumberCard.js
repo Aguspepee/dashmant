@@ -83,7 +83,7 @@ function MiniNumberCard(props) {
               align="center"
               style={{ fontSize: "3em" }}
             >
-              {quantity[1]}
+              {quantity[0]}
             </Typography>
             <Typography
               variant="body1"

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import FilterContext from "./FilterContext";
-var data = require("../Data/dataJan.json");
 
 let months = [
   { Month: "Enero", Num: "01" },
@@ -20,7 +19,7 @@ let months = [
 function FilterProvider(props) {
   const [month, setMonth] = useState("02");
   const [year, setYear] = useState("2022");
-  const [dataBaseEstaciones, setDataBaseEstaciones] = useState(data);
+  const [dataBaseEstaciones, setDataBaseEstaciones] = useState();
   const [dataProgMonth, setDataProgMonth] = useState([]);
   const [dataProgYear, setDataProgYear] = useState([]);
   const [dataRealMonth, setDataRealMonth] = useState([]);

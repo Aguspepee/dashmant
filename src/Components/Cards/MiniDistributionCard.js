@@ -12,10 +12,12 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 //Configuración del gráfico
 export const options = {
+  responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: true,
-      align: "start",
+      align: 'start',
     },
     labels: {
       render: "percentage",
@@ -33,6 +35,7 @@ function MiniDistributionCard(props) {
 
   //Setea los estados
   const [list, setList] = useState([]);
+  
   //Previo a renderizar el componente se consulta la API
   useEffect(() => {
     const update = async () => {
@@ -44,8 +47,7 @@ function MiniDistributionCard(props) {
           //Para producción
           //`https://backmant.herokuapp.com/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
         );
-       // console.log(config.Mes,config.Año,zona)
-        console.log("RESULTADO",res.data)
+        // console.log(config.Mes,config.Año,zona)
         setList(res.data.Distribucion);
       } catch (e) {
         console.log(e);
@@ -54,25 +56,41 @@ function MiniDistributionCard(props) {
     update();
   }, [setList, config.Mes, config.Año]);
 
-  let labels = [];
-  let quantity = [];
 
-  if (list) {
-    console.log(list)
-    //Se obtienen los labels
-    for (let i = 0; i < list.length; i++) {
-      labels.push(list[i].Grupo_Agrupamiento);
-    }
-    console.log("labels",labels)
-    //Se obtienen los datos
-    for (let i = 0; i < list.length; i++) {
-      quantity.push(Number.isNaN(list[i].Count) ? true : list[i].Count);
-    }
-    console.log("quant",quantity)
+  //Se inicializan los labels y las cantidades
+  let quantity
+  let labels = [
+    "Mantenimiento Programado",
+    "Mantenimiento Correctivo",
+    "Recorridos de Seguridad Público",
+    "Mantenimiento Preventivo No Programado",
+    "Servicios a Terceros",
+    "Actividades Complementarias",
+  ];
+
+  //Se calculan las cantidades (quantity)
+  let datos = list;
+  if (datos) {
+    quantity = labels.map((labels, index) => {
+      let cant = datos.filter((datos) => {
+        return (datos.Grupo_Agrupamiento === labels)
+      })[0]
+      if (cant) {
+        cant = cant.Count
+      } else {
+        cant = 0
+      }
+      return (
+        cant
+      )
+    })
   }
 
-  let total = 50;
-  // let total = quantity.reduce(reducer);
+
+
+  //Se calcula el total
+  const reducer = (accumulator, curr) => accumulator + curr;
+  let total = quantity.reduce(reducer)
 
   //Se inicializa el gráfico
   const data = {
@@ -142,6 +160,7 @@ function MiniDistributionCard(props) {
             display: "flex",
             justifyContent: "left",
             width: "100%",
+            height: "450px",
             alignItems: "center",
             padding: "1em 1em 1em 1em",
           }}

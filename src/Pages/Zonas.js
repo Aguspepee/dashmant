@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect } from "react";
+import React, { Suspense, useRef, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import SectionBigDistributionContainer from "../Components/Containers/SectionBigDistributionContainer";
 import SectionBigPieContainer from "../Components/Containers/SectionBigPieContainer";
@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
+import DateContext from "../Context/DateContext";
 
 let zonas = [
   { Zona: "ZN1", Nombre: "Zona Norte", Activity: [] },
@@ -44,7 +45,13 @@ HideOnScroll.propTypes = {
 };
 
 function Zonas(props) {
-  let id = useParams().id;
+  const [
+    year,
+    setYear,
+    month,
+    setMonth,
+  ] = useContext(DateContext);
+  let Zona = useParams().id;
   const myRef = useRef(null);
   const executeScroll = () => scrollToRef(myRef);
   const drawerWidth = 240;
@@ -74,7 +81,7 @@ function Zonas(props) {
             >
               {zonas
                 .filter((zonas) => {
-                  return zonas.Zona === id;
+                  return zonas.Zona === Zona;
                 })[0]
                 .Nombre.toLocaleUpperCase()}
             </Typography>
@@ -87,74 +94,73 @@ function Zonas(props) {
       </h3>
       <div className="gridzone">
         <SectionBigPieContainer
-          activity="RPM"
-          title="Mantenimiento Programado de Equipos"
-          description="Unidades de Mantenimiento"
-          bar="true"
-          zone={id}
-          filters={{
-            filterByIng: true,
-            filterByMuesAceite: false,
-            filterByProtecciones: true,
-            deleteDuplicates: true,
-          }}
+          Titulo="Mantenimiento Programado de Equipos"
+          Descripcion="Unidades de Mantenimiento"
+          Mostrar_Anual="true"
+          Mes={month}
+          Año={year}
+          Cl_actividad_PM="RPM"
+          Clase_de_orden="ZTPL"
+          Texto_breve="false"
+          Pto_tbjo_resp="ETRA"
+          Operacion="0010"
+          BorrarDuplicados="true"
+          Zona={Zona}
         ></SectionBigPieContainer>
 
         <SectionBigPieContainer
-          activity="RSP"
-          title="Seguridad Pública"
-          description="Recorridas de Seguridad Pública"
-          bar="true"
-          zone={id}
-          filters={{
-            filterByIng: true,
-            filterByMuesAceite: false,
-            filterByProtecciones: true,
-            deleteDuplicates: false,
-          }}
+          Titulo="Seguridad Pública"
+          Descripcion="Recorridas de Seguridad Pública"
+          Mostrar_Anual="true"
+          Mes={month}
+          Año={year}
+          Cl_actividad_PM="RSP"
+          Clase_de_orden="ZTPL"
+          Texto_breve="false"
+          Pto_tbjo_resp="ETRA"
+          Operacion="0010"
+          BorrarDuplicados="false"
+          Zona={Zona}
         ></SectionBigPieContainer>
 
         <SectionBigPieContainer
-          activity="MUA"
-          title="Muestreos de Aceite"
-          description="Extracciones de Aceite"
-          bar="true"
-          zone={id}
-          filters={{
-            filterByIng: true,
-            filterByMuesAceite: true,
-            filterByProtecciones: true,
-            deleteDuplicates: false,
-          }}
+          Titulo="Muestreos de Aceite"
+          Descripcion="Extracciones de Aceite"
+          Mostrar_Anual="true"
+          Mes={month}
+          Año={year}
+          Cl_actividad_PM="MUA"
+          Clase_de_orden="false"
+          Texto_breve="Muestreo"
+          Pto_tbjo_resp="false"
+          Operacion="0010"
+          BorrarDuplicados="false"
+          Zona={Zona}
         ></SectionBigPieContainer>
 
-        <SectionBigDistributionContainer
-          activity="MCP"
-          title="Distribución de actividades"
-          description="Horas hombres utilizadas por rubro"
-          zone={id}
-          filters={{
-            filterByIng: true,
-            filterByMuesAceite: false,
-            filterByProtecciones: false,
-            deleteDuplicates: false,
-          }}
+       <SectionBigDistributionContainer
+          Titulo="Distribución de actividades"
+          Descripcion="Horas hombres utilizadas por rubro"
+          Mes={month}
+          Año={year}
+          Zona={Zona}
         ></SectionBigDistributionContainer>
 
-        <SectionBigNumContainer
-          activity="MCP"
-          title="Mantenimiento Correctivo de Equipos"
-          description="Cantidad de intervenciones"
-          zone={id}
-          filters={{
-            filterByIng: false,
-            filterByMuesAceite: false,
-            filterByProtecciones: false,
-            deleteDuplicates: true,
-          }}
-        ></SectionBigNumContainer>
+         <SectionBigNumContainer
+          Titulo="Mantenimiento Correctivo de Equipos"
+          Descripcion="Cantidad de intervenciones"
+          Mes={month}
+          Año={year}
+          Cl_actividad_PM="MCP"
+          Clase_de_orden="ZTCP"
+          Texto_breve="false"
+          Pto_tbjo_resp="false"
+          Operacion="0010"
+          BorrarDuplicados="false"
+          Zona={Zona}
+        ></SectionBigNumContainer> 
       </div>
-      <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>Líneas de Alta Tensión</h3>
+      {/*  <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>Líneas de Alta Tensión</h3>
       <div className="gridline">
         <div>
           <Suspense fallback={<div>Loading...</div>}>
@@ -178,7 +184,7 @@ function Zonas(props) {
             ></SectionBigBarContainer>
           </Suspense>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

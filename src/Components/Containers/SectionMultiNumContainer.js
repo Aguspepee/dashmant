@@ -4,11 +4,8 @@ import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
-import filterData from "../../Services/estaciones";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import { useEffect } from "react";
-import axios from 'axios';
 
 function SectionMultiNumContainer(props) {
 

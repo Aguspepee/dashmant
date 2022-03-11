@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState }from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
+import axios from "axios";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -23,66 +24,70 @@ export const options = {
   },
 };
 
-//Cálculo de día del año
-let now = new Date();
-let start = new Date(now.getFullYear(), 0, 0);
-let diff = now - start;
-let oneDay = 1000 * 60 * 60 * 24;
-let day = Math.floor(diff / oneDay);
-
 function BigDistributionCard(props) {
   //----- CATEGORÍAS INDIVIDUALES----.//
-  const dataList = props.dataPie; //Esta data está filtrada por mes y por año
-  //Se obtienen los labels
-/*   let labels = [];
-  for (let i = 0; i < dataList.Activity.length; i++) {
-    labels.push(dataList.Activity[i].NombreActividad);
-  }
-  //Se obtienen los datos
-  let quantity = [];
-  for (let i = 0; i < dataList.Activity.length; i++) {
-    quantity.push(
-      Number.isNaN(dataList.Activity[i].Horas)
-        ? true
-        : dataList.Activity[i].Horas
-    );
-  } */
+  //Extrae las propiedades, configuración y titulos
+  const zona = props.zona;
+  const config = props.config;
+  console.log(zona)
 
-  //console.log(dataList);
+  //Setea los estados
+  const [list, setList] = useState([]);
 
- //----- CATEGORÍAS GRUPALES----.//
-  const dataListGroup = dataList.Activity;
-  var result = [];
-  dataListGroup.reduce(function (res, value) {
-    if (!res[value.Grupo]) {
-      res[value.Grupo] = {
-        Grupo: value.Grupo,
-        NombreGrupo: value.NombreGrupo,
-        Horas: 0,
-      };
-      result.push(res[value.Grupo]);
+   //Previo a renderizar el componente se consulta la API
+   useEffect(() => {
+    const update = async () => {
+      try {
+        const res = await axios.get(
+          //Para desarrollo
+          `http://localhost:9000/saps/DistibucionHoraria/${config.Mes}-${config.Año}-${zona}`
+
+          //Para producción
+          //`https://backmant.herokuapp.com/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
+        );
+        // console.log(config.Mes,config.Año,zona)
+        setList(res.data.Distribucion);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    update();
+  }, [setList, config.Mes, config.Año,zona]);
+
+//Se inicializan los labels y las cantidades
+let quantity
+let labels = [
+  "Mantenimiento Programado",
+  "Mantenimiento Correctivo",
+  "Recorridos de Seguridad Público",
+  "Mantenimiento Preventivo No Programado",
+  "Servicios a Terceros",
+  "Actividades Complementarias",
+];
+
+//Se calculan las cantidades (quantity)
+let datos = list;
+if (datos) {
+  quantity = labels.map((labels, index) => {
+    let cant = datos.filter((datos) => {
+      return (datos.Grupo_Agrupamiento === labels)
+    })[0]
+    if (cant) {
+      cant = cant.Count
+    } else {
+      cant = 0
     }
-    res[value.Grupo].Horas += value.Horas;
-    return res;
-  }, {});
-  //Se obtienen los labels
-  let labels = [];
-  for (let i = 0; i < result.length; i++) {
-    labels.push(result[i].NombreGrupo);
-  }
-  
-  //Se obtienen los datos
-  let quantity = [];
-  for (let i = 0; i < result.length; i++) {
-    quantity.push(Number.isNaN(result[i].Horas) ? true : result[i].Horas);
-  }
+    return (
+      cant
+    )
+  })
+}
 
-  //console.log(result);
 
-  const reducer = (accumulator, curr) => accumulator + curr;
 
-  let total = quantity.reduce(reducer);
-  //console.log(total);
+//Se calcula el total
+const reducer = (accumulator, curr) => accumulator + curr;
+let total = quantity.reduce(reducer)
 
   //Se inicializa el gráfico
   const data = {
@@ -126,18 +131,6 @@ function BigDistributionCard(props) {
 
   return (
     <>
-{/*       <Typography
-        variant="button"
-        color="text.primary"
-        component="div"
-        style={{
-          fontSize: "1.4em",
-          paddingLeft: "0.8em",
-          paddingBottom: "0px",
-        }}
-      >
-        {dataList.Nombre}
-      </Typography> */}
       <Divider light style={{ width: "100%" }} />
       <Card
         sx={{

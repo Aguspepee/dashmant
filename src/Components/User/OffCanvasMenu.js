@@ -25,7 +25,7 @@ import Logo from "../../Images/transpa.png";
 import ListSubheader from "@mui/material/ListSubheader";
 
 const drawerWidth = 240;
-/* const months = [
+const months1 = [
   "Enero",
   "Febrero",
   "Marzo",
@@ -38,7 +38,7 @@ const drawerWidth = 240;
   "Octubre",
   "Noviembre",
   "Diciembre",
-]; */
+]; 
 const months = [
   "01",
   "02",
@@ -57,34 +57,12 @@ const months = [
 const years = ["2021", "2022", "2023", "2024"];
 
 function ResponsiveDrawer(props) {
-/*    const [
-    pieChartData,
-    setPieChartData,
-    year,
-    setYear,
-    handleYearChange,
-    month,
-    setMonth,
-    handleMonthChange,
-    dataBruta,
-    setDataBruta,
-    dataNormalizada,
-    setDataNormalizada,
-    dataFiltrada,
-    setDataFiltada,
-    normalizeData,
-    filterDataByVarious,
-    filterDataByDate,
-  ] = useContext(FilterContext);  */
   const [
     year,
     setYear,
     month,
     setMonth,
   ] = useContext(DateContext);
-
-
-  //setMonth("jaunua");
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -101,12 +79,17 @@ function ResponsiveDrawer(props) {
           alt="fireSpot"
         />
         <Divider />
-          {["General"].map((text) => (
-            <ListItem button key={text} component={Link} to="dashmant/general">
-              <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+        {["General"].map((text) => (
+          <ListItem
+            button
+            key={text}
+            component={Link}
+            to="dashmant/general"
+            >
+            <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
         <ListItem
           button
           key="Zona Norte"
@@ -142,7 +125,7 @@ function ResponsiveDrawer(props) {
           <ListItemText inset primary="Zona Austral" />
         </ListItem>
 
-      <Divider />
+        <Divider />
 
         <ListItem key={"Periodo Evaluado"}>
           <ListItemIcon>{<FilterAltIcon />}</ListItemIcon>
@@ -153,7 +136,6 @@ function ResponsiveDrawer(props) {
           <DateSelector
             type="Mes"
             data={months}
-            //change1={handleMonthChange}
             change1={setMonth}
             change2={setMonth}
             value={month}
@@ -163,14 +145,13 @@ function ResponsiveDrawer(props) {
           <DateSelector
             type="Año"
             data={years}
-            //change1={handleYearChange}
             change1={setYear}
             change2={setYear}
             value={year}
           />
         </ListItem>
 
-      <Divider />
+        <Divider />
         {["Cargar"].map((text, index) => (
           <ListItem button key={text} component={Link} to="dashmant/Upload">
             <ListItemIcon>{<CloudUploadIcon />}</ListItemIcon>
