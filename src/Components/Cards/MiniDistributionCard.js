@@ -42,10 +42,10 @@ function MiniDistributionCard(props) {
       try {
         const res = await axios.get(
           //Para desarrollo
-          `http://localhost:9000/saps/DistibucionHoraria/${config.Mes}-${config.Año}-${zona}`
+          `http://localhost:9000/sapBase/DistibucionHoraria/${config.Mes}-${config.Año}-${zona}`
 
           //Para producción
-          //`https://backmant.herokuapp.com/saps/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
+          //`https://backmant.herokuapp.com/sapBase/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
         );
         // console.log(config.Mes,config.Año,zona)
         setList(res.data.Distribucion);
