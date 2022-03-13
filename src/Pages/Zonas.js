@@ -20,9 +20,9 @@ let zonas = [
   { Zona: "ZA1", Nombre: "Zona Austral", Activity: [] },
 ];
 
-const SectionBigBarContainer = React.lazy(() =>
+/* const SectionBigBarContainer = React.lazy(() =>
   import("../Components/Containers/SectionBigBarContainer")
-);
+); */
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 

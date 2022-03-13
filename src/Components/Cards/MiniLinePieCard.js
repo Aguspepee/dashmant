@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
@@ -25,41 +25,38 @@ let percentajeNow;
 
 function MiniLinePieCard(props) {
   console.log("Cargó Line Pie")
-    //Extrae las propiedades, configuración y titulos
-    const Zona = props.Zona;
-    const Nombre = props.Nombre;
-    const Mostrar_Anual = props.Mostrar_Anual;
-    const Mes = props.Mes;
-    const Año = props.Año;
-    const Tipo = props.Tipo;
+  //Extrae las propiedades, configuración y titulos
+  const Zona = props.Zona;
+  const Nombre = props.Nombre;
+  const Mostrar_Anual = props.Mostrar_Anual;
+  const Mes = props.Mes;
+  const Año = props.Año;
+  const Tipo = props.Tipo;
 
-    const [list, setList] = useState([]);
-    //Previo a renderizar el componente se consulta la API
-    useEffect(() => {
-      const update = async () => {
-        try {
-          const res = await axios.get(
-            //Para desarrollo
-            `http://localhost:9000/lineasBase/novedadesResumen/${Mes}-${Año}-${Zona}-${Tipo}`
-  
-            //Para producción
-            //`http://localhost:9000/lineasBase/novedadesResumen/${Mes}-${Año}-${Zona}-${Tipo}`
-          );
-          console.log(res.data)
-          setList(res.data);
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      update();
-    }, [setList, Mes, Año]);
+  const [list, setList] = useState([]);
+  //Previo a renderizar el componente se consulta la API
+  useEffect(() => {
+    const update = async () => {
+      try {
+        const res = await axios.get(
+          //Para desarrollo
+          `http://localhost:9000/lineasBase/novedadesResumen/${Mes}-${Año}-${Zona}-${Tipo}`
+        );
+        //         console.log(res.data)
+        setList(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    update();
+  }, [setList, Mes, Año]);
 
   //Se obtienen los labels
   let labels = ["Ejecutado", "Previsto"];
   //Se obtienen los datos
-  let quantity = [list.Total_Mensual_Ejecutado,list.Total_Mensual_Previsto];
+  let quantity = [list.Total_Mensual_Ejecutado, list.Total_Mensual_Previsto];
 
-  let percentaje = Math.round(list.Total_Mensual_Ejecutado*100/list.Total_Mensual_Previsto)
+  let percentaje = Math.round(list.Total_Mensual_Ejecutado * 100 / list.Total_Mensual_Previsto)
 
   //Se inicializa el gráfico
   const data = {
@@ -81,11 +78,11 @@ function MiniLinePieCard(props) {
     }
   });
 
-  let percentajeBar =Math.round(list.Total_Anual_Ejecutado*100/list.Total_Anual_Previsto)
-  percentajeNow = Math.round(3*100/12)
+  let percentajeBar = Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto)
+  percentajeNow = Math.round(3 * 100 / 12)
   let barra
   if (Mostrar_Anual === "true") {
-   barra = (
+    barra = (
       <Container>
         <Typography
           variant="body1"
@@ -116,7 +113,7 @@ function MiniLinePieCard(props) {
           INTERVENIDAS: {Math.round(list.Total_Anual_Ejecutado)}
         </Typography>
         <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
-          {Math.round(list.Total_Anual_Ejecutado*100/list.Total_Anual_Previsto)}%
+          {Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto)}%
         </Typography>
         <Typography
           variant="body2"

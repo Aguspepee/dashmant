@@ -13,28 +13,18 @@ function Uploader(props) {
     const Titulo = props.Titulo;
     const Subtitulo = props.Subtitulo;
     const fileTypes = props.fileTypes;
-    
 
     function uploadFiles(json) {
         console.log("comienza carga en ", dbSubBaseURL, json);
-        //Para desarrollo
-
         const options = {
-            onUploadProgress: (progressEvent) =>{
-                const {loaded,total} = progressEvent;
-                let percent = Math.floor((loaded * 100)/total)
+            onUploadProgress: (progressEvent) => {
+                const { loaded, total } = progressEvent;
+                let percent = Math.floor((loaded * 100) / total)
                 console.log(percent)
             }
-
         }
-
-
-
         axios.delete(`http://localhost:9000/${dbSubBaseURL}/`).then(
-            axios.post(`http://localhost:9000/${dbSubBaseURL}/`, json,options)
-                //Para producción
-                //    axios.delete('https://backmant.herokuapp.com/sapBase/')
-                //       .then(axios.post('https://backmant.herokuapp.com/sapBase/', json)
+            axios.post(`http://localhost:9000/${dbSubBaseURL}/`, json, options)
                 .then((res) => {
                     const ots = res.data;
                     console.log("Se cargaron los archivos", ots);

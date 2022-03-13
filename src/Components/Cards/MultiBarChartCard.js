@@ -18,9 +18,6 @@ function MultiBarChartCard(props) {
           const res = await axios.get(
             //Para desarrollo
             `http://localhost:9000/lineasBase/novedadesDetalle/${Mes}-${Año}-${Zona}-${Tipo}`
-  
-            //Para producción
-            //`http://localhost:9000/lineasBase/novedadesResumen/${Mes}-${Año}-${Zona}-${Tipo}`
           );
         //  console.log(res.data)
           setList(res.data);
@@ -29,7 +26,7 @@ function MultiBarChartCard(props) {
         }
       };
       update();
-    }, [setList, Mes, Año]);
+    }, [setList, Año]);
 
   let factor;
   let max;

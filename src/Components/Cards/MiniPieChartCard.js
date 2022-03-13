@@ -38,11 +38,7 @@ function MiniPieChartCard(props) {
     const update = async () => {
       try {
         const res = await axios.get(
-          //Para desarrollo
           `http://localhost:9000/sapBase/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
-
-          //Para producción
-          //`https://backmant.herokuapp.com/sapBase/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
         );
         //console.log(res.data)
         setList(res.data);
@@ -117,10 +113,11 @@ function MiniPieChartCard(props) {
   Previsto_Mensual = list.Fecha_Referencia_Acumulado
 
   if (Previsto_Mensual) {
-    let nume 
-    Previsto_Mensual = Previsto_Mensual.filter((Previsto_Mensual) => { 
-     nume = Previsto_Mensual.Inicio_program_Mes
-      return (nume <= config.Mes) })
+    let nume
+    Previsto_Mensual = Previsto_Mensual.filter((Previsto_Mensual) => {
+      nume = Previsto_Mensual.Inicio_program_Mes
+      return (nume <= config.Mes)
+    })
     Previsto_Mensual = Previsto_Mensual.reduce((a, b) => a + (b["Count"] || 0), 0)
   }
 

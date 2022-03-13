@@ -23,7 +23,7 @@ export default function BasicTable(props) {
     createData(dataList.Lista[2].Tipo, dataList.Lista[2].Cantidad),
     createData(dataList.Lista[3].Tipo, dataList.Lista[3].Cantidad),
   ];
-  
+
 
   return (
     <TableContainer
@@ -42,8 +42,8 @@ export default function BasicTable(props) {
       >
         {dataList.ZonaNombre}
       </Typography>
-      
-      
+
+
       <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
       <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
       <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
