@@ -52,14 +52,12 @@ function SectionMultiBarContainer(props) {
   ] = useContext(FilterContext);
 
   //Cálculo de día del año
-  const year1 = year.toString();
+
   const title = props.title;
   const description = props.description;
   const detail = props.detail;
-  const lineas = filterLines(year, month);
-  let dataPie = lineas
-  let dataBar = lineas
-  //console.log("Lineas", lineas);
+  let dataPie = "lineas"
+  let dataBar = "lineas"
   let actividad = props.activity;
 
   return (
@@ -96,7 +94,7 @@ function SectionMultiBarContainer(props) {
               </div>
             </div>
 
-            <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
+           {/*  <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
               <ExpandMore
                 expand={expanded}
                 onClick={handleExpandClick}
@@ -105,7 +103,7 @@ function SectionMultiBarContainer(props) {
               >
                 <ExpandMoreIcon />
               </ExpandMore>
-            </CardActions>
+            </CardActions> 
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
                 <div className="gridpie">
@@ -120,7 +118,7 @@ function SectionMultiBarContainer(props) {
                   ))}
                 </div>
               </CardContent>
-            </Collapse>
+            </Collapse> */}
           </CardContent>
         </Card>
       </div>

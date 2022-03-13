@@ -3,9 +3,9 @@ import SectionDistributionContainer from "../Components/Containers/SectionDistri
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
 import DateContext from "../Context/DateContext";
-const SectionMultiBarContainer = React.lazy(() =>
+/* const SectionMultiBarContainer = React.lazy(() =>
   import("../Components/Containers/SectionMultiBarContainer")
-);
+); */ 
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
