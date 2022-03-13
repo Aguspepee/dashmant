@@ -9,7 +9,8 @@ import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import axios from "axios";
+import { NovedadesResumen } from "../../Services/lineasNovedadesService"
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -38,11 +39,7 @@ function MiniLinePieCard(props) {
   useEffect(() => {
     const update = async () => {
       try {
-        const res = await axios.get(
-          //Para desarrollo
-          `http://localhost:9000/lineasBase/novedadesResumen/${Mes}-${Año}-${Zona}-${Tipo}`
-        );
-        //         console.log(res.data)
+        const res = await NovedadesResumen(Mes, Año, Zona,Tipo)
         setList(res.data);
       } catch (e) {
         console.log(e);

@@ -3,11 +3,11 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import axios from "axios";
+import { distribucionHoraria } from "../../Services/sapBaseService"
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 //Configuración del gráfico
@@ -31,26 +31,23 @@ function MiniDistributionCard(props) {
   const zona = props.zona;
   const nombre = props.nombre;
   const config = props.config;
-  const TotalAnual = props.TotalAnual;
 
   //Setea los estados
   const [list, setList] = useState([]);
-  
+
   //Previo a renderizar el componente se consulta la API
   useEffect(() => {
+    
     const update = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:9000/sapBase/DistibucionHoraria/${config.Mes}-${config.Año}-${zona}`
-        );
-        // console.log(config.Mes,config.Año,zona)
+        const res = await distribucionHoraria(config, zona)
         setList(res.data.Distribucion);
       } catch (e) {
         console.log(e);
       }
     };
     update();
-  }, [setList, config.Mes, config.Año]);
+  }, [setList, config,zona]);
 
 
   //Se inicializan los labels y las cantidades

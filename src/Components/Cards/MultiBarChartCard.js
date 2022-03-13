@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
-import axios from "axios";
 import VerticalBarCard from "./VerticalBarCard";
+import { NovedadesDetalle } from "../../Services/lineasNovedadesService"
 
 function MultiBarChartCard(props) {
   const Zona = props.Zona;
@@ -11,22 +11,18 @@ function MultiBarChartCard(props) {
   const Tipo = props.Tipo;
 
   const [list, setList] = useState([]);
-    //Previo a renderizar el componente se consulta la API
-    useEffect(() => {
-      const update = async () => {
-        try {
-          const res = await axios.get(
-            //Para desarrollo
-            `http://localhost:9000/lineasBase/novedadesDetalle/${Mes}-${Año}-${Zona}-${Tipo}`
-          );
-        //  console.log(res.data)
-          setList(res.data);
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      update();
-    }, [setList, Año]);
+  //Previo a renderizar el componente se consulta la API
+  useEffect(() => {
+    const update = async () => {
+      try {
+        const res = await NovedadesDetalle(Mes, Año, Zona, Tipo)
+        setList(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    update();
+  }, [setList, Año]);
 
   let factor;
   let max;
@@ -52,7 +48,7 @@ function MultiBarChartCard(props) {
         >
           {Nombre}
         </Typography>
-        <VerticalBarCard list={list} factor={factor} max={max}/>
+        <VerticalBarCard list={list} factor={factor} max={max} />
 
       </div>
     </>

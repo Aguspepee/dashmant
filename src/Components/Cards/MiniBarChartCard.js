@@ -24,7 +24,7 @@ export default function MiniBarChartCard(props) {
 
   return (
     <>
-      <Box sx={{ width: "90%", display: "inline-flex"}}>
+      <Box sx={{ width: "90%", display: "inline-flex",paddingTop:"5px"}}>
         <ProgressBar style={{ width: "100%" }}>
           <ProgressBar
             
@@ -40,18 +40,6 @@ export default function MiniBarChartCard(props) {
           />
         </ProgressBar>
       </Box>
-
-{/*       <Box sx={{ width: "15%", display: "inline-flex", paddingRight:"1em" }}>
-        <Typography
-        
-          variant="button"
-          color="text.secondary"
-          component="div"
-          sx={{ textAlign: 'right', paddingLeft:'1em',  fontSize: '1.1em'}}
-        >
-          {percentaje1}%
-        </Typography>
-      </Box> */}
     </>
   );
 }

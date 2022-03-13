@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import * as xlsx from "xlsx/xlsx.mjs";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import axios from "axios";
+import { deleteAll, createAll } from "../../Services/uploadService"
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
 function Uploader(props) {
     let json = [];
@@ -13,22 +19,19 @@ function Uploader(props) {
     const Titulo = props.Titulo;
     const Subtitulo = props.Subtitulo;
     const fileTypes = props.fileTypes;
+    const [open, setOpen] = React.useState(false);
+    const [succes, setSucces] = React.useState(false);
 
     function uploadFiles(json) {
+        setOpen(true)
         console.log("comienza carga en ", dbSubBaseURL, json);
-        const options = {
-            onUploadProgress: (progressEvent) => {
-                const { loaded, total } = progressEvent;
-                let percent = Math.floor((loaded * 100) / total)
-                console.log(percent)
-            }
-        }
-        axios.delete(`http://localhost:9000/${dbSubBaseURL}/`).then(
-            axios.post(`http://localhost:9000/${dbSubBaseURL}/`, json, options)
-                .then((res) => {
-                    const ots = res.data;
-                    console.log("Se cargaron los archivos", ots);
-                })
+        deleteAll(dbSubBaseURL).then(createAll(dbSubBaseURL, json)
+            .then((res) => {
+                setOpen(false)
+                setSucces(true)
+                const ots = res.data;
+                console.log("Se cargaron los archivos", ots);
+            })
         );
     }
 
@@ -77,7 +80,32 @@ function Uploader(props) {
                             </div>
                         </form>
                     </CardContent>
+                    <Collapse in={succes}>
+                        <Alert action={
+                            <IconButton
+                                aria-label="close"
+                                color="inherit"
+                                size="small"
+                                onClick={() => {
+                                    setSucces(false);
+                                }}
+                            >
+                                <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                        }
+                            severity="success">
+                            El archivo se cargó correctamente
+                        </Alert>
+                    </Collapse>
                 </Card>
+            </div>
+            <div>
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={open}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>
             </div>
         </>
     );

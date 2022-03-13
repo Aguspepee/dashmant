@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import axios from "axios";
+import { filterGeneral } from "../../Services/sapBaseService"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -22,8 +22,6 @@ export const options = {
   },
 };
 
-
-
 function MiniPieChartCard(props) {
   //Extrae las propiedades, configuración y titulos
   const zona = props.zona;
@@ -33,14 +31,12 @@ function MiniPieChartCard(props) {
 
   //Setea los estados
   const [list, setList] = useState([]);
+
   //Previo a renderizar el componente se consulta la API
   useEffect(() => {
     const update = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:9000/sapBase/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
-        );
-        //console.log(res.data)
+        const res = await filterGeneral(config, zona)
         setList(res.data);
       } catch (e) {
         console.log(e);
@@ -48,7 +44,6 @@ function MiniPieChartCard(props) {
     };
     update();
   }, [setList, config.Mes, config.Año]);
-
 
   //Se inicializan los labels y las cantidades
   let labels = ["CTEC", "EJEC", "ABIE", "CTEC CENE"];
@@ -227,7 +222,7 @@ function MiniPieChartCard(props) {
       <Divider light style={{ width: "90%" }} />
 
       {config.Mostrar_Anual === "true" &&
-        <Container>
+        <Container  >
           <Typography
             variant="body1"
             color="text.secondary"

@@ -3,7 +3,10 @@ import Uploader from "../Components/User/Uploader";
 import { keyModifiSapBase, keyModifiLineasBase, keyModifiLineasNovedades } from "../Utils/keyConverters";
 
 
+
+
 function Upload() {
+
 
   return (
     <>
@@ -31,6 +34,8 @@ function Upload() {
         Subtitulo="Seleccione el archivo"
         fileTypes=".xlsx , xls"
       ></Uploader>
+
+
     </>
 
   )

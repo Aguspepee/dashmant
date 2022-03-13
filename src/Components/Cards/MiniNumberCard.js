@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import { filterGeneral } from "../../Services/sapBaseService"
 
 function MiniNumberCard(props) {
   //Extrae las propiedades, configuración y titulos
@@ -17,10 +17,8 @@ function MiniNumberCard(props) {
   useEffect(() => {
     const update = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:9000/sapBase/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
-        );
-        setList(res.data);
+        const res = await filterGeneral(config, zona)
+        setList(res.data);     
       } catch (e) {
         console.log(e);
       }
