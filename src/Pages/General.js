@@ -1,11 +1,10 @@
-import React, { Suspense, useRef, useEffect,useContext  } from "react";
+import React, { Suspense, useRef, useEffect, useContext } from "react";
 import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
 import DateContext from "../Context/DateContext";
-/* const SectionMultiBarContainer = React.lazy(() =>
-  import("../Components/Containers/SectionMultiBarContainer")
-); */ 
+import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
+
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
@@ -19,7 +18,7 @@ function General() {
     setMonth,
   ] = useContext(DateContext);
   console.log("cargó general")
- 
+
   return (
     <>
       <div>
@@ -52,7 +51,7 @@ function General() {
         Pto_tbjo_resp="false"
         Operacion="0010"
         BorrarDuplicados="false"
-      ></SectionMultiNumContainer> 
+      ></SectionMultiNumContainer>
 
       <SectionMultiPieContainer
         Titulo="Seguridad Pública"
@@ -82,35 +81,35 @@ function General() {
         BorrarDuplicados="false"
       ></SectionMultiPieContainer>
 
-       <SectionDistributionContainer
+      <SectionDistributionContainer
         Titulo="Distribución de actividades"
         Descripcion="Horas hombres utilizadas por rubro"
         Mes={month}
         Año={year}
-      ></SectionDistributionContainer> 
+      ></SectionDistributionContainer>
 
-      {/* <h1>Líneas de Alta Tensión</h1>
+      <h1>Líneas de Alta Tensión</h1>
       <div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <SectionMultiBarContainer
-            activity="PINM"
-            title="Inspección Minuciosa"
-            description="Piquetes"
-            detail="Minuciosa"
-          ></SectionMultiBarContainer>
-        </Suspense>
+        <SectionMultiBarContainer
+          Titulo="Inspección Minuciosa"
+          Descripcion="Piquetes"
+          Tipo="PINM"
+          Mostrar_Anual="true"
+          Mes={month}
+          Año={year}
+        ></SectionMultiBarContainer>
       </div>
 
       <div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <SectionMultiBarContainer
-            activity="PINT"
-            title="Inspección Terrestre"
-            description="Piquetes"
-            detail="Terrestre"
-          ></SectionMultiBarContainer>
-        </Suspense>
-      </div>   */}
+        <SectionMultiBarContainer
+          Titulo="Inspección Terrestre"
+          Descripcion="Piquetes"
+          Tipo="PINT"
+          Mostrar_Anual="true"
+          Mes={month}
+          Año={year}
+        ></SectionMultiBarContainer>
+      </div>
     </>
   );
 }

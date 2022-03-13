@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
@@ -9,7 +9,7 @@ import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
+import axios from "axios";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -22,31 +22,44 @@ export const options = {
 
 let percentajeNow;
 //Cálculo de día del año
-let now = new Date();
-let start = new Date(now.getFullYear(), 0, 0);
-let diff = now - start;
-let oneDay = 1000 * 60 * 60 * 24;
-let day = Math.floor(diff / oneDay);
 
 function MiniLinePieCard(props) {
-  let bar = props.bar;
-  let barra;
-  let detail = props.detail;
+  console.log("Cargó Line Pie")
+    //Extrae las propiedades, configuración y titulos
+    const Zona = props.Zona;
+    const Nombre = props.Nombre;
+    const Mostrar_Anual = props.Mostrar_Anual;
+    const Mes = props.Mes;
+    const Año = props.Año;
+    const Tipo = props.Tipo;
 
-  const dataList = props.dataPie; //Esta data está filtrada por mes y por año
-  //Esta data está filtada por año
+    const [list, setList] = useState([]);
+    //Previo a renderizar el componente se consulta la API
+    useEffect(() => {
+      const update = async () => {
+        try {
+          const res = await axios.get(
+            //Para desarrollo
+            `http://localhost:9000/lineasBase/novedadesResumen/${Mes}-${Año}-${Zona}-${Tipo}`
+  
+            //Para producción
+            //`http://localhost:9000/lineasBase/novedadesResumen/${Mes}-${Año}-${Zona}-${Tipo}`
+          );
+          console.log(res.data)
+          setList(res.data);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      update();
+    }, [setList, Mes, Año]);
+
   //Se obtienen los labels
   let labels = ["Ejecutado", "Previsto"];
   //Se obtienen los datos
-  let quantity = [
-    dataList["Mensual Ejecutado " + detail],
-    dataList["Mensual Previsto " + detail],
-  ];
+  let quantity = [list.Total_Mensual_Ejecutado,list.Total_Mensual_Previsto];
 
-  let percentaje = Math.round(
-    (dataList["Mensual Ejecutado " + detail] * 100) /
-      dataList["Mensual Previsto " + detail]
-  );
+  let percentaje = Math.round(list.Total_Mensual_Ejecutado*100/list.Total_Mensual_Previsto)
 
   //Se inicializa el gráfico
   const data = {
@@ -54,8 +67,8 @@ function MiniLinePieCard(props) {
     datasets: [
       {
         data: quantity,
-        backgroundColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
-        borderColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
+        backgroundColor: ["#BDE7BD", "#FF6962"],
+        borderColor: ["#BDE7BD", "#FF6962"],
         borderWidth: 0,
       },
     ],
@@ -68,13 +81,11 @@ function MiniLinePieCard(props) {
     }
   });
 
-  let percentajeBar =
-    (dataList["Anual Ejecutado " + detail] * 100) /
-    dataList["Anual Previsto " + detail];
-  percentajeNow = (day * 100) / 365;
-
-  if (bar === "true") {
-    barra = (
+  let percentajeBar =Math.round(list.Total_Anual_Ejecutado*100/list.Total_Anual_Previsto)
+  percentajeNow = Math.round(3*100/12)
+  let barra
+  if (Mostrar_Anual === "true") {
+   barra = (
       <Container>
         <Typography
           variant="body1"
@@ -84,26 +95,17 @@ function MiniLinePieCard(props) {
         >
           Anual
         </Typography>
-        {/* <Divider light style={{ width: "37%" }} /> */}
         <MiniBarChartCard
           percentaje={percentajeBar}
           percentajeNow={percentajeNow}
         ></MiniBarChartCard>
-        {/* <Typography
-          variant="overline"
-          color="text.secondary"
-          component="div"
-          style={{ fontSize: "0.8em" }}
-        >
-          {dataList.Lista[0].Cantidad}/{dataList.TotAnual} ud.
-        </Typography> */}
         <Typography
           variant="caption"
           color="text.secondary"
           component="div"
           style={{ paddingBottom: "0px", fontSize: "0.7em" }}
         >
-          PROGRAMADAS: {dataList["Anual Previsto " + detail]}
+          PROGRAMADAS: {Math.round(list.Total_Anual_Previsto)}
         </Typography>
         <Typography
           variant="caption"
@@ -111,10 +113,10 @@ function MiniLinePieCard(props) {
           component="div"
           style={{ paddingBottom: "0px", fontSize: "0.7em" }}
         >
-          INTERVENIDAS: {dataList["Anual Ejecutado " + detail]}
+          INTERVENIDAS: {Math.round(list.Total_Anual_Ejecutado)}
         </Typography>
         <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
-          {Math.round(percentajeBar)}%
+          {Math.round(list.Total_Anual_Ejecutado*100/list.Total_Anual_Previsto)}%
         </Typography>
         <Typography
           variant="body2"
@@ -140,7 +142,7 @@ function MiniLinePieCard(props) {
           paddingBottom: "0px",
         }}
       >
-        {dataList.ZonaNombre}
+        {Nombre}
       </Typography>
       <Divider light style={{ width: "90%" }} />
       <Card
@@ -166,7 +168,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PROGRAMADAS: {dataList["Mensual Previsto " + detail]}
+            PROGRAMADAS: {Math.round(list.Total_Mensual_Previsto)}
           </Typography>
           <Typography
             variant="caption"
@@ -174,7 +176,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS: {dataList["Mensual Ejecutado " + detail]}
+            INTERVENIDAS: {Math.round(list.Total_Mensual_Ejecutado)}
           </Typography>
 
           <Typography

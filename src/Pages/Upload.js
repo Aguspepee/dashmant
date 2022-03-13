@@ -17,7 +17,7 @@ function Upload() {
       ></Uploader>
 
       <Uploader
-        dbSubBaseURL="lineasHistorias"
+        dbSubBaseURL="lineasNovedades"
         keyConverter={keyModifiLineasNovedades}
         Titulo="SAP - Novedades de Lineas"
         Subtitulo="Seleccione el archivo"
