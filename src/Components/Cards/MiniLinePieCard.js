@@ -33,6 +33,7 @@ function MiniLinePieCard(props) {
   const Mes = props.Mes;
   const Año = props.Año;
   const Tipo = props.Tipo;
+  console.log(Mes, Año,Zona, Tipo)
 
   const [list, setList] = useState([]);
   //Previo a renderizar el componente se consulta la API
@@ -46,7 +47,7 @@ function MiniLinePieCard(props) {
       }
     };
     update();
-  }, [setList, Mes, Año]);
+  }, [setList, Mes, Año, Zona]);
 
   //Se obtienen los labels
   let labels = ["Ejecutado", "Previsto"];

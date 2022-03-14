@@ -1,31 +1,17 @@
 import React from "react";
-import { useEffect, useContext } from "react";
 import BigPieChartCart from "../Cards/BigPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import CardActions from "@mui/material/CardActions";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ListTableCard from "../Cards/ListTableCard";
 import "./gridstyle.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import LineAcumChartCard from "../Cards/LineAcumChartCard";
+import Typography from '@mui/material/Typography';
+import Divider from "@mui/material/Divider";
+import BarAcumChartCard from "../Cards/BarAcumChartCard"
 
 function SectionMultiPieContainer(props) {
-  const [expanded, setExpanded] = React.useState(false);
   //Titulo y subtitulo del bloque
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
@@ -68,56 +54,83 @@ function SectionMultiPieContainer(props) {
     },
   ];
 
-  const TotalAnual = (zonas.filter((zonas)=>zonas.Zona === Zona ))[0].TotalAnual
+  const TotalAnual = (zonas.filter((zonas) => zonas.Zona === Zona))[0].TotalAnual
   console.log("cargó componente");
   return (
     <>
       <div style={{ padding: "1em 1em 1em 1em" }}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
-          <CardContent>
-            <CardHeader
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              title={Titulo}
-              subheader={Descripcion}
-            />
-            <div className="singlepie">
-              <div className="grid-column">
+          <CardHeader
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title={Titulo}
+            subheader={Descripcion}
+          />
+          <CardContent style={{ padding: "0em 1em 0em 1em" }}>
+            <Divider light style={{ width: "100%" }} />
+          </CardContent>
+
+          <div className="bigPieBar">
+            <CardContent>
+              <div style={{ padding: "1em 1em 1em 1em", width: "100%" }}>
+                <Typography variant="h6" gutterBottom component="div">
+                  Resumen
+                </Typography>
                 <BigPieChartCart
                   zona={Zona}
                   config={config}
                   TotalAnual={TotalAnual}
                 ></BigPieChartCart>
               </div>
-            </div>
-          </CardContent>
-          {/*  <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <div className="singlepie">
-                {dataPie.map((dataPie, index) => (
-                  <div className="grid-column" key={dataPie.Zona}>
-                    <ListTableCard
-                      data={dataPie}
-                      dataBar={dataBar[index]}
-                    ></ListTableCard>
-                  </div>
-                ))}
+            </CardContent>
+            <CardContent style={{ width: "100%" }}>
+              <div style={{ padding: "1em 1em 1em 1em", width: "100%" }}>
+                <Typography variant="h6" gutterBottom component="div">
+                  Distribucion Anual
+                </Typography>
+                <Divider light style={{ width: "100%" }} />
+                <BarAcumChartCard
+                  zona={Zona}
+                  config={config}
+                  TotalAnual={TotalAnual}
+                ></BarAcumChartCard>
+                <Divider light style={{ width: "100%" }} />
+                <LineAcumChartCard
+                  zona={Zona}
+                  config={config}
+                  TotalAnual={TotalAnual}
+                ></LineAcumChartCard>
               </div>
             </CardContent>
-          </Collapse> */}
+            <CardContent style={{ width: "100%" }}>
+              <div style={{ padding: "1em 1em 1em 1em", width: "100%" }}>
+                <Typography variant="h6" gutterBottom component="div">
+                  Indicadores
+                </Typography>
+                <Divider light style={{ width: "100%" }} />
+                <Typography
+                  component="div"
+                  variant="h4"
+                  style={{ fontSize: "2.5em" }}
+                >
+                  44%
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  component="div"
+                  style={{ fontSize: "0.9em" }}
+                >
+                  EJECUTADO
+                </Typography>
+              </div>
+            </CardContent>
+
+          </div>
+
         </Card>
       </div>
     </>

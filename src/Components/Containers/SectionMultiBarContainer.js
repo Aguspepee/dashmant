@@ -25,7 +25,7 @@ const ExpandMore = styled((props) => {
 
 function SectionMultiBarContainer(props) {
   const [expanded, setExpanded] = React.useState(false);
-  const handleExpandClick = () => {
+  const handleExpandClick = () => { 
     setExpanded(!expanded);
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState }from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Box from "@mui/material/Box";
@@ -7,7 +7,8 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import axios from "axios";
+import { CardContent } from "@mui/material";
+import { distribucionHoraria } from "../../Services/sapBaseService"
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -18,9 +19,9 @@ export const options = {
     },
     labels: {
       render: 'percentage',
-    precision: 2
+      precision: 2
     },
-    
+
   },
 };
 
@@ -33,56 +34,53 @@ function BigDistributionCard(props) {
   //Setea los estados
   const [list, setList] = useState([]);
 
-   //Previo a renderizar el componente se consulta la API
-   useEffect(() => {
+  //Previo a renderizar el componente se consulta la API
+  useEffect(() => {
     const update = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:9000/sapBase/DistibucionHoraria/${config.Mes}-${config.Año}-${zona}`
-        );
-        // console.log(config.Mes,config.Año,zona)
+        const res = await distribucionHoraria(config, zona)
         setList(res.data.Distribucion);
       } catch (e) {
         console.log(e);
       }
     };
     update();
-  }, [setList, config.Mes, config.Año,zona]);
+  }, [setList, config.Mes, config.Año, zona]);
 
-//Se inicializan los labels y las cantidades
-let quantity
-let labels = [
-  "Mantenimiento Programado",
-  "Mantenimiento Correctivo",
-  "Recorridos de Seguridad Público",
-  "Mantenimiento Preventivo No Programado",
-  "Servicios a Terceros",
-  "Actividades Complementarias",
-];
+  //Se inicializan los labels y las cantidades
+  let quantity
+  let labels = [
+    "Mantenimiento Programado",
+    "Mantenimiento Correctivo",
+    "Recorridos de Seguridad Público",
+    "Mantenimiento Preventivo No Programado",
+    "Servicios a Terceros",
+    "Actividades Complementarias",
+  ];
 
-//Se calculan las cantidades (quantity)
-let datos = list;
-if (datos) {
-  quantity = labels.map((labels, index) => {
-    let cant = datos.filter((datos) => {
-      return (datos.Grupo_Agrupamiento === labels)
-    })[0]
-    if (cant) {
-      cant = cant.Count
-    } else {
-      cant = 0
-    }
-    return (
-      cant
-    )
-  })
-}
+  //Se calculan las cantidades (quantity)
+  let datos = list;
+  if (datos) {
+    quantity = labels.map((labels, index) => {
+      let cant = datos.filter((datos) => {
+        return (datos.Grupo_Agrupamiento === labels)
+      })[0]
+      if (cant) {
+        cant = cant.Count
+      } else {
+        cant = 0
+      }
+      return (
+        cant
+      )
+    })
+  }
 
 
 
-//Se calcula el total
-const reducer = (accumulator, curr) => accumulator + curr;
-let total = quantity.reduce(reducer)
+  //Se calcula el total
+  const reducer = (accumulator, curr) => accumulator + curr;
+  let total = quantity.reduce(reducer)
 
   //Se inicializa el gráfico
   const data = {
@@ -129,23 +127,19 @@ let total = quantity.reduce(reducer)
       <Divider light style={{ width: "100%" }} />
       <Card
         sx={{
-          display: "flex",
           border: "0px solid rgba(0, 0, 0, 0.05)",
           boxShadow: "0px 0px 0px white",
-          backgroundColor:"rgba(0, 0, 0, 0.0)"
+          backgroundColor: "rgba(0, 0, 0, 0.0)"
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "left",
-            width: "100%",
-            alignItems: "center",
-            padding: "1em 1em 1em 1em",
-          }}
-        >
-          <Doughnut data={data} options={options} />
-        </Box>
+
+        <div className="bigPieBar">
+          <CardContent>
+            <Doughnut data={data} options={options} />
+            </CardContent>
+
+
+        </div>
       </Card>
       <Typography
         variant="body1"

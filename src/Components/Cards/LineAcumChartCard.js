@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import { resumenAnual } from "../../Services/sapBaseService";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,47 +24,117 @@ ChartJS.register(
   Filler
 );
 
-export const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false
-    },
-    title: {
-      display: true,
-      text: "Ejecución de UM Acumulada",
-    },
-  },
-};
-
-const labels = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun", "Jul.","Ago.","Sep.", "Oct.","Nov.", "Dic."];
 
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Previsto",
-      data: [0, 4, 6, 8, 9, 14, 15,16,18,20,21,23],
-      borderColor: "#BDE7BD",
-      backgroundColor: "#BDE7BD",
-      fill: false,
-    },
-    {
-      label: "Ejecutado",
-      data: [0, 5, 7, 9, 13, 15, 15,16,20,22,27,28 ],
-      borderColor: "#FF6962",
-      backgroundColor: "#FF6962",
-      fill: false,
-    },
-  ],
-};
+function LineAcumChartCard(props) {
+  //Extrae las propiedades, configuración y titulos
+  const zona = props.zona;
+  const nombre = props.nombre;
+  const config = props.config;
+  const TotalAnual = props.TotalAnual
+  //Setea los estados
+  const [list, setList] = useState([]);
 
-function LineAcumChartCard() {
+  useEffect(() => {
+    const update = async () => {
+      try {
+        const res = await resumenAnual(config, zona)
+        setList(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    update();
+  }, [setList, config.Mes, config.Año, zona]);
+
+
+  const labels = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic."];
+  const options = {
+    /*     responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: "Ejecución de UM Acumulada",
+          },
+        }, */
+  };
+  let baseLabels = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+  //Se extraen los labels
+  let quantity1 = []
+  let quantity2 = []
+  let datos = list.Fecha_Referencia_Acumulado_Total;
+  if (datos) {
+    quantity1 = baseLabels.map((baseLabels, index) => {
+      let cant = datos.filter((datos) => {
+        return (datos.Inicio_program_Mes === baseLabels)
+      })[0]
+      if (cant) {
+        cant = cant.Count
+      } else {
+        cant = 0
+      }
+      return (
+        cant
+      )
+    })
+  }
+
+  for (let i = 1; i < quantity1.length; i++) {
+    if (quantity1[i] !== null) { quantity1[i] = quantity1[i] + quantity1[i - 1] }
+  }
+
+
+
+  datos = list.Fecha_Referencia_Acumulado_Ejecutado
+  if (datos) {
+    quantity2 = baseLabels.map((baseLabels, index) => {
+      let cant = datos.filter((datos) => {
+        return (datos.Inicio_program_Mes === baseLabels)
+      })[0]
+      if (cant) {
+        cant = cant.Count
+      } else {
+        cant = null
+      }
+      return (
+        cant
+      )
+    })
+  }
+  for (let i = 1; i < quantity2.length; i++) {
+    if (quantity2[i] !== null) { quantity2[i] = quantity2[i] + quantity2[i - 1] }
+
+  }
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Previsto",
+        data: quantity1,
+        borderColor: "#BDE7BD",
+        backgroundColor: "#BDE7BD",
+        fill: false,
+      },
+      {
+        label: "Ejecutado",
+        data: quantity2,
+        borderColor: "#FF6962",
+        backgroundColor: "#FF6962",
+        fill: false,
+      },
+    ],
+  };
+
+
+
   return (
-    <div style={{padding:"0em 0em 0em 0em", height:'230px',width:'100%'}}>
-      <Line options={options} data={data}/>
+    <div style={{ padding: "0em 0em 0em 0em", height: '208px', width: '100%' }}>
+      <Line options={options} data={data} />
     </div>
   );
 }

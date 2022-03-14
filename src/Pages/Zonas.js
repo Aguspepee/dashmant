@@ -12,6 +12,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import DateContext from "../Context/DateContext";
+import SectionBigBarContainer from "../Components/Containers/SectionBigBarContainer";
 
 let zonas = [
   { Zona: "ZN1", Nombre: "Zona Norte", Activity: [] },
@@ -19,10 +20,6 @@ let zonas = [
   { Zona: "ZO1", Nombre: "Zona Oeste", Activity: [] },
   { Zona: "ZA1", Nombre: "Zona Austral", Activity: [] },
 ];
-
-/* const SectionBigBarContainer = React.lazy(() =>
-  import("../Components/Containers/SectionBigBarContainer")
-); */
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
@@ -160,31 +157,31 @@ function Zonas(props) {
           Zona={Zona}
         ></SectionBigNumContainer> 
       </div>
-      {/*  <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>Líneas de Alta Tensión</h3>
+        <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>Líneas de Alta Tensión</h3>
       <div className="gridline">
         <div>
-          <Suspense fallback={<div>Loading...</div>}>
             <SectionBigBarContainer
-              activity="PINM"
-              title="Inspección Minuciosa"
-              description="Piquetes"
-              detail="Minuciosa"
-              zone={id}
+          Titulo="Inspección Minuciosa"
+          Descripcion="Piquetes"
+          Tipo="PINM"
+          Mostrar_Anual="true"
+          Mes={month}
+          Año={year}
+          Zona={Zona}
             ></SectionBigBarContainer>
-          </Suspense>
         </div>
         <div>
-          <Suspense fallback={<div>Loading...</div>}>
             <SectionBigBarContainer
-              activity="PINT"
-              title="Inspección Terrestre"
-              description="Piquetes"
-              detail="Terrestre"
-              zone={id}
+          Titulo="Inspección Terrestre"
+          Descripcion="Piquetes"
+          Tipo="PINT"
+          Mostrar_Anual="true"
+          Mes={month}
+          Año={year}
+          Zona={Zona}
             ></SectionBigBarContainer>
-          </Suspense>
         </div>
-      </div> */}
+      </div> 
     </>
   );
 }

@@ -9,7 +9,7 @@ import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import axios from "axios";
+import { filterGeneral } from "../../Services/sapBaseService"
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -33,13 +33,10 @@ function BigPieChartCard(props) {
   useEffect(() => {
     const update = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:9000/sapBase/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
-        );
-        //console.log(res.data)
+        const res = await filterGeneral(config, zona)
         setList(res.data);
       } catch (e) {
-        console.log(e);
+        console.log(e); 
       }
     };
     update();
@@ -206,9 +203,6 @@ function BigPieChartCard(props) {
         </Box>
       </Card>
       <Divider light style={{ width: "100%" }} />
-
-
-
 
       {config.Mostrar_Anual === "true" &&
         <Container>
