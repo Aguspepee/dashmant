@@ -42,12 +42,7 @@ HideOnScroll.propTypes = {
 };
 
 function Zonas(props) {
-  const [
-    year,
-    setYear,
-    month,
-    setMonth,
-  ] = useContext(DateContext);
+  const [year, setYear, month, setMonth] = useContext(DateContext);
   let Zona = useParams().id;
   const myRef = useRef(null);
   const executeScroll = () => scrollToRef(myRef);
@@ -135,7 +130,7 @@ function Zonas(props) {
           Zona={Zona}
         ></SectionBigPieContainer>
 
-       <SectionBigDistributionContainer
+        <SectionBigDistributionContainer
           Titulo="Distribución de actividades"
           Descripcion="Horas hombres utilizadas por rubro"
           Mes={month}
@@ -143,7 +138,7 @@ function Zonas(props) {
           Zona={Zona}
         ></SectionBigDistributionContainer>
 
-         <SectionBigNumContainer
+        <SectionBigNumContainer
           Titulo="Mantenimiento Correctivo de Equipos"
           Descripcion="Cantidad de intervenciones"
           Mes={month}
@@ -155,33 +150,35 @@ function Zonas(props) {
           Operacion="0010"
           BorrarDuplicados="false"
           Zona={Zona}
-        ></SectionBigNumContainer> 
+        ></SectionBigNumContainer>
       </div>
-        <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>Líneas de Alta Tensión</h3>
+      <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>
+        Líneas de Alta Tensión
+      </h3>
       <div className="gridline">
         <div>
-            <SectionBigBarContainer
-          Titulo="Inspección Minuciosa"
-          Descripcion="Piquetes"
-          Tipo="PINM"
-          Mostrar_Anual="true"
-          Mes={month}
-          Año={year}
-          Zona={Zona}
-            ></SectionBigBarContainer>
+          <SectionBigBarContainer
+            Titulo="Inspección Minuciosa"
+            Descripcion="Piquetes"
+            Tipo="PINM"
+            Mostrar_Anual="true"
+            Mes={month}
+            Año={year}
+            Zona={Zona}
+          ></SectionBigBarContainer>
         </div>
         <div>
-            <SectionBigBarContainer
-          Titulo="Inspección Terrestre"
-          Descripcion="Piquetes"
-          Tipo="PINT"
-          Mostrar_Anual="true"
-          Mes={month}
-          Año={year}
-          Zona={Zona}
-            ></SectionBigBarContainer>
+          <SectionBigBarContainer
+            Titulo="Inspección Terrestre"
+            Descripcion="Piquetes"
+            Tipo="PINT"
+            Mostrar_Anual="true"
+            Mes={month}
+            Año={year}
+            Zona={Zona}
+          ></SectionBigBarContainer>
         </div>
-      </div> 
+      </div>
     </>
   );
 }

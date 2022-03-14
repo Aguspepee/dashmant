@@ -55,7 +55,6 @@ function SectionBigBarContainer(props) {
             </div>
               <CardContent>
                 <div className="grid5f">
-        
                     <MultiBarChartCard
                       Zona={Zona.slice(0,2)}
                       Tipo={Tipo}
@@ -63,10 +62,8 @@ function SectionBigBarContainer(props) {
                       Mes={Mes}
                       Año={Año}
                     ></MultiBarChartCard>
-          
                 </div>
-              </CardContent>
-           
+              </CardContent>         
           </CardContent>
         </Card>
       </div>

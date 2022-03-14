@@ -66,7 +66,6 @@ function VerticalBarCard(props) {
             y: {
                 stacked: true,
                 title: {
-
                     display: false,
                     text: 'Líneas'
                 },
@@ -115,8 +114,8 @@ function VerticalBarCard(props) {
         heightChart = (140 + "px")
     } else if (labels.length <= 1) {
         heightChart = (labels.length * 140 + "px")
-    } else if (labels.length <= 2) {
-        heightChart = (labels.length * 66 + "px")
+    } else if (labels.length <= 3) {
+        heightChart = (labels.length * 50 + "px")
     } else if (labels.length <= 7) {
         heightChart = (labels.length * 45 + "px")
     } else {

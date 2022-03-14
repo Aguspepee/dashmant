@@ -1,9 +1,9 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import { filterGeneral } from "../../Services/sapBaseService"
 
 function BigNumberCard(props) {
   //Extrae las propiedades, configuración y titulos
@@ -17,39 +17,34 @@ function BigNumberCard(props) {
   useEffect(() => {
     const update = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:9000/sapBase/filterGeneral/${config.Mes}-${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`
-        );
+        const res = await filterGeneral(config, zona);
         setList(res.data);
       } catch (e) {
         console.log(e);
       }
     };
     update();
-  }, [setList, config.Mes, config.Año,zona]);
+  }, [setList, config.Mes, config.Año, zona]);
 
   //Se inicializan los labels y las cantidades
   let labels = ["CTEC", "EJEC", "ABIE", "CTEC CENE"];
-  let quantity = [0, 0, 0, 0]
+  let quantity = [0, 0, 0, 0];
 
   //Se extraen los labels
   let datos = list.Fecha_Referencia_Mensual;
   if (datos) {
     quantity = labels.map((labels, index) => {
       let cant = datos.filter((datos) => {
-        return (datos.Status === labels)
-      })[0]
+        return datos.Status === labels;
+      })[0];
       if (cant) {
-        cant = cant.Count
+        cant = cant.Count;
       } else {
-        cant = 0
+        cant = 0;
       }
-      return (
-        cant
-      )
-    })
+      return cant;
+    });
   }
-
 
   return (
     <>

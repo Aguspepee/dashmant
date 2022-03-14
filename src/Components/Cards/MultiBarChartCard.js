@@ -22,7 +22,7 @@ function MultiBarChartCard(props) {
       }
     };
     update();
-  }, [setList, Año]);
+  }, [setList, Año, Zona]);
 
   let factor;
   let max;

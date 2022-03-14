@@ -133,7 +133,6 @@ function BigPieChartCard(props) {
     }
   }
 
-
   let percentajeBar = (Ejecutado_Mensual * 100) / Total_Anual;
   let percentajeNow = (Previsto_Mensual * 100) / Total_Anual;
 
@@ -173,7 +172,6 @@ function BigPieChartCard(props) {
           >
             INTERVENIDAS: {quantity[0]}
           </Typography>
-
           <Typography
             component="div"
             variant="h4"
@@ -258,10 +256,6 @@ function BigPieChartCard(props) {
         </Container>
       }
       <Divider light style={{ width: "100%" }} />
-
-
-
-
     </>
   );
 }

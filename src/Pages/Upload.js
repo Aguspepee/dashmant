@@ -34,8 +34,6 @@ function Upload() {
         Subtitulo="Seleccione el archivo"
         fileTypes=".xlsx , xls"
       ></Uploader>
-
-
     </>
 
   )
