@@ -22,20 +22,6 @@ import { useContext } from "react";
 import Logo from "../../Images/transpa.png";
 
 const drawerWidth = 240;
-const months1 = [
-  "Enero",
-  "Febrero",
-  "Marzo",
-  "Abril",
-  "Mayo",
-  "Junio",
-  "Julio",
-  "Agosto",
-  "Septiembre",
-  "Octubre",
-  "Noviembre",
-  "Diciembre",
-]; 
 const months = [
   "01",
   "02",
@@ -54,13 +40,7 @@ const months = [
 const years = ["2021", "2022", "2023", "2024"];
 
 function ResponsiveDrawer(props) {
-  const [
-    year,
-    setYear,
-    month,
-    setMonth,
-  ] = useContext(DateContext);
-
+  const [year, setYear, month, setMonth] = useContext(DateContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
@@ -77,12 +57,7 @@ function ResponsiveDrawer(props) {
         />
         <Divider />
         {["General"].map((text) => (
-          <ListItem
-            button
-            key={text}
-            component={Link}
-            to="dashmant/general"
-            >
+          <ListItem button key={text} component={Link} to="dashmant/general">
             <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
