@@ -13,6 +13,7 @@ function MiniNumberCard(props) {
 
   //Setea los estados
   const [list, setList] = useState([]);
+  
   //Previo a renderizar el componente se consulta la API
   useEffect(() => {
     const update = async () => {

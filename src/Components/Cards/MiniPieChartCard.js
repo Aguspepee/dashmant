@@ -10,7 +10,9 @@ import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
 import { filterGeneral } from "../../Services/sapBaseService"
-
+import Chip from '@mui/material/Chip';
+import FaceIcon from '@mui/icons-material/Face';
+import Stack from '@mui/material/Stack';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 //Configuración del gráfico
@@ -164,6 +166,7 @@ function MiniPieChartCard(props) {
         }}
       >
         <CardContent sx={{ flex: "1 0 auto", width: "10%" }}>
+        <Stack direction="row" spacing={1}>
           <Typography
             variant="body1"
             color="text.secondary"
@@ -171,7 +174,9 @@ function MiniPieChartCard(props) {
             style={{ fontSize: "1.2em" }}
           >
             Mensual
-          </Typography>
+          </Typography> 
+          <Chip className="chip"  size="small" label="Loading..." />
+          </Stack>
           <Divider light style={{ width: "90%" }} />
           <Typography
             variant="caption"
