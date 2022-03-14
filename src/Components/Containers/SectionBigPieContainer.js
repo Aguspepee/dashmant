@@ -55,7 +55,6 @@ function SectionMultiPieContainer(props) {
   ];
 
   const TotalAnual = zonas.filter((zonas) => zonas.Zona === Zona)[0].TotalAnual;
-  console.log("cargó componente");
   return (
     <>
       <div style={{ padding: "1em 1em 1em 1em" }}>

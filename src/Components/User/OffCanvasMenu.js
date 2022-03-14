@@ -17,12 +17,9 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Link } from "react-router-dom";
 import DateSelector from "../Controls/DateSelector";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import FilterContext from "../../Context/FilterContext";
 import DateContext from "../../Context/DateContext";
-import { useEffect, useContext } from "react";
-import TableRowsIcon from "@mui/icons-material/TableRows";
+import { useContext } from "react";
 import Logo from "../../Images/transpa.png";
-import ListSubheader from "@mui/material/ListSubheader";
 
 const drawerWidth = 240;
 const months1 = [
@@ -159,21 +156,6 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
-      {/* 
-      <List>
-        {["Base de Datos"].map((text, index) => (
-          <ListItem
-          button
-          key="Base de datos"
-          component={Link}
-          to="dashmant/DataBase"
-        >
-            <ListItemIcon>{<TableRowsIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider /> */}
     </div>
   );
 

@@ -25,7 +25,6 @@ let percentajeNow;
 //Cálculo de día del año
 
 function MiniLinePieCard(props) {
-  console.log("Cargó Line Pie")
   //Extrae las propiedades, configuración y titulos
   const Zona = props.Zona;
   const Nombre = props.Nombre;
@@ -33,7 +32,6 @@ function MiniLinePieCard(props) {
   const Mes = props.Mes;
   const Año = props.Año;
   const Tipo = props.Tipo;
-  console.log(Mes, Año,Zona, Tipo)
 
   const [list, setList] = useState([]);
   //Previo a renderizar el componente se consulta la API

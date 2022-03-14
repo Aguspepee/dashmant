@@ -54,7 +54,6 @@ function SectionMultiBarContainer(props) {
       Nombre: "ZONA AUSTRAL",
     },
   ];
-  console.log("Cargó Lineas");
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>

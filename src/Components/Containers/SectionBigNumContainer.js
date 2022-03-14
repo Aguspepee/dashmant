@@ -28,26 +28,6 @@ function SectionBigNumContainer(props) {
     "Operacion": props.Operacion
   }
 
-  const zonas = [
-    {
-      Zona: "ZN1",
-      Nombre: "ZONA NORTE",
-    },
-    {
-      Zona: "ZS1",
-      Nombre: "ZONA SUR",
-    },
-    {
-      Zona: "ZO1",
-      Nombre: "ZONA OESTE",
-    },
-    {
-      Zona: "ZA1",
-      Nombre: "ZONA AUSTRAL",
-    },
-  ];
-
-  console.log("cargó Numero");
   return (
     <>
       <div style={{ padding: "1em 1em 1em 1em"}}>

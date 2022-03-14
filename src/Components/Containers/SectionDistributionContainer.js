@@ -1,27 +1,11 @@
 import React from "react";
-import { useEffect, useContext } from "react";
 import MiniDistributionCard from "../Cards/MiniDistributionCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import CardActions from "@mui/material/CardActions";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./gridstyle.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 function SectionDistributionContainer(props) {
   //Titulo y subtitulo del bloque
@@ -64,7 +48,6 @@ function SectionDistributionContainer(props) {
       TotalAnual: [{ "RPM": 53, "RSP": 20, "MUA": 14 }]
     },
   ];
-  console.log("cargó Distribucion");
 
   return (
     <>

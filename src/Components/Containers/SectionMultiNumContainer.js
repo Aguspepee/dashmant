@@ -46,9 +46,6 @@ function SectionMultiNumContainer(props) {
     },
   ];
 
-
-  console.log("cargó Numero");
-
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>

@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import SectionDistributionContainer from "../Components/Containers/SectionDistributionContainer";
 import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieContainer";
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
@@ -17,7 +17,6 @@ function General() {
     month,
     setMonth,
   ] = useContext(DateContext);
-  console.log("cargó general")
 
   return (
     <>
