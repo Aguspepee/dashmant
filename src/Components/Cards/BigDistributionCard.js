@@ -124,36 +124,29 @@ function BigDistributionCard(props) {
 
   return (
     <>
-      <Divider light style={{ width: "100%" }} />
-      <Card
-        sx={{
-          border: "0px solid rgba(0, 0, 0, 0.05)",
-          boxShadow: "0px 0px 0px white",
-          backgroundColor: "rgba(0, 0, 0, 0.0)"
-        }}
-      >
 
-        <div className="bigPieBar">
-          <CardContent>
-            <Doughnut data={data} options={options} />
-            </CardContent>
+      <div className="bigPieBar" style={{ paddingBottom: "1em" }}>
+        <Divider light style={{ width: "90%" }} />
+        <CardContent>
 
+          <Doughnut data={data} options={options} />
+        </CardContent>
+        <Divider light style={{ width: "90%" }} />
+        <Typography
+          variant="body1"
+          color="text.primary"
+          component="div"
+          style={{
+            fontSize: "1em",
+            paddingLeft: "2em",
+            paddingBottom: "0px",
+          }}
+        >
+          Total Horas Hombre: {total}
+        </Typography>
+        <Divider light style={{ width: "90%" }} />
+      </div>
 
-        </div>
-      </Card>
-      <Typography
-        variant="body1"
-        color="text.primary"
-        component="div"
-        style={{
-          fontSize: "1em",
-          paddingLeft: "2em",
-          paddingBottom: "0px",
-        }}
-      >
-        Total Horas Hombre: {total}
-      </Typography>
-      <Divider light style={{ width: "100%" }} />
     </>
   );
 }

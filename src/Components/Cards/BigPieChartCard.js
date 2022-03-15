@@ -211,7 +211,7 @@ function BigPieChartCard(props) {
           >
             Anual
           </Typography>
-          <Divider light style={{ width: "37%" }} />
+          <Divider light style={{ width: "37%" }} /> 
           <MiniBarChartCard
             percentaje={percentajeBar}
             percentajeNow={percentajeNow}

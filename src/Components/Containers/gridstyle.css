@@ -51,6 +51,22 @@
   display: none;
 }
 
+@media screen and (max-width: 2000px) {
+  .gridzone {
+    grid-template-columns: 50% 50%;
+  }
+  .gridline {
+    grid-template-columns: 50% 50%;
+  }
+  .bigPieBar {
+    grid-template-columns: 100%;
+  }
+  .linesCharts {
+  grid-template-columns: 100%;
+}
+}
+
+
 @media screen and (max-width: 1400px) {
   .gridpie {
     grid-template-columns: 25% 25% 25% 25%;
@@ -62,13 +78,13 @@
     grid-template-columns: 25% 25% 25% 25%;
   }
   .gridzone {
-    grid-template-columns: 100%;
+    grid-template-columns: 50% 50%;
   }
   .gridline {
     grid-template-columns: 50% 50%;
   }
   .bigPieBar {
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 100%;
   }
   .linesCharts {
   grid-template-columns: 100%;

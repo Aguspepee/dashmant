@@ -1,16 +1,12 @@
 import React from "react";
-import { useEffect, useContext } from "react";
 import BigDistributionCard from "../Cards/BigDistributionCard";
 import { Card } from "@mui/material";
-import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import CardActions from "@mui/material/CardActions";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./gridstyle.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
+import Divider from "@mui/material/Divider";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -50,7 +46,7 @@ function SectionDistributionContainer(props) {
           style={{
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}>
-          <CardContent>
+
             <CardHeader
               action={
                 <IconButton aria-label="settings"
@@ -61,37 +57,10 @@ function SectionDistributionContainer(props) {
               title={Titulo}
               subheader={Descripcion}
             />
-            <div className="singlepie" >
-
-              <div className="grid-column">
                 <BigDistributionCard
                   zona={Zona}
                   config={config}
                 ></BigDistributionCard>
-              </div>
-
-            </div>
-          </CardContent>
-         {/*  <CardActions disableSpacing style={{ padding: "0px 0px 0px 0px" }}>
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <div className="singlepie">
-                {dataPie.map((dataPie, index) => (
-                  <div className="grid-column" key={dataPie.Zona}>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Collapse> */}
         </Card>
       </div>
     </>

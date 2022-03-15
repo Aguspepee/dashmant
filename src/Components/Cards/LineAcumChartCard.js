@@ -112,7 +112,7 @@ function LineAcumChartCard(props) {
     labels,
     datasets: [
       {
-        label: "Previsto",
+        label: "Programado",
         data: quantity1,
         borderColor: "#BDE7BD",
         backgroundColor: "#BDE7BD",

@@ -125,7 +125,7 @@ function Zonas(props) {
           BorrarDuplicados="false"
           Zona={Zona}
         ></SectionBigPieContainer>
-
+<div>
         <SectionBigDistributionContainer
           Titulo="Distribución de actividades"
           Descripcion="Horas hombres utilizadas por rubro"
@@ -147,6 +147,7 @@ function Zonas(props) {
           BorrarDuplicados="false"
           Zona={Zona}
         ></SectionBigNumContainer>
+        </div>
       </div>
       <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>
         Líneas de Alta Tensión
