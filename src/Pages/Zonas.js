@@ -56,12 +56,12 @@ function Zonas(props) {
           }}
           style={{
             backgroundColor: "white",
-            zIndex: "0",
+            zIndex: "3",
             width: "100%",
             boxShadow: "0px 10px 13px -8px rgba(0,0,0,0.47)",
           }}
         >
-          <Toolbar>
+          <Toolbar style={{ }}>
             <Typography
               variant="primary"
               component="div"
@@ -84,7 +84,7 @@ function Zonas(props) {
         <SectionBigPieContainer
           Titulo="Mantenimiento Programado de Equipos"
           Descripcion="Unidades de Mantenimiento"
-          Mostrar_Anual="true"
+          Mostrar_Anual="true" 
           Mes={month}
           Año={year}
           Cl_actividad_PM="RPM"

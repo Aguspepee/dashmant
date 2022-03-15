@@ -59,6 +59,7 @@ function SectionMultiPieContainer(props) {
     <>
       <div style={{ padding: "1em 1em 1em 1em" }}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+          <div style={{height:"110px"}}>
           <CardHeader
             action={
               <IconButton aria-label="settings">
@@ -68,6 +69,8 @@ function SectionMultiPieContainer(props) {
             title={Titulo}
             subheader={Descripcion}
           />
+          </div>
+          
           <CardContent style={{ padding: "0em 1em 0em 1em" }}>
             <Divider light style={{ width: "100%" }} />
           </CardContent>

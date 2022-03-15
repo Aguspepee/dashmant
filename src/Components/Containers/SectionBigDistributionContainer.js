@@ -56,6 +56,7 @@ function SectionDistributionContainer(props) {
               }
               title={Titulo}
               subheader={Descripcion}
+              
             />
                 <BigDistributionCard
                   zona={Zona}

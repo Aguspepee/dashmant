@@ -51,7 +51,19 @@ function MiniLinePieCard(props) {
   let labels = ["Ejecutado", "Previsto"];
   //Se obtienen los datos
   let quantity = [list.Total_Mensual_Ejecutado, list.Total_Mensual_Previsto];
-  let percentaje = Math.round(list.Total_Mensual_Ejecutado * 100 / list.Total_Mensual_Previsto);
+
+  let Porcentaje_Mensual
+  if (
+    !Number.isNaN(
+      Math.round(list.Total_Mensual_Ejecutado * 100 / list.Total_Mensual_Previsto)
+    )
+  ) {
+    Porcentaje_Mensual = (
+      Math.round(list.Total_Mensual_Ejecutado * 100 / list.Total_Mensual_Previsto)
+    ).toFixed(0);
+  } else {
+    Porcentaje_Mensual = "-";
+  }
 
   //Se inicializa el gráfico
   const data = {
@@ -72,9 +84,20 @@ function MiniLinePieCard(props) {
       data.datasets[0].data.push(1);
     }
   });
+  let Porcentaje_Anual
+  if (
+    !Number.isNaN(
+      Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto)
+    )
+  ) {
+    Porcentaje_Anual = Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto).toFixed(0);
+  } else {
+    Porcentaje_Anual = "-";
+  }
 
-  let percentajeBar = Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto)
-  percentajeNow = Math.round(3 * 100 / 12)
+
+
+  percentajeNow = Math.round(Number(Mes) * 100 / 12)
 
   return (
     <>
@@ -130,7 +153,7 @@ function MiniLinePieCard(props) {
             variant="h4"
             style={{ fontSize: "2.5em" }}
           >
-            {percentaje}%
+            {Porcentaje_Mensual}%
           </Typography>
           <Typography
             variant="body2"
@@ -166,7 +189,7 @@ function MiniLinePieCard(props) {
             Anual
           </Typography>
           <MiniBarChartCard
-            percentaje={percentajeBar}
+            percentaje={Porcentaje_Anual}
             percentajeNow={percentajeNow}
           ></MiniBarChartCard>
           <Typography
@@ -186,7 +209,7 @@ function MiniLinePieCard(props) {
             INTERVENIDAS: {Math.round(list.Total_Anual_Ejecutado)}
           </Typography>
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
-            {Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto)}%
+            {Porcentaje_Anual}%
           </Typography>
           <Typography
             variant="body2"

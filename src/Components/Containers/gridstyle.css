@@ -113,7 +113,20 @@
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1150px) {
+  .gridnumber {
+    grid-template-columns: 25%  25%  25%  25%;
+  }
+  .gridzone {
+    grid-template-columns: 100%;
+  }
+  .gridline {
+    grid-template-columns: 100%;
+  }
+}
+
+
+@media screen and (max-width: 900px) {
   .gridpie {
     grid-template-columns: 100%;
   }
@@ -127,3 +140,4 @@
     grid-template-columns: 100%;
   }
 }
+

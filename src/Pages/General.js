@@ -20,10 +20,9 @@ function General() {
 
   return (
     <>
-      <div>
-        <button style={{ position: "fixed" }} onClick={executeScroll}></button>
-      </div>
-      <h1>Estaciones Transformadoras</h1>
+      <h3 style={{ paddingTop: "50px", paddingBottom: "0px" }}>
+        Estaciones Transformadoras
+      </h3>
 
       <SectionMultiPieContainer
         Titulo="Mantenimiento Programado de Equipos"
@@ -87,7 +86,7 @@ function General() {
         Año={year}
       ></SectionDistributionContainer>
 
-      <h1>Líneas de Alta Tensión</h1>
+<h3 style={{ paddingTop: "10px", paddingBottom: "0px" }}>Líneas de Alta Tensión</h3>
       <div>
         <SectionMultiBarContainer
           Titulo="Inspección Minuciosa"

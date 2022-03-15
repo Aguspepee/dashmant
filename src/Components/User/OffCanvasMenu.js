@@ -149,7 +149,7 @@ function ResponsiveDrawer(props) {
         style={{
           backgroundColor: "gray",
           boxShadow: "rgba(0, 0, 0, 0) 0px 3px 8px",
-          zIndex: "1",
+          zIndex: "4",
         }}
       >
         <Toolbar style={{ backgroundColor: "white" }}>
@@ -166,6 +166,7 @@ function ResponsiveDrawer(props) {
             noWrap
             component="div"
             style={{ color: "gray" }}
+            
           >
             EJECUCIÓN DEL PLAN DE MANTENIMIENTO
           </Typography>

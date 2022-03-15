@@ -218,7 +218,7 @@ function MiniPieChartCard(props) {
         </Box>
       </Card>
       <Divider light style={{ width: "90%" }} />
-
+ 
       {config.Mostrar_Anual === "true" &&
         <Container  >
           <Typography
