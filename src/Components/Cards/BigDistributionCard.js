@@ -124,10 +124,10 @@ function BigDistributionCard(props) {
 
   return (
     <>
-      <div className="bigPieBar" style={{ paddingBottom: "1em" }}>
-        <Divider light style={{ width: "90%" }} />
+      <div className="BigDistri" style={{ paddingBottom: "1em"}}>
+        <Divider light style={{ width: "90%" }}/>
         <CardContent>
-          <Doughnut data={data} options={options} />
+          <Doughnut data={data} options={options}/>
         </CardContent>
         <Divider light style={{ width: "90%" }} />
         <Typography

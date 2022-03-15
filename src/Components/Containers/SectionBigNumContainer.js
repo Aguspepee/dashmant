@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
+import AlertDialog from "../User/AlertDialog"
 
 function SectionBigNumContainer(props) {
  
@@ -35,9 +36,7 @@ function SectionBigNumContainer(props) {
           <CardContent>
             <CardHeader
               action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
+                <AlertDialog></AlertDialog>
               }
               title={Titulo}
               subheader={Descripcion}

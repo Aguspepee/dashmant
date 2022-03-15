@@ -1,13 +1,11 @@
 import React from "react";
 import { Card } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import IconButton from "@mui/material/IconButton";
 import { CardContent } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import MultiBarChartCard from "../Cards/MultiBarChartCard";
 import MiniLinePieCard from "../Cards/MiniLinePieCard";
 import "./gridstyle.css";
+import AlertDialog from "../User/AlertDialog"
 
 function SectionBigBarContainer(props) {
 
@@ -35,9 +33,7 @@ function SectionBigBarContainer(props) {
           <CardContent>
             <CardHeader
               action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
+                <AlertDialog></AlertDialog>
               }
               title={Titulo}
               subheader={Descripcion}

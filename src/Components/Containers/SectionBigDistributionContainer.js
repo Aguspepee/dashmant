@@ -4,9 +4,8 @@ import { Card } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
-import Divider from "@mui/material/Divider";
+import AlertDialog from "../User/AlertDialog"
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -46,17 +45,12 @@ function SectionDistributionContainer(props) {
           style={{
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}>
-
             <CardHeader
               action={
-                <IconButton aria-label="settings"
-                >
-                  <MoreVertIcon />
-                </IconButton>
+                <AlertDialog></AlertDialog>
               }
               title={Titulo}
               subheader={Descripcion}
-              
             />
                 <BigDistributionCard
                   zona={Zona}

@@ -11,6 +11,7 @@ import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import MiniLinePieCard from "../Cards/MiniLinePieCard";
+import AlertDialog from "../User/AlertDialog";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -66,9 +67,7 @@ function SectionMultiBarContainer(props) {
           <CardContent>
             <CardHeader
               action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
+                <AlertDialog></AlertDialog>
               }
               title={Titulo}
               subheader={Descripcion}

@@ -2,14 +2,14 @@ import React from "react";
 import BigPieChartCart from "../Cards/BigPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardHeader from "@mui/material/CardHeader";
 import LineAcumChartCard from "../Cards/LineAcumChartCard";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import BarAcumChartCard from "../Cards/BarAcumChartCard";
+import AlertDialog from "../User/AlertDialog";
+
 
 function SectionMultiPieContainer(props) {
   //Titulo y subtitulo del bloque
@@ -62,9 +62,7 @@ function SectionMultiPieContainer(props) {
           <div style={{height:"110px"}}>
           <CardHeader
             action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
+              <AlertDialog></AlertDialog>
             }
             title={Titulo}
             subheader={Descripcion}
