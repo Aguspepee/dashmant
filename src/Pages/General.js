@@ -10,10 +10,8 @@ const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
 function General() {
   const myRef = useRef(null);
-  console.log("Numero",Number("P045"))
+  console.log("Numero",Number("045"))
   const [year, setYear, month, setMonth] = useContext(DateContext);
-
- console.log(Help)
   return (
     <>
       <h3 style={{ paddingTop: "50px", paddingBottom: "0px" }}>

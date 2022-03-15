@@ -12,7 +12,6 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
   const Help = props.Help;
-  console.log("Help",Help)
 
   //Configuración y filtros
   const config = {
