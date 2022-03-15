@@ -7,7 +7,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import IconButton from "@mui/material/IconButton";
 
-export default function AlertDialog() {
+export default function AlertDialog(props) {
+  const Titulo = props.Titulo;
+  const Help = props.Help;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -32,12 +34,11 @@ export default function AlertDialog() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          {Titulo}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            {Help}
           </DialogContentText>
         </DialogContent>
       </Dialog>

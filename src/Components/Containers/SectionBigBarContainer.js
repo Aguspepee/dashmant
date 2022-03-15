@@ -17,6 +17,7 @@ function SectionBigBarContainer(props) {
   const Mes = props.Mes;
   const Año = props.Año;
   const Zona = props.Zona;
+  const Help = props.Help;
 
   //console.log("Lineas", lineas);
   let actividad = props.activity;
@@ -33,7 +34,7 @@ function SectionBigBarContainer(props) {
           <CardContent>
             <CardHeader
               action={
-                <AlertDialog></AlertDialog>
+                <AlertDialog Titulo={Titulo} Help={props.Help}></AlertDialog>
               }
               title={Titulo}
               subheader={Descripcion}

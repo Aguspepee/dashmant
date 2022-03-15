@@ -16,6 +16,7 @@ function SectionMultiPieContainer(props) {
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
   const Zona = props.Zona;
+  const Help = props.Help;
 
   //Configuración y filtros
   const config = {
@@ -62,7 +63,7 @@ function SectionMultiPieContainer(props) {
           <div style={{height:"110px"}}>
           <CardHeader
             action={
-              <AlertDialog></AlertDialog>
+              <AlertDialog Titulo={Titulo} Help={props.Help}></AlertDialog>
             }
             title={Titulo}
             subheader={Descripcion}

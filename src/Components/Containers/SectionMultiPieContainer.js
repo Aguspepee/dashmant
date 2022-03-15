@@ -2,9 +2,8 @@ import React from "react";
 import MiniPieChartCart from "../Cards/MiniPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
 import "./gridstyle.css";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import AlertDialog from "../User/AlertDialog";
 import CardHeader from "@mui/material/CardHeader";
 
 const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(props) {
@@ -12,6 +11,8 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
   //Titulo y subtitulo del bloque
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
+  const Help = props.Help;
+  console.log("Help",Help)
 
   //Configuración y filtros
   const config = {
@@ -57,9 +58,7 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(pr
           <CardContent>
             <CardHeader
               action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
+                <AlertDialog Titulo={Titulo} Help={props.Help}></AlertDialog>
               }
               title={Titulo}
               subheader={Descripcion}

@@ -12,6 +12,7 @@ function SectionDistributionContainer(props) {
   //Titulo y subtitulo del bloque
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
+  const Help = props.Help;
 
   //Configuración y filtros
   const config = {
@@ -61,7 +62,7 @@ function SectionDistributionContainer(props) {
           <CardContent>
             <CardHeader
               action={
-                <AlertDialog></AlertDialog>
+                <AlertDialog Titulo={Titulo} Help={props.Help}></AlertDialog>
               }
               title={Titulo}
               subheader={Descripcion}

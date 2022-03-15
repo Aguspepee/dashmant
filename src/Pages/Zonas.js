@@ -13,6 +13,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import DateContext from "../Context/DateContext";
 import SectionBigBarContainer from "../Components/Containers/SectionBigBarContainer";
+import Help from "../Utils/Help"
 
 let zonas = [
   { Zona: "ZN1", Nombre: "Zona Norte", Activity: [] },
@@ -94,6 +95,7 @@ function Zonas(props) {
           Operacion="0010"
           BorrarDuplicados="true"
           Zona={Zona}
+          Help={Help.HELP.RPM}
         ></SectionBigPieContainer>
 
         <SectionBigPieContainer
@@ -109,6 +111,7 @@ function Zonas(props) {
           Operacion="0010"
           BorrarDuplicados="false"
           Zona={Zona}
+          Help={Help.HELP.RSP}
         ></SectionBigPieContainer>
 
         <SectionBigPieContainer
@@ -124,14 +127,17 @@ function Zonas(props) {
           Operacion="0010"
           BorrarDuplicados="false"
           Zona={Zona}
+          Help={Help.HELP.MUA}
         ></SectionBigPieContainer>
-<div>
+        <div className="secondary">
+
         <SectionBigDistributionContainer
           Titulo="Distribución de actividades"
           Descripcion="Horas hombres utilizadas por rubro"
           Mes={month}
           Año={year}
           Zona={Zona}
+          Help={Help.DIST}
         ></SectionBigDistributionContainer>
 
         <SectionBigNumContainer
@@ -146,6 +152,7 @@ function Zonas(props) {
           Operacion="0010"
           BorrarDuplicados="false"
           Zona={Zona}
+          Help={Help.HELP.MCP}
         ></SectionBigNumContainer>
         </div>
       </div>
@@ -162,6 +169,7 @@ function Zonas(props) {
             Mes={month}
             Año={year}
             Zona={Zona}
+            Help={Help.HELP.PINM}
           ></SectionBigBarContainer>
         </div>
         <div>
@@ -173,6 +181,7 @@ function Zonas(props) {
             Mes={month}
             Año={year}
             Zona={Zona}
+            Help={Help.HELP.PINT}
           ></SectionBigBarContainer>
         </div>
       </div>

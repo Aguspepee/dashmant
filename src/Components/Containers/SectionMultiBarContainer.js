@@ -37,6 +37,7 @@ function SectionMultiBarContainer(props) {
   const Mostrar_Anual = props.Mostrar_Anual;
   const Mes = props.Mes;
   const Año = props.Año;
+  const Help = props.Help;
   const zonas = [
     {
       Zona: "ZN",
@@ -67,7 +68,7 @@ function SectionMultiBarContainer(props) {
           <CardContent>
             <CardHeader
               action={
-                <AlertDialog></AlertDialog>
+                <AlertDialog Titulo={Titulo} Help={props.Help}></AlertDialog>
               }
               title={Titulo}
               subheader={Descripcion}

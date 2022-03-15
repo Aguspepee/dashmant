@@ -4,20 +4,16 @@ import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieCo
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
 import DateContext from "../Context/DateContext";
 import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
-
+import Help from "../Utils/Help"
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
 function General() {
   const myRef = useRef(null);
-  const executeScroll = () => scrollToRef(myRef);
-  const [
-    year,
-    setYear,
-    month,
-    setMonth,
-  ] = useContext(DateContext);
+  console.log("Numero",Number("P045"))
+  const [year, setYear, month, setMonth] = useContext(DateContext);
 
+ console.log(Help)
   return (
     <>
       <h3 style={{ paddingTop: "50px", paddingBottom: "0px" }}>
@@ -36,6 +32,7 @@ function General() {
         Pto_tbjo_resp="ETRA"
         Operacion="0010"
         BorrarDuplicados="true"
+        Help={Help.HELP.RPM}
       ></SectionMultiPieContainer>
 
       <SectionMultiNumContainer
@@ -49,6 +46,7 @@ function General() {
         Pto_tbjo_resp="false"
         Operacion="0010"
         BorrarDuplicados="false"
+        Help={Help.HELP.MCP}
       ></SectionMultiNumContainer>
 
       <SectionMultiPieContainer
@@ -63,6 +61,7 @@ function General() {
         Pto_tbjo_resp="ETRA"
         Operacion="0010"
         BorrarDuplicados="false"
+        Help={Help.HELP.RSP}
       ></SectionMultiPieContainer>
 
       <SectionMultiPieContainer
@@ -77,6 +76,7 @@ function General() {
         Pto_tbjo_resp="false"
         Operacion="0010"
         BorrarDuplicados="false"
+        Help={Help.HELP.MUA}
       ></SectionMultiPieContainer>
 
       <SectionDistributionContainer
@@ -84,9 +84,12 @@ function General() {
         Descripcion="Horas hombres utilizadas por rubro"
         Mes={month}
         Año={year}
+        Help={Help.DIST}
       ></SectionDistributionContainer>
 
-<h3 style={{ paddingTop: "10px", paddingBottom: "0px" }}>Líneas de Alta Tensión</h3>
+      <h3 style={{ paddingTop: "10px", paddingBottom: "0px" }}>
+        Líneas de Alta Tensión
+      </h3>
       <div>
         <SectionMultiBarContainer
           Titulo="Inspección Minuciosa"
@@ -95,6 +98,7 @@ function General() {
           Mostrar_Anual="true"
           Mes={month}
           Año={year}
+          Help={Help.HELP.PINM}
         ></SectionMultiBarContainer>
       </div>
 
@@ -106,6 +110,7 @@ function General() {
           Mostrar_Anual="true"
           Mes={month}
           Año={year}
+          Help={Help.HELP.PINT}
         ></SectionMultiBarContainer>
       </div>
     </>
