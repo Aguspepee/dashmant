@@ -10,9 +10,6 @@ import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
 import { filterGeneral } from "../../Services/sapBaseService"
-import Chip from '@mui/material/Chip';
-import FaceIcon from '@mui/icons-material/Face';
-import Stack from '@mui/material/Stack';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 //Configuración del gráfico
@@ -48,41 +45,45 @@ function MiniPieChartCard(props) {
   }, [setList, config.Mes, config.Año]);
 
   //Se inicializan los labels y las cantidades
-  let labels = ["CTEC", "EJEC", "ABIE", "CTEC CENE"];
-  let quantity = [0, 0, 0, 0]
+  let labels = ["Ejec.", "No Ejec."];
+  let Programado_Mensual = 0;
+  let Ejecutado_Mensual = 0;
 
-  //Se extraen los labels
-  let datos = list.Fecha_Referencia_Mensual;
-  if (datos) {
-    quantity = labels.map((labels, index) => {
-      let cant = datos.filter((datos) => {
-        return (datos.Status === labels)
-      })[0]
-      if (cant) {
-        cant = cant.Count
-      } else {
-        cant = 0
-      }
-      return (
-        cant
-      )
-    })
+  //Se calcula el programado mensual en funcion de la fecha de inicio programado
+  if (list.Inicio_Programado_Mensual) {
+    for (let i = 0; i < list.Inicio_Programado_Mensual.length; i++) {
+      Programado_Mensual = Programado_Mensual + list.Inicio_Programado_Mensual[i].Count;
+    }
+  }
+
+  let datos = list.Fecha_Referencia_Mensual
+  if (list.Fecha_Referencia_Mensual) {
+    Ejecutado_Mensual = datos.filter((datos) => datos.Status === "CTEC")
+
+  }
+  if (Ejecutado_Mensual[0]) {
+    Ejecutado_Mensual = Ejecutado_Mensual[0].Count
+  } else {
+    Ejecutado_Mensual = 0
   }
 
   //Se calculan los porcentajes mensuales
   let percentaje
   if (
     !Number.isNaN(
-      quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3])
+      Ejecutado_Mensual * 100 / Programado_Mensual
     )
   ) {
     percentaje = (
-      (quantity[0] / (quantity[0] + quantity[1] + quantity[2] + quantity[3])) *
-      100
+      Ejecutado_Mensual * 100 / Programado_Mensual
     ).toFixed(0);
   } else {
     percentaje = "-";
   }
+
+  //Ejecutado_Mensual = 5
+
+  let quantity = [Ejecutado_Mensual, Programado_Mensual - Ejecutado_Mensual]
 
   //Se inicializa el gráfico
   const data = {
@@ -90,8 +91,8 @@ function MiniPieChartCard(props) {
     datasets: [
       {
         data: quantity,
-        backgroundColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
-        borderColor: ["#BDE7BD", "#FF6962", "#FF6962", "#FF6962"],
+        backgroundColor: ["#BDE7BD", "#FF6962"],
+        borderColor: ["#BDE7BD", "#FF6962"],
         borderWidth: 0,
       },
     ],
@@ -106,41 +107,37 @@ function MiniPieChartCard(props) {
   });
 
   //  TOTAL PREVISTO AL MES EN CURSO
-  let Previsto_Mensual = 0;
-  Previsto_Mensual = list.Fecha_Referencia_Acumulado
-
-  if (Previsto_Mensual) {
+  let Planificado_Anual = list.Inicio_Programado_Acumulado
+  if (Planificado_Anual) {
     let nume
-    Previsto_Mensual = Previsto_Mensual.filter((Previsto_Mensual) => {
-      nume = Previsto_Mensual.Inicio_program_Mes
+    Planificado_Anual = Planificado_Anual.filter((Planificado_Anual) => {
+      nume = Planificado_Anual.Inicio_program_Mes
       return (nume <= config.Mes)
     })
-    Previsto_Mensual = Previsto_Mensual.reduce((a, b) => a + (b["Count"] || 0), 0)
+    Planificado_Anual = Planificado_Anual.reduce((a, b) => a + (b["Count"] || 0), 0)
   }
 
   // TOTAL ANUAL PREVISTO
   let Total_Anual = TotalAnual[0][config.Cl_actividad_PM];
 
   // TOTAL ANUAL EJECUTADO
-  let Ejecutado_Mensual = 0;
+  let Ejecutado_Anual = 0;
   if (datos) {
     datos = list.Fecha_Referencia_Anual;
-
     //Se extraen los labels
-
     let cant = datos.filter((datos) => {
       return (datos.Status === "CTEC")
     })[0]
     if (cant) {
-      Ejecutado_Mensual = cant.Count
+      Ejecutado_Anual = cant.Count
     } else {
-      Ejecutado_Mensual = 0
+      Ejecutado_Anual = 0
     }
   }
 
 
-  let percentajeBar = (Ejecutado_Mensual * 100) / Total_Anual;
-  let percentajeNow = (Previsto_Mensual * 100) / Total_Anual;
+  let percentajeBar = (Ejecutado_Anual * 100) / Total_Anual;
+  let percentajeNow = (Planificado_Anual * 100) / Total_Anual;
 
 
   return (
@@ -166,7 +163,6 @@ function MiniPieChartCard(props) {
         }}
       >
         <CardContent sx={{ flex: "1 0 auto", width: "10%" }}>
-        <Stack direction="row" spacing={1}>
           <Typography
             variant="body1"
             color="text.secondary"
@@ -174,9 +170,7 @@ function MiniPieChartCard(props) {
             style={{ fontSize: "1.2em" }}
           >
             Mensual
-          </Typography> 
-          <Chip className="chip"  size="small" label="Loading..." />
-          </Stack>
+          </Typography>
           <Divider light style={{ width: "90%" }} />
           <Typography
             variant="caption"
@@ -184,8 +178,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PROGRAMADAS:{" "}
-            {quantity[0] + quantity[1] + quantity[2] + quantity[3]}
+            PROGRAMADAS: {Programado_Mensual}
           </Typography>
           <Typography
             variant="caption"
@@ -193,7 +186,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS: {quantity[0]}
+            INTERVENIDAS: {Ejecutado_Mensual}
           </Typography>
 
           <Typography
@@ -255,7 +248,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PREVISTAS: {Previsto_Mensual}
+            PREVISTAS: {Planificado_Anual}
           </Typography>
           <Typography
             variant="caption"
@@ -263,7 +256,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS: {Ejecutado_Mensual}
+            INTERVENIDAS: {Ejecutado_Anual}
           </Typography>
 
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>

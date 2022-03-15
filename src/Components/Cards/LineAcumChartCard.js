@@ -12,7 +12,6 @@ import {
   Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import Typography from "@mui/material/Typography";
 
 ChartJS.register(
   CategoryScale,
@@ -30,9 +29,7 @@ ChartJS.register(
 function LineAcumChartCard(props) {
   //Extrae las propiedades, configuración y titulos
   const zona = props.zona;
-  const nombre = props.nombre;
   const config = props.config;
-  const TotalAnual = props.TotalAnual
   //Setea los estados
   const [list, setList] = useState([]);
 

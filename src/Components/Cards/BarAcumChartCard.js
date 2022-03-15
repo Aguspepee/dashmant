@@ -11,7 +11,6 @@ import {
   Tooltip,
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import Typography from "@mui/material/Typography";
 
 ChartJS.register(
   LinearScale,
@@ -26,9 +25,8 @@ ChartJS.register(
 function BarAcumChartCard(props) {
   //Extrae las propiedades, configuración y titulos
   const zona = props.zona;
-  const nombre = props.nombre;
   const config = props.config;
-  const TotalAnual = props.TotalAnual;
+  
   //Setea los estados
   const [list, setList] = useState([]);
 

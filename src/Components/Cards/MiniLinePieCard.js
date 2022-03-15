@@ -38,7 +38,7 @@ function MiniLinePieCard(props) {
   useEffect(() => {
     const update = async () => {
       try {
-        const res = await NovedadesResumen(Mes, Año, Zona,Tipo)
+        const res = await NovedadesResumen(Mes, Año, Zona, Tipo)
         setList(res.data);
       } catch (e) {
         console.log(e);
@@ -51,8 +51,7 @@ function MiniLinePieCard(props) {
   let labels = ["Ejecutado", "Previsto"];
   //Se obtienen los datos
   let quantity = [list.Total_Mensual_Ejecutado, list.Total_Mensual_Previsto];
-
-  let percentaje = Math.round(list.Total_Mensual_Ejecutado * 100 / list.Total_Mensual_Previsto)
+  let percentaje = Math.round(list.Total_Mensual_Ejecutado * 100 / list.Total_Mensual_Previsto);
 
   //Se inicializa el gráfico
   const data = {
@@ -76,52 +75,6 @@ function MiniLinePieCard(props) {
 
   let percentajeBar = Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto)
   percentajeNow = Math.round(3 * 100 / 12)
-  let barra
-  if (Mostrar_Anual === "true") {
-    barra = (
-      <Container>
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          component="div"
-          style={{ paddingTop: "1em", fontSize: "1.2em" }}
-        >
-          Anual
-        </Typography>
-        <MiniBarChartCard
-          percentaje={percentajeBar}
-          percentajeNow={percentajeNow}
-        ></MiniBarChartCard>
-        <Typography
-          variant="caption"
-          color="text.secondary"
-          component="div"
-          style={{ paddingBottom: "0px", fontSize: "0.7em" }}
-        >
-          PROGRAMADAS: {Math.round(list.Total_Anual_Previsto)}
-        </Typography>
-        <Typography
-          variant="caption"
-          color="text.secondary"
-          component="div"
-          style={{ paddingBottom: "0px", fontSize: "0.7em" }}
-        >
-          INTERVENIDAS: {Math.round(list.Total_Anual_Ejecutado)}
-        </Typography>
-        <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
-          {Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto)}%
-        </Typography>
-        <Typography
-          variant="body2"
-          color="text.primary"
-          component="div"
-          style={{ fontSize: "0.9em", paddingBottom: "10px" }}
-        >
-          EJECUTADO
-        </Typography>
-      </Container>
-    );
-  }
 
   return (
     <>
@@ -201,7 +154,50 @@ function MiniLinePieCard(props) {
         </Box>
       </Card>
       <Divider light style={{ width: "90%" }} />
-      {barra}
+
+      {Mostrar_Anual &&
+        <Container>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            component="div"
+            style={{ paddingTop: "1em", fontSize: "1.2em" }}
+          >
+            Anual
+          </Typography>
+          <MiniBarChartCard
+            percentaje={percentajeBar}
+            percentajeNow={percentajeNow}
+          ></MiniBarChartCard>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            component="div"
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+          >
+            PROGRAMADAS: {Math.round(list.Total_Anual_Previsto)}
+          </Typography>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            component="div"
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
+          >
+            INTERVENIDAS: {Math.round(list.Total_Anual_Ejecutado)}
+          </Typography>
+          <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
+            {Math.round(list.Total_Anual_Ejecutado * 100 / list.Total_Anual_Previsto)}%
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.primary"
+            component="div"
+            style={{ fontSize: "0.9em", paddingBottom: "10px" }}
+          >
+            EJECUTADO
+          </Typography>
+        </Container>
+      }
       <Divider light style={{ width: "90%" }} />
     </>
   );

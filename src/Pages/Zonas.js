@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import SectionBigDistributionContainer from "../Components/Containers/SectionBigDistributionContainer";
 import SectionBigPieContainer from "../Components/Containers/SectionBigPieContainer";
@@ -21,8 +21,6 @@ let zonas = [
   { Zona: "ZA1", Nombre: "Zona Austral", Activity: [] },
 ];
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
-
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -44,8 +42,6 @@ HideOnScroll.propTypes = {
 function Zonas(props) {
   const [year, setYear, month, setMonth] = useContext(DateContext);
   let Zona = useParams().id;
-  const myRef = useRef(null);
-  const executeScroll = () => scrollToRef(myRef);
   const drawerWidth = 240;
   return (
     <>
