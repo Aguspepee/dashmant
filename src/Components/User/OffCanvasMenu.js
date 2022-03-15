@@ -48,14 +48,8 @@ function ResponsiveDrawer(props) {
   };
   const drawer = (
     <div>
-      <Divider />
+
       <List>
-        <img
-          src={Logo}
-          style={{ width: "80%", padding: "15px,15px,15px,15px" }}
-          alt="fireSpot"
-        />
-        <Divider />
         {["General"].map((text) => (
           <ListItem button key={text} component={Link} to="dashmant/general">
             <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
@@ -166,10 +160,16 @@ function ResponsiveDrawer(props) {
             noWrap
             component="div"
             style={{ color: "gray" }}
-            
           >
+            
             EJECUCIÓN DEL PLAN DE MANTENIMIENTO
+            <img
+            src={Logo}
+            style={{ width: "10%", padding: "15px,15px,15px,15px" }}
+            alt="fireSpot"
+          />
           </Typography>
+          
         </Toolbar>
       </AppBar>
       <Box
