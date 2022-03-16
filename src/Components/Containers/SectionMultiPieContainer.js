@@ -14,7 +14,6 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(
   //Titulo y subtitulo del bloque
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
-  const Help = props.Help;
 
   //Configuración y filtros
   const config = {

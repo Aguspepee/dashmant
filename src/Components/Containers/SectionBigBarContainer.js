@@ -6,6 +6,10 @@ import MultiBarChartCard from "../Cards/MultiBarChartCard";
 import MiniLinePieCard from "../Cards/MiniLinePieCard";
 import "./gridstyle.css";
 import AlertDialog from "../User/AlertDialog"
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import { MonthToWord } from "../../Utils/Functions";
 
 function SectionBigBarContainer(props) {
 
@@ -17,7 +21,7 @@ function SectionBigBarContainer(props) {
   const Mes = props.Mes;
   const Año = props.Año;
   const Zona = props.Zona;
-  const Help = props.Help;
+  const Mes_Nombre = MonthToWord(Mes)
 
   //console.log("Lineas", lineas);
   let actividad = props.activity;
@@ -32,13 +36,14 @@ function SectionBigBarContainer(props) {
           }}
         >
           <CardContent>
-            <CardHeader
-              action={
-                <AlertDialog Titulo={Titulo} Help={props.Help}></AlertDialog>
-              }
-              title={Titulo}
-              subheader={Descripcion}
-            />
+          <Stack direction="row" spacing={1}>
+              <Typography variant="h5" component="div">
+                {Titulo}<Chip label={`${Mes_Nombre} ${Año}`}  size="small" style={{ marginBottom: "4px",marginLeft:"15px" }} />
+              </Typography>
+            </Stack>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              {Descripcion}
+            </Typography>
             <div style={{ padding: "0em 0em 1em 0em" }}>
                   <div className="grid-column" >
                     <MiniLinePieCard

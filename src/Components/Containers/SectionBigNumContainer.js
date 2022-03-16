@@ -29,6 +29,7 @@ function SectionBigNumContainer(props) {
     "BorrarDuplicados": props.BorrarDuplicados,
     "Operacion": props.Operacion
   }
+  
 
   return (
     <>

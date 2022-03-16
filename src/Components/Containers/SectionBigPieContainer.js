@@ -3,12 +3,14 @@ import BigPieChartCart from "../Cards/BigPieChartCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import "./gridstyle.css";
-import CardHeader from "@mui/material/CardHeader";
+
 import LineAcumChartCard from "../Cards/LineAcumChartCard";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import BarAcumChartCard from "../Cards/BarAcumChartCard";
-import AlertDialog from "../User/AlertDialog";
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import { MonthToWord } from "../../Utils/Functions";
 
 
 function SectionMultiPieContainer(props) {
@@ -16,7 +18,7 @@ function SectionMultiPieContainer(props) {
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
   const Zona = props.Zona;
-  const Help = props.Help;
+  
 
   //Configuración y filtros
   const config = {
@@ -31,6 +33,7 @@ function SectionMultiPieContainer(props) {
     BorrarDuplicados: props.BorrarDuplicados,
     Operacion: props.Operacion,
   };
+  const Mes_Nombre = MonthToWord(config.Mes)
 
   let zonas = [
     {
@@ -60,15 +63,17 @@ function SectionMultiPieContainer(props) {
     <>
       <div style={{ padding: "1em 1em 1em 1em" }}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
-          <div style={{height:"110px"}}>
-          <CardHeader
-            action={
-              <AlertDialog Titulo={Titulo} Help={props.Help}></AlertDialog>
-            }
-            title={Titulo}
-            subheader={Descripcion}
-          />
-          </div>
+        <CardContent>
+          
+          <Stack direction="row" spacing={1}>
+              <Typography variant="h5" component="div">
+                {Titulo}<Chip label={`${Mes_Nombre} ${config.Año}`}  size="small" style={{ marginBottom: "4px",marginLeft:"15px" }} />
+              </Typography>
+            </Stack>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              {Descripcion}
+            </Typography>
+            </CardContent>
           
           <CardContent style={{ padding: "0em 1em 0em 1em" }}>
             <Divider light style={{ width: "100%" }} />
