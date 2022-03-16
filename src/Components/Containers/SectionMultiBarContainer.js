@@ -1,8 +1,6 @@
 import React from "react";
 //import { useEffect, useContext } from "react";
 import { Card } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import { CardContent } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -11,7 +9,10 @@ import CardActions from "@mui/material/CardActions";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import MiniLinePieCard from "../Cards/MiniLinePieCard";
-import AlertDialog from "../User/AlertDialog";
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import { MonthToWord } from "../../Utils/Functions";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -56,6 +57,8 @@ function SectionMultiBarContainer(props) {
       Nombre: "ZONA AUSTRAL",
     },
   ];
+
+  const Mes_Nombre = MonthToWord(Mes)
   return (
     <>
       <div style={{ padding: "0em 0em 1em 0em" }}>
@@ -66,13 +69,14 @@ function SectionMultiBarContainer(props) {
           }}
         >
           <CardContent>
-            <CardHeader
-              action={
-                <AlertDialog Titulo={Titulo} Help={props.Help}></AlertDialog>
-              }
-              title={Titulo}
-              subheader={Descripcion}
-            />
+          <Stack direction="row" spacing={1}>
+              <Typography variant="h5" component="div">
+                {Titulo}<Chip label={`${Mes_Nombre} ${Año}`}  size="small" style={{ marginBottom: "4px",marginLeft:"15px" }} />
+              </Typography>
+            </Stack>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              {Descripcion}
+            </Typography>
             <div style={{ padding: "0em 0em 1em 0em" }}>
               <div className="gridpie">
                 {zonas.map((zonas, index) => (

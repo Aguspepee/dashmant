@@ -106,8 +106,8 @@ function MiniLinePieCard(props) {
         color="text.primary"
         component="div"
         style={{
-          fontSize: "1.4em",
-          paddingLeft: "0.8em",
+          fontSize: "1em",
+        //  paddingLeft: "0.8em",
           paddingBottom: "0px",
         }}
       >
