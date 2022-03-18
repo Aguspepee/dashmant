@@ -14,9 +14,8 @@ function App() {
       <DateProvider>
         <Box
           sx={{
-            display: "flex",
+            display: {sm: "flex" },
             backgroundColor: "rgb(243, 243, 243)",
-            width: "100%",
           }}
         >
           <BrowserRouter>

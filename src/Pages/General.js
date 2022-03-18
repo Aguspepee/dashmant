@@ -41,7 +41,7 @@ function General() {
         Cl_actividad_PM="MCP"
         Clase_de_orden="ZTCP"
         Texto_breve="false"
-        Pto_tbjo_resp="false"
+        Pto_tbjo_resp="ETRA"
         Operacion="0010"
         BorrarDuplicados="false"
         Help={Help.HELP.MCP}
@@ -88,6 +88,20 @@ function General() {
       <h3 style={{ paddingTop: "10px", paddingBottom: "0px" }}>
         Líneas de Alta Tensión
       </h3>
+      <SectionMultiNumContainer
+        Titulo="Mantenimiento Correctivo de LAT"
+        Descripcion="Cantidad de intervenciones"
+        Mes={month}
+        Año={year}
+        Cl_actividad_PM="MCP"
+        Clase_de_orden="ZTCP"
+        Texto_breve="false"
+        Pto_tbjo_resp="LATS"
+        Operacion="0010"
+        BorrarDuplicados="false"
+        Help={Help.HELP.MCP}
+      ></SectionMultiNumContainer>
+
       <div>
         <SectionMultiBarContainer
           Titulo="Inspección Minuciosa"
