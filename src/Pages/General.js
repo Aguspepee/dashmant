@@ -4,17 +4,67 @@ import SectionMultiPieContainer from "../Components/Containers/SectionMultiPieCo
 import SectionMultiNumContainer from "../Components/Containers/SectionMultiNumContainer";
 import DateContext from "../Context/DateContext";
 import SectionMultiBarContainer from "../Components/Containers/SectionMultiBarContainer";
-import Help from "../Utils/Help"
+import Help from "../Utils/Help";
+import CssBaseline from "@mui/material/CssBaseline";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import Slide from "@mui/material/Slide";
+import PropTypes from "prop-types";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import AppBar from "@mui/material/AppBar";
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
+function HideOnScroll(props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
 
-function General() {
-  const myRef = useRef(null);
-  console.log("Numero",Number("045"))
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+HideOnScroll.propTypes = {
+  children: PropTypes.element.isRequired,
+  window: PropTypes.func,
+};
+
+function General(props) {
   const [year, setYear, month, setMonth] = useContext(DateContext);
+  const drawerWidth = 240;
   return (
     <>
-      <h3 style={{ paddingTop: "50px", paddingBottom: "0px" }}>
+      <CssBaseline />
+      <HideOnScroll {...props}>
+        <AppBar
+          sx={{
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            ml: { sm: `${drawerWidth}px` },
+            mt: 6,
+            pl: { sm: `${drawerWidth}px` },
+          }}
+          style={{
+            backgroundColor: "white",
+            zIndex: "3",
+            width: "100%",
+            boxShadow: "0px 10px 13px -8px rgba(0,0,0,0.47)",
+          }}
+        >
+          <Toolbar style={{}}>
+            <Typography
+              variant="primary"
+              component="div"
+              style={{ color: "gray", fontSize: "1.2em" }}
+            >
+              VISTA GENERAL
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
+      <Toolbar style={{ marginBottom: "20px" }} />
+      <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>
         Estaciones Transformadoras
       </h3>
 

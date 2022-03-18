@@ -49,7 +49,7 @@ function Zonas(props) {
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar
-          sx={{
+          sx={{ 
             width: { sm: `calc(100% - ${drawerWidth}px)` },
             ml: { sm: `${drawerWidth}px` },
             mt: 6,

@@ -26,7 +26,7 @@ function SectionBigBarContainer(props) {
 
   return (
     <>
-      <div style={{ padding: "1em 1em 1em 1em" }}>
+      <div style={{ padding: "0.5em 0.5em 0.5em 0.5em" }}>
         <Card
           style={{
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
