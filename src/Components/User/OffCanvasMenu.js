@@ -45,13 +45,23 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+    setOpen(!open);
   };
+  const handleOpen = () => {
+    setOpen(false);
+  };
+  const [open, setOpen] = React.useState(false);
   const drawer = (
     <div>
-
       <List>
         {["General"].map((text) => (
-          <ListItem button key={text} component={Link} to="dashmant/general">
+          <ListItem
+            button
+            key={text}
+            component={Link}
+            to="dashmant/general"
+            onClick={handleOpen}
+          >
             <ListItemIcon>{<DashboardIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -61,6 +71,7 @@ function ResponsiveDrawer(props) {
           key="Zona Norte"
           component={Link}
           to="dashmant/Zonas/ZN1"
+          onClick={handleOpen}
         >
           <ListItemText inset primary="Zona Norte" />
         </ListItem>
@@ -69,6 +80,7 @@ function ResponsiveDrawer(props) {
           key="Zona Sur"
           component={Link}
           to="dashmant/Zonas/ZS1"
+          onClick={handleOpen}
         >
           <ListItemText inset primary="Zona Sur" />
         </ListItem>
@@ -78,6 +90,7 @@ function ResponsiveDrawer(props) {
           key="Zona Oeste"
           component={Link}
           to="dashmant/Zonas/ZO1"
+          onClick={handleOpen}
         >
           <ListItemText inset primary="Zona Oste" />
         </ListItem>
@@ -87,6 +100,7 @@ function ResponsiveDrawer(props) {
           key="Zona Austral"
           component={Link}
           to="dashmant/Zonas/ZA1"
+          onClick={handleOpen}
         >
           <ListItemText inset primary="Zona Austral" />
         </ListItem>
@@ -131,6 +145,7 @@ function ResponsiveDrawer(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
+    
   return (
     <>
       <CssBaseline />
@@ -161,15 +176,13 @@ function ResponsiveDrawer(props) {
             component="div"
             style={{ color: "gray" }}
           >
-            
             EJECUCIÓN DEL PLAN DE MANTENIMIENTO
             <img
-            src={Logo}
-            style={{ width: "10%", padding: "15px,15px,15px,15px" }}
-            alt="fireSpot"
-          />
+              src={Logo}
+              style={{ width: "10%", padding: "15px,15px,15px,15px" }}
+              alt="fireSpot"
+            />
           </Typography>
-          
         </Toolbar>
       </AppBar>
       <Box
@@ -181,10 +194,10 @@ function ResponsiveDrawer(props) {
         <Drawer
           container={container}
           variant="temporary"
-          open={mobileOpen}
+          open={open}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: false, // Better open performance on mobile.
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -192,6 +205,7 @@ function ResponsiveDrawer(props) {
               boxSizing: "border-box",
               width: drawerWidth,
               boxShadow: "rgba(0, 0, 0, 0) 0px 3px 8px",
+              
             },
           }}
         >
@@ -205,6 +219,7 @@ function ResponsiveDrawer(props) {
               boxSizing: "border-box",
               width: drawerWidth,
               boxShadow: "rgba(0, 0, 0, 0) 0px 3px 8px",
+              height: "100%",
             },
           }}
           open

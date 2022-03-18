@@ -61,9 +61,9 @@ function SectionMultiPieContainer(props) {
   const TotalAnual = zonas.filter((zonas) => zonas.Zona === Zona)[0].TotalAnual;
   return (
     <>
-      <div style={{ padding: "1em 1em 1em 1em" }}>
+      <div style={{ padding: "0.5em 0.5em 0.5em 0.5em" }}>
         <Card style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
-        <CardContent>
+        <CardContent> 
           
           <Stack direction="row" spacing={1}>
               <Typography variant="h5" component="div">

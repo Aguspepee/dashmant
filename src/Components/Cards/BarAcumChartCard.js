@@ -11,6 +11,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
+import "../Containers/gridstyle.css";
 
 ChartJS.register(
   LinearScale,
@@ -130,9 +131,25 @@ function BarAcumChartCard(props) {
     ],
   };
 
+  const options = {
+    responsive: true,
+   maintainAspectRatio: false,
+   plugins: {
+     legend: {
+       display: true
+     },
+     title: {
+       display: false,
+       text: "Ejecución de UM Acumulada",
+     },
+   }, 
+};
+
   return (
     <>
-      <Chart type="bar" data={data} />
+    <div className="lineChart" style={{ padding: "0em 0em 0em 0em", width: '100%'}}>
+      <Chart type="bar" data={data} options={options} />
+      </div>
     </>
   );
 }

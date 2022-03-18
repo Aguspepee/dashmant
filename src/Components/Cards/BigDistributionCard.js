@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
 import { CardContent } from "@mui/material";
-import { distribucionHoraria } from "../../Services/sapBaseService"
+import { distribucionHoraria } from "../../Services/sapBaseService";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -18,10 +18,9 @@ export const options = {
       align: "start",
     },
     labels: {
-      render: 'percentage',
-      precision: 2
+      render: "percentage",
+      precision: 2,
     },
-
   },
 };
 
@@ -38,7 +37,7 @@ function BigDistributionCard(props) {
   useEffect(() => {
     const update = async () => {
       try {
-        const res = await distribucionHoraria(config, zona)
+        const res = await distribucionHoraria(config, zona);
         setList(res.data.Distribucion);
       } catch (e) {
         console.log(e);
@@ -48,7 +47,7 @@ function BigDistributionCard(props) {
   }, [setList, config.Mes, config.Año, zona]);
 
   //Se inicializan los labels y las cantidades
-  let quantity
+  let quantity;
   let labels = [
     "Mantenimiento Programado",
     "Mantenimiento Correctivo",
@@ -63,24 +62,20 @@ function BigDistributionCard(props) {
   if (datos) {
     quantity = labels.map((labels, index) => {
       let cant = datos.filter((datos) => {
-        return (datos.Grupo_Agrupamiento === labels)
-      })[0]
+        return datos.Grupo_Agrupamiento === labels;
+      })[0];
       if (cant) {
-        cant = cant.Count
+        cant = cant.Count;
       } else {
-        cant = 0
+        cant = 0;
       }
-      return (
-        cant
-      )
-    })
+      return cant;
+    });
   }
-
-
 
   //Se calcula el total
   const reducer = (accumulator, curr) => accumulator + curr;
-  let total = quantity.reduce(reducer)
+  let total = quantity.reduce(reducer);
 
   //Se inicializa el gráfico
   const data = {
@@ -124,27 +119,28 @@ function BigDistributionCard(props) {
 
   return (
     <>
-      <div className="BigDistri" style={{ paddingBottom: "1em"}}>
-        <Divider light style={{ width: "90%" }}/>
+      <div className="BigDistri" style={{ paddingBottom: "1em" }}>
         <CardContent>
-          <Doughnut data={data} options={options}/>
+          <Doughnut data={data} options={options} />
         </CardContent>
-        <Divider light style={{ width: "90%" }} />
-        <Typography
-          variant="body1"
-          color="text.primary"
-          component="div"
-          style={{
-            fontSize: "1em",
-            paddingLeft: "2em",
-            paddingBottom: "0px",
-          }}
-        >
-          Total Horas Hombre: {total}
-        </Typography>
-        <Divider light style={{ width: "90%" }} />
+        <CardContent>
+          <Divider light style={{ width: "100%" }} />
+          <Typography
+            variant="body1"
+            color="text.primary"
+            component="div"
+            style={{
+              fontSize: "1em",
+              paddingBottom: "0.5em",
+              paddingTop: "0.5em",
+              paddingLeft: "0.3em",
+            }}
+          >
+            Total Horas Hombre: {total}
+          </Typography>
+          <Divider light style={{ width: "100%" }} />
+        </CardContent>
       </div>
-
     </>
   );
 }
