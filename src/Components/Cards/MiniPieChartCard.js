@@ -43,6 +43,7 @@ function MiniPieChartCard(props) {
     };
     update();
   }, [setList, config.Mes, config.Año]);
+  console.log(list)
 
   //Se inicializan los labels y las cantidades
   let labels = ["Ejec.", "No Ejec."];
