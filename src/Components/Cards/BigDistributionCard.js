@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-//import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
 import { CardContent } from "@mui/material";
-import { distribucionHoraria } from "../../Services/sapBaseService";
+import {
+  distribucionHoraria,
+  horasPlanificadas,
+} from "../../Services/sapBaseService";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -32,13 +32,20 @@ function BigDistributionCard(props) {
 
   //Setea los estados
   const [list, setList] = useState([]);
+  const [horas, setHoras] = useState([]);
 
   //Previo a renderizar el componente se consulta la API
   useEffect(() => {
     const update = async () => {
+      //Se crea una promesa compuesta
+      const res2 = await horasPlanificadas(zona);
+      const res1 = await distribucionHoraria(config, zona);
+      const getPromises = [res1, res2];
+      const getResponses = Promise.all(getPromises);
       try {
-        const res = await distribucionHoraria(config, zona);
-        setList(res.data.Distribucion);
+        const resultados = await getResponses;
+        setList(resultados[0].data.Distribucion);
+        setHoras(resultados[1].data[0].Horas);
       } catch (e) {
         console.log(e);
       }
@@ -55,6 +62,7 @@ function BigDistributionCard(props) {
     "Mantenimiento Preventivo No Programado",
     "Servicios a Terceros",
     "Actividades Complementarias",
+    "Horas no informadas",
   ];
 
   //Se calculan las cantidades (quantity)
@@ -77,6 +85,9 @@ function BigDistributionCard(props) {
   const reducer = (accumulator, curr) => accumulator + curr;
   let total = quantity.reduce(reducer);
 
+  let horasNoContempladas = horas - total;
+  quantity[6] = horasNoContempladas < 0 ? 0 : horasNoContempladas;
+
   //Se inicializa el gráfico
   const data = {
     labels: labels,
@@ -84,24 +95,24 @@ function BigDistributionCard(props) {
       {
         data: quantity,
         backgroundColor: [
-          "#fd7f6f",
           "#7eb0d5",
           "#b2e061",
           "#bd7ebe",
           "#ffb55a",
           "#ffee65",
           "#beb9db",
+          "#bababa", //horas no informadas
           "#fdcce5",
           "#8bd3c7",
         ],
         borderColor: [
-          "#fd7f6f",
           "#7eb0d5",
           "#b2e061",
           "#bd7ebe",
           "#ffb55a",
           "#ffee65",
           "#beb9db",
+          "#bababa", //horas no informadas
           "#fdcce5",
           "#8bd3c7",
         ],
@@ -130,13 +141,24 @@ function BigDistributionCard(props) {
             color="text.primary"
             component="div"
             style={{
-              fontSize: "1em",
-              paddingBottom: "0.5em",
-              paddingTop: "0.5em",
-              paddingLeft: "0.3em",
+              fontSize: "0.8em",
+              paddingLeft: "2em",
+              paddingBottom: "0px",
             }}
           >
             Total Horas Hombre: {total}
+          </Typography>
+          <Typography
+            variant="body1"
+            color="text.primary"
+            component="div"
+            style={{
+              fontSize: "0.8em",
+              paddingLeft: "2em",
+              paddingBottom: "0px",
+            }}
+          >
+            Total Horas no Informadas: {horas}
           </Typography>
           <Divider light style={{ width: "100%" }} />
         </CardContent>

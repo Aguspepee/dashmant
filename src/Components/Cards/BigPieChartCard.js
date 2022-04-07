@@ -25,6 +25,7 @@ function BigPieChartCard(props) {
   const zona = props.zona;
   const config = props.config;
   const TotalAnual = props.TotalAnual
+  
 
   //Setea los estados
   const [list, setList] = useState([]);

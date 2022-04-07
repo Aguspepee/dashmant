@@ -3,8 +3,6 @@ import MiniDistributionCard from "../Cards/MiniDistributionCard";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
 import "./gridstyle.css";
-import CardHeader from "@mui/material/CardHeader";
-import AlertDialog from "../User/AlertDialog";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -14,7 +12,6 @@ function SectionDistributionContainer(props) {
   //Titulo y subtitulo del bloque
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
-  const Help = props.Help;
 
   //Configuración y filtros
   const config = {

@@ -11,3 +11,7 @@ export function distribucionHoraria(config,zona){
 export function resumenAnual(config,zona){
     return instance.get(`sapBase/resumenAnual/${config.Año}-${config.Cl_actividad_PM}-${config.Clase_de_orden}-${zona}-${config.Texto_breve}-${config.Pto_tbjo_resp}-${config.Operacion}-${config.BorrarDuplicados}`)
 }
+
+export function horasPlanificadas(zona){
+    return instance.get(`/horas/byZone/${zona}`)
+}
