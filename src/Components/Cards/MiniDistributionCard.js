@@ -180,7 +180,7 @@ function MiniDistributionCard(props) {
           paddingBottom: "0px",
         }}
       >
-        Total Horas Hombre: {total}
+        HH Informadas: {total}
       </Typography>
       <Typography
         variant="body1"
@@ -192,7 +192,19 @@ function MiniDistributionCard(props) {
           paddingBottom: "0px",
         }}
       >
-        Total Horas no Informadas: {horas}
+        HH mínimas no Informadas: {horas-total}
+      </Typography>
+      <Typography
+        variant="body1"
+        color="text.primary"
+        component="div"
+        style={{
+          fontSize: "0.8em",
+          paddingLeft: "2em",
+          paddingBottom: "0px",
+        }}
+      >
+        HH mínimas esperadas: {horas}
       </Typography>
       <Divider light style={{ width: "90%" }} />
     </>
