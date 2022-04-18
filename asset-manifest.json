@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/dashmant/static/css/main.54a8c639.css",
-    "main.js": "/dashmant/static/js/main.c051841b.js",
+    "main.js": "/dashmant/static/js/main.c34f9b22.js",
     "static/js/787.c74b7cda.chunk.js": "/dashmant/static/js/787.c74b7cda.chunk.js",
     "static/media/transpa.png": "/dashmant/static/media/transpa.902b1ff9f3cac522d6ba.png",
     "index.html": "/dashmant/index.html",
     "main.54a8c639.css.map": "/dashmant/static/css/main.54a8c639.css.map",
-    "main.c051841b.js.map": "/dashmant/static/js/main.c051841b.js.map",
+    "main.c34f9b22.js.map": "/dashmant/static/js/main.c34f9b22.js.map",
     "787.c74b7cda.chunk.js.map": "/dashmant/static/js/787.c74b7cda.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.54a8c639.css",
-    "static/js/main.c051841b.js"
+    "static/js/main.c34f9b22.js"
   ]
 }
