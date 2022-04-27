@@ -34,6 +34,7 @@ function BigPieChartCard(props) {
     const update = async () => {
       try {
         const res = await filterGeneral(config, zona)
+        console.log(res.data)
         setList(res.data);
       } catch (e) {
         console.log(e); 
@@ -230,7 +231,7 @@ function BigPieChartCard(props) {
             color="text.secondary"
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
-          >
+          > 
             PREVISTAS: {Planificado_Anual}
           </Typography>
           <Typography
@@ -239,7 +240,7 @@ function BigPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS: {Ejecutado_Mensual}
+            INTERVENIDAS: {Ejecutado_Anual}
           </Typography>
 
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
