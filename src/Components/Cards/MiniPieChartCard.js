@@ -257,7 +257,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS HASTA {mes.toUpperCase()}: {Ejecutado_Anual}
+            INTERVENIDAS HASTA MES EN CURSO: {Ejecutado_Anual}
           </Typography>
 
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>

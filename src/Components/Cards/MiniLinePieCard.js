@@ -207,7 +207,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS HASTA {Mes_Nombre.toUpperCase()}: {Math.round(list.Total_Anual_Ejecutado)}
+            INTERVENIDAS HASTA MES EN CURSO: {Math.round(list.Total_Anual_Ejecutado)}
           </Typography>
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
             {Porcentaje_Anual}%
