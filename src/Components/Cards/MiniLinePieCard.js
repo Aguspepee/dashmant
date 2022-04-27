@@ -32,6 +32,7 @@ function MiniLinePieCard(props) {
   const Mes = props.Mes;
   const Año = props.Año;
   const Tipo = props.Tipo;
+  const Mes_Nombre= props.Mes_Nombre
 
   const [list, setList] = useState([]);
   //Previo a renderizar el componente se consulta la API
@@ -198,7 +199,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PROGRAMADAS: {Math.round(list.Total_Anual_Previsto)}
+            PROGRAMADAS ANUAL: {Math.round(list.Total_Anual_Previsto)}
           </Typography>
           <Typography
             variant="caption"
@@ -206,7 +207,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS: {Math.round(list.Total_Anual_Ejecutado)}
+            INTERVENIDAS HASTA {Mes_Nombre.toUpperCase()}: {Math.round(list.Total_Anual_Ejecutado)}
           </Typography>
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
             {Porcentaje_Anual}%

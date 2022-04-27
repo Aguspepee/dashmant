@@ -10,7 +10,6 @@ import Stack from "@mui/material/Stack";
 import { MonthToWord } from "../../Utils/Functions";
 
 function SectionBigBarContainer(props) {
-
   //Cálculo de día del año
   const Titulo = props.Titulo;
   const Descripcion = props.Descripcion;
@@ -19,8 +18,10 @@ function SectionBigBarContainer(props) {
   const Mes = props.Mes;
   const Año = props.Año;
   const Zona = props.Zona;
-  const Mes_Nombre = MonthToWord(Mes)
+  const Mes_Nombre = MonthToWord(Mes);
+  const Descripcion_Barras = props.Descripcion_Barras;
 
+  console.log("MES",Año)
   //console.log("Lineas", lineas);
   let actividad = props.activity;
 
@@ -34,36 +35,45 @@ function SectionBigBarContainer(props) {
           }}
         >
           <CardContent>
-          <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1}>
               <Typography variant="h5" component="div">
-                {Titulo}<Chip label={`${Mes_Nombre} ${Año}`}  size="small" style={{ marginBottom: "4px",marginLeft:"15px" }} />
+                {Titulo}
+                <Chip
+                  label={`${Mes_Nombre} ${Año}`}
+                  size="small"
+                  style={{ marginBottom: "4px", marginLeft: "15px" }}
+                />
               </Typography>
             </Stack>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               {Descripcion}
             </Typography>
             <div style={{ padding: "0em 0em 1em 0em" }}>
-                  <div className="grid-column" >
-                    <MiniLinePieCard
-                       Zona={Zona.slice(0,2)}
-                       Tipo={Tipo}
-                       Mostrar_Anual={Mostrar_Anual}
-                       Mes={Mes}
-                       Año={Año}
-                    ></MiniLinePieCard>
-                  </div>
+              <div className="grid-column">
+                <MiniLinePieCard
+                  Zona={Zona.slice(0, 2)}
+                  Tipo={Tipo}
+                  Mostrar_Anual={Mostrar_Anual}
+                  Mes={Mes}
+                  Año={Año}
+                  Mes_Nombre={Mes_Nombre}
+                ></MiniLinePieCard>
+              </div>
             </div>
-              <CardContent>
-                <div className="grid5f">
-                    <MultiBarChartCard
-                      Zona={Zona.slice(0,2)}
-                      Tipo={Tipo}
-                      Mostrar_Anual={Mostrar_Anual}
-                      Mes={Mes}
-                      Año={Año}
-                    ></MultiBarChartCard>
-                </div>
-              </CardContent>         
+            <CardContent>
+              <div className="grid5f">
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  {Descripcion_Barras}
+                </Typography>
+                <MultiBarChartCard
+                  Zona={Zona.slice(0, 2)}
+                  Tipo={Tipo}
+                  Mostrar_Anual={Mostrar_Anual}
+                  Mes={Mes}
+                  Año={Año}
+                ></MultiBarChartCard>
+              </div>
+            </CardContent>
           </CardContent>
         </Card>
       </div>

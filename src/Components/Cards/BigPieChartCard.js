@@ -25,6 +25,7 @@ function BigPieChartCard(props) {
   const zona = props.zona;
   const config = props.config;
   const TotalAnual = props.TotalAnual
+  const Mes_Nombre = props.Mes_Nombre
   
 
   //Setea los estados
@@ -163,7 +164,7 @@ function BigPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PROGRAMADAS: {Programado_Mensual}
+            PROGRAMADASL: {Programado_Mensual}
           </Typography>
           <Typography
             variant="caption"
@@ -224,7 +225,7 @@ function BigPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PROGRAMADAS: {Total_Anual}
+            PROGRAMADAS ANUAL: {Total_Anual}
           </Typography>
           <Typography
             variant="caption"
@@ -232,7 +233,7 @@ function BigPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           > 
-            PREVISTAS: {Planificado_Anual}
+            PREVISTAS HASTA {Mes_Nombre.toUpperCase()}: {Planificado_Anual}
           </Typography>
           <Typography
             variant="caption"
@@ -240,7 +241,7 @@ function BigPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS: {Ejecutado_Anual}
+            INTERVENIDAS HASTA {Mes_Nombre.toUpperCase()}: {Ejecutado_Anual}
           </Typography>
 
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>

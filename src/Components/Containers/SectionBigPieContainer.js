@@ -88,6 +88,7 @@ function SectionMultiPieContainer(props) {
                 zona={Zona}
                 config={config}
                 TotalAnual={TotalAnual}
+                Mes_Nombre={Mes_Nombre}
               ></BigPieChartCart>
             </div>
             <div style={{ padding: "1em 1em 1em 1em", width: "100%" }}>

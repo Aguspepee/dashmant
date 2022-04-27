@@ -69,7 +69,7 @@ function General(props) {
       </h3>
 
       <SectionMultiPieContainer
-        Titulo="Mantenimiento Programado de Equipos"
+        Titulo="Mantenimiento Programado - Equipos"
         Descripcion="Unidades de Mantenimiento"
         Mostrar_Anual="true"
         Mes={month}
@@ -83,8 +83,23 @@ function General(props) {
         Help={Help.HELP.RPM}
       ></SectionMultiPieContainer>
 
+      <SectionMultiPieContainer
+        Titulo="Mantenimiento Programado - Muestreos de Aceite"
+        Descripcion="Extracciones de Aceite"
+        Mostrar_Anual="true"
+        Mes={month}
+        Año={year}
+        Cl_actividad_PM="MUA"
+        Clase_de_orden="false"
+        Texto_breve="Muestreo"
+        Pto_tbjo_resp="false"
+        Operacion="0010"
+        BorrarDuplicados="false"
+        Help={Help.HELP.MUA}
+      ></SectionMultiPieContainer>
+
       <SectionMultiNumContainer
-        Titulo="Mantenimiento Correctivo de Equipos"
+        Titulo="Mantenimiento Correctivo"
         Descripcion="Cantidad de intervenciones"
         Mes={month}
         Año={year}
@@ -98,7 +113,7 @@ function General(props) {
       ></SectionMultiNumContainer>
 
       <SectionMultiPieContainer
-        Titulo="Seguridad Pública"
+        Titulo="Recorridas de Seguridad Pública"
         Descripcion="Recorridas de Seguridad Pública"
         Mostrar_Anual="true"
         Mes={month}
@@ -110,21 +125,6 @@ function General(props) {
         Operacion="0010"
         BorrarDuplicados="false"
         Help={Help.HELP.RSP}
-      ></SectionMultiPieContainer>
-
-      <SectionMultiPieContainer
-        Titulo="Muestreos de Aceite"
-        Descripcion="Extracciones de Aceite"
-        Mostrar_Anual="true"
-        Mes={month}
-        Año={year}
-        Cl_actividad_PM="MUA"
-        Clase_de_orden="false"
-        Texto_breve="Muestreo"
-        Pto_tbjo_resp="false"
-        Operacion="0010"
-        BorrarDuplicados="false"
-        Help={Help.HELP.MUA}
       ></SectionMultiPieContainer>
 
       <SectionDistributionContainer
@@ -155,24 +155,26 @@ function General(props) {
       <div>
         <SectionMultiBarContainer
           Titulo="Inspección Minuciosa"
-          Descripcion="Piquetes"
+          Descripcion="Resumen de Inspecciones Minuciosas en estructuras (Piquetes)"
           Tipo="PINM"
           Mostrar_Anual="true"
           Mes={month}
           Año={year}
           Help={Help.HELP.PINM}
+          Descripcion_Barras="Inspecciones Minuciosas discriminadas por Línea en estructuras (Piquetes)"
         ></SectionMultiBarContainer>
       </div>
 
       <div>
         <SectionMultiBarContainer
           Titulo="Inspección Terrestre"
-          Descripcion="Piquetes"
+          Descripcion="Resumen de Inspecciones Terrestres en estructuras (Piquetes)"
           Tipo="PINT"
           Mostrar_Anual="true"
           Mes={month}
           Año={year}
           Help={Help.HELP.PINT}
+          Descripcion_Barras="Inspecciones Terrestres discriminadas por Línea en estructuras (Piquetes)"
         ></SectionMultiBarContainer>
       </div>
     </>

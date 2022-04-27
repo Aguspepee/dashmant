@@ -83,7 +83,7 @@ function Zonas(props) {
       </h3>
       <div className="gridzone">
         <SectionBigPieContainer
-          Titulo="Mantenimiento Programado de Equipos"
+          Titulo="Mantenimiento Programado - Equipos"
           Descripcion="Unidades de Mantenimiento"
           Mostrar_Anual="true" 
           Mes={month}
@@ -97,25 +97,9 @@ function Zonas(props) {
           Zona={Zona}
           Help={Help.HELP.RPM}
         ></SectionBigPieContainer>
-
+        
         <SectionBigPieContainer
-          Titulo="Seguridad Pública"
-          Descripcion="Recorridas de Seguridad Pública"
-          Mostrar_Anual="true"
-          Mes={month}
-          Año={year}
-          Cl_actividad_PM="RSP"
-          Clase_de_orden="ZTPL"
-          Texto_breve="false"
-          Pto_tbjo_resp="ETRA"
-          Operacion="0010"
-          BorrarDuplicados="false"
-          Zona={Zona}
-          Help={Help.HELP.RSP}
-        ></SectionBigPieContainer>
-
-        <SectionBigPieContainer
-          Titulo="Muestreos de Aceite"
+          Titulo="Mantenimiento Programado - Muestreos de Aceite"
           Descripcion="Extracciones de Aceite"
           Mostrar_Anual="true"
           Mes={month}
@@ -130,6 +114,22 @@ function Zonas(props) {
           Help={Help.HELP.MUA}
         ></SectionBigPieContainer>
         <div className="secondary">
+
+        <SectionBigPieContainer
+          Titulo="Recorridas de Seguridad Pública"
+          Descripcion="Recorridas de Seguridad Pública"
+          Mostrar_Anual="true"
+          Mes={month}
+          Año={year}
+          Cl_actividad_PM="RSP"
+          Clase_de_orden="ZTPL"
+          Texto_breve="false"
+          Pto_tbjo_resp="ETRA"
+          Operacion="0010"
+          BorrarDuplicados="false"
+          Zona={Zona}
+          Help={Help.HELP.RSP}
+        ></SectionBigPieContainer>
 
         <SectionBigDistributionContainer
           Titulo="Distribución de actividades"
@@ -163,25 +163,27 @@ function Zonas(props) {
         <div>
           <SectionBigBarContainer
             Titulo="Inspección Minuciosa"
-            Descripcion="Piquetes"
+            Descripcion="Resumen de Inspecciones Minuciosas en estructuras (Piquetes)"
             Tipo="PINM"
             Mostrar_Anual="true"
             Mes={month}
             Año={year}
             Zona={Zona}
             Help={Help.HELP.PINM}
+            Descripcion_Barras="Inspecciones Minuciosas discriminadas por Línea en estructuras (Piquetes)"
           ></SectionBigBarContainer>
         </div>
         <div>
           <SectionBigBarContainer
             Titulo="Inspección Terrestre"
-            Descripcion="Piquetes"
+            Descripcion="Resumen de Inspecciones Terrestres en estructuras (Piquetes)"
             Tipo="PINT"
             Mostrar_Anual="true"
             Mes={month}
             Año={year}
             Zona={Zona}
             Help={Help.HELP.PINT}
+            Descripcion_Barras="Inspecciones Terrestres discriminadas por Línea en estructuras (Piquetes)"
           ></SectionBigBarContainer>
         </div>
       </div>

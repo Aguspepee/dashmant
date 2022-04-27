@@ -75,6 +75,7 @@ const SectionMultiPieContainer = React.memo(function SectionMultiPieContainer(
                     nombre={zonas.Nombre}
                     config={config}
                     TotalAnual={zonas.TotalAnual}
+                    mes={Mes_Nombre}
                   ></MiniPieChartCart>
                 </div>
               ))}

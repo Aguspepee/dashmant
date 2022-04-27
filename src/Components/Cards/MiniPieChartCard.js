@@ -26,6 +26,7 @@ function MiniPieChartCard(props) {
   const zona = props.zona;
   const nombre = props.nombre;
   const config = props.config;
+  const mes = props.mes;
   const TotalAnual = props.TotalAnual
 
   //Setea los estados
@@ -240,7 +241,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PROGRAMADAS: {Total_Anual}
+            PROGRAMADAS ANUAL: {Total_Anual}
           </Typography>
           <Typography
             variant="caption"
@@ -248,7 +249,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            PREVISTAS: {Planificado_Anual}
+            PREVISTAS HASTA {mes.toUpperCase()}: {Planificado_Anual}
           </Typography>
           <Typography
             variant="caption"
@@ -256,7 +257,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS: {Ejecutado_Anual}
+            INTERVENIDAS HASTA {mes.toUpperCase()}: {Ejecutado_Anual}
           </Typography>
 
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>

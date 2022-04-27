@@ -38,6 +38,7 @@ function SectionMultiBarContainer(props) {
   const Mostrar_Anual = props.Mostrar_Anual;
   const Mes = props.Mes;
   const Año = props.Año;
+  const Descripcion_Barras = props.Descripcion_Barras;
   const Help = props.Help;
   const zonas = [
     {
@@ -88,6 +89,7 @@ function SectionMultiBarContainer(props) {
                       Mostrar_Anual={Mostrar_Anual}
                       Mes={Mes}
                       Año={Año}
+                      Mes_Nombre={Mes_Nombre}
                     ></MiniLinePieCard>
                   </div>
                 ))}
@@ -105,6 +107,9 @@ function SectionMultiBarContainer(props) {
               </ExpandMore>
             </CardActions> 
             <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              {Descripcion_Barras}
+            </Typography>
               <CardContent>
                 <div className="gridpie">
                   {zonas.map((zonas, index) => (
@@ -116,6 +121,7 @@ function SectionMultiBarContainer(props) {
                       Mostrar_Anual={Mostrar_Anual}
                       Mes={Mes}
                       Año={Año}
+                      
                     ></MultiBarChartCard>
                   ))}
                 </div>
