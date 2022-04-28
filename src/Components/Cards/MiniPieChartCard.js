@@ -50,10 +50,16 @@ function MiniPieChartCard(props) {
   let Programado_Mensual = 0;
   let Ejecutado_Mensual = 0;
 
-  //Se calcula el programado mensual en funcion de la fecha de inicio programado
+/*   //Se calcula el programado mensual en funcion de la fecha de inicio programado
   if (list.Inicio_Programado_Mensual) {
     for (let i = 0; i < list.Inicio_Programado_Mensual.length; i++) {
       Programado_Mensual = Programado_Mensual + list.Inicio_Programado_Mensual[i].Count;
+    }
+  } */
+
+  if (list.Fecha_Referencia_Mensual) {
+    for (let i = 0; i < list.Fecha_Referencia_Mensual.length; i++) {
+      Programado_Mensual = Programado_Mensual + list.Fecha_Referencia_Mensual[i].Count;
     }
   }
 
