@@ -27,13 +27,13 @@ function Upload() {
         fileTypes=".xlsx , xls"
       ></Uploader>
 
-      <Uploader
+{/*       <Uploader
         dbSubBaseURL="lineasBase"
         keyConverter={keyModifiLineasBase}
         Titulo="Datos de Lineas"
         Subtitulo="Seleccione el archivo"
         fileTypes=".xlsx , xls"
-      ></Uploader>
+      ></Uploader> */}
     </>
 
   )
