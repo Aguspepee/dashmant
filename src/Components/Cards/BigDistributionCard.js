@@ -52,7 +52,7 @@ function BigDistributionCard(props) {
     };
     update();
   }, [setList, config.Mes, config.Año, zona]);
-  
+
   //Se inicializan los labels y las cantidades
   let quantity;
   let labels = [
@@ -137,40 +137,33 @@ function BigDistributionCard(props) {
         <CardContent>
           <Divider light style={{ width: "100%" }} />
           <Typography
-            variant="body1"
-            color="text.primary"
+            variant="caption"
+            color="text.secondary"
             component="div"
-            style={{
-              fontSize: "0.8em",
-              paddingLeft: "2em",
-              paddingBottom: "0px",
-            }}
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            HH Informadas: {total}
+            HH INFORMADAS: {total}
           </Typography>
           <Typography
-            variant="body1"
-            color="text.primary"
+            variant="caption"
+            color="text.secondary"
             component="div"
-            style={{
-              fontSize: "0.8em",
-              paddingLeft: "2em",
-              paddingBottom: "0px",
-            }}
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            HH mínimas no Informadas: {horas - total}
+            {horas - total < 0 && (
+              <>HH EXTRA REALIZADAS: {(horas - total) * -1}</>
+            )}
+            {horas - total > 0 && (
+              <>HH MÍNIMAS NO INFORMADAS: {horas - total}</>
+            )}
           </Typography>
           <Typography
-            variant="body1"
-            color="text.primary"
+            variant="caption"
+            color="text.secondary"
             component="div"
-            style={{
-              fontSize: "0.8em",
-              paddingLeft: "2em",
-              paddingBottom: "0px",
-            }}
+            style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            HH mínimas esperadas: {horas}
+            HH MÍNIMAS ESPERADAS: {horas}
           </Typography>
           <Divider light style={{ width: "100%" }} />
         </CardContent>

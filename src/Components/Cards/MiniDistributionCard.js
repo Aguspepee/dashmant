@@ -183,7 +183,17 @@ function MiniDistributionCard(props) {
         component="div"
         style={{ paddingBottom: "0px", fontSize: "0.7em" }}
       >
+        { horas-total<0 && 
+        <>
+        HH EXTRA REALIZADAS: {(horas - total)*-1}
+        </>
+        }
+        { horas-total>0 && 
+        <>
         HH MÍNIMAS NO INFORMADAS: {horas - total}
+        </>
+        }
+
       </Typography>
       <Typography
         variant="caption"
