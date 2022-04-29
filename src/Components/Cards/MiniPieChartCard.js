@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import { filterGeneral } from "../../Services/sapBaseService"
+import { filterGeneral } from "../../Services/sapBaseService";
+import { MonthToWord } from "../../Utils/Functions";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 //Configuración del gráfico
@@ -27,7 +28,8 @@ function MiniPieChartCard(props) {
   const nombre = props.nombre;
   const config = props.config;
   const mes = props.mes;
-  const TotalAnual = props.TotalAnual
+  const TotalAnual = props.TotalAnual;
+  const Mes_Actual = MonthToWord(new Date().getMonth() + 1);
 
   //Setea los estados
   const [list, setList] = useState([]);
@@ -263,7 +265,7 @@ function MiniPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS HASTA MES EN CURSO: {Ejecutado_Anual}
+            INTERVENIDAS HASTA {Mes_Actual.toUpperCase()}: {Ejecutado_Anual}
           </Typography>
 
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>

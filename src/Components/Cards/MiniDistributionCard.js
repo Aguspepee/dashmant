@@ -6,10 +6,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import {
-  distribucionHoraria,
-  horasPlanificadas,
-} from "../../Services/sapBaseService";
+import {distribucionHoraria, horasPlanificadas} from "../../Services/sapBaseService";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -43,20 +40,22 @@ function MiniDistributionCard(props) {
   useEffect(() => {
     const update = async () => {
       //Se crea una promesa compuesta
-      const res2 = await horasPlanificadas(zona);
+      const res2 = await horasPlanificadas(config, zona,);
       const res1 = await distribucionHoraria(config, zona);
       const getPromises = [res1, res2];
       const getResponses = Promise.all(getPromises);
       try {
         const resultados = await getResponses;
         setList(resultados[0].data.Distribucion);
-        setHoras(resultados[1].data[0].Horas);
+        setHoras(resultados[1].data.Horas);
+        
       } catch (e) {
         console.log(e);
       }
     };
     update();
-  }, [setList, setHoras, config, zona]);
+  }, [setHoras, config]);
+  console.log(horas)
 
   //Se inicializan los labels y las cantidades
   let quantity;
@@ -170,41 +169,30 @@ function MiniDistributionCard(props) {
           <Doughnut data={data} options={options} />
         </Box>
       </Card>
+      <Divider light style={{ width: "90%" }} />
       <Typography
-        variant="body1"
-        color="text.primary"
+        variant="caption"
+        color="text.secondary"
         component="div"
-        style={{
-          fontSize: "0.8em",
-          paddingLeft: "2em",
-          paddingBottom: "0px",
-        }}
+        style={{ paddingBottom: "0px", fontSize: "0.7em" }}
       >
-        HH Informadas: {total}
+        HH INFORMADAS: {total}
       </Typography>
       <Typography
-        variant="body1"
-        color="text.primary"
+        variant="caption"
+        color="text.secondary"
         component="div"
-        style={{
-          fontSize: "0.8em",
-          paddingLeft: "2em",
-          paddingBottom: "0px",
-        }}
+        style={{ paddingBottom: "0px", fontSize: "0.7em" }}
       >
-        HH mínimas no Informadas: {horas-total}
+        HH MÍNIMAS NO INFORMADAS: {horas - total}
       </Typography>
       <Typography
-        variant="body1"
-        color="text.primary"
+        variant="caption"
+        color="text.secondary"
         component="div"
-        style={{
-          fontSize: "0.8em",
-          paddingLeft: "2em",
-          paddingBottom: "0px",
-        }}
+        style={{ paddingBottom: "0px", fontSize: "0.7em" }}
       >
-        HH mínimas esperadas: {horas}
+        HH MÍNIMAS ESPERADAS: {horas}
       </Typography>
       <Divider light style={{ width: "90%" }} />
     </>

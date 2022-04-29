@@ -21,7 +21,6 @@ function SectionBigBarContainer(props) {
   const Mes_Nombre = MonthToWord(Mes);
   const Descripcion_Barras = props.Descripcion_Barras;
 
-  console.log("MES",Año)
   //console.log("Lineas", lineas);
   let actividad = props.activity;
 

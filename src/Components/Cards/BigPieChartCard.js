@@ -9,7 +9,8 @@ import MiniBarChartCard from "../Cards/MiniBarChartCard";
 import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
-import { filterGeneral } from "../../Services/sapBaseService"
+import { filterGeneral } from "../../Services/sapBaseService";
+import { MonthToWord } from "../../Utils/Functions";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -24,9 +25,9 @@ function BigPieChartCard(props) {
   //Extrae las propiedades, configuración y titulos
   const zona = props.zona;
   const config = props.config;
-  const TotalAnual = props.TotalAnual
-  const Mes_Nombre = props.Mes_Nombre
-  
+  const TotalAnual = props.TotalAnual;
+  const Mes_Nombre = props.Mes_Nombre;
+  const Mes_Actual = MonthToWord(new Date().getMonth() + 1);
 
   //Setea los estados
   const [list, setList] = useState([]);
@@ -34,22 +35,21 @@ function BigPieChartCard(props) {
   useEffect(() => {
     const update = async () => {
       try {
-        const res = await filterGeneral(config, zona)
-        console.log(res.data)
+        const res = await filterGeneral(config, zona);
         setList(res.data);
       } catch (e) {
-        console.log(e); 
+        console.log(e);
       }
     };
     update();
-  }, [setList, config.Mes, config.Año,zona]);
+  }, [setList, config.Mes, config.Año, zona]);
 
   //Se inicializan los labels y las cantidades
   let labels = ["Ejec.", "No Ejec."];
   let Programado_Mensual = 0;
   let Ejecutado_Mensual = 0;
 
-/*   //Se calcula el programado mensual en funcion de la fecha de inicio programado
+  /*   //Se calcula el programado mensual en funcion de la fecha de inicio programado
   if (list.Inicio_Programado_Mensual) {
     for (let i = 0; i < list.Inicio_Programado_Mensual.length; i++) {
       Programado_Mensual = Programado_Mensual + list.Inicio_Programado_Mensual[i].Count;
@@ -57,37 +57,30 @@ function BigPieChartCard(props) {
   } */
   if (list.Fecha_Referencia_Mensual) {
     for (let i = 0; i < list.Fecha_Referencia_Mensual.length; i++) {
-      Programado_Mensual = Programado_Mensual + list.Fecha_Referencia_Mensual[i].Count;
+      Programado_Mensual =
+        Programado_Mensual + list.Fecha_Referencia_Mensual[i].Count;
     }
-  } 
+  }
 
-  let datos = list.Fecha_Referencia_Mensual
+  let datos = list.Fecha_Referencia_Mensual;
   if (list.Fecha_Referencia_Mensual) {
-    Ejecutado_Mensual = datos.filter((datos) => datos.Status === "CTEC")
-
+    Ejecutado_Mensual = datos.filter((datos) => datos.Status === "CTEC");
   }
   if (Ejecutado_Mensual[0]) {
-    Ejecutado_Mensual = Ejecutado_Mensual[0].Count
+    Ejecutado_Mensual = Ejecutado_Mensual[0].Count;
   } else {
-    Ejecutado_Mensual = 0
+    Ejecutado_Mensual = 0;
   }
 
   //Se calculan los porcentajes mensuales
-  let percentaje
-  if (
-    !Number.isNaN(
-      Ejecutado_Mensual * 100 / Programado_Mensual
-    )
-  ) {
-    percentaje = (
-      Ejecutado_Mensual * 100 / Programado_Mensual
-    ).toFixed(0);
+  let percentaje;
+  if (!Number.isNaN((Ejecutado_Mensual * 100) / Programado_Mensual)) {
+    percentaje = ((Ejecutado_Mensual * 100) / Programado_Mensual).toFixed(0);
   } else {
     percentaje = "-";
   }
 
-
-  let quantity = [Ejecutado_Mensual, Programado_Mensual - Ejecutado_Mensual]
+  let quantity = [Ejecutado_Mensual, Programado_Mensual - Ejecutado_Mensual];
 
   //Se inicializa el gráfico
   const data = {
@@ -111,14 +104,17 @@ function BigPieChartCard(props) {
   });
 
   //  TOTAL PREVISTO AL MES EN CURSO
-  let Planificado_Anual = list.Inicio_Programado_Acumulado
+  let Planificado_Anual = list.Inicio_Programado_Acumulado;
   if (Planificado_Anual) {
-    let nume
+    let nume;
     Planificado_Anual = Planificado_Anual.filter((Planificado_Anual) => {
-      nume = Planificado_Anual.Inicio_program_Mes
-      return (nume <= config.Mes)
-    })
-    Planificado_Anual = Planificado_Anual.reduce((a, b) => a + (b["Count"] || 0), 0)
+      nume = Planificado_Anual.Inicio_program_Mes;
+      return nume <= config.Mes;
+    });
+    Planificado_Anual = Planificado_Anual.reduce(
+      (a, b) => a + (b["Count"] || 0),
+      0
+    );
   }
 
   // TOTAL ANUAL PREVISTO
@@ -130,15 +126,14 @@ function BigPieChartCard(props) {
     datos = list.Fecha_Referencia_Anual;
     //Se extraen los labels
     let cant = datos.filter((datos) => {
-      return (datos.Status === "CTEC")
-    })[0]
+      return datos.Status === "CTEC";
+    })[0];
     if (cant) {
-      Ejecutado_Anual = cant.Count
+      Ejecutado_Anual = cant.Count;
     } else {
-      Ejecutado_Anual = 0
+      Ejecutado_Anual = 0;
     }
   }
-
 
   let percentajeBar = (Ejecutado_Anual * 100) / Total_Anual;
   let percentajeNow = (Planificado_Anual * 100) / Total_Anual;
@@ -209,7 +204,7 @@ function BigPieChartCard(props) {
       </Card>
       <Divider light style={{ width: "100%" }} />
 
-      {config.Mostrar_Anual === "true" &&
+      {config.Mostrar_Anual === "true" && (
         <Container>
           <Typography
             variant="body1"
@@ -219,7 +214,7 @@ function BigPieChartCard(props) {
           >
             Anual
           </Typography>
-          <Divider light style={{ width: "37%" }} /> 
+          <Divider light style={{ width: "37%" }} />
           <MiniBarChartCard
             percentaje={percentajeBar}
             percentajeNow={percentajeNow}
@@ -237,7 +232,7 @@ function BigPieChartCard(props) {
             color="text.secondary"
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
-          > 
+          >
             PREVISTAS HASTA {Mes_Nombre.toUpperCase()}: {Planificado_Anual}
           </Typography>
           <Typography
@@ -246,10 +241,14 @@ function BigPieChartCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS HASTA MES EN CURSO: {Ejecutado_Anual}
+            INTERVENIDAS HASTA {Mes_Actual.toUpperCase()}: {Ejecutado_Anual}
           </Typography>
 
-          <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
+          <Typography
+            component="div"
+            variant="h4"
+            style={{ fontSize: "2.5em" }}
+          >
             {Math.round(percentajeBar)}%
           </Typography>
           <Typography
@@ -261,7 +260,7 @@ function BigPieChartCard(props) {
             EJECUTADO
           </Typography>
         </Container>
-      }
+      )}
       <Divider light style={{ width: "100%" }} />
     </>
   );

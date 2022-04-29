@@ -38,21 +38,21 @@ function BigDistributionCard(props) {
   useEffect(() => {
     const update = async () => {
       //Se crea una promesa compuesta
-      const res2 = await horasPlanificadas(zona);
+      const res2 = await horasPlanificadas(config, zona);
       const res1 = await distribucionHoraria(config, zona);
       const getPromises = [res1, res2];
       const getResponses = Promise.all(getPromises);
       try {
         const resultados = await getResponses;
         setList(resultados[0].data.Distribucion);
-        setHoras(resultados[1].data[0].Horas);
+        setHoras(resultados[1].data.Horas);
       } catch (e) {
         console.log(e);
       }
     };
     update();
   }, [setList, config.Mes, config.Año, zona]);
-
+console.log(horas)
   //Se inicializan los labels y las cantidades
   let quantity;
   let labels = [

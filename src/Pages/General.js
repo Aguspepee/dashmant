@@ -66,7 +66,7 @@ function General(props) {
       <Toolbar style={{ marginBottom: "20px" }} />
       <h3 style={{ paddingTop: "20px", paddingBottom: "0px" }}>
         Estaciones Transformadoras
-      </h3>||
+      </h3>
 
       <SectionMultiPieContainer
         Titulo="Mantenimiento Programado - Equipos"

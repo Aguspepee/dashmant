@@ -10,6 +10,7 @@ import { Container } from "@mui/material";
 import "./animation.css";
 import Divider from "@mui/material/Divider";
 import { NovedadesResumen } from "../../Services/lineasNovedadesService"
+import { MonthToWord } from "../../Utils/Functions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -33,6 +34,7 @@ function MiniLinePieCard(props) {
   const Año = props.Año;
   const Tipo = props.Tipo;
   const Mes_Nombre= props.Mes_Nombre
+  const Mes_Actual = MonthToWord(new Date().getMonth() + 1);
 
   const [list, setList] = useState([]);
   //Previo a renderizar el componente se consulta la API
@@ -207,7 +209,7 @@ function MiniLinePieCard(props) {
             component="div"
             style={{ paddingBottom: "0px", fontSize: "0.7em" }}
           >
-            INTERVENIDAS HASTA MES EN CURSO: {Math.round(list.Total_Anual_Ejecutado)}
+            INTERVENIDAS HASTA {Mes_Actual.toUpperCase()}: {Math.round(list.Total_Anual_Ejecutado)}
           </Typography>
           <Typography component="div" variant="h4" style={{ fontSize: "2.5em" }}>
             {Porcentaje_Anual}%
