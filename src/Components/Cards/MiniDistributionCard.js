@@ -55,7 +55,6 @@ function MiniDistributionCard(props) {
     };
     update();
   }, [setHoras, config]);
-  console.log(horas)
 
   //Se inicializan los labels y las cantidades
   let quantity;

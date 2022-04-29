@@ -52,7 +52,7 @@ function BigDistributionCard(props) {
     };
     update();
   }, [setList, config.Mes, config.Año, zona]);
-console.log(horas)
+  
   //Se inicializan los labels y las cantidades
   let quantity;
   let labels = [
