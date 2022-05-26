@@ -20,22 +20,10 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import DateContext from "../../Context/DateContext";
 import { useContext } from "react";
 import Logo from "../../Images/transpa.png";
+import TableRowsIcon from '@mui/icons-material/TableRows';
 
 const drawerWidth = 240;
-const months = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-];
+const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const years = [2021, 2022, 2023, 2024];
 
@@ -105,6 +93,17 @@ function ResponsiveDrawer(props) {
           <ListItemText inset primary="Zona Austral" />
         </ListItem>
 
+        <ListItem
+          button
+          key="Gestión OT"
+          component={Link}
+          to="dashmant/GestionOT"
+          onClick={handleOpen}
+        >
+          <ListItemIcon>{<TableRowsIcon />}</ListItemIcon>
+          <ListItemText primary="Gestión OT" />
+        </ListItem>
+
         <Divider />
 
         <ListItem key={"Periodo Evaluado"}>
@@ -145,7 +144,6 @@ function ResponsiveDrawer(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-    
   return (
     <>
       <CssBaseline />
@@ -205,7 +203,6 @@ function ResponsiveDrawer(props) {
               boxSizing: "border-box",
               width: drawerWidth,
               boxShadow: "rgba(0, 0, 0, 0) 0px 3px 8px",
-              
             },
           }}
         >

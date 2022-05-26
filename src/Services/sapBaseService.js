@@ -15,3 +15,7 @@ export function resumenAnual(config,zona){
 export function horasPlanificadas(config, zona){
     return instance.get(`/horas/byZone/${config.Mes}-${config.Año}-${zona}`)
 }
+
+export function resumenSap(){
+    return instance.get(`sapBase/resumen/`)
+}
