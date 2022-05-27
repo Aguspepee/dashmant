@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 import { useTable } from "react-table";
 import { resumenSap } from "../../Services/sapBaseService";
@@ -36,21 +36,6 @@ const Styles = styled.div`
 `;
 
 function Table({ columns, data }) {
-
-  useEffect(() => {
-    const update = async () => {
-      //Se crea una promesa compuesta
-      try {
-        const res = await resumenSap();
-        console.log(res.data)
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    update();
-  }, []);
-
-
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
@@ -112,9 +97,36 @@ function Table({ columns, data }) {
 }
 
 function Tabla() {
-  const columns = Datos_Columnas
-  const data = Datos_Gestion
-    
+  const columns = Datos_Columnas;
+  const [data, setData] = useState(Datos_Gestion);
+  const [resumen, setResumen] = useState([])
+
+  useEffect(() => {
+    const update = async () => {
+      //Se crea una promesa compuesta
+      try {
+        const res = await resumenSap();
+        if (res){
+        for (let i = 1; i < 5; i++) {
+          for (let j = 1; j < 13; j++) {
+            res.data[1][`G_${j}`] = resumen?.gestion_aceites_generadas ? resumen?.gestion_aceites_generadas[j]?.ZN : 0;
+            res.data[1][`C_${j}`] = resumen?.gestion_aceites_cerradas ? resumen?.gestion_aceites_cerradas[j]?.ZN : 0;
+            res.data[2][`G_${j}`] = resumen?.gestion_aceites_generadas ? resumen?.gestion_aceites_generadas[j]?.ZS : 0;
+            res.data[2][`C_${j}`] = resumen?.gestion_aceites_cerradas ? resumen?.gestion_aceites_cerradas[j]?.ZS : 0;
+          }
+        }}
+        console.log("resultado",res)
+        setResumen(res);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    update();
+  }, []);
+  console.log(resumen)
+  // Gestión de aceites
+  
+  console.log(data);
   return (
     <Styles>
       <h5>Ordenes de Trabajo Gestionadas por SAP</h5>

@@ -125,7 +125,7 @@ module.exports={
         },
       ],
 
-      
+
       Datos_Columnas:[
         {
           Header: "                ",
@@ -227,12 +227,12 @@ module.exports={
               columns: [
                 {
                   Header: "Generadas",
-                  accessor: "Generadas_2022_1",
+                  accessor: "G_1",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
-                  accessor: "Cerradas_2022_1",
+                  accessor: "C_1",
                   minWidth: 70,
                 },
               ],
@@ -242,12 +242,12 @@ module.exports={
               columns: [
                 {
                   Header: "Generadas",
-                  accessor: "Generadas_2022_2",
+                  accessor: "G_2",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
-                  accessor: "Cerradas_2022_2",
+                  accessor: "C_2",
                   minWidth: 70,
                 },
               ],
@@ -257,12 +257,12 @@ module.exports={
               columns: [
                 {
                   Header: "Generadas",
-                  accessor: "Generadas_2022_3",
+                  accessor: "G_3",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
-                  accessor: "Cerradas_2022_3",
+                  accessor: "C_3",
                   minWidth: 70,
                 },
               ],
@@ -272,12 +272,12 @@ module.exports={
               columns: [
                 {
                   Header: "Generadas",
-                  accessor: "Generadas_2022_4",
+                  accessor: "G_4",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
-                  accessor: "Cerradas_2022_4",
+                  accessor: "C_4",
                   minWidth: 70,
                 },
               ],
@@ -287,16 +287,121 @@ module.exports={
               columns: [
                 {
                   Header: "Generadas",
-                  accessor: "Generadas_2022_5",
+                  accessor: "G_5",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
-                  accessor: "Cerradas_2022_5",
+                  accessor: "C_5",
                   minWidth: 70,
                 },
               ],
             },
+            {
+                Header: "jun-22",
+                columns: [
+                  {
+                    Header: "Generadas",
+                    accessor: "G_6",
+                    minWidth: 70,
+                  },
+                  {
+                    Header: "Cerradas",
+                    accessor: "C_6",
+                    minWidth: 70,
+                  },
+                ],
+              },
+              {
+                Header: "jul-22",
+                columns: [
+                  {
+                    Header: "Generadas",
+                    accessor: "G_7",
+                    minWidth: 70,
+                  },
+                  {
+                    Header: "Cerradas",
+                    accessor: "C_7",
+                    minWidth: 70,
+                  },
+                ],
+              },
+              {
+                Header: "ago-22",
+                columns: [
+                  {
+                    Header: "Generadas",
+                    accessor: "G_8",
+                    minWidth: 70,
+                  },
+                  {
+                    Header: "Cerradas",
+                    accessor: "C_8",
+                    minWidth: 70,
+                  },
+                ],
+              },
+              {
+                Header: "sep-22",
+                columns: [
+                  {
+                    Header: "Generadas",
+                    accessor: "G_9",
+                    minWidth: 70,
+                  },
+                  {
+                    Header: "Cerradas",
+                    accessor: "C_9",
+                    minWidth: 70,
+                  },
+                ],
+              },
+              {
+                Header: "oct-22",
+                columns: [
+                  {
+                    Header: "Generadas",
+                    accessor: "G_10",
+                    minWidth: 70,
+                  },
+                  {
+                    Header: "Cerradas",
+                    accessor: "C_10",
+                    minWidth: 70,
+                  },
+                ],
+              },
+              {
+                Header: "nov-22",
+                columns: [
+                  {
+                    Header: "Generadas",
+                    accessor: "G_11",
+                    minWidth: 70,
+                  },
+                  {
+                    Header: "Cerradas",
+                    accessor: "C_11",
+                    minWidth: 70,
+                  },
+                ],
+              },
+              {
+                Header: "dic-22",
+                columns: [
+                  {
+                    Header: "Generadas",
+                    accessor: "G_12",
+                    minWidth: 70,
+                  },
+                  {
+                    Header: "Cerradas",
+                    accessor: "C_12",
+                    minWidth: 70,
+                  },
+                ],
+              },
           ],
         },
       ]
