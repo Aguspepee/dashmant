@@ -14,14 +14,14 @@ function GestionOT() {
   return (
     <>
       <h1>Líneas</h1>
-      <Pdf targetRef={ref} filename="Ordenes de Trabajo.pdf">
-        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
-      </Pdf>
       <Card >
       <div ref={ref} style={{ width: "100%", overflow: "auto", display: "flex" }}>
         <Tabla ></Tabla>
         </div>
       </Card>
+      <Pdf targetRef={ref} filename="Ordenes de Trabajo.pdf">
+        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+      </Pdf>
     </>
   );
 }

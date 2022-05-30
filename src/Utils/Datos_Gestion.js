@@ -228,11 +228,13 @@ module.exports={
                 {
                   Header: "Generadas",
                   accessor: "G_1",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
                   accessor: "C_1",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
               ],
@@ -243,11 +245,13 @@ module.exports={
                 {
                   Header: "Generadas",
                   accessor: "G_2",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
                   accessor: "C_2",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
               ],
@@ -258,11 +262,13 @@ module.exports={
                 {
                   Header: "Generadas",
                   accessor: "G_3",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
                   accessor: "C_3",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
               ],
@@ -273,11 +279,13 @@ module.exports={
                 {
                   Header: "Generadas",
                   accessor: "G_4",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
                   accessor: "C_4",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
               ],
@@ -288,11 +296,13 @@ module.exports={
                 {
                   Header: "Generadas",
                   accessor: "G_5",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
                 {
                   Header: "Cerradas",
                   accessor: "C_5",
+                  fontSize: "12px",
                   minWidth: 70,
                 },
               ],
@@ -303,11 +313,13 @@ module.exports={
                   {
                     Header: "Generadas",
                     accessor: "G_6",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                   {
                     Header: "Cerradas",
                     accessor: "C_6",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                 ],
@@ -318,11 +330,13 @@ module.exports={
                   {
                     Header: "Generadas",
                     accessor: "G_7",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                   {
                     Header: "Cerradas",
                     accessor: "C_7",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                 ],
@@ -333,11 +347,13 @@ module.exports={
                   {
                     Header: "Generadas",
                     accessor: "G_8",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                   {
                     Header: "Cerradas",
                     accessor: "C_8",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                 ],
@@ -348,11 +364,13 @@ module.exports={
                   {
                     Header: "Generadas",
                     accessor: "G_9",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                   {
                     Header: "Cerradas",
                     accessor: "C_9",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                 ],
@@ -363,11 +381,13 @@ module.exports={
                   {
                     Header: "Generadas",
                     accessor: "G_10",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                   {
                     Header: "Cerradas",
                     accessor: "C_10",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                 ],
@@ -378,11 +398,13 @@ module.exports={
                   {
                     Header: "Generadas",
                     accessor: "G_11",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                   {
                     Header: "Cerradas",
                     accessor: "C_11",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                 ],
@@ -393,11 +415,13 @@ module.exports={
                   {
                     Header: "Generadas",
                     accessor: "G_12",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                   {
                     Header: "Cerradas",
                     accessor: "C_12",
+                    fontSize: "12px",
                     minWidth: 70,
                   },
                 ],
