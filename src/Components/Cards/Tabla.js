@@ -5,7 +5,7 @@ import { resumenSap } from "../../Services/sapBaseService";
 import { Datos_Gestion, Datos_Columnas } from "../../Utils/Datos_Gestion";
 import { useContext } from "react";
 import DateContext from "../../Context/DateContext";
-
+import ExcelExport from "../Excel/ExcelExport";
 //import makeData from './makeData'
 
 const Styles = styled.div`
@@ -104,8 +104,7 @@ function Tabla() {
   let columns_modified = []
   const [data , setData] = useState([])
   const [reload , setReload] =useState(false)
-  let aux = Datos_Gestion
-  
+  let aux = Datos_Gestion 
 
   useEffect(() => {
     const update = async () => {
@@ -115,7 +114,6 @@ function Tabla() {
         if (res.data) {
           for (let i = 1; i < 5; i++) {
             for (let j = 1; j < 13; j++) {
-              //data[1][`G_${j}`] = "hola"
               aux[1][`G_${j}`]=res.data["gestion_aceites_generadas"][j-1]?.ZN
               aux[1][`C_${j}`]=res.data["gestion_aceites_cerradas"][j-1]?.ZN
               aux[2][`G_${j}`]=res.data["gestion_aceites_generadas"][j-1]?.ZS
@@ -145,7 +143,6 @@ function Tabla() {
             }
           }
         }
-        console.log(res.data)
         setData(aux)
         setReload(!reload)
       } catch (e) {
@@ -155,18 +152,18 @@ function Tabla() {
     update(reload);
   }, []);
 
-  console.log(columns[3].Header)
   columns_modified[0] = columns[0]
   columns_modified[1] = columns[1]
   columns_modified[2] = columns[2]
   columns_modified[3] ={}
   columns_modified[3]["Header"] = columns[3].Header
   columns_modified[3]["columns"] = columns[3].columns.slice(0,month+1)
-  console.log(columns_modified)
   return (
     <Styles>
       <h5>Ordenes de Trabajo Gestionadas por SAP</h5>
+      <ExcelExport  data={data}/>
       <Table columns={columns_modified} data={data} />
+
     </Styles>
   );
 }

@@ -18,6 +18,8 @@
     "chart.js": "^3.6.0",
     "convert-excel-to-json": "^1.7.0",
     "cors": "^2.8.5",
+    "exceljs": "^4.3.0",
+    "file-saver": "^2.0.5",
     "formidable": "^2.0.1",
     "moment": "^2.29.1",
     "react": "^17.0.2",
