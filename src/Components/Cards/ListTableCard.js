@@ -43,7 +43,6 @@ export default function BasicTable(props) {
         {dataList.ZonaNombre}
       </Typography>
 
-
       <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
       <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>
       <LineAcumChartCard dataBar={dataBar}></LineAcumChartCard>

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useContext } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,8 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { CardContent } from "@mui/material";
+import DateContext from "../../Context/DateContext";
+
 
 ChartJS.register(
   CategoryScale,
@@ -21,6 +23,7 @@ ChartJS.register(
 );
 
 function VerticalBarCard(props) {
+  const [year, setYear, month, setMonth] = useContext(DateContext);
   const list = props.list.Lineas;
   let max = props.max;
 
@@ -83,7 +86,8 @@ function VerticalBarCard(props) {
 
   let labels = [];
   let ejecutado = [];
-  let previsto = [];
+  let faltante_mensual = [];
+  let faltante_anual = [];
   let factor = props.factor;
   if (list) {
     labels = list.map((list, index) => {
@@ -92,8 +96,11 @@ function VerticalBarCard(props) {
     ejecutado = list.map((list, index) => {
       return list.Torres_Inspeccionadas;
     });
-    previsto = list.map((list, index) => {
-      return list.Torres_Cantidad * factor;
+    faltante_mensual = list.map((list, index) => {
+      return list.Torres_Cantidad * factor * (month/12) - ejecutado[index]
+    });
+    faltante_anual = list.map((list, index) => {
+      return list.Torres_Cantidad * factor - ejecutado[index] - faltante_mensual[index]
     });
   }
   const data = {
@@ -105,9 +112,14 @@ function VerticalBarCard(props) {
         backgroundColor: "#BDE7BD",
       },
       {
-        label: ["Sin ejecutar"],
-        data: previsto,
+        label: ["Mensual faltante"],
+        data: faltante_mensual,
         backgroundColor: "#FF6962",
+      },
+      {
+        label: ["Anual faltante"],
+        data: faltante_anual,
+        backgroundColor: "#EBECF0",
       },
     ],
   };
@@ -120,7 +132,7 @@ function VerticalBarCard(props) {
   } else if (labels.length <= 1) {
     heightChart = labels.length * 140 + "px";
   } else if (labels.length <= 3) {
-    heightChart = labels.length * 53 + "px";
+    heightChart = labels.length * 70 + "px";
   } else if (labels.length <= 7) {
     heightChart = labels.length * 45 + "px";
   } else {

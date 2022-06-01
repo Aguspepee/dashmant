@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import VerticalBarCard from "./VerticalBarCard";
-import { NovedadesDetalle } from "../../Services/lineasNovedadesService"
+import { NovedadesDetalle } from "../../Services/lineasNovedadesService";
+
 
 function MultiBarChartCard(props) {
   const Zona = props.Zona;
@@ -11,6 +12,7 @@ function MultiBarChartCard(props) {
   const Tipo = props.Tipo;
 
   const [list, setList] = useState([]);
+
   //Previo a renderizar el componente se consulta la API
   useEffect(() => {
     const update = async () => {
